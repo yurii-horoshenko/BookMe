@@ -1,0 +1,77 @@
+name: iosApp
+settings:
+    base:
+        SWIFT_VERSION: 5.7.1
+        DEVELOPMENT_TEAM: 45N7H6HE3J
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
+        TARGETED_DEVICE_FAMILY: 1
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_BITCODE: NO
+        CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: YES
+        CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: YES
+        EXCLUDED_ARCHS[sdk=iphonesimulator*]: x86_64
+configs:
+    Debug:
+        ENABLE_TESTABILITY: YES
+        SWIFT_COMPILATION_MODE: singlefile
+        SWIFT_OPTIMIZATION_LEVEL: -Onone
+        VALIDATE_PRODUCT: NO
+    Release:
+        ENABLE_TESTABILITY: NO
+        SWIFT_COMPILATION_MODE: wholemodule
+        SWIFT_OPTIMIZATION_LEVEL: -O
+        VALIDATE_PRODUCT: YES
+options:
+    usesTabs: false
+    indentWidth: 4
+    tabWidth: 4
+    groupSortPosition: top
+    defaultConfig: Release
+
+### TARGETS
+targets:
+    BookMeNow-Develop:
+        type: application
+        platform: iOS
+        deploymentTarget: "15.0"
+        sources:
+            - fastlane
+            - Frameworks
+            - Source
+            - ".project.yml"
+            - ".swiftlint.yml"
+            - path: Environments
+              excludes:
+                - "**/Release/*.plist"
+        settings:
+            base:
+                TARGETED_DEVICE_FAMILY: 1
+                GENERATE_INFOPLIST_FILE: YES
+                #CODE_SIGN_ENTITLEMENTS: "Environments/Develop/BookMeNow-Develop.entitlements"
+                INFOPLIST_FILE: "Environments/Develop/Info.plist"
+                INFOPLIST_KEY_UIApplicationSceneManifest_Generation: NO
+                INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+                INFOPLIST_KEY_UILaunchScreen_Generation: YES
+#                INFOPLIST_KEY_UILaunchStoryboardName: LaunchScreen
+                INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+                INFOPLIST_KEY_UIUserInterfaceStyle: Light
+                PRODUCT_BUNDLE_IDENTIFIER: "com.gorosoft.bookme.now"
+        scheme:
+            environmentVariables:
+            - variable: OS_ACTIVITY_MODE
+              value: disable
+              isEnabled: false
+        postBuildScripts:
+            - script: |
+                    if [[ "$(uname -m)" == arm64 ]]; then
+                        export PATH="/opt/homebrew/bin:$PATH"
+                    fi
+
+                    if which swiftlint > /dev/null; then
+                        swiftlint
+                    else
+                        echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+                    fi
+              name: "[Script] SwiftLint"

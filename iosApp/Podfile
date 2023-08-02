@@ -1,5 +1,40 @@
-target 'iosApp' do
-  use_frameworks!
-  platform :ios, '14.1'
+#target 'iosApp' do
+#  use_frameworks!
+#  platform :ios, '14.1'
+#  
+#  
+#  
+#  pod 'shared', :path => '../shared'
+#  
+#  
+#end
+
+
+
+
+
+
+def project_pods
+  use_modular_headers!
+  
+  pod 'PhoneNumberKit'
+  pod 'Kingfisher'
+  #  pod 'GoogleSignIn'
+  pod 'SwiftLint'
+  #  pod 'FacebookCore'
+  #  pod 'FacebookLogin'
+  
+  # KMM Core
+  #  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
+  #  pod 'BookMeCore', :git => 'https://github.com/wizardwork/BookMe-KMM.git', :branch => 'cocoapods'
   pod 'shared', :path => '../shared'
+  
+end
+
+#############################
+####### Application  ########
+#############################
+target 'BookMeNow-Develop' do
+  inherit! :search_paths
+  project_pods
 end

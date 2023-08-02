@@ -1,0 +1,14 @@
+git_url("git@bitbucket.org:fjordsv2/ios-certs.git")
+
+storage_mode("git")
+
+# The default type, can be: appstore, adhoc, enterprise or development
+type("adhoc")
+
+# Your Apple Developer Portal username
+username("ios-admin@brand.com")
+
+app_identifier("com.bookme.now")
+
+# For all available options run `fastlane match --help`
+# The docs are available on https://docs.fastlane.tools/actions/match

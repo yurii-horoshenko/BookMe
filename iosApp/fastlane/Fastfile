@@ -1,0 +1,314 @@
+default_platform :ios
+
+platform :ios do
+
+BOOKME_BUNDLE_ID = "com.gorosoft.bookme.now"
+
+ALL_BUNDLE_IDS = [
+    BOOKME_BUNDLE_ID
+]
+
+DEVELOPMENT_PROVISIONING_TYPE = "development"
+ALPHA_PROVISIONING_TYPE = "adhoc"
+APPSTORE_PROVISIONING_TYPE = "appstore"
+
+ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "180"
+ENV["FASTLANE_XCODE_LIST_TIMEOUT"] = "180"
+ENV["FASTLANE_USER"] = "ios-admin@brand.com"
+
+output_directory = "./output"
+firebase_service_credentials_file = "Scripts/-65e55-c3621ee40e51.json"
+tests_failed = false
+
+##############################################################
+##################### SETUP / CONFIGURE ######################
+##############################################################
+# Clear git Repos
+lane :install_cocoapods do
+    Dir.chdir("../") do
+        sh 'arch -x86_64 pod install'
+    end
+end
+
+lane :clear do
+    Dir.chdir("../") do
+        sh 'git remote update origin --prune'
+    end
+end
+
+# Update
+lane :updates do
+    fastlane update_plugins
+end
+
+lane :export do
+
+    # Generate xcodeproj
+    spm(
+        command: "generate-xcodeproj",
+        xcconfig: "BookMeNow.xcconfig"
+    )
+
+    # Build xcframework
+#    create_xcframework(
+ #     scheme: "CoreKit-Package",
+ #     product_name: "CoreKit",
+ #     destinations: ["iOS", "watchOS", "tvOS", "macOS"]
+ #   )
+end
+  
+# XcodeGen
+lane :xcodegen do
+    Dir.chdir("../") do
+        sh 'xcodegen generate --spec ".project.yml"'
+    end
+
+    #cocoapods
+    clean_build_artifacts
+end
+
+# SwiftLint autocorrect
+lane :autocorrect do
+    Dir.chdir("../") do
+        sh 'swiftlint --fix'
+    end
+end
+##############################################################
+##################### FAST SCRIPTS ###########################
+##############################################################
+lane :run_all do
+    xcodegen
+    install_cocoapods
+    autocorrect
+    clean_build_artifacts
+end
+
+lane :configure do
+    match(type: "adhoc")
+    match(type: "appstore")
+end
+
+desc "Get certificates"
+lane :certificates do
+    download_profiles(type: ALPHA_PROVISIONING_TYPE)
+    download_profiles(type: APPSTORE_PROVISIONING_TYPE)
+end
+
+desc "Generate new certificates"
+lane :generate_new_certificates do
+    match(
+        type: "adhoc", 
+        app_identifier: ALL_BUNDLE_IDS,
+        readonly: false
+    )
+    
+    match(
+        type: "appstore", 
+        app_identifier: ALL_BUNDLE_IDS,
+        readonly: false
+    )
+end
+
+desc "Register new testing device. Parameters `name` and `udid` are required"
+lane :register_new_device do |options|
+    register_device(
+        name: options[:name],
+        udid: options[:udid],
+        step_name: "Register new device"
+    )
+
+    match(type: ALPHA_PROVISIONING_TYPE, force_for_new_devices: true)
+end
+
+desc "Download code signing certificates and profiles. Parameter `type` is required"
+lane :download_profiles do |options|
+    type = options[:type]
+
+    match(
+        type: type, 
+        app_identifier: ALL_BUNDLE_IDS,
+        readonly: true,
+        force_for_new_devices: true,
+        step_name: "Download code signing certificates and profiles"
+    )
+end
+
+lane :remove_cer do
+    match_nuke
+end
+
+##############################################################
+#################### COMMON SCRIPTS ##########################
+##############################################################
+before_all do |options|
+    skip_docs
+    clear_derived_data
+end
+
+desc "Run unit tests and zip resulting test report and app file artifacts"
+lane :unit_test do
+    match(type: "adhoc", app_identifier: ENV["BUNDLE_APP"], force_for_new_devices: true)
+
+    begin
+        run_tests(
+            workspace: "BookMeNow.xcworkspace",
+            configuration: "Debug",
+            scheme: ENV["SCHEME"],
+            output_directory: output_directory,
+            derived_data_path: "#{output_directory}/DerivedData",
+            xcodebuild_formatter: "xcbeautify",
+            result_bundle: true,
+            output_types: ""
+        )
+    rescue => ex
+        UI.error(ex)
+        tests_failed = true
+    ensure
+        app_path = "#{output_directory}/DerivedData/Build/Products/Debug-iphonesimulator/#{ENV['SCHEME']}.app"
+        output_path = "#{output_directory}/#{ENV['APP_NAME']}"
+        result_path = "#{output_directory}/#{ENV['SCHEME']}.xcresult"
+
+        # Zip the .app from derived data into the output folder for the bitrise artifact upload stage
+        zip(
+            path: app_path,
+            output_path: "#{output_path}.zip"
+        )
+        # Zip the .xcresult for the bitrise artifact upload stage
+        zip(
+            path: result_path,
+            output_path: "#{result_path}.zip"
+        )
+    end
+end
+
+# Deploy build to Firebase
+lane :build_alpha do
+    match(type: "adhoc", app_identifier: ENV["BUNDLE_APP"], force_for_new_devices: true)
+
+    build_app(
+        workspace: "BookMeNow.xcworkspace",
+        configuration: "Release",
+        export_method: "ad-hoc",
+        scheme: ENV["SCHEME"],
+        silent: true,
+        output_directory: output_directory,
+        output_name: ENV["IPA_NAME"]
+    )
+end
+
+lane :build_beta do
+    match(type: "adhoc", app_identifier: ENV["BUNDLE_APP"], force_for_new_devices: true)
+
+    build_app(
+        workspace: "BookMeNow.xcworkspace",
+        configuration: "Release",
+        export_method: "ad-hoc",
+        scheme: ENV["SCHEME"],
+        silent: true,
+        output_directory: output_directory,
+        output_name: ENV["IPA_NAME"]
+    )
+
+    firebase_app_distribution(
+        app: ENV["FIREBASE_CLI"],
+        service_credentials_file: firebase_service_credentials_file,
+        groups: ENV["TESTER_GROUP"],
+        release_notes: ENV["RELEASE_NOTES"]
+    )
+end
+
+# Deploy build to TestFlight
+lane :build_testflight do
+    get_build_number
+    match(type: "appstore", force_for_new_devices: true, app_identifier: ENV["BUNDLE_APP"])
+
+    build_app(
+        workspace: "BookMeNow.xcworkspace",
+        configuration: "Release",
+        export_method: "app-store",
+        scheme: ENV["SCHEME"],
+        silent: true,
+        clean: true,
+        output_directory: output_directory,
+        output_name: ENV["IPA_NAME"]
+    )
+
+    upload_to_testflight(skip_waiting_for_build_processing: true)
+end
+
+##############################################################
+###################### BRANDS ################################
+##############################################################
+
+##############################################################
+###################### BookMeNow #############################
+##############################################################
+desc "BookMeNow Common setup"
+lane :setup do
+    ENV["BUNDLE_APP"] = BookMeNow_BUNDLE_ID
+    ENV["APP_NAME"] = "BookMeNow.app"
+    ENV["IPA_NAME"] = "BookMeNow.ipa"
+    ENV["FIREBASE_CLI"] = "1:256934034130:ios:a8650456eb6b6c58f28b0b"
+end
+
+lane :setup_debug do
+    setup
+    ticket = git_branch.match(/[a-z]+\/([^>]+)/)[1]
+    ENV["IPA_NAME"] = ticket + "-BookMeNow.ipa"
+end
+
+desc "BookMeNow DEVELOP build"
+lane :adhoc_bookme do
+    setup
+    ENV["SCHEME"] = "BookMeNow-Develop"
+    ENV["TESTER_GROUP"] = "iOS_DevGroup"
+    build_alpha
+end
+
+desc "BookMeNow PREPRODUCTION build"
+lane :adhoc_bookme_preprod do
+    setup
+    ENV["SCHEME"] = "BookMeNow-PreProduction"
+    ENV["TESTER_GROUP"] = "iOS_PreprodGroup"
+    build_alpha
+end
+
+desc "BookMeNow PRODUCTION build"
+lane :appstore_bookme do
+    setup
+    ENV["SCHEME"] = "BookMeNow"
+    build_testflight
+end
+
+desc "BookMeNow unit test run"
+lane :unit_test_bookme do |options|
+    setup
+    ENV["SCHEME"] = "BookMeNow_Develop"
+    ENV["TESTER_GROUP"] = "iOS_DevGroup"
+    unit_test
+end
+
+##############################################################
+################# Project Tests ##############################
+##############################################################
+desc "Runs all the tests"
+lane :test do
+    run_tests(
+        workspace: "BookMeNow.xcworkspace",
+        scheme: "BookMeNowTests",
+        device: "iPhone 12",
+        code_coverage: true,
+        include_simulator_logs: false,
+        clean: true
+    )
+
+    xcov(
+        workspace: "BookMeNow.xcworkspace",
+        scheme: "BookMeNowTests",
+        output_directory: output_directory,
+        json_report: true,
+        markdown_report: true,
+    )
+end
+
+end

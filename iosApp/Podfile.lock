@@ -1,16 +1,36 @@
 PODS:
+  - Kingfisher (7.9.0)
+  - PhoneNumberKit (3.6.6):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.6.6)
+    - PhoneNumberKit/UIKit (= 3.6.6)
+  - PhoneNumberKit/PhoneNumberKitCore (3.6.6)
+  - PhoneNumberKit/UIKit (3.6.6):
+    - PhoneNumberKit/PhoneNumberKitCore
   - shared (1.0)
+  - SwiftLint (0.52.4)
 
 DEPENDENCIES:
+  - Kingfisher
+  - PhoneNumberKit
   - shared (from `../shared`)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+    - PhoneNumberKit
+    - SwiftLint
 
 EXTERNAL SOURCES:
   shared:
     :path: "../shared"
 
 SPEC CHECKSUMS:
+  Kingfisher: 59f908b6d2f403b0a3e539debb0eec05cb27002c
+  PhoneNumberKit: 5b1be7ee4955dfeeb855f51eecdd829ab24b3484
   shared: 2d3b24a8fe27b7d9e65b8d075a9672fbc6a1aa10
+  SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 
-PODFILE CHECKSUM: f282da88f39e69507b0a255187c8a6b644477756
+PODFILE CHECKSUM: a9a8ba27c73f8a8aef0daf64c426b6391a85b647
 
 COCOAPODS: 1.12.1

@@ -1,0 +1,13 @@
+
+for_platform :ios do
+  
+  apple_id "ios-admin@brand.com"
+  team_id ""
+  itc_team_id ""
+
+  for_lane :bookme_adhoc_testflight do
+    app_identifier 'com.gorosoft.bookme.now'
+  end
+
+end
+
