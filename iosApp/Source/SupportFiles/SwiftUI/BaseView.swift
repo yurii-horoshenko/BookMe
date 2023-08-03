@@ -9,10 +9,10 @@ import SwiftUI
 
 struct BaseView<Content>: View where Content: View {
     // MARK: - PROPERTIES
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
     private let content: Content
     private var navigationTitle: String = ""
-    //
     private var leadingView: AnyView?
     private var trailingView: AnyView?
     

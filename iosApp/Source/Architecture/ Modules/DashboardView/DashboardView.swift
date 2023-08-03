@@ -60,7 +60,7 @@ struct DashboardView: View {
     
     var NextVisitView: some View {
         VStack {
-            NextVisitView.eraseToAnyView()
+//            NextVisitView.eraseToAnyView()
         }
         .background(Color.white)
     }

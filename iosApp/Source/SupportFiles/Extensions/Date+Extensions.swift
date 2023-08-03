@@ -27,6 +27,3 @@ extension TimeInterval {
         Self.dateFormatter.string(from: Date(timeIntervalSince1970: self))
     }
 }
-
-
-

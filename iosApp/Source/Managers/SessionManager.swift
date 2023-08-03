@@ -5,8 +5,8 @@
 
 import Foundation
 
-final class SessionManager {
-    static let shared = SessionManager()
+// final class SessionManager {
+//    static let shared = SessionManager()
     
     // MARK: - Services
 //    var loginService: LoginServiceProtocol?
@@ -33,4 +33,4 @@ final class SessionManager {
 //        // Repositories
 //        organizationRepository = nil
 //    }
-}
+// }
