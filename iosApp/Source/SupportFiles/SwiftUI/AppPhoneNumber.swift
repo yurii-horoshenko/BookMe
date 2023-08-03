@@ -8,31 +8,33 @@
 import SwiftUI
 
 struct AppPhoneNumber: View {
+    private let shape = RoundedShapeView(color: Color.greyscale50, step: 3.0, isFilled: true)
+    private let placeholderFont = UIFont(name: BrandFontType.regular.rawValue, size: 14.0)
+    private let font = UIFont(name: BrandFontType.semibold.rawValue, size: 14.0)
     @FocusState var isFocused: Bool
-    @State var phone = ""
-    var placeholder = ""
-    var foregroundColor = Color.white
+    @Binding var fieldData: FieldData
     @State var isEditing = false
-    private let shape = RoundedShapeView(color: Color.greyscale900, isFilled: false)
     
     // MARK: - BODY
     var body: some View {
-        iPhoneNumberField(placeholder, text: $phone, isEditing: $isEditing)
+        iPhoneNumberField(fieldData.placeholder, text: $fieldData.value, isEditing: $isEditing)
             .flagHidden(false)
             .flagSelectable(true)
-            .font(UIFont(size: 26, weight: .light, design: .monospaced))
+            .font(fieldData.value.isEmpty ? placeholderFont : font)
             .maximumDigits(10)
-            .foregroundColor(foregroundColor)
+            .foregroundColor(fieldData.state.foregroundColor)
             .clearButtonMode(.whileEditing)
             .onClear { _ in isEditing.toggle() }
-            .accentColor(Color.orange)
-            .padding(EdgeInsets(top: 8.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
+            .accentColor(Color.primary500)
+            .padding(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 16.0))
             .background(shape)
     }
 }
 
 struct AppPhoneNumber_Previews: PreviewProvider {
+    @State static var phone = FieldData(placeholder: "Placeholder")
+    
     static var previews: some View {
-        AppPhoneNumber()
+        AppPhoneNumber(fieldData: $phone)
     }
 }

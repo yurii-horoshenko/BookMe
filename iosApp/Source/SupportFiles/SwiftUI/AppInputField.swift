@@ -23,13 +23,14 @@ struct AppInputField: View {
         case disable
         
         var backgroundColor: Color { Color.greyscale50 }
-        var foregroundColor: Color { Color.greyscale500 }
-        var font: Font { Font.BodyMediumRegular }
+        var foregroundColor: Color { Color.greyscale900 }
+        var placeholderFont: Font { Font.BodyMediumRegular }
+        var font: Font { Font.BodyMediumSemibold }
     }
     
     // MARK: - PROPERTIES
     private let shape = RoundedShapeView(color: Color.greyscale50, step: 3.0, isFilled: true)
-    @FocusState private var isFocused: Bool
+    @FocusState var isFocused: Bool
     @Binding var fieldData: FieldData
     var leadingView: AnyView?
     var trailingView: AnyView?
@@ -38,7 +39,7 @@ struct AppInputField: View {
     var body: some View {
         HStack(spacing: 16.0) {
             leadingView
-           
+            
             if fieldData.isSecure {
                 SecureField(fieldData.placeholder, text: $fieldData.value)
                     .offset(x: leadingView == nil ? 16.0 : 0.0)
@@ -51,9 +52,10 @@ struct AppInputField: View {
             
             trailingView
         }
+        .accentColor(Color.primary500)
         .disabled(fieldData.state == .disable)
         .keyboardType(fieldData.keyboardType)
-        .font(fieldData.state.font)
+        .font(fieldData.value.isEmpty ? fieldData.state.placeholderFont : fieldData.state.font)
         .foregroundColor(fieldData.state.foregroundColor)
         .frame(height: 56.0)
         .background(shape)

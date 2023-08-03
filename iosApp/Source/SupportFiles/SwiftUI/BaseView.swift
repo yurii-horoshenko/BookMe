@@ -46,12 +46,12 @@ struct BaseView<Content>: View where Content: View {
     var body: some View {
         VStack { content }
             .frame(maxWidth: .infinity)
-            .navigationBarItems(leading: leadingView ?? backButton.eraseToAnyView())
+            .navigationBarItems(leading: leadingView ?? backButton)
             .navigationBarItems(trailing: trailingView)
             .navigationTitle(navigationTitle)
     }
     
-    var backButton: some View {
+    var backButton: AnyView {
         Button(
             action: { self.presentationMode.wrappedValue.dismiss() },
             label: {
@@ -59,10 +59,11 @@ struct BaseView<Content>: View where Content: View {
                     Image("ic-back")
                         .aspectRatio(contentMode: .fit)
                     
-//                    Text("Back")
-//                        .foregroundColor(Color.brandButtonsColor)
+                    //                    Text("Back")
+                    //                        .foregroundColor(Color.brandButtonsColor)
                 }
             }
         )
+        .eraseToAnyView()
     }
 }

@@ -30,7 +30,7 @@ struct CreateProfileView: View {
             AppInputField(fieldData: $presenter.fullname)
             AppInputField(fieldData: $presenter.nickname)
             AppInputField(fieldData: $presenter.dateBirthday)
-            AppInputField(fieldData: $presenter.phone)
+            AppPhoneNumber(fieldData: $presenter.phone)
             AppInputField(fieldData: $presenter.gender)
             Spacer()
         }
