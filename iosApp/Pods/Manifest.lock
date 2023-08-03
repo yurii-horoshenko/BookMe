@@ -1,10 +1,10 @@
 PODS:
   - Kingfisher (7.9.0)
-  - PhoneNumberKit (3.6.6):
-    - PhoneNumberKit/PhoneNumberKitCore (= 3.6.6)
-    - PhoneNumberKit/UIKit (= 3.6.6)
-  - PhoneNumberKit/PhoneNumberKitCore (3.6.6)
-  - PhoneNumberKit/UIKit (3.6.6):
+  - PhoneNumberKit (3.6.7):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.6.7)
+    - PhoneNumberKit/UIKit (= 3.6.7)
+  - PhoneNumberKit/PhoneNumberKitCore (3.6.7)
+  - PhoneNumberKit/UIKit (3.6.7):
     - PhoneNumberKit/PhoneNumberKitCore
   - shared (1.0)
   - SwiftLint (0.52.4)
@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Kingfisher: 59f908b6d2f403b0a3e539debb0eec05cb27002c
-  PhoneNumberKit: 5b1be7ee4955dfeeb855f51eecdd829ab24b3484
+  PhoneNumberKit: 43b5169526cc417398c8f13f77c97552c1c6ed76
   shared: 2d3b24a8fe27b7d9e65b8d075a9672fbc6a1aa10
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 

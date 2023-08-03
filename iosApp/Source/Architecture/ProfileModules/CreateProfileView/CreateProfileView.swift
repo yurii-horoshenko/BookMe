@@ -8,19 +8,33 @@
 import SwiftUI
 
 struct CreateProfileView: View {
+    @ObservedObject var presenter = CreateProfilePresenter()
+    
+    // MARK: - Body
     var body: some View {
         NavigationView {
-            BaseView(navigationTitle: "Create Profile", content: { ContentView })
+            BaseView(navigationTitle: "Create Your Profile", content: { ContentView })
                 .onAppear {
                     //                    isFocused = true
                 }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
+        .onChange(of: presenter.fullname) { newValue in
+            print(newValue.value)
+        }
     }
     
     var ContentView: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 24.0) {
+            AppInputField(fieldData: $presenter.fullname)
+            AppInputField(fieldData: $presenter.nickname)
+            AppInputField(fieldData: $presenter.dateBirthday)
+            AppInputField(fieldData: $presenter.phone)
+            AppInputField(fieldData: $presenter.gender)
+            Spacer()
+        }
+        .padding(defaultEdgeInsets)
     }
 }
 

@@ -13,7 +13,7 @@ struct SplashView: View {
             Spacer()
             
             Text("BookMeNow")
-                .attributed(.H1Bold, color: Color.gradientOrange)
+                .attributed(.H1Bold, color: Color.primary500)
                 .padding(24.0)
             
             Spacer()

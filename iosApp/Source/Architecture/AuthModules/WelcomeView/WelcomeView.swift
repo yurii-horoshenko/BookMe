@@ -9,7 +9,7 @@ import shared
 import SwiftUI
 
 struct WelcomeView: View, StateViewProtocol {
-    private var presenter = WelcomePresenter()
+    @ObservedObject var presenter = WelcomePresenter()
     @State private var pushToCrateProfileFlow = false
     @State var state: StateView = .idle
     var nextView: AnyView?
@@ -75,7 +75,7 @@ struct WelcomeView: View, StateViewProtocol {
                     state: .constant(.active),
                     title: WELCOME.signInButton.text,
                     titleColor: Color.white,
-                    backgroundColor: Color.gradientOrange,
+                    backgroundColor: Color.primary500,
                     action: {
                         self.pushToCrateProfileFlow = true
                     }

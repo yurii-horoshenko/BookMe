@@ -59,8 +59,8 @@ struct BaseView<Content>: View where Content: View {
                     Image("ic-back")
                         .aspectRatio(contentMode: .fit)
                     
-                    Text("Back")
-                        .foregroundColor(Color.brandButtonsColor)
+//                    Text("Back")
+//                        .foregroundColor(Color.brandButtonsColor)
                 }
             }
         )

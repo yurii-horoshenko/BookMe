@@ -19,7 +19,7 @@ struct PhoneView: View {
     var body: some View {
         NavigationView {
 //            PHONE.shared.PAGE_TITLE
-            BaseView(navigationTitle: "" , content: { ContentView })
+            BaseView(navigationTitle: "", content: { ContentView })
                 .onAppear {
                     isFocused = true
                 }
@@ -34,7 +34,7 @@ struct PhoneView: View {
             
             AppPhoneNumber(
                 phone: phone,
-                placeholder: "", //PHONE.shared.PHONE_PLACEHOLDER,
+                placeholder: "", // PHONE.shared.PHONE_PLACEHOLDER,
                 foregroundColor: Color.brandDarkColor
             )
             

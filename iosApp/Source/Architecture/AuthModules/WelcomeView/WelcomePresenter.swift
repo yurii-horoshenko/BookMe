@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class WelcomePresenter {
+final class WelcomePresenter: ObservableObject {
 
     // MARK: - Lifecycle
     deinit {

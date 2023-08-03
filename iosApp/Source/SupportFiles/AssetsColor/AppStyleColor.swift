@@ -9,12 +9,31 @@ import SwiftUI
 
 // MARK: - Colors
 extension Color {
+    // Main
+    static let primary500 = Color(hex: "#FB9400")
+    static let secondary500 = Color(hex: "#FFD300")
+
+    // Text & Backgrounds
     static let background = Color("backgroud")
     static let greyscale900 = Color(hex: "#212121")
+    static let greyscale800 = Color(hex: "#424242")
+    static let greyscale700 = Color(hex: "#616161")
+    static let greyscale600 = Color(hex: "#757575")
     static let greyscale500 = Color(hex: "#9E9E9E")
-    static let greyscale200 = Color(hex: "#EEEEEE")
     
-    static let gradientOrange = Color(hex: "#FB9400")
+    static let greyscale400 = Color(hex: "#BDBDBD")
+    static let greyscale300 = Color(hex: "#E0E0E0")
+    static let greyscale200 = Color(hex: "#EEEEEE")
+    static let greyscale100 = Color(hex: "#F5F5F5")
+    static let greyscale50 = Color(hex: "#FAFAFA")
+    
+    // Alert & Status
+    static let success = Color(hex: "#4ADE80")
+    static let info = Color(hex: "#246BFD")
+    static let warning = Color(hex: "#FACC15")
+    static let error = Color(hex: "#F75555")
+    static let disabled = Color(hex: "#D8D8D8")
+    static let disButton = Color(hex: "#E9A33F")
     
     static let brandMainColor = Color(hex: "#F5793B") // orange
     static let brandButtonsColor = Color(hex: "#f1580c") // orange

@@ -3,31 +3,35 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		005A2453E975AA2818EC0B61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD56B8F69B1182210A82C9A5 /* Assets.xcassets */; };
 		03634D1A82D9241E16E6EE99 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB3FE1DD4737BCDDC68AAEB /* SessionManager.swift */; };
+		0C018DCDFBBBDC4842B1A843 /* NextVisitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563D8C5ED80296A11FBD191 /* NextVisitView.swift */; };
 		14694D3969B61ACBD63CD76D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC17ADC68ADE08F177B06DB /* Location.swift */; };
-		1A6172AC2A7AFC2A00310F83 /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6172AB2A7AFC2A00310F83 /* CreateProfileView.swift */; };
+		16C8002F555E50EA9E55F55F /* CreateProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F706CD0120A66845C71D0D8 /* CreateProfilePresenter.swift */; };
 		2174BEC39AC7F5EB44ED15E3 /* iPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0A1D67D8DC5F74F0DB1128 /* iPhoneNumberField.swift */; };
 		25AEBDC1C65FEAB40FB2CBB8 /* Text+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7068312827929ABCC3E50A7 /* Text+Extensions.swift */; };
 		2D058799840564E82ED7B5BF /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C94B2458685D37A7DC7E408 /* NetworkOperation.swift */; };
+		2E0ECA4BA6A201507CCC9C72 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE5C227DB8A164DC2541D5 /* DashboardView.swift */; };
 		36B2D0212A7C8DBA9FFD8D4D /* report.xml in Resources */ = {isa = PBXBuildFile; fileRef = CE8422501FBC72D872A753D2 /* report.xml */; };
-		382664772AA1EF302C5DC06B /* PhonePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F0A67ADA0EED1B90BB0A7E /* PhonePresenter.swift */; };
+		3C1310F68EBF6C2FA724C07B /* PhonePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0613D8E823DE94CB06D77024 /* PhonePresenter.swift */; };
 		3D59B38FB3AB5DDDE33BCE7F /* AppPhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC8E39501FCC794B74C87C /* AppPhoneNumber.swift */; };
+		3E67DEFC5CB92E58EC4A55E2 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A4AFF1A12A83A72B16956 /* PhoneView.swift */; };
 		4349F4A1ACCE9DE30D68BA72 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539C7665913FC4BE8FD4013 /* View+Extensions.swift */; };
 		45E26FAEFAE2E8907ADB8B7F /* Urbanist-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF58D57AC7C0F541975D407E /* Urbanist-Medium.ttf */; };
 		483E0E13977E3FBA121499C3 /* LocalCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AAD4E0C4C8389DC58C4111 /* LocalCacheManager.swift */; };
+		57A3B5F142C83CB7ED46026B /* libPods-BookMeNow-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB9354AB36ED6B115728DF8 /* libPods-BookMeNow-Develop.a */; };
 		584551106C21AADBD73E1C39 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464A9B69076CC4C10596231 /* Profile.swift */; };
+		588C202F6126E17E1DEC4A55 /* AppInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730F42E123782EC3FA3981D6 /* AppInputField.swift */; };
+		5A90BEA2D64445FF386BA01D /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD247DF0C8CBCB0140A1DDA /* CreateProfileView.swift */; };
 		5CE435DBB31A60B52FF06276 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4613F446F563BACCBB849 /* FacebookManager.swift */; };
 		5FCA651EACC28FC57D74C0DC /* OldInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0483826F6FD82A2E5600691 /* OldInfo.plist */; };
-		6A5D5FC9B2F416118B9A4D38 /* OrganizationDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F0370F5BCF4B8541CB36EA /* OrganizationDescriptionView.swift */; };
 		6D3C23148E0BFBEB73F33516 /* iPhoneNumberField+ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD638D26F97AEC82DBF899E /* iPhoneNumberField+ViewModifiers.swift */; };
 		6E34BE7FCD32909D78955BDE /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3BBBA61BB67EFF9610B06A /* RoundedShape.swift */; };
 		6F3A6145F3574749B56E3136 /* UIFont+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BC56F22BF473693CCB72B /* UIFont+Init.swift */; };
-		7194C99BF7004C4CEA6ED505 /* OrganizationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15E36B91079DE8B263C341 /* OrganizationListView.swift */; };
 		7C03373BD03641D88503AB15 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B057366086E8A69B92BDF018 /* .swiftlint.yml */; };
 		7E904DFB8208344BCF99FDBE /* Urbanist-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53FB88955FB6417E4737198E /* Urbanist-Semibold.ttf */; };
 		8121CADC7E2E0E702D28A572 /* .project.yml in Resources */ = {isa = PBXBuildFile; fileRef = 25006C33F90F92C794C7A588 /* .project.yml */; };
@@ -37,9 +41,8 @@
 		98660EAF95E20CCC5F9E1CA9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B3B010B41B371112D7B301 /* LocationManager.swift */; };
 		9A6AE7405687D18C7F7F5ACF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C438C5FBD5F9E91506836FFF /* WelcomeView.swift */; };
 		9A916C27AE99033B10F39351 /* AppBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AA626A0E6D3D22FB1602AB /* AppBorderButton.swift */; };
+		9BE01FEDC946DCD177667A54 /* OrganizationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D381D722CE19D3235CF5C64F /* OrganizationListView.swift */; };
 		9F0DC2662B0B0724B9E555F6 /* Vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D4885EC923EC14FAA8AF7B /* Vibrate.swift */; };
-		A0F9556A4521A95DF2128D5D /* libPods-BookMeNow-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E228F16CF070A588408A698 /* libPods-BookMeNow-Develop.a */; };
-		A2B2FABC949259F6FAE3D5CE /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC365D7C25BFCBC614EB0BDB /* PhoneView.swift */; };
 		A599852C54EB0063C27F120F /* Urbanist-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00190B7344A9C2DE87752522 /* Urbanist-Bold.ttf */; };
 		A613CFE6E602C6716ABE5084 /* WelcomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A74007069EEAEF1DD2AB32 /* WelcomePresenter.swift */; };
 		ACC279C4D26C621C611062BB /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F6229C7C69654B803AD7365 /* Urbanist-Regular.ttf */; };
@@ -52,10 +55,9 @@
 		C54586135352BA7A5BE709C0 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6A42466C0F721A78041A18 /* UserDefaultsManager.swift */; };
 		CDFCCFAD5EBA913014187A75 /* NetworkOperationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CEAC8EE40CFA6416948CA /* NetworkOperationData.swift */; };
 		CE191C51FD6E8CE6801F05C6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C596B4F7CDEF2B50B7F01C1E /* Colors.xcassets */; };
-		D64966408F3A30850D11AF84 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D98F5DBC8B8529B4F3095 /* DashboardView.swift */; };
+		CFBFAF5ADDF5DE7EF297F588 /* OrganizationDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1E54E7E52A81D74509721 /* OrganizationDescriptionView.swift */; };
 		DA33291733D0A6FA4288CF56 /* BookMeNowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56410C35ED3A97331CE70DA8 /* BookMeNowApp.swift */; };
 		DD92FF7D57607158C334C43D /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F85B8326ACB993A604B2544 /* AppButton.swift */; };
-		E368F4CA53401376AF44F3BE /* NextVisitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C88A6B18AB293466C5427 /* NextVisitView.swift */; };
 		E3721B8DFB1C507F0327212E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44FA7F34FDEE7A5AA71A771 /* Theme.swift */; };
 		EE40DED0C0F3ABE6EE5A2696 /* .env.default.sample in Resources */ = {isa = PBXBuildFile; fileRef = A654A5962562C7E99909911B /* .env.default.sample */; };
 		FCD19AD43C016920450CB9DF /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE6149C04733A62E9AA48B /* Date+Extensions.swift */; };
@@ -64,64 +66,66 @@
 
 /* Begin PBXFileReference section */
 		00190B7344A9C2DE87752522 /* Urbanist-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Bold.ttf"; sourceTree = "<group>"; };
-		052C88A6B18AB293466C5427 /* NextVisitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextVisitView.swift; sourceTree = "<group>"; };
+		0613D8E823DE94CB06D77024 /* PhonePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonePresenter.swift; sourceTree = "<group>"; };
 		0D6E9E88B7837D8542BC38FD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0EC17ADC68ADE08F177B06DB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		0EDA61D54DE9306549CDAE18 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		0F2A4AFF1A12A83A72B16956 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		11A74007069EEAEF1DD2AB32 /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
-		1A6172AB2A7AFC2A00310F83 /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
 		1C7FF9F76F91A9BB5BB449C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		1F6497D629BE6E4D3A88295E /* Gymfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gymfile; sourceTree = "<group>"; };
+		1F6497D629BE6E4D3A88295E /* Gymfile */ = {isa = PBXFileReference; path = Gymfile; sourceTree = "<group>"; };
 		23D4885EC923EC14FAA8AF7B /* Vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrate.swift; sourceTree = "<group>"; };
 		25006C33F90F92C794C7A588 /* .project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .project.yml; sourceTree = "<group>"; };
-		33DF0F79E65EDE0472227A39 /* Matchfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Matchfile; sourceTree = "<group>"; };
+		33DF0F79E65EDE0472227A39 /* Matchfile */ = {isa = PBXFileReference; path = Matchfile; sourceTree = "<group>"; };
+		3563D8C5ED80296A11FBD191 /* NextVisitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextVisitView.swift; sourceTree = "<group>"; };
 		3837CCF09FAA0CA208A3C497 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		3AB18B66E68778718D380978 /* GoogleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleManager.swift; sourceTree = "<group>"; };
 		3DB3FE1DD4737BCDDC68AAEB /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		3F706CD0120A66845C71D0D8 /* CreateProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfilePresenter.swift; sourceTree = "<group>"; };
 		40DA77DD305864B7845F7CD4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		43B3B010B41B371112D7B301 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4539C7665913FC4BE8FD4013 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		53FB88955FB6417E4737198E /* Urbanist-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Semibold.ttf"; sourceTree = "<group>"; };
 		56410C35ED3A97331CE70DA8 /* BookMeNowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMeNowApp.swift; sourceTree = "<group>"; };
 		5C8BC56F22BF473693CCB72B /* UIFont+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Init.swift"; sourceTree = "<group>"; };
-		5DBA1ABFDC44661587283980 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
+		5DBA1ABFDC44661587283980 /* Appfile */ = {isa = PBXFileReference; path = Appfile; sourceTree = "<group>"; };
+		5DD247DF0C8CBCB0140A1DDA /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
+		5EBE5C227DB8A164DC2541D5 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		5FB3A4C3E1515A3DDF7585A6 /* BookMeNow-Develop.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "BookMeNow-Develop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		60A6CBAFA6EE183DC0F1CCB4 /* Pluginfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pluginfile; sourceTree = "<group>"; };
-		6257D3BA7495620EEBE03FE2 /* Pods-BookMeNow-Develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMeNow-Develop.debug.xcconfig"; path = "Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop.debug.xcconfig"; sourceTree = "<group>"; };
-		6E228F16CF070A588408A698 /* libPods-BookMeNow-Develop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookMeNow-Develop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60A6CBAFA6EE183DC0F1CCB4 /* Pluginfile */ = {isa = PBXFileReference; path = Pluginfile; sourceTree = "<group>"; };
 		7285A240A31979CC4C85C91D /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		730F42E123782EC3FA3981D6 /* AppInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInputField.swift; sourceTree = "<group>"; };
+		73C61925FBDB76B8DE1B1081 /* Pods-BookMeNow-Develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMeNow-Develop.release.xcconfig"; path = "Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop.release.xcconfig"; sourceTree = "<group>"; };
 		7464A9B69076CC4C10596231 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		7EBDFCDD9987845BBADEE75E /* Snapfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snapfile; sourceTree = "<group>"; };
+		7EBDFCDD9987845BBADEE75E /* Snapfile */ = {isa = PBXFileReference; path = Snapfile; sourceTree = "<group>"; };
 		7FA54D3B98734337F444C2AF /* AppStyleColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyleColor.swift; sourceTree = "<group>"; };
 		8C533F178F36C598A1E3E587 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		8C94B2458685D37A7DC7E408 /* NetworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
-		967D98F5DBC8B8529B4F3095 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		97AC8E39501FCC794B74C87C /* AppPhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPhoneNumber.swift; sourceTree = "<group>"; };
 		9F6229C7C69654B803AD7365 /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		9F85B8326ACB993A604B2544 /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
-		A654A5962562C7E99909911B /* .env.default.sample */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env.default.sample; sourceTree = "<group>"; };
-		AC365D7C25BFCBC614EB0BDB /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
+		A654A5962562C7E99909911B /* .env.default.sample */ = {isa = PBXFileReference; path = .env.default.sample; sourceTree = "<group>"; };
 		AD0A1D67D8DC5F74F0DB1128 /* iPhoneNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneNumberField.swift; sourceTree = "<group>"; };
 		AF58D57AC7C0F541975D407E /* Urbanist-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Medium.ttf"; sourceTree = "<group>"; };
+		AFB9354AB36ED6B115728DF8 /* libPods-BookMeNow-Develop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookMeNow-Develop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B057366086E8A69B92BDF018 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B6EFBC889FAC411267406B29 /* Navigation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Extensions.swift"; sourceTree = "<group>"; };
-		B7F0370F5BCF4B8541CB36EA /* OrganizationDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationDescriptionView.swift; sourceTree = "<group>"; };
 		BBD638D26F97AEC82DBF899E /* iPhoneNumberField+ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iPhoneNumberField+ViewModifiers.swift"; sourceTree = "<group>"; };
-		BC15E36B91079DE8B263C341 /* OrganizationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListView.swift; sourceTree = "<group>"; };
 		C06CEAC8EE40CFA6416948CA /* NetworkOperationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperationData.swift; sourceTree = "<group>"; };
+		C0A1E54E7E52A81D74509721 /* OrganizationDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationDescriptionView.swift; sourceTree = "<group>"; };
 		C2D2D51146E2A9C157169FF8 /* AppStyleFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyleFont.swift; sourceTree = "<group>"; };
 		C438C5FBD5F9E91506836FFF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		C44FA7F34FDEE7A5AA71A771 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		C596B4F7CDEF2B50B7F01C1E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		C7068312827929ABCC3E50A7 /* Text+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extensions.swift"; sourceTree = "<group>"; };
-		C7F0A67ADA0EED1B90BB0A7E /* PhonePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonePresenter.swift; sourceTree = "<group>"; };
 		C8AA626A0E6D3D22FB1602AB /* AppBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBorderButton.swift; sourceTree = "<group>"; };
 		CE8422501FBC72D872A753D2 /* report.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
-		CFC610DFD9C6E87B31FEAD8A /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
+		CFC610DFD9C6E87B31FEAD8A /* Fastfile */ = {isa = PBXFileReference; path = Fastfile; sourceTree = "<group>"; };
 		D0483826F6FD82A2E5600691 /* OldInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = OldInfo.plist; sourceTree = "<group>"; };
+		D381D722CE19D3235CF5C64F /* OrganizationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListView.swift; sourceTree = "<group>"; };
+		D942FCF9FB33BF10429FF93F /* Pods-BookMeNow-Develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMeNow-Develop.debug.xcconfig"; path = "Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop.debug.xcconfig"; sourceTree = "<group>"; };
 		DD56B8F69B1182210A82C9A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED3BBBA61BB67EFF9610B06A /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
-		EE771EF2E699F6D34ED0A103 /* Pods-BookMeNow-Develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMeNow-Develop.release.xcconfig"; path = "Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop.release.xcconfig"; sourceTree = "<group>"; };
 		EEEE6149C04733A62E9AA48B /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		F3AAD4E0C4C8389DC58C4111 /* LocalCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCacheManager.swift; sourceTree = "<group>"; };
 		F4F4613F446F563BACCBB849 /* FacebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
@@ -129,24 +133,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C3ACE5C5A563B50898FB9105 /* Frameworks */ = {
+		5FDD689AE201CB372695F71E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0F9556A4521A95DF2128D5D /* libPods-BookMeNow-Develop.a in Frameworks */,
+				57A3B5F142C83CB7ED46026B /* libPods-BookMeNow-Develop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0599313E7630A23D294D4AF6 /* PhoneView */ = {
+		01FAE8876E1D413D373DE405 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C7F0A67ADA0EED1B90BB0A7E /* PhonePresenter.swift */,
-				AC365D7C25BFCBC614EB0BDB /* PhoneView.swift */,
+				D942FCF9FB33BF10429FF93F /* Pods-BookMeNow-Develop.debug.xcconfig */,
+				73C61925FBDB76B8DE1B1081 /* Pods-BookMeNow-Develop.release.xcconfig */,
 			);
-			path = PhoneView;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		0EFC3F2A1C52C9B2749A922F /* ProfileView */ = {
@@ -167,25 +172,6 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		1A6172A92A7AFA6800310F83 /*  Modules */ = {
-			isa = PBXGroup;
-			children = (
-				F62C37E406083C580EEE758A /* DashboardView */,
-				DD503219697BB7C925B9B14A /* OrganizationDescriptionView */,
-				A1F7059B394B58137B073ABA /* OrganizationListView */,
-				0599313E7630A23D294D4AF6 /* PhoneView */,
-			);
-			path = " Modules";
-			sourceTree = "<group>";
-		};
-		1A6172AA2A7AFBC400310F83 /* CreateProfileView */ = {
-			isa = PBXGroup;
-			children = (
-				1A6172AB2A7AFC2A00310F83 /* CreateProfileView.swift */,
-			);
-			path = CreateProfileView;
-			sourceTree = "<group>";
-		};
 		22759F4ABE4451B3D559FE99 /* WelcomeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,13 +181,30 @@
 			path = WelcomeView;
 			sourceTree = "<group>";
 		};
+		272FADC56D573843318D368E /* PhoneView */ = {
+			isa = PBXGroup;
+			children = (
+				0613D8E823DE94CB06D77024 /* PhonePresenter.swift */,
+				0F2A4AFF1A12A83A72B16956 /* PhoneView.swift */,
+			);
+			path = PhoneView;
+			sourceTree = "<group>";
+		};
 		3666012298E772D226418813 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				A8549BCB7E233C313803E8E8 /* iPhoneNumberField */,
-				6E228F16CF070A588408A698 /* libPods-BookMeNow-Develop.a */,
+				AFB9354AB36ED6B115728DF8 /* libPods-BookMeNow-Develop.a */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		3727F02F5D4E35E52B428009 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3563D8C5ED80296A11FBD191 /* NextVisitView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		38B69C3F79CD97858CF7B609 = {
@@ -214,7 +217,7 @@
 				25006C33F90F92C794C7A588 /* .project.yml */,
 				B057366086E8A69B92BDF018 /* .swiftlint.yml */,
 				94C98B8B3A2BFC1966447269 /* Products */,
-				46C5E7C9C0631114749E6534 /* Pods */,
+				01FAE8876E1D413D373DE405 /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -260,15 +263,6 @@
 			path = fastlane;
 			sourceTree = "<group>";
 		};
-		46C5E7C9C0631114749E6534 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6257D3BA7495620EEBE03FE2 /* Pods-BookMeNow-Develop.debug.xcconfig */,
-				EE771EF2E699F6D34ED0A103 /* Pods-BookMeNow-Develop.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		4B0C0589B154FD9886F6F1BF /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,10 +278,19 @@
 			path = SupportFiles;
 			sourceTree = "<group>";
 		};
+		53AE48F052A9F11F487061FD /* DashboardView */ = {
+			isa = PBXGroup;
+			children = (
+				3727F02F5D4E35E52B428009 /* Views */,
+				5EBE5C227DB8A164DC2541D5 /* DashboardView.swift */,
+			);
+			path = DashboardView;
+			sourceTree = "<group>";
+		};
 		56F4F0D84C5DB0918E9ADAC9 /* ProfileModules */ = {
 			isa = PBXGroup;
 			children = (
-				1A6172AA2A7AFBC400310F83 /* CreateProfileView */,
+				6A2DE21E3813FCA101E4339C /* CreateProfileView */,
 				0EFC3F2A1C52C9B2749A922F /* ProfileView */,
 			);
 			path = ProfileModules;
@@ -327,11 +330,21 @@
 			children = (
 				C8AA626A0E6D3D22FB1602AB /* AppBorderButton.swift */,
 				9F85B8326ACB993A604B2544 /* AppButton.swift */,
+				730F42E123782EC3FA3981D6 /* AppInputField.swift */,
 				97AC8E39501FCC794B74C87C /* AppPhoneNumber.swift */,
 				3837CCF09FAA0CA208A3C497 /* BaseView.swift */,
 				ED3BBBA61BB67EFF9610B06A /* RoundedShape.swift */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		6A2DE21E3813FCA101E4339C /* CreateProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				3F706CD0120A66845C71D0D8 /* CreateProfilePresenter.swift */,
+				5DD247DF0C8CBCB0140A1DDA /* CreateProfileView.swift */,
+			);
+			path = CreateProfileView;
 			sourceTree = "<group>";
 		};
 		6BC835BEBB14B750C4D88F00 /* AssetsColor */ = {
@@ -351,12 +364,15 @@
 			path = AssetsImage;
 			sourceTree = "<group>";
 		};
-		7D54091282917135211CF1FB /* Views */ = {
+		7450B108477DA95777D738DB /*  Modules */ = {
 			isa = PBXGroup;
 			children = (
-				052C88A6B18AB293466C5427 /* NextVisitView.swift */,
+				53AE48F052A9F11F487061FD /* DashboardView */,
+				CF700F783C665C144C84E97A /* OrganizationDescriptionView */,
+				A1AA48EF4DD580C9F5BDFACC /* OrganizationListView */,
+				272FADC56D573843318D368E /* PhoneView */,
 			);
-			path = Views;
+			path = " Modules";
 			sourceTree = "<group>";
 		};
 		94C98B8B3A2BFC1966447269 /* Products */ = {
@@ -367,10 +383,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A1F7059B394B58137B073ABA /* OrganizationListView */ = {
+		A1AA48EF4DD580C9F5BDFACC /* OrganizationListView */ = {
 			isa = PBXGroup;
 			children = (
-				BC15E36B91079DE8B263C341 /* OrganizationListView.swift */,
+				D381D722CE19D3235CF5C64F /* OrganizationListView.swift */,
 			);
 			path = OrganizationListView;
 			sourceTree = "<group>";
@@ -399,7 +415,7 @@
 		B1B76C063825EE5F29A297AD /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				1A6172A92A7AFA6800310F83 /*  Modules */,
+				7450B108477DA95777D738DB /*  Modules */,
 				69D0AA64D6AD0DA0AEE56292 /* AuthModules */,
 				56F4F0D84C5DB0918E9ADAC9 /* ProfileModules */,
 				56410C35ED3A97331CE70DA8 /* BookMeNowApp.swift */,
@@ -416,6 +432,14 @@
 				7464A9B69076CC4C10596231 /* Profile.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		CF700F783C665C144C84E97A /* OrganizationDescriptionView */ = {
+			isa = PBXGroup;
+			children = (
+				C0A1E54E7E52A81D74509721 /* OrganizationDescriptionView.swift */,
+			);
+			path = OrganizationDescriptionView;
 			sourceTree = "<group>";
 		};
 		D7AC852A797F3AFB5C06528D /* Develop */ = {
@@ -435,23 +459,6 @@
 			path = Environments;
 			sourceTree = "<group>";
 		};
-		DD503219697BB7C925B9B14A /* OrganizationDescriptionView */ = {
-			isa = PBXGroup;
-			children = (
-				B7F0370F5BCF4B8541CB36EA /* OrganizationDescriptionView.swift */,
-			);
-			path = OrganizationDescriptionView;
-			sourceTree = "<group>";
-		};
-		F62C37E406083C580EEE758A /* DashboardView */ = {
-			isa = PBXGroup;
-			children = (
-				7D54091282917135211CF1FB /* Views */,
-				967D98F5DBC8B8529B4F3095 /* DashboardView.swift */,
-			);
-			path = DashboardView;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -459,13 +466,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6B082850F03610F011BDA16 /* Build configuration list for PBXNativeTarget "BookMeNow-Develop" */;
 			buildPhases = (
-				A0AA3CE0882C7D8BBD031BE8 /* [CP] Check Pods Manifest.lock */,
+				1D2DBAA9B73D0204B7368DB0 /* [CP] Check Pods Manifest.lock */,
 				FFE036B5EC8D7DB528D9B336 /* Sources */,
 				82BB06BABDA69BD8D7D206A5 /* Resources */,
 				C0DBCEA4E1D6C8D301BB1644 /* [Script] SwiftLint */,
-				C3ACE5C5A563B50898FB9105 /* Frameworks */,
-				FF7AC445FFC766B13F39532B /* [CP] Embed Pods Frameworks */,
-				274B87925C51021B26E32A92 /* [CP] Copy Pods Resources */,
+				5FDD689AE201CB372695F71E /* Frameworks */,
+				02DE607E95CF2C0870BB68CA /* [CP] Embed Pods Frameworks */,
+				51B1B6138710057AD061DA39 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -530,24 +537,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		274B87925C51021B26E32A92 /* [CP] Copy Pods Resources */ = {
+		02DE607E95CF2C0870BB68CA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A0AA3CE0882C7D8BBD031BE8 /* [CP] Check Pods Manifest.lock */ = {
+		1D2DBAA9B73D0204B7368DB0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -569,6 +576,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		51B1B6138710057AD061DA39 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C0DBCEA4E1D6C8D301BB1644 /* [Script] SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -587,23 +611,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		FF7AC445FFC766B13F39532B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -613,13 +620,15 @@
 			files = (
 				9A916C27AE99033B10F39351 /* AppBorderButton.swift in Sources */,
 				DD92FF7D57607158C334C43D /* AppButton.swift in Sources */,
+				588C202F6126E17E1DEC4A55 /* AppInputField.swift in Sources */,
 				3D59B38FB3AB5DDDE33BCE7F /* AppPhoneNumber.swift in Sources */,
 				C3C2ECAC26D30D0A10E1E9DC /* AppStyleColor.swift in Sources */,
 				868B81066FC603916EF31932 /* AppStyleFont.swift in Sources */,
 				FF7BD02049973374AD9B62EE /* BaseView.swift in Sources */,
-				1A6172AC2A7AFC2A00310F83 /* CreateProfileView.swift in Sources */,
 				DA33291733D0A6FA4288CF56 /* BookMeNowApp.swift in Sources */,
-				D64966408F3A30850D11AF84 /* DashboardView.swift in Sources */,
+				16C8002F555E50EA9E55F55F /* CreateProfilePresenter.swift in Sources */,
+				5A90BEA2D64445FF386BA01D /* CreateProfileView.swift in Sources */,
+				2E0ECA4BA6A201507CCC9C72 /* DashboardView.swift in Sources */,
 				FCD19AD43C016920450CB9DF /* Date+Extensions.swift in Sources */,
 				5CE435DBB31A60B52FF06276 /* FacebookManager.swift in Sources */,
 				B90C5FC4E4E6F3E8B08CCBA6 /* GoogleManager.swift in Sources */,
@@ -631,12 +640,12 @@
 				B0C59F0AC31E4422400BA3EA /* NetworkManager.swift in Sources */,
 				2D058799840564E82ED7B5BF /* NetworkOperation.swift in Sources */,
 				CDFCCFAD5EBA913014187A75 /* NetworkOperationData.swift in Sources */,
-				E368F4CA53401376AF44F3BE /* NextVisitView.swift in Sources */,
+				0C018DCDFBBBDC4842B1A843 /* NextVisitView.swift in Sources */,
 				850492C12CD0FAE0AA6F107C /* Organization.swift in Sources */,
-				6A5D5FC9B2F416118B9A4D38 /* OrganizationDescriptionView.swift in Sources */,
-				7194C99BF7004C4CEA6ED505 /* OrganizationListView.swift in Sources */,
-				382664772AA1EF302C5DC06B /* PhonePresenter.swift in Sources */,
-				A2B2FABC949259F6FAE3D5CE /* PhoneView.swift in Sources */,
+				CFBFAF5ADDF5DE7EF297F588 /* OrganizationDescriptionView.swift in Sources */,
+				9BE01FEDC946DCD177667A54 /* OrganizationListView.swift in Sources */,
+				3C1310F68EBF6C2FA724C07B /* PhonePresenter.swift in Sources */,
+				3E67DEFC5CB92E58EC4A55E2 /* PhoneView.swift in Sources */,
 				584551106C21AADBD73E1C39 /* Profile.swift in Sources */,
 				AFB8C54D8D9B941398B6DB79 /* ProfileView.swift in Sources */,
 				6E34BE7FCD32909D78955BDE /* RoundedShape.swift in Sources */,
@@ -723,7 +732,7 @@
 		};
 		380670688533B0BC57C07A9B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE771EF2E699F6D34ED0A103 /* Pods-BookMeNow-Develop.release.xcconfig */;
+			baseConfigurationReference = 73C61925FBDB76B8DE1B1081 /* Pods-BookMeNow-Develop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -818,7 +827,7 @@
 		};
 		EC6975AC639F3AA8679F2E8D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6257D3BA7495620EEBE03FE2 /* Pods-BookMeNow-Develop.debug.xcconfig */;
+			baseConfigurationReference = D942FCF9FB33BF10429FF93F /* Pods-BookMeNow-Develop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
