@@ -11,21 +11,19 @@ struct SplashView: View {
     var body: some View {
         VStack {
             Spacer()
-            ContentView
+            
+            Text("BookMeNow")
+                .attributed(.H1Bold, color: Color.gradientOrange)
+                .padding(24.0)
+            
             Spacer()
         }
-        .background(Color.brandDarkColor)
+        .background(Color.background)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 self.setRootView(WelcomeView())
             }
         }
-    }
-    
-    var ContentView: some View {
-        Image("splash")
-            .resizable()
-            .scaledToFit()
     }
 }
 

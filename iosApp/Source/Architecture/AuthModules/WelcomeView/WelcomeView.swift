@@ -10,15 +10,16 @@ import SwiftUI
 
 struct WelcomeView: View, StateViewProtocol {
     private var presenter = WelcomePresenter()
-    @State private var pushToPhoneFlow = false
+    @State private var pushToCrateProfileFlow = false
     @State var state: StateView = .idle
+    var nextView: AnyView?
     
     // MARK: - BODY
     var body: some View {
         NavigationView {
-            NavigationLink(destination: PhoneView(), isActive: $pushToPhoneFlow) {
+//            NavigationLink(destination: PhoneView(), isActive: $pushToPhoneFlow) {
                 ContentView
-            }
+//            }
         }
     }
     
@@ -33,7 +34,7 @@ struct WelcomeView: View, StateViewProtocol {
             
             Spacer()
             
-            Text("Let’s you in")
+            Text(WELCOME.pageTitle.text)
                 .attributed(.H1Bold)
                 .padding(24.0)
             
@@ -41,7 +42,7 @@ struct WelcomeView: View, StateViewProtocol {
             
             ButtonsView
         }
-        .background(Color.white)
+        .background(Color.background)
         .onAppear {
             withAnimation(.easeOut(duration: 0.75)) {
                 state = .finished
@@ -52,18 +53,16 @@ struct WelcomeView: View, StateViewProtocol {
     var ButtonsView: some View {
         VStack(spacing: 16.0, content: {
             AppBorderButton(
-                state: .constant(.active),
                 imageName: "ic-facebook",
-                title: "Continue with Facebook",
+                title: WELCOME.facebookButton.text,
                 action: {
                     //                    self.setRootView(DashboardView())
                 }
             )
             
             AppBorderButton(
-                state: .constant(.active),
                 imageName: "ic-google",
-                title: "Continue with Google",
+                title: WELCOME.googleButton.text,
                 action: {
                     //
                 }
@@ -71,15 +70,17 @@ struct WelcomeView: View, StateViewProtocol {
             
             ORView
             
-            AppButton(
-                state: .constant(.active),
-                title: "Sign in with password",
-                titleColor: Color.white,
-                backgroundColor: Color.gradientOrange,
-                action: {
-                    //
-                }
-            )
+            NavigationLink(destination: CreateProfileView(), isActive: $pushToCrateProfileFlow) {
+                AppButton(
+                    state: .constant(.active),
+                    title: WELCOME.signInButton.text,
+                    titleColor: Color.white,
+                    backgroundColor: Color.gradientOrange,
+                    action: {
+                        self.pushToCrateProfileFlow = true
+                    }
+                )
+            }
         })
         .padding(24.0)
     }
@@ -90,7 +91,7 @@ struct WelcomeView: View, StateViewProtocol {
                 .frame(height: 1.0)
                 .foregroundColor(Color.greyscale200)
             
-            Text("or")
+            Text(shared.GENERAL.or_.text)
                 .font(Font.BodyXLargeSemibold)
                 .foregroundColor(Color.greyscale900)
             

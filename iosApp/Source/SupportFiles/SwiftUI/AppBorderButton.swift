@@ -1,25 +1,18 @@
 //
-//  AppButton.swift
+//  AppBorderButton.swift
 //  BookMeNow-Develop
 //
-//  Created by Yurii Goroshenko on 23.07.2023.
+//  Created by Yurii Goroshenko on 02.08.2023.
 //
 
 import SwiftUI
 
-struct AppButton: View {
-    enum ButtonState {
-        case active
-        case disable
-        
-        var opacity: Double { self == .active ? 1.0 : 0.6 }
-    }
-    
-    @Binding var state: ButtonState
+struct AppBorderButton: View {
+    private let shape = RoundedShapeView(color: Color.greyscale200, step: 3.0, isFilled: false)
     var imageName: String?
     var title: String?
     var titleColor = Color.greyscale900
-    var backgroundColor = Color.black
+    
     let action: () -> Void
     
     var body: some View {
@@ -41,17 +34,13 @@ struct AppButton: View {
             .frame(maxWidth: .infinity)
         }
         .frame(maxHeight: 60.0)
-        .disabled(state == .disable)
-        .opacity(state.opacity)
-        .background(backgroundColor)
-        .cornerRadius(30.0)
+        .background(shape)
     }
 }
 
-struct AppButton_Previews: PreviewProvider {
+struct AppBorderButton_Previews: PreviewProvider {
     static var previews: some View {
-        AppButton(
-            state: .constant(.active),
+        AppBorderButton(
             imageName: "ic-google",
             title: "Text",
             action: {}
