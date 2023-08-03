@@ -37,7 +37,7 @@ struct BaseView<Content>: View where Content: View {
         self.trailingView = trailingView
         self.content = content()
         
-        let appearance = UINavigationController.appearance(with: UIColor.brandDarkColor)
+        let appearance = UINavigationController.appearance(with: UIColor.black)
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }

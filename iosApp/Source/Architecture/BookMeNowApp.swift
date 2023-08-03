@@ -12,8 +12,6 @@ struct BookMeNowApp: App {
     var body: some Scene {
         WindowGroup {
             SplashView()
-                .preferredColorScheme(.dark)
-                .ignoresSafeArea(.all)
         }
     }
 }

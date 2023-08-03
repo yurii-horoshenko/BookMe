@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SplashView: View {
+    
+    // MARK: - Body
     var body: some View {
         VStack {
             Spacer()
@@ -18,6 +20,7 @@ struct SplashView: View {
             
             Spacer()
         }
+        .ignoresSafeArea(.all)
         .background(Color.background)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {

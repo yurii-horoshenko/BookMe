@@ -3,18 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		005A2453E975AA2818EC0B61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD56B8F69B1182210A82C9A5 /* Assets.xcassets */; };
 		03634D1A82D9241E16E6EE99 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB3FE1DD4737BCDDC68AAEB /* SessionManager.swift */; };
 		0C018DCDFBBBDC4842B1A843 /* NextVisitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563D8C5ED80296A11FBD191 /* NextVisitView.swift */; };
-		14694D3969B61ACBD63CD76D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC17ADC68ADE08F177B06DB /* Location.swift */; };
 		16C8002F555E50EA9E55F55F /* CreateProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F706CD0120A66845C71D0D8 /* CreateProfilePresenter.swift */; };
 		2174BEC39AC7F5EB44ED15E3 /* iPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0A1D67D8DC5F74F0DB1128 /* iPhoneNumberField.swift */; };
+		22212FF9EBE2AE5CCD43181C /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796178B742C1E46DC82C62DE /* Organization.swift */; };
 		25AEBDC1C65FEAB40FB2CBB8 /* Text+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7068312827929ABCC3E50A7 /* Text+Extensions.swift */; };
-		25C49B8B30BABAE82CDCEA56 /* libPods-BookMeNow-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECEBB4D1E64878B4BB00EC6 /* libPods-BookMeNow-Develop.a */; };
 		2D058799840564E82ED7B5BF /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C94B2458685D37A7DC7E408 /* NetworkOperation.swift */; };
 		2E0ECA4BA6A201507CCC9C72 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE5C227DB8A164DC2541D5 /* DashboardView.swift */; };
 		36B2D0212A7C8DBA9FFD8D4D /* report.xml in Resources */ = {isa = PBXBuildFile; fileRef = CE8422501FBC72D872A753D2 /* report.xml */; };
@@ -22,7 +21,6 @@
 		4349F4A1ACCE9DE30D68BA72 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539C7665913FC4BE8FD4013 /* View+Extensions.swift */; };
 		45E26FAEFAE2E8907ADB8B7F /* Urbanist-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF58D57AC7C0F541975D407E /* Urbanist-Medium.ttf */; };
 		483E0E13977E3FBA121499C3 /* LocalCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AAD4E0C4C8389DC58C4111 /* LocalCacheManager.swift */; };
-		584551106C21AADBD73E1C39 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464A9B69076CC4C10596231 /* Profile.swift */; };
 		588C202F6126E17E1DEC4A55 /* AppInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730F42E123782EC3FA3981D6 /* AppInputField.swift */; };
 		5A90BEA2D64445FF386BA01D /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD247DF0C8CBCB0140A1DDA /* CreateProfileView.swift */; };
 		5CE435DBB31A60B52FF06276 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4613F446F563BACCBB849 /* FacebookManager.swift */; };
@@ -33,7 +31,6 @@
 		7C03373BD03641D88503AB15 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B057366086E8A69B92BDF018 /* .swiftlint.yml */; };
 		7E904DFB8208344BCF99FDBE /* Urbanist-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53FB88955FB6417E4737198E /* Urbanist-Semibold.ttf */; };
 		8121CADC7E2E0E702D28A572 /* .project.yml in Resources */ = {isa = PBXBuildFile; fileRef = 25006C33F90F92C794C7A588 /* .project.yml */; };
-		850492C12CD0FAE0AA6F107C /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7285A240A31979CC4C85C91D /* Organization.swift */; };
 		868B81066FC603916EF31932 /* AppStyleFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D2D51146E2A9C157169FF8 /* AppStyleFont.swift */; };
 		8F785638F79B51BA146FB1B7 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C533F178F36C598A1E3E587 /* SplashView.swift */; };
 		98660EAF95E20CCC5F9E1CA9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B3B010B41B371112D7B301 /* LocationManager.swift */; };
@@ -49,6 +46,7 @@
 		B90C5FC4E4E6F3E8B08CCBA6 /* GoogleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB18B66E68778718D380978 /* GoogleManager.swift */; };
 		B9641795E2DC470A6A96FFE6 /* Navigation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EFBC889FAC411267406B29 /* Navigation+Extensions.swift */; };
 		BB8328B56E32DAE322C37297 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDA61D54DE9306549CDAE18 /* Logger.swift */; };
+		C347C9C2DBCCAF07B0C00CDC /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0214B704EFE00738C7C4A154 /* Profile.swift */; };
 		C3C2ECAC26D30D0A10E1E9DC /* AppStyleColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA54D3B98734337F444C2AF /* AppStyleColor.swift */; };
 		C54586135352BA7A5BE709C0 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6A42466C0F721A78041A18 /* UserDefaultsManager.swift */; };
 		CDFCCFAD5EBA913014187A75 /* NetworkOperationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06CEAC8EE40CFA6416948CA /* NetworkOperationData.swift */; };
@@ -56,24 +54,25 @@
 		CFBFAF5ADDF5DE7EF297F588 /* OrganizationDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1E54E7E52A81D74509721 /* OrganizationDescriptionView.swift */; };
 		DA33291733D0A6FA4288CF56 /* BookMeNowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56410C35ED3A97331CE70DA8 /* BookMeNowApp.swift */; };
 		DD92FF7D57607158C334C43D /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F85B8326ACB993A604B2544 /* AppButton.swift */; };
-		E3721B8DFB1C507F0327212E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44FA7F34FDEE7A5AA71A771 /* Theme.swift */; };
+		E3FB3507DBF06751D44A1367 /* libPods-BookMeNow-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E41223AB20718CB97799262B /* libPods-BookMeNow-Develop.a */; };
 		EE40DED0C0F3ABE6EE5A2696 /* .env.default.sample in Resources */ = {isa = PBXBuildFile; fileRef = A654A5962562C7E99909911B /* .env.default.sample */; };
 		FCD19AD43C016920450CB9DF /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE6149C04733A62E9AA48B /* Date+Extensions.swift */; };
+		FF5EA10A8E202FFC411B7801 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22324CF770B80D6D50AFED0E /* Location.swift */; };
 		FF7BD02049973374AD9B62EE /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837CCF09FAA0CA208A3C497 /* BaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00190B7344A9C2DE87752522 /* Urbanist-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Bold.ttf"; sourceTree = "<group>"; };
-		0D179C2712AE5F6AE0B6C977 /* Pods-BookMeNow-Develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMeNow-Develop.release.xcconfig"; path = "Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop.release.xcconfig"; sourceTree = "<group>"; };
+		0214B704EFE00738C7C4A154 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		0D6E9E88B7837D8542BC38FD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		0EC17ADC68ADE08F177B06DB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		0EDA61D54DE9306549CDAE18 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		11A74007069EEAEF1DD2AB32 /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
 		1C7FF9F76F91A9BB5BB449C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		1F6497D629BE6E4D3A88295E /* Gymfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gymfile; sourceTree = "<group>"; };
+		1F6497D629BE6E4D3A88295E /* Gymfile */ = {isa = PBXFileReference; path = Gymfile; sourceTree = "<group>"; };
+		22324CF770B80D6D50AFED0E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		23D4885EC923EC14FAA8AF7B /* Vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrate.swift; sourceTree = "<group>"; };
 		25006C33F90F92C794C7A588 /* .project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .project.yml; sourceTree = "<group>"; };
-		33DF0F79E65EDE0472227A39 /* Matchfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Matchfile; sourceTree = "<group>"; };
+		33DF0F79E65EDE0472227A39 /* Matchfile */ = {isa = PBXFileReference; path = Matchfile; sourceTree = "<group>"; };
 		3563D8C5ED80296A11FBD191 /* NextVisitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextVisitView.swift; sourceTree = "<group>"; };
 		3837CCF09FAA0CA208A3C497 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		3AB18B66E68778718D380978 /* GoogleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleManager.swift; sourceTree = "<group>"; };
@@ -85,25 +84,23 @@
 		53FB88955FB6417E4737198E /* Urbanist-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Semibold.ttf"; sourceTree = "<group>"; };
 		56410C35ED3A97331CE70DA8 /* BookMeNowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMeNowApp.swift; sourceTree = "<group>"; };
 		5C8BC56F22BF473693CCB72B /* UIFont+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Init.swift"; sourceTree = "<group>"; };
-		5DBA1ABFDC44661587283980 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
+		5DBA1ABFDC44661587283980 /* Appfile */ = {isa = PBXFileReference; path = Appfile; sourceTree = "<group>"; };
 		5DD247DF0C8CBCB0140A1DDA /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
 		5EBE5C227DB8A164DC2541D5 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		5FB3A4C3E1515A3DDF7585A6 /* BookMeNow-Develop.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "BookMeNow-Develop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		60A6CBAFA6EE183DC0F1CCB4 /* Pluginfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pluginfile; sourceTree = "<group>"; };
-		6ECEBB4D1E64878B4BB00EC6 /* libPods-BookMeNow-Develop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookMeNow-Develop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7285A240A31979CC4C85C91D /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		60A6CBAFA6EE183DC0F1CCB4 /* Pluginfile */ = {isa = PBXFileReference; path = Pluginfile; sourceTree = "<group>"; };
+		65BD02E45CCA6B19719E26AB /* Pods-BookMeNow-Develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMeNow-Develop.debug.xcconfig"; path = "Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop.debug.xcconfig"; sourceTree = "<group>"; };
 		730F42E123782EC3FA3981D6 /* AppInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInputField.swift; sourceTree = "<group>"; };
-		7464A9B69076CC4C10596231 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		7EBDFCDD9987845BBADEE75E /* Snapfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snapfile; sourceTree = "<group>"; };
+		796178B742C1E46DC82C62DE /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		7EBDFCDD9987845BBADEE75E /* Snapfile */ = {isa = PBXFileReference; path = Snapfile; sourceTree = "<group>"; };
 		7FA54D3B98734337F444C2AF /* AppStyleColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyleColor.swift; sourceTree = "<group>"; };
 		8C533F178F36C598A1E3E587 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		8C94B2458685D37A7DC7E408 /* NetworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		97AC8E39501FCC794B74C87C /* AppPhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPhoneNumber.swift; sourceTree = "<group>"; };
 		9F6229C7C69654B803AD7365 /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		9F85B8326ACB993A604B2544 /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
-		A654A5962562C7E99909911B /* .env.default.sample */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env.default.sample; sourceTree = "<group>"; };
+		A654A5962562C7E99909911B /* .env.default.sample */ = {isa = PBXFileReference; path = .env.default.sample; sourceTree = "<group>"; };
 		AD0A1D67D8DC5F74F0DB1128 /* iPhoneNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneNumberField.swift; sourceTree = "<group>"; };
-		AD7DDDE1CBBD509614A445D8 /* Pods-BookMeNow-Develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMeNow-Develop.debug.xcconfig"; path = "Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop.debug.xcconfig"; sourceTree = "<group>"; };
 		AF58D57AC7C0F541975D407E /* Urbanist-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Medium.ttf"; sourceTree = "<group>"; };
 		B057366086E8A69B92BDF018 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B6EFBC889FAC411267406B29 /* Navigation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Extensions.swift"; sourceTree = "<group>"; };
@@ -112,15 +109,16 @@
 		C0A1E54E7E52A81D74509721 /* OrganizationDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationDescriptionView.swift; sourceTree = "<group>"; };
 		C2D2D51146E2A9C157169FF8 /* AppStyleFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyleFont.swift; sourceTree = "<group>"; };
 		C438C5FBD5F9E91506836FFF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		C44FA7F34FDEE7A5AA71A771 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		C4825970DE105E19DE699FCF /* Pods-BookMeNow-Develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookMeNow-Develop.release.xcconfig"; path = "Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop.release.xcconfig"; sourceTree = "<group>"; };
 		C596B4F7CDEF2B50B7F01C1E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		C7068312827929ABCC3E50A7 /* Text+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extensions.swift"; sourceTree = "<group>"; };
 		C8AA626A0E6D3D22FB1602AB /* AppBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBorderButton.swift; sourceTree = "<group>"; };
 		CE8422501FBC72D872A753D2 /* report.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
-		CFC610DFD9C6E87B31FEAD8A /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
+		CFC610DFD9C6E87B31FEAD8A /* Fastfile */ = {isa = PBXFileReference; path = Fastfile; sourceTree = "<group>"; };
 		D0483826F6FD82A2E5600691 /* OldInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = OldInfo.plist; sourceTree = "<group>"; };
 		D381D722CE19D3235CF5C64F /* OrganizationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListView.swift; sourceTree = "<group>"; };
 		DD56B8F69B1182210A82C9A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E41223AB20718CB97799262B /* libPods-BookMeNow-Develop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookMeNow-Develop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED3BBBA61BB67EFF9610B06A /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
 		EEEE6149C04733A62E9AA48B /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		F3AAD4E0C4C8389DC58C4111 /* LocalCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCacheManager.swift; sourceTree = "<group>"; };
@@ -129,11 +127,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0C4FF70CE5C696E11EE4C26C /* Frameworks */ = {
+		AD73EFBA565A0472CF58A83B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25C49B8B30BABAE82CDCEA56 /* libPods-BookMeNow-Develop.a in Frameworks */,
+				E3FB3507DBF06751D44A1367 /* libPods-BookMeNow-Develop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				B1B76C063825EE5F29A297AD /* Architecture */,
+				67CFDD4D081ACDB19A793C7D /* Entities */,
 				408FAEEFE652EC7234ABD25F /* Managers */,
 				4B0C0589B154FD9886F6F1BF /* SupportFiles */,
 			);
@@ -171,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				A8549BCB7E233C313803E8E8 /* iPhoneNumberField */,
-				6ECEBB4D1E64878B4BB00EC6 /* libPods-BookMeNow-Develop.a */,
+				E41223AB20718CB97799262B /* libPods-BookMeNow-Develop.a */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -194,7 +193,7 @@
 				25006C33F90F92C794C7A588 /* .project.yml */,
 				B057366086E8A69B92BDF018 /* .swiftlint.yml */,
 				94C98B8B3A2BFC1966447269 /* Products */,
-				AC51E2F2C0BBCA7D87EC9D56 /* Pods */,
+				8B9729AF9F0739C9572E4F2B /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -246,10 +245,8 @@
 				6BC835BEBB14B750C4D88F00 /* AssetsColor */,
 				3A72E1697CED545CA784580B /* AssetsFont */,
 				72C15E03E677B905C796972C /* AssetsImage */,
-				B44531F6C7B584004A57AC1C /* Entities */,
 				B14BE57790AD1B8E6E517679 /* Extensions */,
 				69D32A92D6E734CDAA08B6C7 /* SwiftUI */,
-				C44FA7F34FDEE7A5AA71A771 /* Theme.swift */,
 				23D4885EC923EC14FAA8AF7B /* Vibrate.swift */,
 			);
 			path = SupportFiles;
@@ -292,6 +289,16 @@
 				C06CEAC8EE40CFA6416948CA /* NetworkOperationData.swift */,
 			);
 			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		67CFDD4D081ACDB19A793C7D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				22324CF770B80D6D50AFED0E /* Location.swift */,
+				796178B742C1E46DC82C62DE /* Organization.swift */,
+				0214B704EFE00738C7C4A154 /* Profile.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		69D0AA64D6AD0DA0AEE56292 /* AuthModules */ = {
@@ -351,6 +358,16 @@
 			path = " Modules";
 			sourceTree = "<group>";
 		};
+		8B9729AF9F0739C9572E4F2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				65BD02E45CCA6B19719E26AB /* Pods-BookMeNow-Develop.debug.xcconfig */,
+				C4825970DE105E19DE699FCF /* Pods-BookMeNow-Develop.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		94C98B8B3A2BFC1966447269 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,15 +394,6 @@
 			path = iPhoneNumberField;
 			sourceTree = "<group>";
 		};
-		AC51E2F2C0BBCA7D87EC9D56 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AD7DDDE1CBBD509614A445D8 /* Pods-BookMeNow-Develop.debug.xcconfig */,
-				0D179C2712AE5F6AE0B6C977 /* Pods-BookMeNow-Develop.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		B14BE57790AD1B8E6E517679 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,16 +415,6 @@
 				8C533F178F36C598A1E3E587 /* SplashView.swift */,
 			);
 			path = Architecture;
-			sourceTree = "<group>";
-		};
-		B44531F6C7B584004A57AC1C /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				0EC17ADC68ADE08F177B06DB /* Location.swift */,
-				7285A240A31979CC4C85C91D /* Organization.swift */,
-				7464A9B69076CC4C10596231 /* Profile.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		CF700F783C665C144C84E97A /* OrganizationDescriptionView */ = {
@@ -451,13 +449,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6B082850F03610F011BDA16 /* Build configuration list for PBXNativeTarget "BookMeNow-Develop" */;
 			buildPhases = (
-				4FBA603DADAC6F06ACA6F923 /* [CP] Check Pods Manifest.lock */,
+				2DDB47BDAA1AB26266407242 /* [CP] Check Pods Manifest.lock */,
 				FFE036B5EC8D7DB528D9B336 /* Sources */,
 				82BB06BABDA69BD8D7D206A5 /* Resources */,
 				C0DBCEA4E1D6C8D301BB1644 /* [Script] SwiftLint */,
-				0C4FF70CE5C696E11EE4C26C /* Frameworks */,
-				9E9DB0A40D90CB3E003460D7 /* [CP] Embed Pods Frameworks */,
-				6BA04A99EDDBCF02A9F97C0E /* [CP] Copy Pods Resources */,
+				AD73EFBA565A0472CF58A83B /* Frameworks */,
+				4700D1C6EC2CF68C03292458 /* [CP] Embed Pods Frameworks */,
+				25770F418C2FC73E308C1528 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -522,7 +520,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4FBA603DADAC6F06ACA6F923 /* [CP] Check Pods Manifest.lock */ = {
+		25770F418C2FC73E308C1528 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2DDB47BDAA1AB26266407242 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -544,24 +559,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6BA04A99EDDBCF02A9F97C0E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookMeNow-Develop/Pods-BookMeNow-Develop-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9E9DB0A40D90CB3E003460D7 /* [CP] Embed Pods Frameworks */ = {
+		4700D1C6EC2CF68C03292458 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -618,7 +616,7 @@
 				5CE435DBB31A60B52FF06276 /* FacebookManager.swift in Sources */,
 				B90C5FC4E4E6F3E8B08CCBA6 /* GoogleManager.swift in Sources */,
 				483E0E13977E3FBA121499C3 /* LocalCacheManager.swift in Sources */,
-				14694D3969B61ACBD63CD76D /* Location.swift in Sources */,
+				FF5EA10A8E202FFC411B7801 /* Location.swift in Sources */,
 				98660EAF95E20CCC5F9E1CA9 /* LocationManager.swift in Sources */,
 				BB8328B56E32DAE322C37297 /* Logger.swift in Sources */,
 				B9641795E2DC470A6A96FFE6 /* Navigation+Extensions.swift in Sources */,
@@ -626,16 +624,15 @@
 				2D058799840564E82ED7B5BF /* NetworkOperation.swift in Sources */,
 				CDFCCFAD5EBA913014187A75 /* NetworkOperationData.swift in Sources */,
 				0C018DCDFBBBDC4842B1A843 /* NextVisitView.swift in Sources */,
-				850492C12CD0FAE0AA6F107C /* Organization.swift in Sources */,
+				22212FF9EBE2AE5CCD43181C /* Organization.swift in Sources */,
 				CFBFAF5ADDF5DE7EF297F588 /* OrganizationDescriptionView.swift in Sources */,
 				9BE01FEDC946DCD177667A54 /* OrganizationListView.swift in Sources */,
-				584551106C21AADBD73E1C39 /* Profile.swift in Sources */,
+				C347C9C2DBCCAF07B0C00CDC /* Profile.swift in Sources */,
 				AFB8C54D8D9B941398B6DB79 /* ProfileView.swift in Sources */,
 				6E34BE7FCD32909D78955BDE /* RoundedShape.swift in Sources */,
 				03634D1A82D9241E16E6EE99 /* SessionManager.swift in Sources */,
 				8F785638F79B51BA146FB1B7 /* SplashView.swift in Sources */,
 				25AEBDC1C65FEAB40FB2CBB8 /* Text+Extensions.swift in Sources */,
-				E3721B8DFB1C507F0327212E /* Theme.swift in Sources */,
 				6F3A6145F3574749B56E3136 /* UIFont+Init.swift in Sources */,
 				C54586135352BA7A5BE709C0 /* UserDefaultsManager.swift in Sources */,
 				9F0DC2662B0B0724B9E555F6 /* Vibrate.swift in Sources */,
@@ -715,7 +712,7 @@
 		};
 		380670688533B0BC57C07A9B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D179C2712AE5F6AE0B6C977 /* Pods-BookMeNow-Develop.release.xcconfig */;
+			baseConfigurationReference = C4825970DE105E19DE699FCF /* Pods-BookMeNow-Develop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -810,7 +807,7 @@
 		};
 		EC6975AC639F3AA8679F2E8D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD7DDDE1CBBD509614A445D8 /* Pods-BookMeNow-Develop.debug.xcconfig */;
+			baseConfigurationReference = 65BD02E45CCA6B19719E26AB /* Pods-BookMeNow-Develop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

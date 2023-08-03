@@ -14,8 +14,8 @@ extension UINavigationController {
         appearance.backgroundColor = color
         appearance.shadowColor = shadowColor
         appearance.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.brandMainColor,
-            NSAttributedString.Key.font: UIFont.brandFont(ofSize: 16, type: .medium)
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)
         ]
 
         return appearance
