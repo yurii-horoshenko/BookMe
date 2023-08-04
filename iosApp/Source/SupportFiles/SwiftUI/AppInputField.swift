@@ -23,7 +23,7 @@ struct AppInputField: View {
         case disable
         
         var backgroundColor: Color { Color.greyscale50 }
-        var foregroundColor: Color { Color.greyscale900 }
+        var foregroundColor: Color { self == .active ? Color.greyscale900 : Color.greyscale500 }
         var placeholderFont: Font { Font.BodyMediumRegular }
         var font: Font { Font.BodyMediumSemibold }
     }
@@ -34,23 +34,42 @@ struct AppInputField: View {
     @Binding var fieldData: FieldData
     var leadingView: AnyView?
     var trailingView: AnyView?
+    var onTapPress: (() -> Void)?
     
     // MARK: - BODY
     var body: some View {
-        HStack(spacing: 16.0) {
+        HStack {
             leadingView
+                .padding(.leading, 16.0)
             
-            if fieldData.isSecure {
-                SecureField(fieldData.placeholder, text: $fieldData.value)
-                    .offset(x: leadingView == nil ? 16.0 : 0.0)
-                    .focused($isFocused)
+            if onTapPress != nil {
+                Text(fieldData.value.isEmpty ? fieldData.placeholder : fieldData.value)
+                    .padding(.horizontal, 24.0)
+                    .font(fieldData.value.isEmpty ? fieldData.state.placeholderFont : fieldData.state.font)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(fieldData.state.foregroundColor)
             } else {
-                TextField(fieldData.placeholder, text: $fieldData.value)
-                    .offset(x: trailingView == nil ? 16.0 : 0.0)
-                    .focused($isFocused)
+                if fieldData.isSecure {
+                    SecureField("", text: $fieldData.value)
+                        .focused($isFocused)
+                        .padding(.horizontal, 16.0)
+                        .placeholder(when: fieldData.value.isEmpty) {
+                            Text(fieldData.placeholder).foregroundColor(fieldData.state.foregroundColor)
+                                .padding(.horizontal, 16.0)
+                        }
+                } else {
+                    TextField("", text: $fieldData.value)
+                        .focused($isFocused)
+                        .padding(.horizontal, 16.0)
+                        .placeholder(when: fieldData.value.isEmpty) {
+                            Text(fieldData.placeholder).foregroundColor(fieldData.state.foregroundColor)
+                                .padding(.horizontal, 16.0)
+                        }
+                }
             }
             
             trailingView
+                .padding(.trailing, 16.0)
         }
         .accentColor(Color.primary500)
         .disabled(fieldData.state == .disable)
@@ -59,6 +78,7 @@ struct AppInputField: View {
         .foregroundColor(fieldData.state.foregroundColor)
         .frame(height: 56.0)
         .background(shape)
+        .onTapGesture { onTapPress?() }
     }
 }
 

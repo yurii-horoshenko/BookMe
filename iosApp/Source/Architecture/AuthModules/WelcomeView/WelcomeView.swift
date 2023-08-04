@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WelcomeView: View, StateViewProtocol {
     @ObservedObject var presenter = WelcomePresenter()
-    @State private var pushToCrateProfileFlow = false
+    @State private var pushToCreateProfileFlow = false
     @State var state: StateView = .idle
     var nextView: AnyView?
     
@@ -70,14 +70,14 @@ struct WelcomeView: View, StateViewProtocol {
             
             ORView
             
-            NavigationLink(destination: CreateProfileView(), isActive: $pushToCrateProfileFlow) {
+            NavigationLink(destination: CreateProfileView(), isActive: $pushToCreateProfileFlow) {
                 AppButton(
                     state: .constant(.active),
                     title: WELCOME.signInButton.text,
                     titleColor: Color.white,
                     backgroundColor: Color.primary500,
                     action: {
-                        self.pushToCrateProfileFlow = true
+                        self.pushToCreateProfileFlow = true
                     }
                 )
             }

@@ -20,9 +20,9 @@ struct AppPhoneNumber: View {
         iPhoneNumberField(fieldData.placeholder, text: $fieldData.value, isEditing: $isEditing)
             .flagHidden(false)
             .flagSelectable(true)
-            .font(fieldData.value.isEmpty ? placeholderFont : font)
+            .font(font)
             .maximumDigits(10)
-            .foregroundColor(fieldData.state.foregroundColor)
+            .foregroundColor(Color.greyscale900)
             .clearButtonMode(.whileEditing)
             .onClear { _ in isEditing.toggle() }
             .accentColor(Color.primary500)
