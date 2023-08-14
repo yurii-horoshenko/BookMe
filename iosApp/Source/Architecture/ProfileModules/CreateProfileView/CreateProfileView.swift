@@ -16,20 +16,15 @@ struct CreateProfileView: View {
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: "Create Your Profile", content: { ContentView })
-                .onAppear {
-                    //                    isFocused = true
-                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
-        .onChange(of: presenter.fullname) { newValue in
-            print(newValue.value)
-        }
     }
     
     var ContentView: some View {
         VStack(spacing: 24.0) {
             AppInputField(fieldData: $presenter.fullname)
+                .padding(.top, 48.0)
             
             AppInputField(fieldData: $presenter.nickname)
             
@@ -62,17 +57,7 @@ struct CreateProfileView: View {
             
             Spacer()
             
-            NavigationLink(destination: CreateProfileView(), isActive: $pushToOTPFlow) {
-                AppButton(
-                    state: .constant(.active),
-                    title: "Continue",
-                    titleColor: Color.white,
-                    backgroundColor: Color.primary500,
-                    action: {
-                        self.pushToOTPFlow = true
-                    }
-                )
-            }
+            BottomButton
         }
         .padding(defaultEdgeInsets)
     }
@@ -91,6 +76,18 @@ struct CreateProfileView: View {
             .renderingMode(.template)
             .foregroundColor(presenter.dateBirthday.state == .active ? Color.greyscale900 : Color.greyscale500)
             .frame(width: 20, height: 20)
+    }
+    
+    var BottomButton: some View {
+        NavigationLink(destination: EnterCodeView(phone: presenter.phone.value.phoneMask), isActive: $pushToOTPFlow) {
+            AppButton(
+                state: .constant(.active),
+                title: "Continue",
+                titleColor: Color.white,
+                backgroundColor: Color.primary500,
+                action: { self.pushToOTPFlow = true }
+            )
+        }
     }
 }
 

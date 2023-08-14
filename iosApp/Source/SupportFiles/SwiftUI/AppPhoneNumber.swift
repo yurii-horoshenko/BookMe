@@ -14,10 +14,12 @@ struct AppPhoneNumber: View {
     @FocusState var isFocused: Bool
     @Binding var fieldData: FieldData
     @State var isEditing = false
+    @State var prefix = "+1"
+    @State var phone = ""
     
     // MARK: - BODY
     var body: some View {
-        iPhoneNumberField(fieldData.placeholder, text: $fieldData.value, isEditing: $isEditing)
+        iPhoneNumberField(fieldData.placeholder, prefix: $prefix, text: $phone, isEditing: $isEditing)
             .flagHidden(false)
             .flagSelectable(true)
             .font(font)
@@ -28,6 +30,12 @@ struct AppPhoneNumber: View {
             .accentColor(Color.primary500)
             .padding(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 16.0))
             .background(shape)
+            .onChange(of: prefix) { newValue in
+                fieldData.value = newValue + " " + phone
+            }
+            .onChange(of: phone) { newValue in
+                fieldData.value = prefix + " " + newValue
+            }
     }
 }
 

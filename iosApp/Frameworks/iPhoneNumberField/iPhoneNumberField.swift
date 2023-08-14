@@ -11,7 +11,6 @@
 //
 
 import SwiftUI
-import PhoneNumberKit
 
 /// A text field view representable structure that formats the user's phone number as they type.
 public struct iPhoneNumberField: UIViewRepresentable {
@@ -69,7 +68,11 @@ public struct iPhoneNumberField: UIViewRepresentable {
 
     /// Change the default prefix number by setting the region. 🇮🇷
     internal var defaultRegion: String?
-
+    
+    /// Change the default prefix number by setting the region. 🇮🇷
+    ///
+    @Binding public var regionPrefix: String
+    
     /// The color of the text of the phone number field. 🎨
     internal var textColor: UIColor?
     
@@ -133,6 +136,7 @@ public struct iPhoneNumberField: UIViewRepresentable {
     internal var isUserInteractionEnabled = true
 
     public init(_ title: String? = nil,
+                prefix: Binding<String>,
                 text: Binding<String>,
                 isEditing: Binding<Bool>? = nil,
                 formatted: Bool = true,
@@ -141,6 +145,7 @@ public struct iPhoneNumberField: UIViewRepresentable {
         self.placeholder = title
         self.externalIsFirstResponder = isEditing
         self.formatted = formatted
+        self._regionPrefix = prefix
         self._text = text
         self._displayedText = State(initialValue: text.wrappedValue)
         self.configuration = configuration
@@ -176,6 +181,9 @@ public struct iPhoneNumberField: UIViewRepresentable {
         uiView.withFlag = showFlag
         uiView.withDefaultPickerUI = selectableFlag
         uiView.withPrefix = previewPrefix
+        uiView.onCountryClick = { result in
+            regionPrefix = result
+        }
         
         if placeholder != nil {
             uiView.placeholder = placeholder

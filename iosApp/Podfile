@@ -3,7 +3,7 @@ platform :ios, '15.0'
 def project_pods
   use_modular_headers!
   
-  pod 'PhoneNumberKit'
+#  pod 'PhoneNumberKit'
   pod 'Kingfisher', :inhibit_warnings => true
   #  pod 'GoogleSignIn'
   pod 'SwiftLint'

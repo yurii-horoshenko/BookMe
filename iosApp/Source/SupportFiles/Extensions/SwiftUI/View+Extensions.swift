@@ -47,3 +47,9 @@ extension View {
         }
     }
 }
+
+extension View {
+    func isHidden(_ isHidden: Bool) -> Self? {
+        isHidden ? nil : self
+    }
+}

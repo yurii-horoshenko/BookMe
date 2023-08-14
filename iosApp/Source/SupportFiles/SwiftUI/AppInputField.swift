@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FieldData: Equatable {
+    var id = UUID()
     var value = ""
     var placeholder = ""
     var state = AppInputField.FieldState.idle
