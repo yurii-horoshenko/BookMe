@@ -5,22 +5,22 @@
 //  Created by Yurii Goroshenko on 03.08.2023.
 //
 
+import shared
 import SwiftUI
 
 struct CreateProfileView: View {
     @ObservedObject var presenter = CreateProfilePresenter()
-    @State private var pushToOTPFlow = false
-    @State private var showingOptions = false
     
     // MARK: - Body
     var body: some View {
         NavigationView {
-            BaseView(navigationTitle: "Create Your Profile", content: { ContentView })
+            BaseView(navigationTitle: CREATE_PROFILE.pageTitle.text, content: { ContentView })
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
     }
     
+    // Profile input fields, button
     var ContentView: some View {
         VStack(spacing: 24.0) {
             AppInputField(fieldData: $presenter.fullname)
@@ -34,23 +34,23 @@ struct CreateProfileView: View {
             
             AppPhoneNumber(fieldData: $presenter.phone)
             
-            AppInputField(fieldData: $presenter.gender, trailingView: ArrorDownImage.eraseToAnyView()) {
-                showingOptions = true
+            AppInputField(fieldData: $presenter.gender, trailingView: ArrowDownImage.eraseToAnyView()) {
+                presenter.genderSelection()
             }
-            .confirmationDialog("Select your gender", isPresented: $showingOptions, titleVisibility: .visible) {
-                Button("Male") {
-                    presenter.gender.value = "Male"
+            .confirmationDialog(CREATE_PROFILE.genderTitle.text, isPresented: $presenter.toGenderSelection, titleVisibility: .visible) {
+                Button(GENDER.male.text) {
+                    presenter.gender.value = GENDER.male.text
                     presenter.gender.state = .active
                 }
                 
-                Button("Female") {
-                    presenter.gender.value = "Female"
+                Button(GENDER.female.text) {
+                    presenter.gender.value = GENDER.female.text
                     presenter.gender.state = .active
-
+                    
                 }
                 
-                Button("Other") {
-                    presenter.gender.value = "Other"
+                Button(GENDER.other.text) {
+                    presenter.gender.value = GENDER.other.text
                     presenter.gender.state = .active
                 }
             }
@@ -62,30 +62,35 @@ struct CreateProfileView: View {
         .padding(defaultEdgeInsets)
     }
     
-    var ArrorDownImage: some View {
-        Image("ic-arrow-down")
+    // Image Arrow down
+    var ArrowDownImage: some View {
+        Image(ICON.arrowDown.value)
             .resizable()
             .renderingMode(.template)
             .foregroundColor(presenter.gender.state == .active ? Color.greyscale900 : Color.greyscale500)
             .frame(width: 20, height: 20)
     }
     
+    // Image Calendar
     var CalendarImage: some View {
-        Image("ic-calendar")
+        Image(ICON.calendar.value)
             .resizable()
             .renderingMode(.template)
             .foregroundColor(presenter.dateBirthday.state == .active ? Color.greyscale900 : Color.greyscale500)
             .frame(width: 20, height: 20)
     }
     
+    // Button Continue
     var BottomButton: some View {
-        NavigationLink(destination: EnterCodeView(phone: presenter.phone.value.phoneMask), isActive: $pushToOTPFlow) {
+        NavigationLink(destination: EnterCodeView(phone: presenter.phone.value.phoneMask), isActive: $presenter.toCodeVerification) {
             AppButton(
                 state: .constant(.active),
-                title: "Continue",
+                title: GENERAL.continue_.text,
                 titleColor: Color.white,
                 backgroundColor: Color.primary500,
-                action: { self.pushToOTPFlow = true }
+                action: {
+                    presenter.codeVerification()
+                }
             )
         }
     }
