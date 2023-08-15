@@ -5,8 +5,9 @@ def project_pods
   
 #  pod 'PhoneNumberKit'
   pod 'Kingfisher', :inhibit_warnings => true
-  #  pod 'GoogleSignIn'
   pod 'SwiftLint'
+  
+  #  pod 'GoogleSignIn'
   #  pod 'FacebookCore'
   #  pod 'FacebookLogin'
   

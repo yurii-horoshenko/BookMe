@@ -13,8 +13,10 @@ final class CreateProfilePresenter: ObservableObject {
     @Published var dateBirthday = FieldData(placeholder: "Date of Birth")
     @Published var phone = FieldData(placeholder: "Phone Number")
     @Published var gender = FieldData(placeholder: "Gender")
+    @Published var birthday = Date.now
     @Published var toCodeVerification = false
     @Published var toGenderSelection = false
+    @Published var toCalendar = false
     
     // MARK: - Lifecycle
     deinit {

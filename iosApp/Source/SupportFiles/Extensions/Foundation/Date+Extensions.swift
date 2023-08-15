@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    var currentDate: String {
+    var toString: String {
         let dateFormatter = TimeInterval.dateFormatter
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter.string(from: self)
