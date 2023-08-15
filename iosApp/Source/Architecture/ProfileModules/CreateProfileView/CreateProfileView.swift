@@ -22,44 +22,46 @@ struct CreateProfileView: View {
     
     // Profile input fields, button
     var ContentView: some View {
-        VStack(spacing: 24.0) {
-            AppInputField(fieldData: $presenter.fullname)
-                .padding(.top, 48.0)
-            
-            AppInputField(fieldData: $presenter.nickname)
-            
-            AppInputField(fieldData: $presenter.dateBirthday, trailingView: CalendarImage.eraseToAnyView()) {
+        ScrollView {
+            VStack(spacing: 24.0) {
+                AppInputField(fieldData: $presenter.fullname)
+                    .padding(.top, 48.0)
                 
-            }
-            
-            AppPhoneNumber(fieldData: $presenter.phone)
-            
-            AppInputField(fieldData: $presenter.gender, trailingView: ArrowDownImage.eraseToAnyView()) {
-                presenter.genderSelection()
-            }
-            .confirmationDialog(CREATE_PROFILE.genderTitle.text, isPresented: $presenter.toGenderSelection, titleVisibility: .visible) {
-                Button(GENDER.male.text) {
-                    presenter.gender.value = GENDER.male.text
-                    presenter.gender.state = .active
-                }
+                AppInputField(fieldData: $presenter.nickname)
                 
-                Button(GENDER.female.text) {
-                    presenter.gender.value = GENDER.female.text
-                    presenter.gender.state = .active
+                AppInputField(fieldData: $presenter.dateBirthday, trailingView: CalendarImage.eraseToAnyView()) {
                     
                 }
                 
-                Button(GENDER.other.text) {
-                    presenter.gender.value = GENDER.other.text
-                    presenter.gender.state = .active
+                AppPhoneNumber(fieldData: $presenter.phone)
+                
+                AppInputField(fieldData: $presenter.gender, trailingView: ArrowDownImage.eraseToAnyView()) {
+                    presenter.genderSelection()
                 }
+                .confirmationDialog(CREATE_PROFILE.genderTitle.text, isPresented: $presenter.toGenderSelection, titleVisibility: .visible) {
+                    Button(GENDER.male.text) {
+                        presenter.gender.value = GENDER.male.text
+                        presenter.gender.state = .active
+                    }
+                    
+                    Button(GENDER.female.text) {
+                        presenter.gender.value = GENDER.female.text
+                        presenter.gender.state = .active
+                        
+                    }
+                    
+                    Button(GENDER.other.text) {
+                        presenter.gender.value = GENDER.other.text
+                        presenter.gender.state = .active
+                    }
+                }
+                
+                Spacer()
+                
+                BottomButton
             }
-            
-            Spacer()
-            
-            BottomButton
+            .padding(defaultEdgeInsets)
         }
-        .padding(defaultEdgeInsets)
     }
     
     // Image Arrow down

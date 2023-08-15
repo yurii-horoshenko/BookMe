@@ -62,6 +62,7 @@ struct AppInputField: View {
                     TextField("", text: $fieldData.value)
                         .focused($isFocused)
                         .padding(.horizontal, 16.0)
+                        .foregroundColor(Color.greyscale900)
                         .placeholder(when: fieldData.value.isEmpty) {
                             Text(fieldData.placeholder).foregroundColor(fieldData.state.foregroundColor)
                                 .padding(.horizontal, 16.0)
