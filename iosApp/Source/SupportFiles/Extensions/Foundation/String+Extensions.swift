@@ -9,9 +9,9 @@ import SwiftUI
 
 extension String {
     var phoneMask: String {
-        let firstPart = self.prefix(7)
+        let firstPart = self.prefix(8)
         let endPart = self.suffix(2)
         let middlePart = "******"
         return firstPart + middlePart + endPart
-    }    
+    }
 }

@@ -5,11 +5,47 @@
 //  Created by Yurii Goroshenko on 15.08.2023.
 //
 
+import shared
 import SwiftUI
 
 struct LoginView: View {
+    @ObservedObject var presenter = CreateProfilePresenter()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            BaseView(navigationTitle: LOGIN.pageTitle.text, content: { ContentView })
+        }
+        .navigationBarBackButtonHidden(true)
+        .environment(\.colorScheme, .light)
+    }
+    
+    var ContentView: some View {
+        VStack {
+            Spacer()
+            
+            AppPhoneNumber(fieldData: $presenter.phone)
+            
+            Spacer()
+            
+            BottomButton
+                
+        }
+        .padding(defaultEdgeInsets)
+    }
+    
+    // Button Continue
+    var BottomButton: some View {
+        NavigationLink(destination: EnterCodeView(phone: presenter.phone.value.phoneMask), isActive: $presenter.toCodeVerification) {
+            AppButton(
+                state: .constant(.active),
+                title: LOGIN.signInButton.text,
+                titleColor: Color.white,
+                backgroundColor: Color.primary500,
+                action: {
+                    presenter.codeVerification()
+                }
+            )
+        }
     }
 }
 

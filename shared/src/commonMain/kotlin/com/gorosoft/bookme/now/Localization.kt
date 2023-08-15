@@ -1,5 +1,11 @@
 package com.gorosoft.bookme.now
 
+enum class GENDER(val text: String) {
+    MALE("Male"),
+    FEMALE("Female"),
+    OTHER("Other")
+}
+
 enum class GENERAL(val text: String) {
     OR("or"),
     CONTINUE("Continue")
@@ -25,8 +31,7 @@ enum class ENTER_CODE(val text: String) {
     TIMER("Resend code in ")
 }
 
-enum class GENDER(val text: String) {
-    MALE("Male"),
-    FEMALE("Female"),
-    OTHER("Other")
+enum class LOGIN(val text: String) {
+    PAGE_TITLE("Login to your Account"),
+    SIGN_IN_BUTTON("Sign in")
 }

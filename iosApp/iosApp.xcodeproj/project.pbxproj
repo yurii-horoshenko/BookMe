@@ -15,6 +15,7 @@
 		13ACD3CF0029E381718B8B48 /* VerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637D553CEEFC3234D8ABEBF3 /* VerificationCodeView.swift */; };
 		16C8002F555E50EA9E55F55F /* CreateProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F706CD0120A66845C71D0D8 /* CreateProfilePresenter.swift */; };
 		1AA3BAE92A8B8769002A00BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3BAE82A8B8769002A00BA /* LoginView.swift */; };
+		1AA3BAEB2A8B9D67002A00BA /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3BAEA2A8B9D67002A00BA /* LoginPresenter.swift */; };
 		2174BEC39AC7F5EB44ED15E3 /* iPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0A1D67D8DC5F74F0DB1128 /* iPhoneNumberField.swift */; };
 		22212FF9EBE2AE5CCD43181C /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796178B742C1E46DC82C62DE /* Organization.swift */; };
 		252C3A899F46DE7061184381 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D066D8F7A92E9575F06D7D8 /* String+Extensions.swift */; };
@@ -92,6 +93,7 @@
 		0EDA61D54DE9306549CDAE18 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		11A74007069EEAEF1DD2AB32 /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
 		1AA3BAE82A8B8769002A00BA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1AA3BAEA2A8B9D67002A00BA /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		1C7FF9F76F91A9BB5BB449C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1F6497D629BE6E4D3A88295E /* Gymfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gymfile; sourceTree = "<group>"; };
 		21567DEB8C589A6C6D059CF7 /* ParseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				1AA3BAE82A8B8769002A00BA /* LoginView.swift */,
+				1AA3BAEA2A8B9D67002A00BA /* LoginPresenter.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -742,6 +745,7 @@
 				3320E4D9EE716D067330B8DA /* MetadataTypes.swift in Sources */,
 				D98284399F2BE11393F864E7 /* NSRegularExpression+Swift.swift in Sources */,
 				3174E883985973242E716A14 /* Navigation+Extensions.swift in Sources */,
+				1AA3BAEB2A8B9D67002A00BA /* LoginPresenter.swift in Sources */,
 				B0C59F0AC31E4422400BA3EA /* NetworkManager.swift in Sources */,
 				2D058799840564E82ED7B5BF /* NetworkOperation.swift in Sources */,
 				CDFCCFAD5EBA913014187A75 /* NetworkOperationData.swift in Sources */,
