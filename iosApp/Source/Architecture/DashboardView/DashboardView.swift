@@ -13,29 +13,22 @@ struct DashboardView: View {
     // MARK: - BODY
     var body: some View {
         NavigationView {
-            BaseView(
-                leadingView: LeadingView.eraseToAnyView(),
-                trailingView: TrailingView.eraseToAnyView(),
-                content: { ContentView }
-            )
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Image("logo")
-                }
-            }
-            .background(Color.white)
+            BaseView(leadingView: LeadingView.eraseToAnyView(), trailingView: TrailingView.eraseToAnyView(), content: { ContentView })
         }
-        
+        .navigationBarBackButtonHidden(true)
+        .environment(\.colorScheme, .light)
     }
     
     var LeadingView: some View {
-        Button {
-            //
-        } label: {
-            Image(systemName: "bell.fill")
+        HStack(spacing: 16.0) {
+            Image(systemName: "person.crop.circle")
                 .renderingMode(.template)
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(Color.brandButtonsColor)
+            
+            Text("BookMeNow")
+                .font(Font.H4Bold)
+                .foregroundColor(Color.greyscale900)
         }
     }
     
@@ -43,28 +36,21 @@ struct DashboardView: View {
         Button {
             //
         } label: {
-            Image(systemName: "person.crop.circle")
+            Image("ic-notification")
+                .resizable()
                 .renderingMode(.template)
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(Color.brandButtonsColor)
+                .foregroundColor(Color.greyscale900)
+                .frame(width: 28.0, height: 28.0)
         }
     }
     
     var ContentView: some View {
         VStack {
-            NextVisitView
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         //        .background(Color.brandDarkColor)
     }
-    
-    var NextVisitView: some View {
-        VStack {
-//            NextVisitView.eraseToAnyView()
-        }
-        .background(Color.white)
-    }
-    
 }
 
 struct DashboardView_Previews: PreviewProvider {

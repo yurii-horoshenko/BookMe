@@ -13,6 +13,7 @@ final class EnterCodePresenter: ObservableObject {
     @Published var startTime = Date()
     @Published var timerString = "0.00"
     @Published var code = [FieldData(), FieldData(), FieldData(), FieldData()]
+    @Published var toDashboard = false
     
     // MARK: - Lifecycle
     deinit {

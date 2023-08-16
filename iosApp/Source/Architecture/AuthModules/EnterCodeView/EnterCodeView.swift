@@ -33,6 +33,11 @@ struct EnterCodeView: View {
             
             VerificationCodeView(array: $presenter.code, currentState: presenter.code.first ?? FieldData())
                 .padding(.horizontal, 24.0)
+                .onChange(of: presenter.code) { newValue in
+                    let code = newValue.compactMap({ $0.value }).joined()
+                    guard code.count == 4 else { return }
+                    setRootView(DashboardView())
+                }
             
             TimerLabel
                 .isHidden(!presenter.isTimerRunning)

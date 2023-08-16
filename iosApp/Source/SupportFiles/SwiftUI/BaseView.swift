@@ -15,40 +15,41 @@ struct BaseView<Content>: View where Content: View {
     private var navigationTitle: String = ""
     private var leadingView: AnyView?
     private var trailingView: AnyView?
+    private var hideBackButton = true
     
     // MARK: - INIT
     init(
         navigationTitle: String = "",
-        hideBackButton: Bool = true,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.navigationTitle = navigationTitle
-        self.content = content()
-    }
-    
-    init(
-        navigationTitle: String = "",
+        hideBackButton: Bool = false,
         leadingView: AnyView? = nil,
         trailingView: AnyView? = nil,
         @ViewBuilder content: () -> Content
     ) {
         self.navigationTitle = navigationTitle
+        self.hideBackButton = hideBackButton
         self.leadingView = leadingView
         self.trailingView = trailingView
         self.content = content()
         
-        let appearance = UINavigationController.appearance(with: UIColor.black)
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+//        let appearance = UINavigationController.appearance(with: UIColor.black)
+//        UINavigationBar.appearance().standardAppearance = appearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     // MARK: - BODY
     var body: some View {
-        VStack { content }
-            .frame(maxWidth: .infinity)
-            .navigationBarItems(leading: leadingView ?? backButton)
-            .navigationBarItems(trailing: trailingView)
-            .navigationTitle(navigationTitle)
+        if hideBackButton {
+            VStack { content }
+                .frame(maxWidth: .infinity)
+                .navigationBarItems(trailing: trailingView)
+                .navigationTitle(navigationTitle)
+        } else {
+            VStack { content }
+                .frame(maxWidth: .infinity)
+                .navigationBarItems(leading: leadingView ?? backButton)
+                .navigationBarItems(trailing: trailingView)
+                .navigationTitle(navigationTitle)
+        }
     }
     
     var backButton: AnyView {
