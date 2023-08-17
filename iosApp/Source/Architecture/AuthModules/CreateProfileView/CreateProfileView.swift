@@ -13,7 +13,7 @@ struct CreateProfileView: View {
     
     // MARK: - Body
     var body: some View {
-        NavigationView {
+        NavigationStack {
             BaseView(navigationTitle: CREATE_PROFILE.pageTitle.text, content: { ContentView })
         }
         .navigationBarBackButtonHidden(true)
@@ -76,16 +76,15 @@ struct CreateProfileView: View {
     
     // Button Continue
     var BottomButton: some View {
-        NavigationLink(destination: EnterCodeView(phone: presenter.phone.value.phoneMask), isActive: $presenter.toCodeVerification) {
-            AppButton(
-                state: .constant(.active),
-                title: GENERAL.continue_.text,
-                titleColor: Color.white,
-                backgroundColor: Color.primary500,
-                action: {
-                    presenter.codeVerification()
-                }
-            )
+        AppButton(
+            state: .constant(.active),
+            title: GENERAL.continue_.text,
+            titleColor: Color.white,
+            backgroundColor: Color.primary500,
+            action: { presenter.codeVerification() }
+        )
+        .navigationDestination(isPresented: $presenter.toCodeVerification) {
+            EnterCodeView(phone: presenter.phone.value.phoneMask)
         }
     }
 }

@@ -14,10 +14,11 @@ struct WelcomeView: View {
     
     // MARK: - BODY
     var body: some View {
-        NavigationView {
-            NavigationLink(destination: LoginView(), isActive: $presenter.toLogin) {
-                ContentView
-            }
+        NavigationStack {
+            ContentView
+                .navigationDestination(isPresented: $presenter.toLogin) {
+                    LoginView()
+                }
         }
     }
     
@@ -55,16 +56,15 @@ struct WelcomeView: View {
             
             ORView
             
-            NavigationLink(destination: CreateProfileView(), isActive: $presenter.toCreateProfile) {
-                AppButton(
-                    state: .constant(.active),
-                    title: WELCOME.signInButton.text,
-                    titleColor: Color.white,
-                    backgroundColor: Color.primary500,
-                    action: {
-                        presenter.createProfile()
-                    }
-                )
+            AppButton(
+                state: .constant(.active),
+                title: WELCOME.signInButton.text,
+                titleColor: Color.white,
+                backgroundColor: Color.primary500,
+                action: { presenter.createProfile() }
+            )
+            .navigationDestination(isPresented: $presenter.toCreateProfile) {
+                CreateProfileView()
             }
         })
         .padding(24.0)

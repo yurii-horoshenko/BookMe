@@ -41,7 +41,7 @@ struct DashboardView: View {
             AppInputField(
                 fieldData: $presenter.searchData,
                 leadingView: Icons.Search.eraseToAnyView(),
-                TrailingView: Icons.Search.eraseToAnyView()
+                trailingView: Icons.Search.eraseToAnyView()
             )
             .padding(.top, 8.0)
             
