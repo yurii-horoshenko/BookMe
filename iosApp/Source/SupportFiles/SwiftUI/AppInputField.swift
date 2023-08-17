@@ -14,6 +14,10 @@ struct FieldData: Equatable {
     var state = AppInputField.FieldState.idle
     var isSecure = false
     var keyboardType = UIKeyboardType.default
+    
+    var color: Color { value.isEmpty ? Color.greyscale500 : Color.greyscale900 }
+    var font: Font { value.isEmpty ? Font.BodyMediumRegular : Font.BodyMediumSemibold }
+    var backgroundColor: Color { Color.greyscale50 }
 }
 
 struct AppInputField: View {
@@ -22,11 +26,6 @@ struct AppInputField: View {
         case active
         case error
         case disable
-        
-        var backgroundColor: Color { Color.greyscale50 }
-        var foregroundColor: Color { self == .active ? Color.greyscale900 : Color.greyscale500 }
-        var placeholderFont: Font { Font.BodyMediumRegular }
-        var font: Font { Font.BodyMediumSemibold }
     }
     
     // MARK: - PROPERTIES
@@ -45,26 +44,23 @@ struct AppInputField: View {
             
             if onTapPress != nil {
                 Text(fieldData.value.isEmpty ? fieldData.placeholder : fieldData.value)
-                    .padding(.horizontal, 24.0)
-                    .font(fieldData.value.isEmpty ? fieldData.state.placeholderFont : fieldData.state.font)
+                    .padding(.horizontal, 16.0)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(fieldData.value.isEmpty ? fieldData.state.foregroundColor : Color.greyscale900)
             } else {
                 if fieldData.isSecure {
                     SecureField("", text: $fieldData.value)
                         .focused($isFocused)
                         .padding(.horizontal, 16.0)
                         .placeholder(when: fieldData.value.isEmpty) {
-                            Text(fieldData.placeholder).foregroundColor(fieldData.state.foregroundColor)
+                            Text(fieldData.placeholder).foregroundColor(Color.greyscale500)
                                 .padding(.horizontal, 16.0)
                         }
                 } else {
                     TextField("", text: $fieldData.value)
                         .focused($isFocused)
                         .padding(.horizontal, 16.0)
-                        .foregroundColor(Color.greyscale900)
                         .placeholder(when: fieldData.value.isEmpty) {
-                            Text(fieldData.placeholder).foregroundColor(fieldData.state.foregroundColor)
+                            Text(fieldData.placeholder).foregroundColor(Color.greyscale500)
                                 .padding(.horizontal, 16.0)
                         }
                 }
@@ -76,7 +72,8 @@ struct AppInputField: View {
         .accentColor(Color.primary500)
         .disabled(fieldData.state == .disable)
         .keyboardType(fieldData.keyboardType)
-        .font(fieldData.value.isEmpty ? fieldData.state.placeholderFont : fieldData.state.font)
+        .font(fieldData.font)
+        .foregroundColor(fieldData.color)
         .frame(height: 56.0)
         .background(shape)
         .onTapGesture { onTapPress?() }

@@ -26,9 +26,7 @@ struct WelcomeView: View {
         VStack(spacing: 0.0) {
             Spacer()
             
-            Image(IMAGE.welcome.value)
-                .resizable()
-                .scaledToFit()
+            Images.Welcome
                 .padding(imageInsets)
             
             Spacer()
@@ -47,21 +45,13 @@ struct WelcomeView: View {
     // Login via Facebook, Google or Phone
     var ButtonsView: some View {
         VStack(spacing: 16.0, content: {
-            AppBorderButton(
-                imageName: ICON.facebook.value,
-                title: WELCOME.facebookButton.text,
-                action: {
-                    presenter.login()
-                }
-            )
+            AppBorderButton(imageName: ICON.facebook.value, title: WELCOME.facebookButton.text) {
+                presenter.login()
+            }
             
-            AppBorderButton(
-                imageName: ICON.google.value,
-                title: WELCOME.googleButton.text,
-                action: {
-                    presenter.login()
-                }
-            )
+            AppBorderButton(imageName: ICON.google.value, title: WELCOME.googleButton.text) {
+                presenter.login()
+            }
             
             ORView
             

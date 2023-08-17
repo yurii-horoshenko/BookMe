@@ -31,4 +31,8 @@ final class CreateProfilePresenter: ObservableObject {
     func genderSelection() {
         toGenderSelection = true
     }
+    
+    func openCalendar() {
+        toCalendar = true
+    }
 }

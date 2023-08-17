@@ -22,7 +22,8 @@ enum class CREATE_PROFILE(val text: String) {
     PAGE_TITLE("Create Your Profile"),
     GENDER_TITLE("Select your gender"),
     GOOGLE_BUTTON("Continue with Google"),
-    SIGN_IN_BUTTON("Sign in with phone")
+    SIGN_IN_BUTTON("Sign in with phone"),
+    SHEET_BIRTHDAY_TITLE("Enter your birthday")
 }
 
 enum class ENTER_CODE(val text: String) {

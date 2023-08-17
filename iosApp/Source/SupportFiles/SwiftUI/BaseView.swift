@@ -31,9 +31,9 @@ struct BaseView<Content>: View where Content: View {
         self.trailingView = trailingView
         self.content = content()
         
-//        let appearance = UINavigationController.appearance(with: UIColor.black)
-//        UINavigationBar.appearance().standardAppearance = appearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        //        let appearance = UINavigationController.appearance(with: UIColor.black)
+        //        UINavigationBar.appearance().standardAppearance = appearance
+        //        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     // MARK: - BODY
@@ -55,15 +55,7 @@ struct BaseView<Content>: View where Content: View {
     var backButton: AnyView {
         Button(
             action: { self.presentationMode.wrappedValue.dismiss() },
-            label: {
-                HStack(spacing: 4.0) {
-                    Image("ic-back")
-                        .aspectRatio(contentMode: .fit)
-                    
-                    //                    Text("Back")
-                    //                        .foregroundColor(Color.brandButtonsColor)
-                }
-            }
+            label: { Icons.Back.foregroundColor(Color.greyscale900) }
         )
         .eraseToAnyView()
     }

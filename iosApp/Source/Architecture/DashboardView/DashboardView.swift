@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @State private var pushToPhoneFlow = false
+    @ObservedObject var presenter = DashboardPresenter()
     
     // MARK: - BODY
     var body: some View {
@@ -21,10 +21,7 @@ struct DashboardView: View {
     
     var LeadingView: some View {
         HStack(spacing: 16.0) {
-            Image(systemName: "person.crop.circle")
-                .renderingMode(.template)
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(Color.brandButtonsColor)
+            Images.Logo
             
             Text("BookMeNow")
                 .font(Font.H4Bold)
@@ -33,22 +30,25 @@ struct DashboardView: View {
     }
     
     var TrailingView: some View {
-        Button {
-            //
-        } label: {
-            Image("ic-notification")
-                .resizable()
-                .renderingMode(.template)
-                .foregroundColor(Color.greyscale900)
-                .frame(width: 28.0, height: 28.0)
-        }
+        Button(
+            action: { print("") },
+            label: { Icons.Notification.foregroundColor(Color.greyscale900) }
+        )
     }
     
     var ContentView: some View {
         VStack {
+            AppInputField(
+                fieldData: $presenter.searchData,
+                leadingView: Icons.Search.eraseToAnyView(),
+                TrailingView: Icons.Search.eraseToAnyView()
+            )
+            .padding(.top, 8.0)
             
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(defaultEdgeInsets)
         //        .background(Color.brandDarkColor)
     }
 }
