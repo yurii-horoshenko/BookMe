@@ -12,7 +12,7 @@ struct LoginView: View {
     @ObservedObject var presenter = CreateProfilePresenter()
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             BaseView(navigationTitle: LOGIN.pageTitle.text, content: { ContentView })
         }
         .navigationBarBackButtonHidden(true)

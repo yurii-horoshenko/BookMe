@@ -13,7 +13,17 @@ struct DashboardView: View {
     // MARK: - BODY
     var body: some View {
         NavigationView {
-            BaseView(leadingView: LeadingView.eraseToAnyView(), trailingView: TrailingView.eraseToAnyView(), content: { ContentView })
+            TabView {
+                BaseView(leadingView: LeadingView.eraseToAnyView(), trailingView: TrailingView.eraseToAnyView(), content: { ContentView })
+                    .tabItem {
+                        Label("Home", systemImage: "ic-home")
+                    }
+                
+                BaseView(leadingView: LeadingView.eraseToAnyView(), trailingView: TrailingView.eraseToAnyView(), content: { ContentView })
+                    .tabItem {
+                        Label("Profile", systemImage: "square.and.pencil")
+                    }
+            }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -37,19 +47,19 @@ struct DashboardView: View {
     }
     
     var ContentView: some View {
-        VStack {
+        VStack(spacing: 24.0) {
             AppInputField(
                 fieldData: $presenter.searchData,
                 leadingView: Icons.Search.eraseToAnyView(),
-                trailingView: Icons.Search.eraseToAnyView()
+                trailingView: Icons.Filter.foregroundColor(Color.primary500).eraseToAnyView()
             )
             .padding(.top, 8.0)
             
+            NextVisitView()
+            
             Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(defaultEdgeInsets)
-        //        .background(Color.brandDarkColor)
     }
 }
 

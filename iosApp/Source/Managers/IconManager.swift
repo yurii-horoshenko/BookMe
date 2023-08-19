@@ -15,6 +15,13 @@ enum Icons {
             .renderingMode(.template)
             .frame(width: 20, height: 20)
     }
+    
+    static var Filter: some View {
+        Image("ic-filter")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
    
     static var Notification: some View {
         Image("ic-notification")
@@ -41,6 +48,27 @@ enum Icons {
     
     static var Back: some View {
         Image("ic-back")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
+    
+    static var Phone: some View {
+        Image("ic-call")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
+    
+    static var Map: some View {
+        Image("ic-location")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
+    
+    static var Delete: some View {
+        Image("ic-delete")
             .resizable()
             .renderingMode(.template)
             .frame(width: 20, height: 20)

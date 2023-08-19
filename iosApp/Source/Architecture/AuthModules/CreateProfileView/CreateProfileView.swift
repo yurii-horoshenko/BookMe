@@ -13,7 +13,7 @@ struct CreateProfileView: View {
     
     // MARK: - Body
     var body: some View {
-        NavigationStack {
+        NavigationView {
             BaseView(navigationTitle: CREATE_PROFILE.pageTitle.text, content: { ContentView })
         }
         .navigationBarBackButtonHidden(true)
