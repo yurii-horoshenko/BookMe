@@ -7,8 +7,18 @@
 
 import SwiftUI
 
+struct Restaurant: Identifiable {
+    let id = UUID()
+    let name: String
+}
+
 struct DashboardView: View {
     @ObservedObject var presenter = DashboardPresenter()
+    let restaurants = [
+        Restaurant(name: "Joe's Original"),
+        Restaurant(name: "The Real Joe's Original"),
+        Restaurant(name: "Original Joe's")
+    ]
     
     // MARK: - BODY
     var body: some View {
@@ -47,19 +57,31 @@ struct DashboardView: View {
     }
     
     var ContentView: some View {
-        VStack(spacing: 24.0) {
-            AppInputField(
-                fieldData: $presenter.searchData,
-                leadingView: Icons.Search.eraseToAnyView(),
-                trailingView: Icons.Filter.foregroundColor(Color.primary500).eraseToAnyView()
-            )
-            .padding(.top, 8.0)
-            
-            NextVisitView()
-            
-            Spacer()
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24.0) {
+                AppInputField(
+                    fieldData: $presenter.searchData,
+                    leadingView: Icons.Search.eraseToAnyView(),
+                    trailingView: Icons.Filter.foregroundColor(Color.primary500).eraseToAnyView()
+                )
+                .padding(.top, 8.0)
+                
+                NextVisitView()
+                    .shadow(radius: 16.0)
+                
+                Text("Nearby Your Location")
+                    .font(Font.H4Bold)
+                    .foregroundColor(Color.greyscale900)
+                
+                ForEach(restaurants) { restaurant in
+                    TableVisitRow()
+                }
+                .shadow(color: Color.greyscale400 ,radius: 1.0)
+                
+                Spacer()
+            }
+            .padding(.horizontal, 16.0)
         }
-        .padding(defaultEdgeInsets)
     }
 }
 

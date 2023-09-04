@@ -57,7 +57,7 @@ struct NextVisitView: View {
     }
     
     var ButtonsView: some View {
-        HStack(spacing: 16.0) {
+        HStack(spacing: 8.0) {
             CallButton
             CancelButton
             MapButton

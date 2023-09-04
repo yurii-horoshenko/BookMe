@@ -87,4 +87,10 @@ enum Images {
             .resizable()
             .frame(width: 20, height: 20)
     }
+    
+    static var TableMask: some View {
+        Image("img-mask")
+            .resizable()
+            .frame(width: 80, height: 80)
+    }
 }
