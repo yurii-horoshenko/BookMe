@@ -1,5 +1,5 @@
 PODS:
-  - Kingfisher (7.9.0)
+  - Kingfisher (7.9.1)
   - shared (1.0)
   - SwiftLint (0.52.4)
 
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :path: "../shared"
 
 SPEC CHECKSUMS:
-  Kingfisher: 59f908b6d2f403b0a3e539debb0eec05cb27002c
+  Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   shared: 2d3b24a8fe27b7d9e65b8d075a9672fbc6a1aa10
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 

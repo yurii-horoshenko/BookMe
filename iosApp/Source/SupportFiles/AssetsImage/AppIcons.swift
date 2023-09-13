@@ -75,6 +75,22 @@ enum Icons {
     }
 }
 
+enum TabIcons {
+    static var Home: some View {
+        Image("ic-home")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
+    
+    static var Profile: some View {
+        Image("ic-profile")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
+}
+
 enum Images {
     static var Welcome: some View {
         Image(IMAGE.welcome.value)

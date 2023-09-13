@@ -23,37 +23,17 @@ struct DashboardView: View {
     // MARK: - BODY
     var body: some View {
         NavigationView {
-            TabView {
-                BaseView(leadingView: LeadingView.eraseToAnyView(), trailingView: TrailingView.eraseToAnyView(), content: { ContentView })
-                    .tabItem {
-                        Label("Home", systemImage: "ic-home")
-                    }
-                
-                BaseView(leadingView: LeadingView.eraseToAnyView(), trailingView: TrailingView.eraseToAnyView(), content: { ContentView })
-                    .tabItem {
-                        Label("Profile", systemImage: "square.and.pencil")
-                    }
+            NavigationStack {
+                BaseView(leadingView: LeadingView.eraseToAnyView(), trailingView: TrailingView.eraseToAnyView(), content: {
+                    ContentView
+                        .navigationDestination(isPresented: $presenter.toServiceDetail) {
+                            ServiceDetailView()
+                        }
+                })
             }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
-    }
-    
-    var LeadingView: some View {
-        HStack(spacing: 16.0) {
-            Images.Logo
-            
-            Text("BookMeNow")
-                .font(Font.H4Bold)
-                .foregroundColor(Color.greyscale900)
-        }
-    }
-    
-    var TrailingView: some View {
-        Button(
-            action: { print("") },
-            label: { Icons.Notification.foregroundColor(Color.greyscale900) }
-        )
     }
     
     var ContentView: some View {
@@ -73,15 +53,35 @@ struct DashboardView: View {
                     .font(Font.H4Bold)
                     .foregroundColor(Color.greyscale900)
                 
-                ForEach(restaurants) { restaurant in
+                ForEach(restaurants) { _ in
                     TableVisitRow()
+                        .onTapGesture {
+                            presenter.toServiceDetail = true
+                        }
                 }
-                .shadow(color: Color.greyscale400 ,radius: 1.0)
+                .shadow(color: Color.greyscale400, radius: 1.0)
                 
                 Spacer()
             }
             .padding(.horizontal, 16.0)
         }
+    }
+    
+    var LeadingView: some View {
+        HStack(spacing: 16.0) {
+            Images.Logo
+            
+            Text("BookMeNow")
+                .font(Font.H4Bold)
+                .foregroundColor(Color.greyscale900)
+        }
+    }
+    
+    var TrailingView: some View {
+        Button(
+            action: { print("") },
+            label: { Icons.Notification.foregroundColor(Color.greyscale900) }
+        )
     }
 }
 

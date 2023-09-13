@@ -24,7 +24,8 @@ struct SplashView: View {
         .background(Color.background)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.setRootView(WelcomeView())
+//                self.setRootView(WelcomeView())
+                self.setRootView(DashboardContainerView())
             }
         }
     }
