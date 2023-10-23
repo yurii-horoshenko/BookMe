@@ -21,7 +21,7 @@ end
 #############################
 ####### Application  ########
 #############################
-target 'BookMeNow-Develop' do
+target 'iosApp' do
   inherit! :search_paths
   project_pods
 end

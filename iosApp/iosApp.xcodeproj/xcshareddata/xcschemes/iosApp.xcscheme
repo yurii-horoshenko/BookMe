@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1200"
+   LastUpgradeVersion = "1430"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CCE446F848043C0B247F6F06"
-               BuildableName = "BookMeNow-Develop.app"
-               BlueprintName = "BookMeNow-Develop"
+               BlueprintIdentifier = "78B53CC79860CBFC2F5543C6"
+               BuildableName = "iosApp.app"
+               BlueprintName = "iosApp"
                ReferencedContainer = "container:iosApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CCE446F848043C0B247F6F06"
-            BuildableName = "BookMeNow-Develop.app"
-            BlueprintName = "BookMeNow-Develop"
+            BlueprintIdentifier = "78B53CC79860CBFC2F5543C6"
+            BuildableName = "iosApp.app"
+            BlueprintName = "iosApp"
             ReferencedContainer = "container:iosApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CCE446F848043C0B247F6F06"
-            BuildableName = "BookMeNow-Develop.app"
-            BlueprintName = "BookMeNow-Develop"
+            BlueprintIdentifier = "78B53CC79860CBFC2F5543C6"
+            BuildableName = "iosApp.app"
+            BlueprintName = "iosApp"
             ReferencedContainer = "container:iosApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -90,9 +90,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CCE446F848043C0B247F6F06"
-            BuildableName = "BookMeNow-Develop.app"
-            BlueprintName = "BookMeNow-Develop"
+            BlueprintIdentifier = "78B53CC79860CBFC2F5543C6"
+            BuildableName = "iosApp.app"
+            BlueprintName = "iosApp"
             ReferencedContainer = "container:iosApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
