@@ -19,6 +19,10 @@
 		16B8696A0A9AE0133876ED7D /* iPhoneNumberField+ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD638D26F97AEC82DBF899E /* iPhoneNumberField+ViewModifiers.swift */; };
 		16FE331E2BA84E7C139F6011 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988B1869131602ED94614EB5 /* Formatter.swift */; };
 		18353DE81FCE534C949C86D9 /* UIFont+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BC56F22BF473693CCB72B /* UIFont+Init.swift */; };
+		1A3C6D182B0F561300174ED0 /* WorkingHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3C6D172B0F561300174ED0 /* WorkingHoursView.swift */; };
+		1A3C6D1A2B0F56C300174ED0 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3C6D192B0F56C300174ED0 /* LocationView.swift */; };
+		1A3C6D1C2B0F57FA00174ED0 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3C6D1B2B0F57FA00174ED0 /* ReviewView.swift */; };
+		1A8AE67C2B0F544B008132FB /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AE67B2B0F544B008132FB /* ContactsView.swift */; };
 		1D75AA2B9E3B9188FE79562C /* report.xml in Resources */ = {isa = PBXBuildFile; fileRef = CE8422501FBC72D872A753D2 /* report.xml */; };
 		2106C505A81E297149A8FC78 /* MetadataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC64AC373F7BEA5A5B6F74 /* MetadataManager.swift */; };
 		28E08C69A780575DF979BD79 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C596B4F7CDEF2B50B7F01C1E /* Colors.xcassets */; };
@@ -96,6 +100,10 @@
 		0D6E9E88B7837D8542BC38FD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0EDA61D54DE9306549CDAE18 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		11A74007069EEAEF1DD2AB32 /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
+		1A3C6D172B0F561300174ED0 /* WorkingHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingHoursView.swift; sourceTree = "<group>"; };
+		1A3C6D192B0F56C300174ED0 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		1A3C6D1B2B0F57FA00174ED0 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		1A8AE67B2B0F544B008132FB /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		1C7FF9F76F91A9BB5BB449C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1F6497D629BE6E4D3A88295E /* Gymfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gymfile; sourceTree = "<group>"; };
 		1FBA51645A6C5DF078B46C26 /* CreateProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfilePresenter.swift; sourceTree = "<group>"; };
@@ -434,6 +442,10 @@
 				ED3BBBA61BB67EFF9610B06A /* RoundedShape.swift */,
 				A1AFFC48DA4089CC410494FB /* TableVisitRow.swift */,
 				637D553CEEFC3234D8ABEBF3 /* VerificationCodeView.swift */,
+				1A8AE67B2B0F544B008132FB /* ContactsView.swift */,
+				1A3C6D172B0F561300174ED0 /* WorkingHoursView.swift */,
+				1A3C6D192B0F56C300174ED0 /* LocationView.swift */,
+				1A3C6D1B2B0F57FA00174ED0 /* ReviewView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -743,9 +755,11 @@
 				850B1561DF3C8119EEEC13DA /* LoginView.swift in Sources */,
 				2106C505A81E297149A8FC78 /* MetadataManager.swift in Sources */,
 				EDE5F03896000AF4323A1370 /* MetadataParsing.swift in Sources */,
+				1A8AE67C2B0F544B008132FB /* ContactsView.swift in Sources */,
 				08E5AACCFF39995D7AE7BF5C /* MetadataTypes.swift in Sources */,
 				6D8F506D26633805600FADD7 /* NSRegularExpression+Swift.swift in Sources */,
 				751FABA69476829DA87F5555 /* Navigation+Extensions.swift in Sources */,
+				1A3C6D1C2B0F57FA00174ED0 /* ReviewView.swift in Sources */,
 				FD702A62C13896140AFBDB87 /* NetworkManager.swift in Sources */,
 				827CC50B9529018D234BB28E /* NetworkOperation.swift in Sources */,
 				0683371773342702DC1FA81B /* NetworkOperationData.swift in Sources */,
@@ -771,12 +785,14 @@
 				2D07234293AB7DA864D0C6C2 /* TableVisitRow.swift in Sources */,
 				36939F1B0F861FC71BB93902 /* Text+Extensions.swift in Sources */,
 				18353DE81FCE534C949C86D9 /* UIFont+Init.swift in Sources */,
+				1A3C6D182B0F561300174ED0 /* WorkingHoursView.swift in Sources */,
 				790B1AD66935CCDDF1C665A1 /* UserDefaultsManager.swift in Sources */,
 				8E88FA0F8C56F323C7979BF0 /* VerificationCodeView.swift in Sources */,
 				F0F155A2DD6D69CB1DC13D49 /* Vibrate.swift in Sources */,
 				347328B58741942BD34E8416 /* View+Extensions.swift in Sources */,
 				700DB3F0E55A4D6ADDE6CC41 /* WelcomePresenter.swift in Sources */,
 				88DABE9724EF53AB4C8462BE /* WelcomeView.swift in Sources */,
+				1A3C6D1A2B0F56C300174ED0 /* LocationView.swift in Sources */,
 				16B8696A0A9AE0133876ED7D /* iPhoneNumberField+ViewModifiers.swift in Sources */,
 				BF6D5ADC79CED6B8F8290874 /* iPhoneNumberField.swift in Sources */,
 			);
