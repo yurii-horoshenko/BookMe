@@ -10,7 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.gorosoft.bookme.now.Greeting
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {

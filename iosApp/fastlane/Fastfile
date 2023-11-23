@@ -68,7 +68,7 @@ lane :xcodegen do
 end
 
 # SwiftLint autocorrect
-lane :autocorrect do
+lane :lint do
     Dir.chdir("../") do
         sh 'swiftlint --fix'
     end

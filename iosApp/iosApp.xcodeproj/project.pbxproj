@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -97,14 +97,14 @@
 		0EDA61D54DE9306549CDAE18 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		11A74007069EEAEF1DD2AB32 /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
 		1C7FF9F76F91A9BB5BB449C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		1F6497D629BE6E4D3A88295E /* Gymfile */ = {isa = PBXFileReference; path = Gymfile; sourceTree = "<group>"; };
+		1F6497D629BE6E4D3A88295E /* Gymfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gymfile; sourceTree = "<group>"; };
 		1FBA51645A6C5DF078B46C26 /* CreateProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfilePresenter.swift; sourceTree = "<group>"; };
 		21567DEB8C589A6C6D059CF7 /* ParseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
 		22324CF770B80D6D50AFED0E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		23D4885EC923EC14FAA8AF7B /* Vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrate.swift; sourceTree = "<group>"; };
 		25006C33F90F92C794C7A588 /* .project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .project.yml; sourceTree = "<group>"; };
 		28884828172C3303AE7F7EBE /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
-		33DF0F79E65EDE0472227A39 /* Matchfile */ = {isa = PBXFileReference; path = Matchfile; sourceTree = "<group>"; };
+		33DF0F79E65EDE0472227A39 /* Matchfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Matchfile; sourceTree = "<group>"; };
 		3837CCF09FAA0CA208A3C497 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		3AB18B66E68778718D380978 /* GoogleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleManager.swift; sourceTree = "<group>"; };
 		3B2814845DFD8311FB66BCD0 /* PhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
@@ -117,10 +117,10 @@
 		56410C35ED3A97331CE70DA8 /* BookMeNowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMeNowApp.swift; sourceTree = "<group>"; };
 		5658F15AB3C0E6B1AAA8E9C6 /* PhoneNumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberTextField.swift; sourceTree = "<group>"; };
 		5C8BC56F22BF473693CCB72B /* UIFont+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Init.swift"; sourceTree = "<group>"; };
-		5DBA1ABFDC44661587283980 /* Appfile */ = {isa = PBXFileReference; path = Appfile; sourceTree = "<group>"; };
+		5DBA1ABFDC44661587283980 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
 		5E42C57173A2C293423C8F58 /* EnterCodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodePresenter.swift; sourceTree = "<group>"; };
 		5EED8E6BD7FEFEC84586D0C7 /* PhoneNumberMetadata.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PhoneNumberMetadata.json; sourceTree = "<group>"; };
-		60A6CBAFA6EE183DC0F1CCB4 /* Pluginfile */ = {isa = PBXFileReference; path = Pluginfile; sourceTree = "<group>"; };
+		60A6CBAFA6EE183DC0F1CCB4 /* Pluginfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pluginfile; sourceTree = "<group>"; };
 		637D553CEEFC3234D8ABEBF3 /* VerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeView.swift; sourceTree = "<group>"; };
 		65DD45A8FC2B67ECA8717641 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		6CD7943DDF774FEBBBCE3315 /* CountryCodePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodePickerViewController.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		757141A7EE40F1154A4415E7 /* ServiceDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailPresenter.swift; sourceTree = "<group>"; };
 		780B4137019559569E4A24A5 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		796178B742C1E46DC82C62DE /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
-		7EBDFCDD9987845BBADEE75E /* Snapfile */ = {isa = PBXFileReference; path = Snapfile; sourceTree = "<group>"; };
+		7EBDFCDD9987845BBADEE75E /* Snapfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snapfile; sourceTree = "<group>"; };
 		7FA54D3B98734337F444C2AF /* AppStyleColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyleColor.swift; sourceTree = "<group>"; };
 		80E3060DE0300A1A729393F2 /* PhoneNumberParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberParser.swift; sourceTree = "<group>"; };
 		85A0CF603539FE0BA4EDAA15 /* PhoneNumberKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberKit.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		9F85B8326ACB993A604B2544 /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		A1AFFC48DA4089CC410494FB /* TableVisitRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVisitRow.swift; sourceTree = "<group>"; };
 		A380E152310953CB9A4833B0 /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
-		A654A5962562C7E99909911B /* .env.default.sample */ = {isa = PBXFileReference; path = .env.default.sample; sourceTree = "<group>"; };
+		A654A5962562C7E99909911B /* .env.default.sample */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env.default.sample; sourceTree = "<group>"; };
 		A6AA1D3E956346B9D15EA2C2 /* PhoneNumber+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhoneNumber+Codable.swift"; sourceTree = "<group>"; };
 		AC71117A9A061CEA52138301 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		AD0A1D67D8DC5F74F0DB1128 /* iPhoneNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneNumberField.swift; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 		C8AA626A0E6D3D22FB1602AB /* AppBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBorderButton.swift; sourceTree = "<group>"; };
 		CC03756706A11001A95EBD04 /* DashboardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardContainerView.swift; sourceTree = "<group>"; };
 		CE8422501FBC72D872A753D2 /* report.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
-		CFC610DFD9C6E87B31FEAD8A /* Fastfile */ = {isa = PBXFileReference; path = Fastfile; sourceTree = "<group>"; };
+		CFC610DFD9C6E87B31FEAD8A /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		D0483826F6FD82A2E5600691 /* OldInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = OldInfo.plist; sourceTree = "<group>"; };
 		DD56B8F69B1182210A82C9A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD9F3277EC098D62FD4A7F89 /* MetadataParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataParsing.swift; sourceTree = "<group>"; };
@@ -388,7 +388,6 @@
 				28884828172C3303AE7F7EBE /* Pods-iosApp.debug.xcconfig */,
 				EE85BD4F4997E1E86B7848A3 /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

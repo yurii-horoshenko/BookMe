@@ -67,6 +67,20 @@ enum Icons {
             .frame(width: 20, height: 20)
     }
     
+    static var MapBold: some View {
+        Image("ic-location-bold")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
+    
+    static var StarBold: some View {
+        Image("ic-star-bold")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
+    
     static var Delete: some View {
         Image("ic-delete")
             .resizable()

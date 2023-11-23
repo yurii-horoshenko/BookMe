@@ -29,11 +29,16 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
+        val ktorVersion = "2.3.5"
         val commonMain by getting {
             dependencies {
                 //put your multiplatform dependencies here
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
             }
         }
         val commonTest by getting {

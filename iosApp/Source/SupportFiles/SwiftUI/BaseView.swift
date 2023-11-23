@@ -12,6 +12,7 @@ struct BaseView<Content>: View where Content: View {
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
     private let content: Content
+    private let iconColor: Color
     private var navigationTitle: String = ""
     private var leadingView: AnyView?
     private var trailingView: AnyView?
@@ -23,12 +24,14 @@ struct BaseView<Content>: View where Content: View {
         hideBackButton: Bool = false,
         leadingView: AnyView? = nil,
         trailingView: AnyView? = nil,
+        iconColor: Color = Color.greyscale900,
         @ViewBuilder content: () -> Content
     ) {
         self.navigationTitle = navigationTitle
         self.hideBackButton = hideBackButton
         self.leadingView = leadingView
         self.trailingView = trailingView
+        self.iconColor = iconColor
         self.content = content()
         
         //        let appearance = UINavigationController.appearance(with: UIColor.black)
@@ -55,7 +58,7 @@ struct BaseView<Content>: View where Content: View {
     var backButton: AnyView {
         Button(
             action: { self.presentationMode.wrappedValue.dismiss() },
-            label: { Icons.Back.foregroundColor(Color.greyscale900) }
+            label: { Icons.Back.foregroundColor(iconColor) }
         )
         .eraseToAnyView()
     }
