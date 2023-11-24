@@ -48,14 +48,14 @@ struct WelcomeView: View {
         VStack(spacing: 16.0, content: {
             AppBorderButton(
                 state: .constant(.active),
-                imageName: ICON.facebook.value,
+                imageName: "ic-facebook",
                 title: WELCOME.facebookButton.text,
                 action: { presenter.loginViaFacebook() }
             )
             
             AppBorderButton(
                 state: .constant(.active),
-                imageName: ICON.google.value,
+                imageName: "ic-google",
                 title: WELCOME.googleButton.text,
                 action: { 
                     presenter.loginViaGoogle()

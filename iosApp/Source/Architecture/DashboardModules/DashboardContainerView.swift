@@ -19,6 +19,15 @@ struct DashboardContainerView: View {
                 }
                 .toolbarBackground(.white, for: .tabBar)
             
+            NearByView()
+                .tabItem {
+                    HStack {
+                        TabIcons.MapBold
+                        Text("Explore")
+                    }
+                }
+                .toolbarBackground(.white, for: .tabBar)
+            
             ProfileView()
                 .tabItem {
                     HStack {

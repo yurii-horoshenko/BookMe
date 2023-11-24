@@ -14,9 +14,8 @@ struct BookingView: View {
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(navigationTitle: "Book Appointment") {
-                ContentView
-                    .padding(16.0)
+            ScrollView {
+                BaseView(navigationTitle: "Book Appointment") { ContentView }
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -39,6 +38,7 @@ struct BookingView: View {
             
             BottomButton
         }
+        .padding(16.0)
     }
     
     // Button Book Now

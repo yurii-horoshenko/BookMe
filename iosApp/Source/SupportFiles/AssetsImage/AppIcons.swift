@@ -32,7 +32,7 @@ enum Icons {
     
     // Image Arrow down
     static var ArrowDown: some View {
-        Image(ICON.arrowDown.value)
+        Image("ic-arrow-down")
             .resizable()
             .renderingMode(.template)
             .frame(width: 20, height: 20)
@@ -40,7 +40,7 @@ enum Icons {
     
     // Image Calendar
     static var Calendar: some View {
-        Image(ICON.calendar.value)
+        Image("ic-calendar")
             .resizable()
             .renderingMode(.template)
             .frame(width: 20, height: 20)
@@ -97,6 +97,13 @@ enum TabIcons {
             .frame(width: 20, height: 20)
     }
     
+    static var MapBold: some View {
+        Image("ic-location-bold")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
+    
     static var Profile: some View {
         Image("ic-profile")
             .resizable()
@@ -107,13 +114,13 @@ enum TabIcons {
 
 enum Images {
     static var Welcome: some View {
-        Image(IMAGE.welcome.value)
+        Image("img-welcome")
             .resizable()
             .scaledToFit()
     }
     
     static var Logo: some View {
-        Image(IMAGE.welcome.value)
+        Image("img-welcome")
             .resizable()
             .frame(width: 20, height: 20)
     }

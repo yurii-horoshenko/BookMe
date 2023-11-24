@@ -14,22 +14,17 @@ struct ServiceDetailView: View {
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            NavigationStack {
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        Image("img-detail-mask")
-                            .edgesIgnoringSafeArea(.top)
-                        
-                        BaseView(
-                            iconColor: Color.primary500,
-                            content: { ContentView }
-                        )
-                    }
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Image("img-detail-mask")
+                        .edgesIgnoringSafeArea(.top)
+                    
+                    BaseView(iconColor: Color.primary500) { ContentView }
                 }
-                .edgesIgnoringSafeArea(.top)
             }
+            .edgesIgnoringSafeArea(.top)
         }
-        .navigationBarBackButtonHidden(true)
+        //.navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
     }
     

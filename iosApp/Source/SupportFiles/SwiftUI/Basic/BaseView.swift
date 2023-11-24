@@ -57,7 +57,7 @@ struct BaseView<Content>: View where Content: View {
     
     var backButton: AnyView {
         Button(
-            action: { self.presentationMode.wrappedValue.dismiss() },
+            action: { presentationMode.wrappedValue.dismiss() },
             label: { Icons.Back.foregroundColor(iconColor) }
         )
         .eraseToAnyView()
