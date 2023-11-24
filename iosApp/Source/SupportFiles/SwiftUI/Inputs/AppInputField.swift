@@ -46,6 +46,8 @@ struct AppInputField: View {
                 Text(fieldData.value.isEmpty ? fieldData.placeholder : fieldData.value)
                     .padding(.horizontal, 16.0)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(fieldData.color)
+                    .font(fieldData.font)
             } else {
                 if fieldData.isSecure {
                     SecureField("", text: $fieldData.value)
@@ -74,8 +76,8 @@ struct AppInputField: View {
         .accentColor(Color.primary500)
         .disabled(fieldData.state == .disable)
         .keyboardType(fieldData.keyboardType)
-        .font(fieldData.font)
-        .foregroundColor(fieldData.color)
+        .font(onTapPress != nil ? Font.BodyMediumRegular : Font.BodyMediumSemibold )
+        .foregroundColor(onTapPress != nil ? Color.greyscale500 : Color.greyscale900)
         .frame(height: 56.0)
         .background(shape)
         .onTapGesture { onTapPress?() }

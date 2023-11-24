@@ -27,7 +27,9 @@ struct CreateProfileView: View {
             AppInputField(fieldData: $presenter.fullname)
                 .padding(.top, 24.0)
             
-            BirthDayView
+            BirthDayInputView(
+                dateBirthday: $presenter.dateBirthday
+            )
             
             AppPhoneNumber(fieldData: $presenter.phone)
             
@@ -56,23 +58,6 @@ struct CreateProfileView: View {
             BottomButton
         }
         .padding(defaultEdgeInsets)
-    }
-    
-    var BirthDayView: some View {
-        AppInputField(fieldData: $presenter.dateBirthday, trailingView: Icons.Calendar.eraseToAnyView()) {
-            presenter.openCalendar()
-        }
-        .sheet(isPresented: $presenter.toCalendar) {
-            DatePicker("", selection: $presenter.birthday, displayedComponents: .date)
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .frame(maxHeight: 300)
-                .accentColor(Color.primary500)
-                .padding(.horizontal, 16.0)
-                .presentationDetents([.height(360)])
-        }
-        .onChange(of: presenter.birthday) { newValue in
-            presenter.dateBirthday.value = newValue.toString
-        }
     }
     
     // Button Continue

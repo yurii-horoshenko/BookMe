@@ -17,26 +17,25 @@ struct LocationView: View {
     // MARK: - Lifecycle
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
-            if useTitle {
-                HStack(spacing: 8.0) {
-                    Text("Our Address")
-                        .font(Font.H6Bold)
-                        .foregroundColor(Color.greyscale900)
-                    
-                    Spacer()
-                    
-                    Button {
-                        print("")
-                    } label: {
-                        HStack(alignment: .center) {
-                            Text("See on Maps")
-                                .font(Font.BodyLargeBold)
-                                .foregroundColor(Color.primary500)
-                        }
-                        .padding(EdgeInsets(top: 8.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
+            HStack(spacing: 8.0) {
+                Text("Our Address")
+                    .font(Font.H6Bold)
+                    .foregroundColor(Color.greyscale900)
+                
+                Spacer()
+                
+                Button {
+                    print("")
+                } label: {
+                    HStack(alignment: .center) {
+                        Text("See on Maps")
+                            .font(Font.BodyLargeBold)
+                            .foregroundColor(Color.primary500)
                     }
+                    .padding(EdgeInsets(top: 8.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
                 }
             }
+            .isHidden(!useTitle)
             
             HStack(spacing: 8.0) {
                 Icons.MapBold
@@ -47,10 +46,9 @@ struct LocationView: View {
                     .foregroundColor(Color.greyscale700)
             }
             
-            if useMap {
-                Map(coordinateRegion: $region)
-                    .frame(height: 300)
-            }
+            Map(coordinateRegion: $region)
+                .frame(height: 300)
+                .isHidden(!useMap)
         }
     }
 }

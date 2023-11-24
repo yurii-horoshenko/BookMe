@@ -9,9 +9,9 @@ import SwiftUI
 
 struct BirthDayInputView: View {
     // MARK: - Properties
+    @State private var date = Date.now
+    @State private var toCalendar = false
     @Binding var dateBirthday: FieldData
-    @State var date = Date.now
-    @State var toCalendar = false
     
     // MARK: - Lifecycle
     var body: some View {

@@ -20,8 +20,8 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
     }
     
     // MARK: - Properties
-    static var baseURL: String = Environment.develop
     private lazy var operationQueue = OperationQueue()
+    static var baseURL: String = Environment.develop
     lazy var operations: [NetworkOperation] = []
     
     // MARK: - Public functions
