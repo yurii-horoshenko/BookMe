@@ -19,7 +19,7 @@ struct ServiceDetailView: View {
                     Image("img-detail-mask")
                         .edgesIgnoringSafeArea(.top)
                     
-                    BaseView(iconColor: Color.primary500) { ContentView }
+                    BaseView(hideBackButton: true, iconColor: Color.primary500) { ContentView }
                 }
             }
             .edgesIgnoringSafeArea(.top)
