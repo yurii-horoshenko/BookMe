@@ -9,6 +9,7 @@ import shared
 import SwiftUI
 
 struct EnterCodeView: View {
+    // MARK: - Properties
     @ObservedObject var presenter = EnterCodePresenter()
     let phone: String
     
@@ -66,7 +67,7 @@ struct EnterCodeView: View {
 }
 
 #Preview {
-        EnterCodeView(
-            phone: "+380 99 408 10 85".phoneMask
-        )
+    EnterCodeView(
+        phone: "+380 99 408 10 85".phoneMask
+    )
 }

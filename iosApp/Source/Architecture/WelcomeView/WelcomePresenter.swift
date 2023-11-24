@@ -11,7 +11,7 @@ final class WelcomePresenter: ObservableObject {
     // MARK: - Properties
     @Published var toCreateProfile = false
     @Published var toLogin = false
-
+    
     // MARK: - Lifecycle
     deinit {
         printLog("deinit -> ", self)
@@ -20,7 +20,7 @@ final class WelcomePresenter: ObservableObject {
     private func login() {
         toLogin = true
     }
-
+    
     // MARK: - Public
     func createProfile() {
         toCreateProfile = true

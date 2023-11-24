@@ -31,5 +31,7 @@ struct CalendarView: View {
 }
 
 #Preview {
-    CalendarView(date: .constant(Date()))
+    CalendarView(
+        date: .constant(Date())
+    )
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 final class CreateProfilePresenter: ObservableObject {
+    // MARK: - Properties
     @Published var fullname = FieldData(placeholder: "Full Name")
     @Published var nickname = FieldData(placeholder: "Nickname")
     @Published var dateBirthday = FieldData(placeholder: "Date of Birth")

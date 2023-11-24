@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ServiceDetailView: View {
+    // MARK: - Properties
     @ObservedObject var presenter = ServiceDetailPresenter()
     
+    // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             NavigationStack {
@@ -18,9 +20,10 @@ struct ServiceDetailView: View {
                         Image("img-detail-mask")
                             .edgesIgnoringSafeArea(.top)
                         
-                        BaseView(iconColor: Color.primary500, content: {
-                            ContentView
-                        })
+                        BaseView(
+                            iconColor: Color.primary500,
+                            content: { ContentView }
+                        )
                     }
                 }
                 .edgesIgnoringSafeArea(.top)

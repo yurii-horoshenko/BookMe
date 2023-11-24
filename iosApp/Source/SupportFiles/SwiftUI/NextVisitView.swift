@@ -12,7 +12,7 @@ struct NextVisitView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                VStack(alignment: .leading, spacing: 6.0) {                    
+                VStack(alignment: .leading, spacing: 6.0) {
                     VStack(alignment: .leading, spacing: 4.0) {
                         Text("Belle Curls")
                             .font(Font.H5Bold)

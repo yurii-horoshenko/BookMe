@@ -7,12 +7,8 @@
 
 import SwiftUI
 
-struct Restaurant: Identifiable {
-    let id = UUID()
-    let name: String
-}
-
 struct DashboardView: View {
+    // MARK: - Properties
     @ObservedObject var presenter = DashboardPresenter()
     let restaurants = [
         Restaurant(name: "Joe's Original"),
@@ -24,12 +20,11 @@ struct DashboardView: View {
     var body: some View {
         NavigationView {
             NavigationStack {
-                BaseView(leadingView: LeadingView.eraseToAnyView(), trailingView: TrailingView.eraseToAnyView(), content: {
-                    ContentView
-                        .navigationDestination(isPresented: $presenter.toServiceDetail) {
-                            ServiceDetailView()
-                        }
-                })
+                BaseView(
+                    leadingView: LeadingView.eraseToAnyView(),
+                    trailingView: TrailingView.eraseToAnyView(),
+                    content: { ContentView }
+                )
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -67,6 +62,9 @@ struct DashboardView: View {
                 Spacer()
             }
             .padding(.horizontal, 16.0)
+        }
+        .navigationDestination(isPresented: $presenter.toServiceDetail) {
+            ServiceDetailView()
         }
     }
     

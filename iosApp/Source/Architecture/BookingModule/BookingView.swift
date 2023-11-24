@@ -48,7 +48,7 @@ struct BookingView: View {
             title: "Continue",
             titleColor: Color.white,
             backgroundColor: Color.primary500,
-            action: {  
+            action: {
                 
             }
         )

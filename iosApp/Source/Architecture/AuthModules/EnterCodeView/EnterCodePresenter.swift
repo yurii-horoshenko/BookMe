@@ -8,6 +8,7 @@
 import SwiftUI
 
 final class EnterCodePresenter: ObservableObject {
+    // MARK: - Properties
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @Published var isTimerRunning = false
     @Published var startTime = Date()

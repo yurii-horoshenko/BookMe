@@ -13,7 +13,7 @@ struct LocationView: View {
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     var useTitle = true
     var useMap = true
-     
+    
     // MARK: - Lifecycle
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {

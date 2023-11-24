@@ -12,6 +12,12 @@ struct OrganizationsResponse: Decodable {
     var data: [Organization]
 }
 
+// TEMP
+struct Restaurant: Identifiable {
+    let id = UUID()
+    let name: String
+}
+
 struct Organization: Decodable {
     var id: String = ""
     var name: String = ""

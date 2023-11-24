@@ -16,9 +16,6 @@ struct WelcomeView: View {
     var body: some View {
         NavigationStack {
             ContentView
-                .navigationDestination(isPresented: $presenter.toLogin) {
-                    LoginView()
-                }
         }
     }
     
@@ -41,6 +38,9 @@ struct WelcomeView: View {
             ButtonsView
         }
         .background(Color.background)
+        .navigationDestination(isPresented: $presenter.toLogin) {
+            LoginView()
+        }
     }
     
     // Login via Facebook, Google or Phone
@@ -84,7 +84,7 @@ struct WelcomeView: View {
         HStack(spacing: 16.0) {
             Rectangle()
                 .frame(height: 1.0)
-  
+            
             Text(shared.GENERAL.or_.text)
                 .font(Font.BodyXLargeSemibold)
                 .foregroundColor(Color.greyscale900)

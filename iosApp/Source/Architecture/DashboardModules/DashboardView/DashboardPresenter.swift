@@ -8,6 +8,7 @@
 import SwiftUI
 
 final class DashboardPresenter: ObservableObject {
+    // MARK: - Properties
     @Published var searchData = FieldData(placeholder: "Search")
     @Published var toServiceDetail = false
     

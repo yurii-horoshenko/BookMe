@@ -19,7 +19,7 @@ struct DashboardContainerView: View {
                 }
                 .toolbarBackground(.white, for: .tabBar)
             
-            LoginView()
+            ProfileView()
                 .tabItem {
                     HStack {
                         TabIcons.Profile

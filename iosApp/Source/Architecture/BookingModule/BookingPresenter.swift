@@ -8,14 +8,11 @@
 import SwiftUI
 
 final class BookingPresenter: ObservableObject {
+    // MARK: - Properties
     @Published var date = Date.now
     
     // MARK: - Lifecycle
     deinit {
         printLog("deinit -> ", self)
     }
-    
-    // MARK: - Public
-    
-    // MARK: - Private
 }
