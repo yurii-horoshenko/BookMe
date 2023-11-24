@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AppPhoneNumber: View {
+    // MARK: - Properties
     private let shape = RoundedShapeView(color: Color.greyscale50, step: 3.0, isFilled: true)
     private let placeholderFont = UIFont(name: BrandFontType.regular.rawValue, size: 14.0)
     private let font = UIFont(name: BrandFontType.semibold.rawValue, size: 14.0)
@@ -16,7 +17,7 @@ struct AppPhoneNumber: View {
     @State var prefix = "+1"
     @State var phone = ""
     
-    // MARK: - BODY
+    // MARK: - Lifecycle
     var body: some View {
         iPhoneNumberField(fieldData.placeholder, prefix: $prefix, text: $phone, isEditing: $isEditing)
             .flagHidden(false)
@@ -38,10 +39,8 @@ struct AppPhoneNumber: View {
     }
 }
 
-struct AppPhoneNumber_Previews: PreviewProvider {
-    @State static var phone = FieldData(placeholder: "Placeholder")
-    
-    static var previews: some View {
-        AppPhoneNumber(fieldData: $phone)
-    }
+#Preview {
+    AppPhoneNumber(
+        fieldData: .constant(FieldData(placeholder: "Placeholder"))
+    )
 }

@@ -32,8 +32,6 @@ struct DashboardContainerView: View {
     }
 }
 
-struct DashboardContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        DashboardContainerView()
-    }
+#Preview {
+    DashboardContainerView()
 }

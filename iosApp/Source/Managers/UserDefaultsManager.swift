@@ -10,7 +10,7 @@ enum UserDefaultsManager {
         case isLoggined = "application.ud.isLoggined"
     }
     
-    // MARK: - Variables
+    // MARK: - Properties
     static var isLoggined: Bool {
         get { UserDefaults.standard.object(forKey: Key.isLoggined.rawValue) as? Bool ?? true }
         set { UserDefaults.standard.setValue(newValue, forKey: Key.isLoggined.rawValue) }

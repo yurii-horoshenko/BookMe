@@ -8,5 +8,6 @@
 import SwiftUI
 
 final class ServiceDetailPresenter: ObservableObject {
+    @Published var toBooking = false
     
 }

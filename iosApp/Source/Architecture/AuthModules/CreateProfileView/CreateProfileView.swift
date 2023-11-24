@@ -9,9 +9,10 @@ import shared
 import SwiftUI
 
 struct CreateProfileView: View {
+    // MARK: - Properties
     @ObservedObject var presenter = CreateProfilePresenter()
     
-    // MARK: - Body
+    // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: CREATE_PROFILE.pageTitle.text, content: { ContentView })
@@ -76,7 +77,7 @@ struct CreateProfileView: View {
     
     // Button Continue
     var BottomButton: some View {
-        AppButton(
+        AppFilledButton(
             state: .constant(.active),
             title: GENERAL.continue_.text,
             titleColor: Color.white,
@@ -89,8 +90,6 @@ struct CreateProfileView: View {
     }
 }
 
-struct CreateProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateProfileView()
-    }
+#Preview {
+    CreateProfileView()
 }

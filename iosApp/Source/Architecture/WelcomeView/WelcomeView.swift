@@ -9,10 +9,10 @@ import shared
 import SwiftUI
 
 struct WelcomeView: View {
-    private let imageInsets = EdgeInsets(top: 40.0, leading: 90.0, bottom: 0.0, trailing: 90.0)
+    // MARK: - Properties
     @ObservedObject var presenter = WelcomePresenter()
     
-    // MARK: - BODY
+    // MARK: - Lifecycle
     var body: some View {
         NavigationStack {
             ContentView
@@ -28,7 +28,7 @@ struct WelcomeView: View {
             Spacer()
             
             Images.Welcome
-                .padding(imageInsets)
+                .padding(EdgeInsets(top: 40.0, leading: 90.0, bottom: 0.0, trailing: 90.0))
             
             Spacer()
             
@@ -46,17 +46,26 @@ struct WelcomeView: View {
     // Login via Facebook, Google or Phone
     var ButtonsView: some View {
         VStack(spacing: 16.0, content: {
-            AppBorderButton(imageName: ICON.facebook.value, title: WELCOME.facebookButton.text) {
-                presenter.login()
-            }
+            AppBorderButton(
+                state: .constant(.active),
+                imageName: ICON.facebook.value,
+                title: WELCOME.facebookButton.text,
+                action: { presenter.loginViaFacebook() }
+            )
             
-            AppBorderButton(imageName: ICON.google.value, title: WELCOME.googleButton.text) {
-                presenter.login()
-            }
+            AppBorderButton(
+                state: .constant(.active),
+                imageName: ICON.google.value,
+                title: WELCOME.googleButton.text,
+                action: { 
+                    presenter.loginViaGoogle()
+                    setRootView(DashboardContainerView())
+                }
+            )
             
             ORView
             
-            AppButton(
+            AppFilledButton(
                 state: .constant(.active),
                 title: WELCOME.signInButton.text,
                 titleColor: Color.white,
@@ -75,21 +84,18 @@ struct WelcomeView: View {
         HStack(spacing: 16.0) {
             Rectangle()
                 .frame(height: 1.0)
-                .foregroundColor(Color.greyscale200)
-            
+  
             Text(shared.GENERAL.or_.text)
                 .font(Font.BodyXLargeSemibold)
                 .foregroundColor(Color.greyscale900)
             
             Rectangle()
                 .frame(height: 1.0)
-                .foregroundColor(Color.greyscale200)
         }
+        .foregroundColor(Color.greyscale200)
     }
 }
 
-struct WelcomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeView()
-    }
+#Preview {
+    WelcomeView()
 }

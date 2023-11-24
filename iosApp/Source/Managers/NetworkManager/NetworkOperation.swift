@@ -22,7 +22,7 @@ final class NetworkOperation: Operation {
         static let body = true
     }
 
-    // MARK: - Variables
+    // MARK: - Properties
     private let completion: OperationCompletionHandler<(Data, URLResponse)>
     private var startTime: CFAbsoluteTime = 0.0
     let creationTime: TimeInterval

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BaseView<Content>: View where Content: View {
-    // MARK: - PROPERTIES
+    // MARK: - Properties
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
     private let content: Content
@@ -18,7 +18,7 @@ struct BaseView<Content>: View where Content: View {
     private var trailingView: AnyView?
     private var hideBackButton = true
     
-    // MARK: - INIT
+    // MARK: - Init
     init(
         navigationTitle: String = "",
         hideBackButton: Bool = false,
@@ -39,7 +39,7 @@ struct BaseView<Content>: View where Content: View {
         //        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
-    // MARK: - BODY
+    // MARK: - Lifecycle
     var body: some View {
         if hideBackButton {
             VStack { content }

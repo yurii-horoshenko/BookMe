@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 struct VerificationCodeView: View {
-    // MARK: - PROPERTIES
+    // MARK: - Properties
     private let unselectedShape = RoundedShapeView(color: Color.greyscale50, step: 3.0, isFilled: true)
     private let unselectedBorder = RoundedShapeView(color: Color.greyscale200, step: 3.0, isFilled: false)
     private let selectedShape = RoundedShapeView(color: Color.primary500, step: 3.0, isFilled: true)
@@ -20,7 +20,7 @@ struct VerificationCodeView: View {
     @State var currentValue: String = ""
     @FocusState private var activeFieldIndex: Int?
     
-    // MARK: - Body
+    // MARK: - Lifecycle
     var body: some View {
         HStack(spacing: 16.0) {
             ForEach(0..<array.count, id: \.self) { index in
@@ -40,7 +40,7 @@ struct VerificationCodeView: View {
         }
         .onChange(of: array) { _ in
             guard let index = activeFieldIndex, index >= 0 else { return }
-           
+            
             let newIndex = index + 1
             guard newIndex < array.count else { return }
             activeFieldIndex = -1
@@ -90,11 +90,9 @@ struct VerificationCodeView: View {
     }
 }
 
-struct VerificationCodeView_Previews: PreviewProvider {
-    @State static var code = Array(repeating: FieldData(), count: 4)
-    
-    static var previews: some View {
-        VerificationCodeView(array: $code, currentState: code.first ?? FieldData())
-            .padding(16.0)
-    }
+#Preview {
+    VerificationCodeView(
+        array: .constant(Array(repeating: FieldData(), count: 4)),
+        currentState: FieldData()
+    )
 }

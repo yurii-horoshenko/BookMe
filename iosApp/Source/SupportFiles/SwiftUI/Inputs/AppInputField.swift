@@ -28,15 +28,15 @@ struct AppInputField: View {
         case disable
     }
     
-    // MARK: - PROPERTIES
-    private let shape = RoundedShapeView(color: Color.greyscale50, step: 3.0, isFilled: true)
+    // MARK: - Properties
     @FocusState var isFocused: Bool
     @Binding var fieldData: FieldData
     var leadingView: AnyView?
     var trailingView: AnyView?
     var onTapPress: (() -> Void)?
+    let shape = RoundedShapeView(color: Color.greyscale50, step: 3.0, isFilled: true)
     
-    // MARK: - BODY
+    // MARK: - Lifecycle
     var body: some View {
         HStack {
             leadingView
@@ -52,7 +52,8 @@ struct AppInputField: View {
                         .focused($isFocused)
                         .padding(.horizontal, 16.0)
                         .placeholder(when: fieldData.value.isEmpty) {
-                            Text(fieldData.placeholder).foregroundColor(Color.greyscale500)
+                            Text(fieldData.placeholder)
+                                .foregroundColor(Color.greyscale500)
                                 .padding(.horizontal, 16.0)
                         }
                 } else {
@@ -60,7 +61,8 @@ struct AppInputField: View {
                         .focused($isFocused)
                         .padding(.horizontal, 16.0)
                         .placeholder(when: fieldData.value.isEmpty) {
-                            Text(fieldData.placeholder).foregroundColor(Color.greyscale500)
+                            Text(fieldData.placeholder)
+                                .foregroundColor(Color.greyscale500)
                                 .padding(.horizontal, 16.0)
                         }
                 }
@@ -80,10 +82,8 @@ struct AppInputField: View {
     }
 }
 
-struct AppInputField_Previews: PreviewProvider {
-    @State static var username = FieldData(placeholder: "Placeholder")
-    
-    static var previews: some View {
-        AppInputField(fieldData: $username)
-    }
+#Preview {
+    AppInputField(
+        fieldData: .constant(FieldData(placeholder: "Placeholder"))
+    )
 }

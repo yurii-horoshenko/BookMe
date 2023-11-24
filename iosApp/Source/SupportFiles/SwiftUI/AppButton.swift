@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - AppButton
 struct AppButton: View {
     enum ButtonState {
         case active
@@ -15,6 +16,7 @@ struct AppButton: View {
         var opacity: Double { self == .active ? 1.0 : 0.6 }
     }
     
+    // MARK: - Properties
     @Binding var state: ButtonState
     var imageName: String?
     var title: String?
@@ -22,6 +24,7 @@ struct AppButton: View {
     var backgroundColor = Color.black
     let action: () -> Void
     
+    // MARK: - Lifecycle
     var body: some View {
         Button {
             action()
@@ -43,14 +46,67 @@ struct AppButton: View {
         .frame(maxHeight: 60.0)
         .disabled(state == .disable)
         .opacity(state.opacity)
+    }
+}
+
+// MARK: - AppFilledButton
+struct AppFilledButton: View {
+    // MARK: - Properties
+    @Binding var state: AppButton.ButtonState
+    var imageName: String?
+    var title: String?
+    var titleColor = Color.greyscale900
+    var backgroundColor = Color.black
+    let action: () -> Void
+    
+    // MARK: - Lifecycle
+    var body: some View {
+        AppButton(
+            state: $state,
+            imageName: imageName,
+            title: title,
+            titleColor: titleColor,
+            action: action
+        )
         .background(backgroundColor)
         .cornerRadius(30.0)
     }
 }
 
-struct AppButton_Previews: PreviewProvider {
-    static var previews: some View {
+// MARK: - AppBorderButton
+struct AppBorderButton: View {
+    // MARK: - Properties
+    @Binding var state: AppButton.ButtonState
+    var imageName: String?
+    var title: String?
+    var titleColor = Color.greyscale900
+    var shape = RoundedShapeView(color: Color.greyscale200, step: 3.0, isFilled: false)
+    let action: () -> Void
+    
+    // MARK: - Lifecycle
+    var body: some View {
         AppButton(
+            state: $state,
+            imageName: imageName,
+            title: title,
+            titleColor: titleColor,
+            action: action
+        )
+        .background(shape)
+    }
+}
+
+#Preview {
+    VStack {
+        AppBorderButton(
+            state: .constant(.active),
+            imageName: "ic-google",
+            title: "Text",
+            action: {}
+        )
+        .padding(16.0)
+        
+        AppFilledButton(
             state: .constant(.active),
             imageName: "ic-google",
             title: "Text",

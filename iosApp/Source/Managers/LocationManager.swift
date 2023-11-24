@@ -10,7 +10,7 @@ protocol LocationManagerDelegate: AnyObject {
 }
 
 final class LocationManager: NSObject {
-    // MARK: - Variables
+    // MARK: - Properties
     private lazy var manager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.delegate = self

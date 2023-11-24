@@ -12,7 +12,7 @@ struct EnterCodeView: View {
     @ObservedObject var presenter = EnterCodePresenter()
     let phone: String
     
-    // MARK: - BODY
+    // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: ENTER_CODE.pageTitle.text, content: { ContentView })
@@ -65,8 +65,8 @@ struct EnterCodeView: View {
     }
 }
 
-struct EnterCodeView_Previews: PreviewProvider {
-    static var previews: some View {
-        EnterCodeView(phone: "+380 99 408 10 85".phoneMask)
-    }
+#Preview {
+        EnterCodeView(
+            phone: "+380 99 408 10 85".phoneMask
+        )
 }

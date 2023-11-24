@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct RoundedShape: Shape {
+    // MARK: - Properties
     var tl: CGFloat = 0.0
     var tr: CGFloat = 0.0
     var bl: CGFloat = 0.0
     var br: CGFloat = 0.0
     var step: CGFloat = 2.0
     
+    // MARK: - Lifecycle
     func path(in rect: CGRect) -> Path {
         Path { path in
             let w = rect.width
@@ -25,34 +27,40 @@ struct RoundedShape: Shape {
             let bl = min(max(bl, h / step), w / step)
             let br = min(max(br, h / step), w / step)
             
+            let atr = CGPoint(x: w - tr, y: tr)
+            let abr = CGPoint(x: w - br, y: h - br)
+            let abl = CGPoint(x: bl, y: h - bl)
+            let atl = CGPoint(x: tl, y: tl)
+            
             path.move(to: CGPoint(x: w / step, y: 0))
             path.addLine(to: CGPoint(x: w - tr, y: 0))
-            path.addArc(center: CGPoint(x: w - tr, y: tr), radius: tr, startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 0), clockwise: false)
+            path.addArc(center: atr, radius: tr, startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 0), clockwise: false)
             path.addLine(to: CGPoint(x: w, y: h - br))
-            path.addArc(center: CGPoint(x: w - br, y: h - br), radius: br, startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 90), clockwise: false)
+            path.addArc(center: abr, radius: br, startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 90), clockwise: false)
             path.addLine(to: CGPoint(x: bl, y: h))
-            path.addArc(center: CGPoint(x: bl, y: h - bl), radius: bl, startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 180), clockwise: false)
+            path.addArc(center: abl, radius: bl, startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 180), clockwise: false)
             path.addLine(to: CGPoint(x: 0, y: tl))
-            path.addArc(center: CGPoint(x: tl, y: tl), radius: tl, startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
+            path.addArc(center: atl, radius: tl, startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
             path.closeSubpath()
         }
     }
 }
 
 struct RoundedShapeView: View {
-    // MARK: - Variables
+    // MARK: - Properties
+    private let lineWidth = 1.0
     var color = Color.white
     var step: CGFloat = 2.0
     @State var isFilled = false
     
-    // MARK: - Body
+    // MARK: - Lifecycle
     var body: some View {
         if isFilled {
             RoundedShape(step: step)
                 .fill(color)
         } else {
             RoundedShape(step: step)
-                .stroke(color, lineWidth: 1)
+                .stroke(color, lineWidth: lineWidth)
         }
     }
 }

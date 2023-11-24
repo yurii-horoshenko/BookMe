@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ReviewView: View {
+    // MARK: - Properties
     var reviewCount = 3_279
     var rating = "4.8"
     
+    // MARK: - Lifecycle
     var body: some View {
         HStack(spacing: 8.0) {
             Icons.StarBold

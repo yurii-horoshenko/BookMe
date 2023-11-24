@@ -63,7 +63,7 @@ lane :xcodegen do
         sh 'xcodegen generate --spec ".project.yml"'
     end
 
-    #cocoapods
+    cocoapods
     clean_build_artifacts
 end
 

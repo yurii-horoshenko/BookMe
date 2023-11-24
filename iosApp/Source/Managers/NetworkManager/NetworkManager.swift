@@ -19,7 +19,7 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
         static let production = "https://goroshenko.azurewebsites.net"
     }
     
-    // MARK: - Variables
+    // MARK: - Properties
     static var baseURL: String = Environment.develop
     private lazy var operationQueue = OperationQueue()
     lazy var operations: [NetworkOperation] = []

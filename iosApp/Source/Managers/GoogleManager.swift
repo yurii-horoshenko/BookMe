@@ -12,7 +12,7 @@
 // }
 //
 // enum GoogleManager {
-//    // MARK: - Variables
+//    // MARK: - Properties
 //    static let clientID = "832700470851-e9ug3e3drtcvdicvqkajv86q357vqch1.apps.googleusercontent.com"
 //
 //    // MARK: - Public

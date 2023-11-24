@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct NextVisitView: View {
+    // MARK: - Lifecycle
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                VStack(alignment: .leading, spacing: 6.0) {
-                    Text("Your Next Visit")
-                        .font(Font.H4Bold)
-                    
+                VStack(alignment: .leading, spacing: 6.0) {                    
                     VStack(alignment: .leading, spacing: 4.0) {
                         Text("Belle Curls")
-                            .font(Font.BodyLargeSemibold)
+                            .font(Font.H5Bold)
                         
                         Text("0993 Novick Parkway")
                             .font(Font.BodyLargeSemibold)
@@ -121,9 +119,7 @@ struct NextVisitView: View {
     }
 }
 
-struct NextVisitView_Previews: PreviewProvider {
-    static var previews: some View {
-        NextVisitView()
-            .padding(16.0)
-    }
+#Preview {
+    NextVisitView()
+        .padding(16.0)
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 final class LoginPresenter: ObservableObject {
+    // MARK: - Properties
     @Published var phone = FieldData(placeholder: "Phone Number")
     @Published var toDashboard = false
     

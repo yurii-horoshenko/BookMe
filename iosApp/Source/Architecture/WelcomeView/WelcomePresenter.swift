@@ -8,6 +8,7 @@
 import SwiftUI
 
 final class WelcomePresenter: ObservableObject {
+    // MARK: - Properties
     @Published var toCreateProfile = false
     @Published var toLogin = false
 
@@ -16,20 +17,20 @@ final class WelcomePresenter: ObservableObject {
         printLog("deinit -> ", self)
     }
     
+    private func login() {
+        toLogin = true
+    }
+
     // MARK: - Public
+    func createProfile() {
+        toCreateProfile = true
+    }
+    
     func loginViaFacebook() {
         login()
     }
     
     func loginViaGoogle() {
         login()
-    }
-    
-    func login() {
-        toLogin = true
-    }
-    
-    func createProfile() {
-        toCreateProfile = true
     }
 }

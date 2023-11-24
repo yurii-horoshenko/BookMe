@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TableVisitRow: View {
+    
+    // MARK: - Lifecycle
     var body: some View {
         VStack(alignment: .leading) {
             HStack(spacing: 0.0) {
@@ -41,10 +43,8 @@ struct TableVisitRow: View {
     }
 }
 
-struct TableVisitRow_Previews: PreviewProvider {
-    static var previews: some View {
-        TableVisitRow()
-            .shadow(color: Color.greyscale300, radius: 1.0)
-            .padding(.horizontal, 16.0)
-    }
+#Preview {
+    TableVisitRow()
+        .shadow(color: Color.greyscale300, radius: 1.0)
+        .padding(.horizontal, 16.0)
 }

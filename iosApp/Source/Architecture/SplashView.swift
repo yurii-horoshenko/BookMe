@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SplashView: View {
     
-    // MARK: - Body
+    // MARK: - Lifecycle
     var body: some View {
         VStack {
             Spacer()
@@ -24,15 +24,12 @@ struct SplashView: View {
         .background(Color.background)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//                self.setRootView(WelcomeView())
-                self.setRootView(DashboardContainerView())
+                self.setRootView(WelcomeView())
             }
         }
     }
 }
 
-struct SplashView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashView()
-    }
+#Preview {
+    SplashView()
 }

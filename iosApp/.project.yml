@@ -38,6 +38,7 @@ targets:
         sources:
             - fastlane
             - Frameworks
+            - Documentation
             - Source
             - ".project.yml"
             - ".swiftlint.yml"

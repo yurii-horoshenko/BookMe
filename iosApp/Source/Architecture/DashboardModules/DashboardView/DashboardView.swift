@@ -20,7 +20,7 @@ struct DashboardView: View {
         Restaurant(name: "Original Joe's")
     ]
     
-    // MARK: - BODY
+    // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             NavigationStack {
@@ -46,6 +46,9 @@ struct DashboardView: View {
                 )
                 .padding(.top, 8.0)
                 
+                Text("Your Next Visit")
+                    .font(Font.H4Bold)
+
                 NextVisitView()
                     .shadow(radius: 16.0)
                 
@@ -85,8 +88,6 @@ struct DashboardView: View {
     }
 }
 
-struct DashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        DashboardView()
-    }
+#Preview {
+    DashboardView()
 }

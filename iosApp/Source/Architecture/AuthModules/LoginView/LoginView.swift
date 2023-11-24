@@ -9,8 +9,10 @@ import shared
 import SwiftUI
 
 struct LoginView: View {
+    // MARK: - Properties
     @ObservedObject var presenter = CreateProfilePresenter()
     
+    // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: LOGIN.pageTitle.text, content: { ContentView })
@@ -31,7 +33,7 @@ struct LoginView: View {
     
     // Button Continue
     var BottomButton: some View {
-        AppButton(
+        AppFilledButton(
             state: .constant(.active),
             title: LOGIN.signInButton.text,
             titleColor: Color.white,
@@ -44,8 +46,6 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
         LoginView()
-    }
 }

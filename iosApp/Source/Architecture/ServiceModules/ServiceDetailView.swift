@@ -86,22 +86,20 @@ struct ServiceDetailView: View {
     
     // Button Book Now
     var BottomButton: some View {
-        AppButton(
+        AppFilledButton(
             state: .constant(.active),
             title: "Book Now",
             titleColor: Color.white,
             backgroundColor: Color.primary500,
-            action: {  }
+            action: { presenter.toBooking = true }
         )
-//        .navigationDestination(isPresented: $presenter.toCodeVerification) {
-//            EnterCodeView(phone: presenter.phone.value.phoneMask)
-//        }
+        .navigationDestination(isPresented: $presenter.toBooking) {
+            BookingView()
+        }
     }
     
 }
 
-struct ServiceDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ServiceDetailView()
-    }
+#Preview {
+    ServiceDetailView()
 }

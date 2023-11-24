@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ContactsView: View {
-    // MARK: - Variables
-    // array of phone numbers
+    // MARK: - Properties
     var contacts = ["(406) 555-0120"]
     
+    // MARK: - Lifecycle
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
             Text("Contact us")
