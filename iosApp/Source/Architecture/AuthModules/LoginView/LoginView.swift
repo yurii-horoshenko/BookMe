@@ -16,6 +16,9 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: LOGIN.pageTitle.text, content: { ContentView })
+                .navigationDestination(isPresented: $presenter.toCodeVerification) {
+                    EnterCodeView(phone: presenter.phone.value.phoneMask)
+                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -40,9 +43,6 @@ struct LoginView: View {
             backgroundColor: Color.primary500,
             action: { presenter.codeVerification() }
         )
-        .navigationDestination(isPresented: $presenter.toCodeVerification) {
-            EnterCodeView(phone: presenter.phone.value.phoneMask)
-        }
     }
 }
 

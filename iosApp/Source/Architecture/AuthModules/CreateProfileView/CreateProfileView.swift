@@ -16,6 +16,9 @@ struct CreateProfileView: View {
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: CREATE_PROFILE.pageTitle.text, content: { ContentView })
+                .navigationDestination(isPresented: $presenter.toCodeVerification) {
+                    EnterCodeView(phone: presenter.phone.value.phoneMask)
+                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -69,9 +72,6 @@ struct CreateProfileView: View {
             backgroundColor: Color.primary500,
             action: { presenter.codeVerification() }
         )
-        .navigationDestination(isPresented: $presenter.toCodeVerification) {
-            EnterCodeView(phone: presenter.phone.value.phoneMask)
-        }
     }
 }
 

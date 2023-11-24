@@ -25,6 +25,9 @@ struct DashboardView: View {
                     trailingView: TrailingView.eraseToAnyView(),
                     content: { ContentView }
                 )
+                .navigationDestination(isPresented: $presenter.toServiceDetail) {
+                    ServiceDetailView()
+                }
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -62,9 +65,6 @@ struct DashboardView: View {
                 Spacer()
             }
             .padding(.horizontal, 16.0)
-        }
-        .navigationDestination(isPresented: $presenter.toServiceDetail) {
-            ServiceDetailView()
         }
     }
     

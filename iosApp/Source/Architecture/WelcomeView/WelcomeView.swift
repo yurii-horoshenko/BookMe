@@ -16,6 +16,12 @@ struct WelcomeView: View {
     var body: some View {
         NavigationStack {
             ContentView
+                .navigationDestination(isPresented: $presenter.toLogin) {
+                    LoginView()
+                }
+                .navigationDestination(isPresented: $presenter.toCreateProfile) {
+                    CreateProfileView()
+                }
         }
     }
     
@@ -38,9 +44,6 @@ struct WelcomeView: View {
             ButtonsView
         }
         .background(Color.background)
-        .navigationDestination(isPresented: $presenter.toLogin) {
-            LoginView()
-        }
     }
     
     // Login via Facebook, Google or Phone
@@ -72,9 +75,6 @@ struct WelcomeView: View {
                 backgroundColor: Color.primary500,
                 action: { presenter.createProfile() }
             )
-            .navigationDestination(isPresented: $presenter.toCreateProfile) {
-                CreateProfileView()
-            }
         })
         .padding(24.0)
     }

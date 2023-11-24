@@ -13,47 +13,44 @@ struct ServiceDetailView: View {
     
     // MARK: - Lifecycle
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading) {
                     Image("img-detail-mask")
                         .edgesIgnoringSafeArea(.top)
                     
-                    BaseView(hideBackButton: true, iconColor: Color.primary500) { ContentView }
+                    BaseView(
+                        navigationTitle: "",
+                        iconColor: Color.primary500,
+                        content: { ContentView }
+                    )
                 }
             }
             .edgesIgnoringSafeArea(.top)
+            .navigationDestination(isPresented: $presenter.toBooking) {
+                BookingView()
+            }
         }
-        //.navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
     }
     
     var ContentView: some View {
         VStack(alignment: .leading, spacing: 24.0) {
             TitleView
-            
             LocationView(useTitle: false, useMap: false)
-            
             ReviewView()
-            
             Divider()
                 .background(Color.greyscale200)
                 .frame(height: 1.0)
-            
             DetailView
-            
             WorkingHoursView()
-            
             ContactsView(contacts: ["(406) 555-0120", "(406) 555-0121"])
-            
             LocationView()
-            
             Divider()
                 .background(Color.greyscale200)
                 .frame(height: 1.0)
-            
             BottomButton
-            
             Spacer()
         }
         .padding(.horizontal, 32.0)
@@ -91,9 +88,6 @@ struct ServiceDetailView: View {
             backgroundColor: Color.primary500,
             action: { presenter.toBooking = true }
         )
-        .navigationDestination(isPresented: $presenter.toBooking) {
-            BookingView()
-        }
     }
     
 }

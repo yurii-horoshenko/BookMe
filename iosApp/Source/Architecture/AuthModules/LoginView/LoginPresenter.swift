@@ -9,8 +9,9 @@ import SwiftUI
 
 final class LoginPresenter: ObservableObject {
     // MARK: - Properties
+    @Published var phoneValue = ""
     @Published var phone = FieldData(placeholder: "Phone Number")
-    @Published var toDashboard = false
+    @Published var toCodeVerification = false
     
     // MARK: - Lifecycle
     deinit {
@@ -18,7 +19,7 @@ final class LoginPresenter: ObservableObject {
     }
     
     // MARK: - Public
-    func logion() {
-        toDashboard = true
+    func codeVerification() {
+        toCodeVerification = true
     }
 }

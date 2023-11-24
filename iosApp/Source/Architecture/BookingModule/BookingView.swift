@@ -13,9 +13,12 @@ struct BookingView: View {
     
     // MARK: - Lifecycle
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 BaseView(navigationTitle: "Book Appointment") { ContentView }
+                //        .navigationDestination(isPresented: $presenter.toCodeVerification) {
+                //            EnterCodeView(phone: presenter.phone.value.phoneMask)
+                //        }
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -26,16 +29,12 @@ struct BookingView: View {
     var ContentView: some View {
         VStack(alignment: .leading, spacing: 16.0) {
             CalendarView(date: $presenter.date)
-            
             SelectHoursView()
-            
             Spacer()
-            
             Divider()
                 .background(Color.greyscale200)
                 .frame(height: 1.0)
                 .padding(.bottom, 16.0)
-            
             BottomButton
         }
         .padding(16.0)
@@ -52,9 +51,6 @@ struct BookingView: View {
                 
             }
         )
-        //        .navigationDestination(isPresented: $presenter.toCodeVerification) {
-        //            EnterCodeView(phone: presenter.phone.value.phoneMask)
-        //        }
     }
 }
 

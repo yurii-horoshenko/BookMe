@@ -49,24 +49,20 @@ struct AppInputField: View {
                     .foregroundColor(fieldData.color)
                     .font(fieldData.font)
             } else {
-                if fieldData.isSecure {
-                    SecureField("", text: $fieldData.value)
-                        .focused($isFocused)
+                VStack {
+                    if fieldData.isSecure {
+                        SecureField("", text: $fieldData.value)
+                    } else {
+                        TextField("", text: $fieldData.value)
+                    }
+                }
+                .focused($isFocused)
+                .padding(.horizontal, 16.0)
+                .placeholder(when: fieldData.value.isEmpty) {
+                    Text(fieldData.placeholder)
+                        .font(Font.BodyMediumRegular)
+                        .foregroundColor(Color.greyscale500)
                         .padding(.horizontal, 16.0)
-                        .placeholder(when: fieldData.value.isEmpty) {
-                            Text(fieldData.placeholder)
-                                .foregroundColor(Color.greyscale500)
-                                .padding(.horizontal, 16.0)
-                        }
-                } else {
-                    TextField("", text: $fieldData.value)
-                        .focused($isFocused)
-                        .padding(.horizontal, 16.0)
-                        .placeholder(when: fieldData.value.isEmpty) {
-                            Text(fieldData.placeholder)
-                                .foregroundColor(Color.greyscale500)
-                                .padding(.horizontal, 16.0)
-                        }
                 }
             }
             
