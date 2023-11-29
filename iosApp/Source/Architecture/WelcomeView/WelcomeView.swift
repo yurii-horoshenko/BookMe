@@ -61,8 +61,9 @@ struct WelcomeView: View {
                 imageName: "ic-google",
                 title: WELCOME.googleButton.text,
                 action: { 
-                    presenter.loginViaGoogle()
-                    setRootView(DashboardContainerView())
+                    presenter.loginViaGoogle()                    
+                    let view = DashboardContainerView()
+                    setRootView(view)
                 }
             )
             

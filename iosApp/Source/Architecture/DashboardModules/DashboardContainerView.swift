@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import shared
 
 struct DashboardContainerView: View {
+    let presenter = DashboardPresenter()
+    
     var body: some View {
         TabView {
-            DashboardView()
+            DashboardView(interactor: shared.DashboardInteractor(presenter: presenter), presenter: presenter)
                 .tabItem {
                     HStack {
                         TabIcons.Home

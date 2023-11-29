@@ -5,16 +5,13 @@
 //  Created by Yurii Goroshenko on 24.07.2023.
 //
 
+import shared
 import SwiftUI
 
 struct DashboardView: View {
     // MARK: - Properties
-    @ObservedObject var presenter = DashboardPresenter()
-    let restaurants = [
-        Restaurant(name: "Joe's Original"),
-        Restaurant(name: "The Real Joe's Original"),
-        Restaurant(name: "Original Joe's")
-    ]
+    let interactor: shared.DashboardInteractor?
+    @ObservedObject var presenter: DashboardPresenter
     
     // MARK: - Lifecycle
     var body: some View {
@@ -32,6 +29,9 @@ struct DashboardView: View {
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
+        .onAppear {
+            interactor?.getPlaces()
+        }
     }
     
     var ContentView: some View {
@@ -54,7 +54,7 @@ struct DashboardView: View {
                     .font(Font.H4Bold)
                     .foregroundColor(Color.greyscale900)
                 
-                ForEach(restaurants) { _ in
+                ForEach(presenter.restaurants) { _ in
                     TableVisitRow()
                         .onTapGesture {
                             presenter.toServiceDetail = true
@@ -87,5 +87,5 @@ struct DashboardView: View {
 }
 
 #Preview {
-    DashboardView()
+    DashboardView(interactor: nil, presenter: DashboardPresenter())
 }

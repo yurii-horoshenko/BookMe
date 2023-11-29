@@ -10,5 +10,9 @@ import SwiftUI
 final class ServiceDetailPresenter: ObservableObject {
     // MARK: - Properties
     @Published var toBooking = false
-    
+ 
+    // MARK: - Lifecycle
+    deinit {
+        printLog("deinit -> ", self)
+    }
 }

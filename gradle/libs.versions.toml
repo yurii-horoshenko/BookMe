@@ -1,5 +1,5 @@
 [versions]
-android-gradle-plugin = "8.1.2"
+android-gradle-plugin = "8.1.4"
 activity-compose = "1.8.0"
 compose-bom = "2023.06.01"
 kotlin = "1.9.10"

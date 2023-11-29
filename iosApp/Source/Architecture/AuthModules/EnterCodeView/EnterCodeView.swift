@@ -37,7 +37,12 @@ struct EnterCodeView: View {
                 .onChange(of: presenter.code) { newValue in
                     let code = newValue.compactMap({ $0.value }).joined()
                     guard code.count == 4 else { return }
-                    setRootView(DashboardView())
+                    
+//                    // Dashboard
+//                    let presenter = DashboardPresenter()
+//                    let interactor = DashboardInteractor(presenter: presenter)
+//                    let view = DashboardView(interactor: interactor, presenter: presenter)
+//                    setRootView(view)
                 }
             
             TimerLabel
