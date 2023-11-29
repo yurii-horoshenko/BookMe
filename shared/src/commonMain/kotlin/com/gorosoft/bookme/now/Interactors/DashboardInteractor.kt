@@ -36,7 +36,7 @@ class DashboardInteractor(
             )
 
             result.onSuccess {
-                presenter.displayPlaces(listOf(it.data.nextPageToken.orEmpty()))
+                presenter.displayPlaces(listOf(it.data?.nextPageToken.orEmpty()))
             }
             result.onFailure {
                 println("33")
