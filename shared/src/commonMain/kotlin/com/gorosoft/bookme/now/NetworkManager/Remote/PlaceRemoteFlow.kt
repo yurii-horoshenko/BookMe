@@ -1,5 +1,6 @@
 package com.gorosoft.bookme.now.NetworkManager.Remote
 
+import com.gorosoft.bookme.now.Entities.DataResponse
 import com.gorosoft.bookme.now.Entities.SuccessResponse
 import com.gorosoft.bookme.now.Entities.Location
 import com.gorosoft.bookme.now.Entities.PLACETYPE
@@ -14,7 +15,7 @@ final class PlaceRemoteFlow(private val client: HttpClient) {
     val token = ""
 
     //GET:  base_url/api/Place/Places
-    suspend fun getPlaces(type: PLACETYPE, location: Location): Result<SuccessResponse> {
+    suspend fun getPlaces(type: PLACETYPE, location: Location): Result<DataResponse> {
         val result: HttpResponse = client.get {
             bearerAuth(token)
             parameter("filter", type)
@@ -24,5 +25,4 @@ final class PlaceRemoteFlow(private val client: HttpClient) {
 
         return runCatching { result.body() }
     }
-
 }
