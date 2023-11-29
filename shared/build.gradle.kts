@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    kotlin("plugin.serialization") version "1.9.20"
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -31,39 +32,36 @@ kotlin {
     }
 
     sourceSets {
-        val ktorVersion = "2.3.6"
-        val coroutinesVersion = "1.7.3"
-        val serializationVersion = "1.6.1"
-
         val commonMain by getting {
             dependencies {
                 //put your multiplatform dependencies here
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
 
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.ktor.client.logging)
             }
         }
 
         val iosMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+                implementation(libs.ktor.client.darwin)
             }
         }
 
-//        val commonTest by getting {
-//            dependencies {
-//                implementation(kotlin("test"))
-//            }
-//        }
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.android)
+            }
+        }
     }
 }
 
 android {
     namespace = "com.gorosoft.bookme.now"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         minSdk = 28
     }

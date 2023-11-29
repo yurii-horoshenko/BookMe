@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now.NetworkManager.Remote
+package com.gorosoft.bookme.now.network_manager.Remote
 
 class UserRemoteFlow {
 }

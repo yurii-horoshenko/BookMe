@@ -1,8 +1,8 @@
-package com.gorosoft.bookme.now.NetworkManager.Remote
+package com.gorosoft.bookme.now.network_manager.Remote
 
-import com.gorosoft.bookme.now.Entities.CodeRequest
-import com.gorosoft.bookme.now.Entities.ProfileRequest
-import com.gorosoft.bookme.now.Entities.SuccessResponse
+import com.gorosoft.bookme.now.entities.CodeRequest
+import com.gorosoft.bookme.now.entities.ProfileRequest
+import com.gorosoft.bookme.now.entities.SuccessResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.*

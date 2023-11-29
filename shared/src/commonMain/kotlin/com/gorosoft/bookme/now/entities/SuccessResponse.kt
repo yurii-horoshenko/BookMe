@@ -1,8 +1,7 @@
-package com.gorosoft.bookme.now.Entities
+package com.gorosoft.bookme.now.entities
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encoding.AbstractDecoder
 
 @Serializable
 data class SuccessResponse(
@@ -13,10 +12,12 @@ data class SuccessResponse(
 
 @Serializable
 data class DataResponse(
+    @SerialName("data")
     val data: PlaceResponse? = null
 )
 
 @Serializable
 data class PlaceResponse(
+    @SerialName("nextPageToken")
     val nextPageToken: String? = null
 )
