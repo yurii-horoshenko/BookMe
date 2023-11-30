@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now.network_manager
+package com.gorosoft.bookme.now.network
 
 import io.ktor.client.*
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -15,24 +15,26 @@ import kotlinx.serialization.json.Json
 
 class KtorManager {
     val client = HttpClient {
-        install(ContentNegotiation) {
-            json(
-                Json {
-                    ignoreUnknownKeys = true
-                    prettyPrint = true
-                },
-            )
-        }
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.ALL
-        }
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
                 host = "goroshenko.azurewebsites.net/api"
             }
             contentType(ContentType.Application.Json)
+        }
+
+        // Plugings
+        install(ContentNegotiation) {
+            json(
+                Json {
+                    ignoreUnknownKeys = true
+                    prettyPrint = true
+                }
+            )
+        }
+        install(Logging) {
+            logger = Logger.DEFAULT
+            level = LogLevel.ALL
         }
     }
 }

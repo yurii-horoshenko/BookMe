@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now.entities
+package com.gorosoft.bookme.now.entities.responses
 
 import kotlinx.serialization.Serializable
 

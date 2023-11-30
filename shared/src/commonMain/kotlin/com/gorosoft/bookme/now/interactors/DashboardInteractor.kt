@@ -1,10 +1,10 @@
 package com.gorosoft.bookme.now.interactors
 
-import com.gorosoft.bookme.now.entities.Location
-import com.gorosoft.bookme.now.entities.PLACETYPE
-import com.gorosoft.bookme.now.network_manager.KtorManager
-import com.gorosoft.bookme.now.network_manager.Remote.PlaceRemoteFlow
-import com.gorosoft.bookme.now.network_manager.Repositories.PlaceRepository
+import com.gorosoft.bookme.now.entities.responses.Location
+import com.gorosoft.bookme.now.entities.responses.PLACETYPE
+import com.gorosoft.bookme.now.network.KtorManager
+import com.gorosoft.bookme.now.network.remote.PlaceRemoteFlow
+import com.gorosoft.bookme.now.network.repositories.PlaceRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

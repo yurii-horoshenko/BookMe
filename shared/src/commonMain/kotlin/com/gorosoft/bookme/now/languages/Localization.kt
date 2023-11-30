@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now
+package com.gorosoft.bookme.now.languages
 
 enum class GENDER(val text: String) {
     MALE("Male"),
