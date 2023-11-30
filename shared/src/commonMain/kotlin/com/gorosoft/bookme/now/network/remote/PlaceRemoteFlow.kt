@@ -14,14 +14,11 @@ import io.ktor.http.path
 class PlaceRemoteFlow(private val client: HttpClient) {
     val token = ""
 
-    //GET:  base_url/api/Place/Places
+    // GET: base_url/api/Place/Places
     suspend fun getPlaces(type: PLACETYPE, location: Location, radius: Int): Result<DataResponse> {
-        val result: HttpResponse = client.get {
-            bearerAuth(token)
-            url {
-                it.path("Place", "Places")
-            }
-            parameter("filter", type)
+        val result: HttpResponse = client.get("Place/Places") {
+            // bearerAuth(token)
+            parameter("filter", type.text)
             parameter("lat", location.latitude)
             parameter("lon", location.longitude)
             parameter("radius", radius)

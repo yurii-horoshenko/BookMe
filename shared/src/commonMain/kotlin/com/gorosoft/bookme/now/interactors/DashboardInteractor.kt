@@ -5,6 +5,9 @@ import com.gorosoft.bookme.now.entities.responses.PLACETYPE
 import com.gorosoft.bookme.now.network.KtorManager
 import com.gorosoft.bookme.now.network.remote.PlaceRemoteFlow
 import com.gorosoft.bookme.now.network.repositories.PlaceRepository
+import io.ktor.client.HttpClient
+import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -26,7 +29,6 @@ class DashboardInteractor(
     private val repository = PlaceRepository(PlaceRemoteFlow(client.client))
     private val vmScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
-    // https://goroshenko.azurewebsites.net/api/Place/Places?filter=barber&lat=50.465645&lon=30.5833821&radius=17
     override fun getPlaces() {
         vmScope.launch {
             val result = repository.getPlaces(
@@ -41,7 +43,6 @@ class DashboardInteractor(
             result.onFailure {
                 println("33")
             }
-
         }
     }
 

@@ -11,7 +11,7 @@ import io.ktor.client.statement.HttpResponse
 final class AuthRemoteFlow(private val client: HttpClient) {
     val token = ""
 
-    //GET:  base_url/auth/code
+    // GET: base_url/auth/code
     suspend fun getCode(phone: String, resend: Boolean): Result<SuccessResponse> {
         val result: HttpResponse = client.get {
             bearerAuth(token)
@@ -22,7 +22,7 @@ final class AuthRemoteFlow(private val client: HttpClient) {
         return runCatching { result.body() }
     }
 
-    //POST:  base_url/auth/code
+    // POST: base_url/auth/code
     suspend fun postCode(code: CodeRequest): Result<SuccessResponse> {
         val result: HttpResponse = client.get {
             bearerAuth(token)
@@ -32,7 +32,7 @@ final class AuthRemoteFlow(private val client: HttpClient) {
         return runCatching { result.body() }
     }
 
-    //POST:  base_url/auth/create-profile
+    // POST: base_url/auth/create-profile
     suspend fun createProfile(profile: ProfileRequest, resend: Boolean): Result<SuccessResponse> {
         val result: HttpResponse = client.get {
             bearerAuth(token)

@@ -8,7 +8,7 @@
 import shared
 import SwiftUI
 
-final class DashboardPresenter: shared.DashboardPresenterContract, ObservableObject {    
+final class DashboardPresenter: shared.DashboardPresenterContract, ObservableObject {
     // MARK: - Properties
     @Published var searchData = FieldData(placeholder: "Search")
     @State var toServiceDetail = false

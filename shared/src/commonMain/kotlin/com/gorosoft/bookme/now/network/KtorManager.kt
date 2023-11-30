@@ -10,6 +10,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
+import io.ktor.http.path
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -18,7 +19,8 @@ class KtorManager {
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
-                host = "goroshenko.azurewebsites.net/api"
+                host = "goroshenko.azurewebsites.net"
+                path("api/")
             }
             contentType(ContentType.Application.Json)
         }
