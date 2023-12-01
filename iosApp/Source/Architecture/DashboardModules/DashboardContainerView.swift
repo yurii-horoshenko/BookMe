@@ -5,8 +5,8 @@
 //  Created by Yurii Goroshenko on 12.09.2023.
 //
 
-import SwiftUI
 import shared
+import SwiftUI
 
 struct DashboardContainerView: View {
     let presenter = DashboardPresenter()

@@ -1,5 +1,5 @@
 [versions]
-android-gradle-plugin = "8.1.4"
+android-gradle-plugin = "8.2.0"
 activity-compose = "1.8.1"
 compose-bom = "2023.10.01"
 coroutinesVersion = "1.7.3"
