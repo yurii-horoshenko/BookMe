@@ -20,6 +20,7 @@
 		16FE331E2BA84E7C139F6011 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988B1869131602ED94614EB5 /* Formatter.swift */; };
 		18353DE81FCE534C949C86D9 /* UIFont+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BC56F22BF473693CCB72B /* UIFont+Init.swift */; };
 		1A9928A52B1DE84400AB830E /* ProfilePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9928A42B1DE84400AB830E /* ProfilePreviewView.swift */; };
+		1A9928A72B1DF78D00AB830E /* NearByPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9928A62B1DF78D00AB830E /* NearByPresenter.swift */; };
 		1D75AA2B9E3B9188FE79562C /* report.xml in Resources */ = {isa = PBXBuildFile; fileRef = CE8422501FBC72D872A753D2 /* report.xml */; };
 		1DB5A9F6184121589863F193 /* NearByView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509AF5BE300C8F9685E7EA4 /* NearByView.swift */; };
 		2106C505A81E297149A8FC78 /* MetadataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC64AC373F7BEA5A5B6F74 /* MetadataManager.swift */; };
@@ -115,6 +116,7 @@
 		193C8A583F6B41B1E77DAD99 /* WorkingHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingHoursView.swift; sourceTree = "<group>"; };
 		1A392DE364D75A4662397DB6 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		1A9928A42B1DE84400AB830E /* ProfilePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreviewView.swift; sourceTree = "<group>"; };
+		1A9928A62B1DF78D00AB830E /* NearByPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByPresenter.swift; sourceTree = "<group>"; };
 		1B383F0E291261CB3AF84F5C /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		1C7FF9F76F91A9BB5BB449C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1F6497D629BE6E4D3A88295E /* Gymfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gymfile; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				3509AF5BE300C8F9685E7EA4 /* NearByView.swift */,
+				1A9928A62B1DF78D00AB830E /* NearByPresenter.swift */,
 			);
 			path = LocationModules;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				FDEA84C61C5697B5BED973D9 /* EnterCodePresenter.swift in Sources */,
 				13AE985B04391BCF26C3246B /* EnterCodeView.swift in Sources */,
 				0A34637A85CB7924B45F7AE7 /* FacebookManager.swift in Sources */,
+				1A9928A72B1DF78D00AB830E /* NearByPresenter.swift in Sources */,
 				16FE331E2BA84E7C139F6011 /* Formatter.swift in Sources */,
 				5C6A8FA8903AD2BD819C279C /* GoogleManager.swift in Sources */,
 				EFC7E6D0B25A2E576149BEF8 /* LocalCacheManager.swift in Sources */,

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ProfileView: View {
     // MARK: - Properties
-    @ObservedObject var presenter: ProfilePresenter = ProfilePresenter()
+    @ObservedObject var presenter = ProfilePresenter()
     
     // MARK: - Lifecycle
     var body: some View {
