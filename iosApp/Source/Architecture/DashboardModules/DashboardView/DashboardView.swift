@@ -55,7 +55,7 @@ struct DashboardView: View {
                     .foregroundColor(Color.greyscale900)
                 
                 ForEach(presenter.restaurants) { _ in
-                    TableVisitRow()
+                    VisitItemRow()
                         .onTapGesture {
                             presenter.toServiceDetail = true
                         }

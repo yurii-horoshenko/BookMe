@@ -1,5 +1,5 @@
 //
-//  TableVisitRow.swift
+//  VisitItemRow.swift
 //  BookMeNow-Develop
 //
 //  Created by Yurii Goroshenko on 31.08.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TableVisitRow: View {
+struct VisitItemRow: View {
     
     // MARK: - Lifecycle
     var body: some View {
@@ -44,7 +44,7 @@ struct TableVisitRow: View {
 }
 
 #Preview {
-    TableVisitRow()
+    VisitItemRow()
         .shadow(color: Color.greyscale300, radius: 1.0)
         .padding(.horizontal, 16.0)
 }

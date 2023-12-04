@@ -38,6 +38,14 @@ enum Icons {
             .frame(width: 20, height: 20)
     }
     
+    // Image Arrow right
+    static var ArrowRight: some View {
+        Image("ic-arrow-right")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 20, height: 20)
+    }
+    
     // Image Calendar
     static var Calendar: some View {
         Image("ic-calendar")
