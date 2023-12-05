@@ -19,6 +19,7 @@ struct AppButton: View {
     // MARK: - Properties
     @Binding var state: ButtonState
     var imageName: String?
+    var imageColor: Color?
     var title: String?
     var titleColor = Color.greyscale900
     var backgroundColor = Color.black
@@ -31,7 +32,15 @@ struct AppButton: View {
         } label: {
             HStack(alignment: .center) {
                 if let imageName {
-                    Image(imageName)
+                    if let imageColor {
+                        Image(imageName)
+                            .resizable()
+                            .renderingMode(.template)
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(imageColor)
+                    } else {
+                        Image(imageName)
+                    }
                 }
                 
                 if let title {
@@ -54,6 +63,7 @@ struct AppFilledButton: View {
     // MARK: - Properties
     @Binding var state: AppButton.ButtonState
     var imageName: String?
+    var imageColor: Color?
     var title: String?
     var titleColor = Color.greyscale900
     var backgroundColor = Color.black
@@ -64,6 +74,7 @@ struct AppFilledButton: View {
         AppButton(
             state: $state,
             imageName: imageName,
+            imageColor: imageColor,
             title: title,
             titleColor: titleColor,
             action: action
@@ -78,6 +89,7 @@ struct AppBorderButton: View {
     // MARK: - Properties
     @Binding var state: AppButton.ButtonState
     var imageName: String?
+    var imageColor: Color?
     var title: String?
     var titleColor = Color.greyscale900
     var shape = RoundedShapeView(color: Color.greyscale200, step: 3.0, isFilled: false)
@@ -88,6 +100,7 @@ struct AppBorderButton: View {
         AppButton(
             state: $state,
             imageName: imageName,
+            imageColor: imageColor,
             title: title,
             titleColor: titleColor,
             action: action

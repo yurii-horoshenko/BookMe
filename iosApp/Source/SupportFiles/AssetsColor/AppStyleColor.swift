@@ -11,6 +11,7 @@ import SwiftUI
 extension Color {
     // Main
     static let primary500 = Color(hex: "#FB9400")
+    static let primary100 = Color(hex: "#FFF4E6")
     static let secondary500 = Color(hex: "#FFD300")
 
     // Text & Backgrounds

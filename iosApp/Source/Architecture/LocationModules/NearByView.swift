@@ -5,17 +5,17 @@
 //  Created by Yurii Goroshenko on 24.11.2023.
 //
 
-import MapKit
 import SwiftUI
 
 struct NearByView: View {
     // MARK: - Properties
-    @ObservedObject var presenter = NearByPresenter()
+    @StateObject var presenter = NearByPresenter()
     
     // MARK: - Lifecycle
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $presenter.region)
+            
+            LocationView(useTitle: false, useLocation: false)
                 .edgesIgnoringSafeArea(.top)
             
             VStack {

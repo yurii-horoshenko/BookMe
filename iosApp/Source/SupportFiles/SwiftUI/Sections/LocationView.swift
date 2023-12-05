@@ -15,6 +15,7 @@ struct LocationView: View {
         span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
     )
     var useTitle = true
+    var useLocation = true
     var useMap = true
     
     // MARK: - Lifecycle
@@ -48,9 +49,9 @@ struct LocationView: View {
                     .font(Font.BodyLargeMedium)
                     .foregroundColor(Color.greyscale700)
             }
+            .isHidden(!useLocation)
             
             Map(coordinateRegion: $region)
-                .frame(height: 300)
                 .isHidden(!useMap)
         }
     }

@@ -10,5 +10,6 @@ import SwiftUI
 
 final class ProfilePresenter: ObservableObject {
     // MARK: - Properties
-    
+    @Published var toLogoutView = false
+
 }

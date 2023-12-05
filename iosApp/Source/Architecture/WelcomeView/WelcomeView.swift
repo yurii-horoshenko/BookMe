@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WelcomeView: View {
     // MARK: - Properties
-    @ObservedObject var presenter = WelcomePresenter()
+    @StateObject var presenter = WelcomePresenter()
     
     // MARK: - Lifecycle
     var body: some View {

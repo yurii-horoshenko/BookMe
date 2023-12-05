@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EnterCodeView: View {
     // MARK: - Properties
-    @ObservedObject var presenter = EnterCodePresenter()
+    @StateObject var presenter = EnterCodePresenter()
     let phone: String
     
     // MARK: - Lifecycle

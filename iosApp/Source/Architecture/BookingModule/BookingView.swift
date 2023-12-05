@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BookingView: View {
     // MARK: - Properties
-    @ObservedObject var presenter = BookingPresenter()
+    @StateObject var presenter = BookingPresenter()
     
     // MARK: - Lifecycle
     var body: some View {

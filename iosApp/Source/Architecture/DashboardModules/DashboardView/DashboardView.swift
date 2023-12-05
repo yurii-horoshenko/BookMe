@@ -11,7 +11,7 @@ import SwiftUI
 struct DashboardView: View {
     // MARK: - Properties
     let interactor: shared.DashboardInteractor?
-    @ObservedObject var presenter: DashboardPresenter
+    @StateObject var presenter: DashboardPresenter
     
     // MARK: - Lifecycle
     var body: some View {

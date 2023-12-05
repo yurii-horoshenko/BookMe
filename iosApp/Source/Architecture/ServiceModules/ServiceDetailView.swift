@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ServiceDetailView: View {
     // MARK: - Properties
-    @ObservedObject var presenter = ServiceDetailPresenter()
+    @StateObject var presenter = ServiceDetailPresenter()
     
     // MARK: - Lifecycle
     var body: some View {
@@ -47,6 +47,7 @@ struct ServiceDetailView: View {
             WorkingHoursView()
             ContactsView(contacts: ["(406) 555-0120", "(406) 555-0121"])
             LocationView()
+                .frame(height: 300.0)
             Divider()
                 .background(Color.greyscale200)
                 .frame(height: 1.0)
