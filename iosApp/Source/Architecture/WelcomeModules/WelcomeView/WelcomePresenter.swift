@@ -7,30 +7,29 @@
 
 import SwiftUI
 
-final class WelcomePresenter: ObservableObject {
+protocol WelcomePresenterProtocol: ObservableObject {
+    var toLogin: Bool { get set }
+    var toCreateProfile: Bool { get set }
+    
+    func login()
+    func signIn()
+}
+
+final class WelcomePresenter: WelcomePresenterProtocol {
     // MARK: - Properties
-    @Published var toCreateProfile = false
     @Published var toLogin = false
+    @Published var toCreateProfile = false
     
     // MARK: - Lifecycle
     deinit {
         printLog("deinit -> ", self)
     }
     
-    private func login() {
+    func login() {
         toLogin = true
     }
     
-    // MARK: - Public
-    func createProfile() {
+    func signIn() {
         toCreateProfile = true
-    }
-    
-    func loginViaFacebook() {
-        login()
-    }
-    
-    func loginViaGoogle() {
-        login()
     }
 }

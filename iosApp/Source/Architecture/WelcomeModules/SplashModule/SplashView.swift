@@ -34,6 +34,16 @@ struct SplashView: View {
             interactor?.detectNavigation()
         }
     }
+    
+    func constructMainView() -> some View {
+        let presenter = SplashPresenter()
+        let interactor = SplashInteractor()
+        let view = Self(interactor: interactor)
+        interactor.presenter = presenter
+        presenter.view = view
+        
+        return view
+    }
 }
 
 // MARK: - SplashViewProtocol
@@ -44,7 +54,7 @@ extension SplashView: SplashViewProtocol {
     }
     
     func moveToWelcomePage() {
-        let view = WelcomeView()
+        let view = ModelViewBuilder.constructWelcomeView()
         setRootView(view)
     }
     

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CreateProfileView: View {
     // MARK: - Properties
+//    @Binding var path: NavigationPath
     @StateObject var presenter = CreateProfilePresenter()
     
     // MARK: - Lifecycle

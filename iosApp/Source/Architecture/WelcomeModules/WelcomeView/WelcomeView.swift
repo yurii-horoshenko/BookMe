@@ -10,7 +10,8 @@ import SwiftUI
 
 struct WelcomeView: View {
     // MARK: - Properties
-    @StateObject var presenter = WelcomePresenter()
+    var interactor: WelcomeInteractorProtocol?
+    @StateObject var presenter: WelcomePresenter
     
     // MARK: - Lifecycle
     var body: some View {
@@ -53,18 +54,14 @@ struct WelcomeView: View {
                 state: .constant(.active),
                 imageName: "ic-facebook",
                 title: WELCOME.facebookButton.text,
-                action: { presenter.loginViaFacebook() }
+                action: { interactor?.loginViaFacebook() }
             )
             
             AppBorderButton(
                 state: .constant(.active),
                 imageName: "ic-google",
                 title: WELCOME.googleButton.text,
-                action: { 
-                    presenter.loginViaGoogle()                    
-                    let view = DashboardContainerView()
-                    setRootView(view)
-                }
+                action: { interactor?.loginViaGoogle() }
             )
             
             ORView
@@ -74,7 +71,7 @@ struct WelcomeView: View {
                 title: WELCOME.signInButton.text,
                 titleColor: Color.white,
                 backgroundColor: Color.primary500,
-                action: { presenter.createProfile() }
+                action: { interactor?.signIn() }
             )
         })
         .padding(.horizontal, 6.0)
@@ -98,5 +95,5 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView()
+    WelcomeView(presenter: WelcomePresenter())
 }

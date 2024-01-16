@@ -67,6 +67,7 @@ struct TutorialDescriptionModuleView: View {
             )
             .padding(.horizontal, 6.0)
         }
+        .navigationBarBackButtonHidden(true)
         .padding(24.0)
     }
 }
@@ -79,11 +80,12 @@ extension TutorialDescriptionModuleView: TutorialDescriptionModuleViewProtocol {
             return
         }
         
+        UserDefaultsManager.wasTutorial = true
         moveToWelcomePage()
     }
     
     func moveToWelcomePage() {
-        let view = WelcomeView()
+        let view = ModelViewBuilder.constructWelcomeView()
         setRootView(view)
     }
 }
