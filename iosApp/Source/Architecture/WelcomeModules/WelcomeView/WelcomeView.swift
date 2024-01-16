@@ -31,7 +31,6 @@ struct WelcomeView: View {
             Spacer()
             
             Images.Welcome
-                .padding(EdgeInsets(top: 40.0, leading: 90.0, bottom: 0.0, trailing: 90.0))
             
             Spacer()
             
@@ -43,6 +42,7 @@ struct WelcomeView: View {
             
             ButtonsView
         }
+        .padding(24.0)
         .background(Color.background)
     }
     
@@ -77,7 +77,7 @@ struct WelcomeView: View {
                 action: { presenter.createProfile() }
             )
         })
-        .padding(24.0)
+        .padding(.horizontal, 6.0)
     }
     
     // OR label

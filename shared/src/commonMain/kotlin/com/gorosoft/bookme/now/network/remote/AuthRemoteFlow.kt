@@ -8,7 +8,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.*
 import io.ktor.client.statement.HttpResponse
 
-final class AuthRemoteFlow(private val client: HttpClient) {
+class AuthRemoteFlow(private val client: HttpClient) {
     val token = ""
 
     // GET: base_url/auth/code

@@ -125,6 +125,21 @@ enum Images {
         Image("img-welcome")
             .resizable()
             .scaledToFit()
+            .padding(.horizontal, 16.0)
+    }
+    
+    static var TutorialPage1: some View {
+        Image("img-tutorial-1")
+            .resizable()
+            .scaledToFit()
+            .padding(.horizontal, 16.0)
+    }
+    
+    static var TutorialPage2: some View {
+        Image("img-tutorial-2")
+            .resizable()
+            .scaledToFit()
+            .padding(.horizontal, 16.0)
     }
     
     static var Logo: some View {
@@ -137,5 +152,12 @@ enum Images {
         Image("img-mask")
             .resizable()
             .frame(width: 80, height: 80)
+    }
+}
+
+enum Backgrounds {
+    static var Tutorial: some View {
+        Image("bg-welcome")
+            .resizable()
     }
 }

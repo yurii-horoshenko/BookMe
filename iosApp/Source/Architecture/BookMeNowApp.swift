@@ -12,7 +12,17 @@ import SwiftUI
 struct BookMeNowApp: App {
     var body: some Scene {
         WindowGroup {
-            SplashView()
+            constructMainView()
         }
+    }
+    
+    func constructMainView() -> some View {
+        let presenter = SplashPresenter()
+        let interactor = SplashInteractor()
+        let view = SplashView(interactor: interactor)
+        interactor.presenter = presenter
+        presenter.view = view
+        
+        return view
     }
 }
