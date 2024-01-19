@@ -8,7 +8,7 @@ import io.ktor.client.request.bearerAuth
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 
-class UserRepository() {
+class UserRepository {
     private val client: HttpClient = KtorManager().client
 
     // GET:  base_url/user/login

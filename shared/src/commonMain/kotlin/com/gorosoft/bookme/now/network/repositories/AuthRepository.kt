@@ -1,14 +1,19 @@
-package com.gorosoft.bookme.now.network.remote
+package com.gorosoft.bookme.now.network.repositories
 
 import com.gorosoft.bookme.now.entities.requests.CodeRequest
 import com.gorosoft.bookme.now.entities.requests.ProfileRequest
 import com.gorosoft.bookme.now.entities.responses.SuccessResponse
+import com.gorosoft.bookme.now.network.KtorManager
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.request.*
+import io.ktor.client.request.bearerAuth
+import io.ktor.client.request.get
+import io.ktor.client.request.parameter
+import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
 
-class AuthRemoteFlow(private val client: HttpClient) {
+class AuthRepository {
+    private val client: HttpClient = KtorManager().client
     val token = ""
 
     // GET: base_url/auth/code

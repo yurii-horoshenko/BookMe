@@ -24,7 +24,10 @@ final class WelcomeViewModel: ObservableObject {
         // FacebookSDK
         // RepositoryLogin
         
-        // repository.login()
+        repository.login { result, error in
+            printLog("")
+        }
+        
         toLogin = true
     }
     

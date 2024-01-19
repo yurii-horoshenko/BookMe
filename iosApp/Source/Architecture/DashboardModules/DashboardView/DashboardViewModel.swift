@@ -10,7 +10,7 @@ import SwiftUI
 
 final class DashboardViewModel: ObservableObject {
     // MARK: - Properties
-    private let repository = shared.UserRepository()
+    private let repository = shared.PlaceRepository()
     @Published var searchData = FieldData(placeholder: "Search")
     @Published var toServiceDetail = false
     var restaurants = [
@@ -30,6 +30,13 @@ final class DashboardViewModel: ObservableObject {
     }
     
     func getPlaces() {
-        
+        repository.getPlaces(
+            type: PLACETYPE.barber,
+            location: shared.Location(longitude: 30.5833821, latitude: 50.465645),
+            radius: 17
+        ) { result, error in
+            //            presenter.displayPlaces(listOf(it.data?.nextPageToken.orEmpty()))
+            printLog("")
+        }
     }
 }
