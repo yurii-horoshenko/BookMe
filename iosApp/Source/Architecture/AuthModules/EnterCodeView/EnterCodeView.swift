@@ -17,7 +17,7 @@ struct EnterCodeView: View {
         NavigationView {
             BaseView(navigationTitle: ENTER_CODE.pageTitle.text, content: { ContentView })
                 .navigationDestination(isPresented: $viewModel.toDashboard) {
-                    ModelViewBuilder.constructDashboardView()
+                    DashboardPageBuilder.constructDashboardView()
                 }
         }
         .navigationBarBackButtonHidden(true)
@@ -69,7 +69,7 @@ struct EnterCodeView: View {
 }
 
 #Preview {
-    ModelViewBuilder.constructEnterCodeView(
+    AuthPageBuilder.constructEnterCodeView(
         phoneMask: "+380 99 111 22 33".phoneMask
     )
 }

@@ -18,7 +18,7 @@ struct LoginView: View {
             BaseView(navigationTitle: LOGIN.pageTitle.text, content: { ContentView })
             .navigationDestination(isPresented: $viewModel.toCode) {
                 let phone = viewModel.phone.value.phoneMask
-                ModelViewBuilder.constructEnterCodeView(phoneMask: phone)
+                AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -51,5 +51,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    ModelViewBuilder.constructLoginView()
+    ProfilePageBuilder.constructLoginView()
 }

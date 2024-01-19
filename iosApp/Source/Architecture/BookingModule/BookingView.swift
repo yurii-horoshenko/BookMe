@@ -9,15 +9,13 @@ import SwiftUI
 
 struct BookingView: View {
     // MARK: - Properties
-    @StateObject var presenter = BookingPresenter()
+    @StateObject var viewModel: BookingViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationStack {
             ScrollView {
-                BaseView(
-                    navigationTitle: "Book Appointment"
-                ) { ContentView }
+                BaseView(navigationTitle: "Book Appointment") { ContentView }
                 //        .navigationDestination(isPresented: $presenter.toCodeVerification) {
                 //            EnterCodeView(phone: presenter.phone.value.phoneMask)
                 //        }
@@ -30,7 +28,7 @@ struct BookingView: View {
     
     var ContentView: some View {
         VStack(alignment: .leading, spacing: 16.0) {
-            CalendarView(date: $presenter.date)
+            CalendarView(date: $viewModel.date)
             SelectHoursView()
             Spacer()
             Divider()
@@ -57,5 +55,5 @@ struct BookingView: View {
 }
 
 #Preview {
-    BookingView()
+    DashboardPageBuilder.constructBookingView()
 }

@@ -10,8 +10,7 @@ import SwiftUI
 
 struct DashboardView: View {
     // MARK: - Properties
-    let interactor: shared.DashboardInteractor?
-    @StateObject var presenter: DashboardPresenter
+    @StateObject var viewModel: DashboardViewModel
     
     // MARK: - Lifecycle
     var body: some View {
@@ -22,15 +21,15 @@ struct DashboardView: View {
                     trailingView: TrailingView.eraseToAnyView(),
                     content: { ContentView }
                 )
-                .navigationDestination(isPresented: $presenter.toServiceDetail) {
-                    ServiceDetailView()
+                .navigationDestination(isPresented: $viewModel.toServiceDetail) {
+                    DashboardPageBuilder.constructServiceView()
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
         .onAppear {
-            interactor?.getPlaces()
+            viewModel.getPlaces()
         }
     }
     
@@ -38,7 +37,7 @@ struct DashboardView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24.0) {
                 AppInputField(
-                    fieldData: $presenter.searchData,
+                    fieldData: $viewModel.searchData,
                     leadingView: Icons.Search.eraseToAnyView(),
                     trailingView: Icons.Filter.foregroundColor(Color.primary500).eraseToAnyView()
                 )
@@ -46,7 +45,7 @@ struct DashboardView: View {
                 
                 Text("Your Next Visit")
                     .font(Font.H4Bold)
-
+                
                 NextVisitView()
                     .shadow(radius: 16.0)
                 
@@ -54,10 +53,10 @@ struct DashboardView: View {
                     .font(Font.H4Bold)
                     .foregroundColor(Color.greyscale900)
                 
-                ForEach(presenter.restaurants) { _ in
+                ForEach(viewModel.restaurants) { _ in
                     VisitItemRow()
                         .onTapGesture {
-                            presenter.toServiceDetail = true
+                            viewModel.toServiceDetail = true
                         }
                 }
                 .shadow(color: Color.greyscale400, radius: 1.0)
@@ -87,5 +86,5 @@ struct DashboardView: View {
 }
 
 #Preview {
-    DashboardView(interactor: nil, presenter: DashboardPresenter())
+    DashboardPageBuilder.constructDashboardView()
 }

@@ -45,7 +45,7 @@ extension SplashView: SplashViewProtocol {
     }
     
     func moveToWelcomePage() {
-        let view = ModelViewBuilder.constructWelcomeView()
+        let view = AuthPageBuilder.constructWelcomeView()
         setRootView(view)
     }
     
@@ -56,5 +56,5 @@ extension SplashView: SplashViewProtocol {
 }
 
 #Preview {
-    ModelViewBuilder.constructSplashView()
+    AuthPageBuilder.constructSplashView()
 }

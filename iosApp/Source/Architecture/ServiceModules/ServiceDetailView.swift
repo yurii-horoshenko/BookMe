@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ServiceDetailView: View {
     // MARK: - Properties
-    @StateObject var presenter = ServiceDetailPresenter()
+    @StateObject var viewModel: ServiceDetailViewModel
     
     // MARK: - Lifecycle
     var body: some View {
@@ -27,8 +27,8 @@ struct ServiceDetailView: View {
                 }
             }
             .edgesIgnoringSafeArea(.top)
-            .navigationDestination(isPresented: $presenter.toBooking) {
-                BookingView()
+            .navigationDestination(isPresented: $viewModel.toBooking) {
+                DashboardPageBuilder.constructBookingView()
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -93,12 +93,12 @@ struct ServiceDetailView: View {
             title: "Book Now",
             titleColor: Color.white,
             backgroundColor: Color.primary500,
-            action: { presenter.toBooking = true }
+            action: { viewModel.toBooking = true }
         )
     }
     
 }
 
 #Preview {
-    ServiceDetailView()
+    DashboardPageBuilder.constructServiceView()
 }

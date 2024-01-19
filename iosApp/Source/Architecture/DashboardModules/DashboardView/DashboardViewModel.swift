@@ -1,15 +1,16 @@
 //
-//  DashboardPresenter.swift
-//  BookMeNow-Develop
+//  DashboardViewModel.swift
+//  iosApp
 //
-//  Created by Yurii Goroshenko on 16.08.2023.
+//  Created by Yurii Goroshenko on 19.01.2024.
 //
 
 import shared
 import SwiftUI
 
-final class DashboardPresenter: shared.DashboardPresenterContract, ObservableObject {
+final class DashboardViewModel: ObservableObject {
     // MARK: - Properties
+    private let repository = shared.UserRepository()
     @Published var searchData = FieldData(placeholder: "Search")
     @Published var toServiceDetail = false
     var restaurants = [
@@ -19,7 +20,16 @@ final class DashboardPresenter: shared.DashboardPresenterContract, ObservableObj
     ]
     
     // MARK: - Lifecycle
+    deinit {
+        printLog("deinit -> ", self)
+    }
+    
+    // MARK: - Lifecycle
     func displayPlaces(data: [String]) {
         restaurants = []
+    }
+    
+    func getPlaces() {
+        
     }
 }

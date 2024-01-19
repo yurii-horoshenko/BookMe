@@ -18,7 +18,7 @@ struct CreateProfileView: View {
             BaseView(navigationTitle: CREATE_PROFILE.pageTitle.text, content: { ContentView })
             .navigationDestination(isPresented: $viewModel.toCode) {
                 let phone = viewModel.phone.value.phoneMask
-                ModelViewBuilder.constructEnterCodeView(phoneMask: phone)
+                AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -81,5 +81,5 @@ struct CreateProfileView: View {
 }
 
 #Preview {
-    ModelViewBuilder.constructCreateProfileView()
+    ProfilePageBuilder.constructCreateProfileView()
 }

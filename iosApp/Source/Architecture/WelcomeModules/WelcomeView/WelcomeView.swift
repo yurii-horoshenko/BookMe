@@ -17,10 +17,10 @@ struct WelcomeView: View {
         NavigationStack {
             ContentView
                 .navigationDestination(isPresented: $viewModel.toLogin) {
-                    ModelViewBuilder.constructLoginView()
+                    ProfilePageBuilder.constructLoginView()
                 }
                 .navigationDestination(isPresented: $viewModel.toSignIn) {
-                    ModelViewBuilder.constructCreateProfileView()
+                    ProfilePageBuilder.constructCreateProfileView()
                 }
         }
         
@@ -95,5 +95,5 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    ModelViewBuilder.constructWelcomeView()
+    AuthPageBuilder.constructWelcomeView()
 }

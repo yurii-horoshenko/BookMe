@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ProfileView: View {
     // MARK: - Properties
-    @StateObject var presenter = ProfilePresenter()
+    @StateObject var viewModel: ProfileViewModel
     @State var detentHeight: CGFloat = 0
     
     // MARK: - Lifecycle
@@ -49,9 +49,9 @@ struct ProfileView: View {
             ProfileItemRow(title: "Logout", leftIcon: "ic-logout", rightIcon: "")
                 .foregroundColor(Color.error)
                 .onTapGesture {
-                    presenter.toLogoutView.toggle()
+                    viewModel.toLogout.toggle()
                 }
-                .sheet(isPresented: $presenter.toLogoutView) {
+                .sheet(isPresented: $viewModel.toLogout) {
                     LogoutView()
                         .padding(.vertical, 32.0)
                         .readHeight()
@@ -80,5 +80,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(presenter: ProfilePresenter())
+    ProfilePageBuilder.constructProfileView()
 }

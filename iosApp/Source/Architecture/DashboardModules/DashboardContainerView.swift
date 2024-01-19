@@ -9,11 +9,10 @@ import shared
 import SwiftUI
 
 struct DashboardContainerView: View {
-    let presenter = DashboardPresenter()
     
     var body: some View {
         TabView {
-            DashboardView(interactor: shared.DashboardInteractor(presenter: presenter), presenter: presenter)
+            DashboardPageBuilder.constructDashboardView()
                 .tabItem {
                     HStack {
                         TabIcons.Home
@@ -22,7 +21,7 @@ struct DashboardContainerView: View {
                 }
                 .toolbarBackground(.white, for: .tabBar)
             
-            NearByView()
+            DashboardPageBuilder.constructBookingView()
                 .tabItem {
                     HStack {
                         TabIcons.MapBold
@@ -31,7 +30,7 @@ struct DashboardContainerView: View {
                 }
                 .toolbarBackground(.white, for: .tabBar)
             
-            ProfileView()
+            ProfilePageBuilder.constructProfileView()
                 .tabItem {
                     HStack {
                         TabIcons.Profile

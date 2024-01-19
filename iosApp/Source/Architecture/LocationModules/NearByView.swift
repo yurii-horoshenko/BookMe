@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NearByView: View {
     // MARK: - Properties
-    @StateObject var presenter = NearByPresenter()
+    @StateObject var viewModel: NearByViewModel
     
     // MARK: - Lifecycle
     var body: some View {
@@ -20,7 +20,7 @@ struct NearByView: View {
             
             VStack {
                 AppInputField(
-                    fieldData: $presenter.searchData,
+                    fieldData: $viewModel.searchData,
                     leadingView: Icons.Search.eraseToAnyView(),
                     trailingView: Icons.Filter.foregroundColor(Color.primary500).eraseToAnyView()
                 )
@@ -36,5 +36,5 @@ struct NearByView: View {
 }
 
 #Preview {
-    NearByView()
+    DashboardPageBuilder.constructBookingView()
 }

@@ -85,7 +85,7 @@ extension TutorialDescriptionModuleView: TutorialDescriptionModuleViewProtocol {
     }
     
     func moveToWelcomePage() {
-        let view = ModelViewBuilder.constructWelcomeView()
+        let view = AuthPageBuilder.constructWelcomeView()
         setRootView(view)
     }
 }
