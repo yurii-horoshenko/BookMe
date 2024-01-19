@@ -1,26 +1,33 @@
 //
-//  EnterCodePresenter.swift
-//  BookMeNow-Develop
+//  EnterCodeViewModel.swift
+//  iosApp
 //
-//  Created by Yurii Goroshenko on 15.08.2023.
+//  Created by Yurii Goroshenko on 19.01.2024.
 //
 
+import shared
 import SwiftUI
 
-final class EnterCodePresenter: ObservableObject {
+final class EnterCodeViewModel: ObservableObject {
     // MARK: - Properties
+    private let repository = shared.UserRepository()
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @Published var isTimerRunning = false
     @Published var startTime = Date()
     @Published var timerString = "0.00"
     @Published var code = [FieldData(), FieldData(), FieldData(), FieldData()]
     @Published var toDashboard = false
-    
+    let phone: String
+
     // MARK: - Lifecycle
     deinit {
         printLog("deinit -> ", self)
     }
     
+    init(phone: String) {
+        self.phone = phone
+    }
+        
     // MARK: - Public
     func startTimer() {
         startTime = Date().addingTimeInterval(60)
@@ -35,7 +42,12 @@ final class EnterCodePresenter: ObservableObject {
                 isTimerRunning.toggle()
                 return
             }
+            
             timerString = String(format: "%2.0f", value)
         }
+    }
+    
+    func checkCode() {
+        toDashboard = true
     }
 }

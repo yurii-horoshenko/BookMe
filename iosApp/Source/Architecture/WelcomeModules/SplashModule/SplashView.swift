@@ -15,7 +15,7 @@ protocol SplashViewProtocol {
 
 struct SplashView: View {
     // MARK: - Properties
-    var interactor: SplashInteractorProtocol?
+    @StateObject var viewModel: SplashViewModel
     
     // MARK: - Lifecycle
     var body: some View {
@@ -31,19 +31,10 @@ struct SplashView: View {
         .ignoresSafeArea(.all)
         .background(Color.background)
         .onAppear {
-            interactor?.detectNavigation()
+            viewModel.detectNavigation()
         }
     }
     
-    func constructMainView() -> some View {
-        let presenter = SplashPresenter()
-        let interactor = SplashInteractor()
-        let view = Self(interactor: interactor)
-        interactor.presenter = presenter
-        presenter.view = view
-        
-        return view
-    }
 }
 
 // MARK: - SplashViewProtocol
@@ -65,5 +56,5 @@ extension SplashView: SplashViewProtocol {
 }
 
 #Preview {
-    SplashView()
+    ModelViewBuilder.constructSplashView()
 }

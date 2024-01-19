@@ -15,7 +15,9 @@ struct BookingView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                BaseView(navigationTitle: "Book Appointment") { ContentView }
+                BaseView(
+                    navigationTitle: "Book Appointment"
+                ) { ContentView }
                 //        .navigationDestination(isPresented: $presenter.toCodeVerification) {
                 //            EnterCodeView(phone: presenter.phone.value.phoneMask)
                 //        }

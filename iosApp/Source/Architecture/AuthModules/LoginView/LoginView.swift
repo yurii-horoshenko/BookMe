@@ -10,16 +10,16 @@ import SwiftUI
 
 struct LoginView: View {
     // MARK: - Properties
-//    @Binding var path: NavigationPath
-    @StateObject var presenter = CreateProfilePresenter()
+    @StateObject var viewModel: LoginViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: LOGIN.pageTitle.text, content: { ContentView })
-                .navigationDestination(isPresented: $presenter.toCodeVerification) {
-                    EnterCodeView(phone: presenter.phone.value.phoneMask)
-                }
+            .navigationDestination(isPresented: $viewModel.toCode) {
+                let phone = viewModel.phone.value.phoneMask
+                ModelViewBuilder.constructEnterCodeView(phoneMask: phone)
+            }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -28,8 +28,11 @@ struct LoginView: View {
     var ContentView: some View {
         VStack {
             Spacer()
-            AppPhoneNumber(fieldData: $presenter.phone)
+            
+            AppPhoneNumber(fieldData: $viewModel.phone)
+            
             Spacer()
+            
             BottomButton
         }
         .padding(defaultEdgeInsets)
@@ -42,11 +45,11 @@ struct LoginView: View {
             title: LOGIN.signInButton.text,
             titleColor: Color.white,
             backgroundColor: Color.primary500,
-            action: { presenter.codeVerification() }
+            action: { viewModel.codeVerification() }
         )
     }
 }
 
 #Preview {
-    LoginView()
+    ModelViewBuilder.constructLoginView()
 }

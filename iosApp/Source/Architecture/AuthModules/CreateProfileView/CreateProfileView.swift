@@ -10,16 +10,16 @@ import SwiftUI
 
 struct CreateProfileView: View {
     // MARK: - Properties
-//    @Binding var path: NavigationPath
-    @StateObject var presenter = CreateProfilePresenter()
+    @StateObject var viewModel: CreateProfileViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: CREATE_PROFILE.pageTitle.text, content: { ContentView })
-                .navigationDestination(isPresented: $presenter.toCodeVerification) {
-                    EnterCodeView(phone: presenter.phone.value.phoneMask)
-                }
+            .navigationDestination(isPresented: $viewModel.toCode) {
+                let phone = viewModel.phone.value.phoneMask
+                ModelViewBuilder.constructEnterCodeView(phoneMask: phone)
+            }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -28,32 +28,36 @@ struct CreateProfileView: View {
     // Profile input fields, button
     var ContentView: some View {
         VStack(spacing: 24.0) {
-            AppInputField(fieldData: $presenter.fullname)
+            AppInputField(fieldData: $viewModel.fullname)
                 .padding(.top, 24.0)
             
             BirthDayInputView(
-                dateBirthday: $presenter.dateBirthday
+                dateBirthday: $viewModel.dateBirthday
             )
             
-            AppPhoneNumber(fieldData: $presenter.phone)
+            AppPhoneNumber(fieldData: $viewModel.phone)
             
-            AppInputField(fieldData: $presenter.gender, trailingView: Icons.ArrowDown.eraseToAnyView()) {
-                presenter.genderSelection()
+            AppInputField(fieldData: $viewModel.gender, trailingView: Icons.ArrowDown.eraseToAnyView()) {
+                viewModel.genderSelection()
             }
-            .confirmationDialog(CREATE_PROFILE.genderTitle.text, isPresented: $presenter.toGenderSelection, titleVisibility: .visible) {
+            .confirmationDialog(
+                CREATE_PROFILE.genderTitle.text,
+                isPresented: $viewModel.toGenderSelection,
+                titleVisibility: .visible
+            ) {
                 Button(GENDER.male.text) {
-                    presenter.gender.value = GENDER.male.text
-                    presenter.gender.state = .active
+                    viewModel.gender.value = GENDER.male.text
+                    viewModel.gender.state = .active
                 }
                 
                 Button(GENDER.female.text) {
-                    presenter.gender.value = GENDER.female.text
-                    presenter.gender.state = .active
+                    viewModel.gender.value = GENDER.female.text
+                    viewModel.gender.state = .active
                 }
                 
                 Button(GENDER.other.text) {
-                    presenter.gender.value = GENDER.other.text
-                    presenter.gender.state = .active
+                    viewModel.gender.value = GENDER.other.text
+                    viewModel.gender.state = .active
                 }
             }
             
@@ -71,11 +75,11 @@ struct CreateProfileView: View {
             title: GENERAL.continue_.text,
             titleColor: Color.white,
             backgroundColor: Color.primary500,
-            action: { presenter.codeVerification() }
+            action: { viewModel.codeVerification() }
         )
     }
 }
 
 #Preview {
-    CreateProfileView()
+    ModelViewBuilder.constructCreateProfileView()
 }

@@ -10,20 +10,20 @@ import SwiftUI
 
 struct WelcomeView: View {
     // MARK: - Properties
-    var interactor: WelcomeInteractorProtocol?
-    @StateObject var presenter: WelcomePresenter
+    @StateObject var viewModel: WelcomeViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationStack {
             ContentView
-                .navigationDestination(isPresented: $presenter.toLogin) {
-                    LoginView()
+                .navigationDestination(isPresented: $viewModel.toLogin) {
+                    ModelViewBuilder.constructLoginView()
                 }
-                .navigationDestination(isPresented: $presenter.toCreateProfile) {
-                    CreateProfileView()
+                .navigationDestination(isPresented: $viewModel.toSignIn) {
+                    ModelViewBuilder.constructCreateProfileView()
                 }
         }
+        
     }
     
     // Image, title, buttons
@@ -54,14 +54,14 @@ struct WelcomeView: View {
                 state: .constant(.active),
                 imageName: "ic-facebook",
                 title: WELCOME.facebookButton.text,
-                action: { interactor?.loginViaFacebook() }
+                action: { viewModel.loginViaFacebook() }
             )
             
             AppBorderButton(
                 state: .constant(.active),
                 imageName: "ic-google",
                 title: WELCOME.googleButton.text,
-                action: { interactor?.loginViaGoogle() }
+                action: { viewModel.loginViaGoogle() }
             )
             
             ORView
@@ -71,7 +71,7 @@ struct WelcomeView: View {
                 title: WELCOME.signInButton.text,
                 titleColor: Color.white,
                 backgroundColor: Color.primary500,
-                action: { interactor?.signIn() }
+                action: { viewModel.signIn() }
             )
         })
         .padding(.horizontal, 6.0)
@@ -95,5 +95,5 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView(presenter: WelcomePresenter())
+    ModelViewBuilder.constructWelcomeView()
 }

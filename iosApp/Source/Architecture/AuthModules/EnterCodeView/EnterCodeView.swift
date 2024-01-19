@@ -10,43 +10,40 @@ import SwiftUI
 
 struct EnterCodeView: View {
     // MARK: - Properties
-    @StateObject var presenter = EnterCodePresenter()
-    let phone: String
+    @StateObject var viewModel: EnterCodeViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: ENTER_CODE.pageTitle.text, content: { ContentView })
+                .navigationDestination(isPresented: $viewModel.toDashboard) {
+                    ModelViewBuilder.constructDashboardView()
+                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
         .onAppear {
-            presenter.startTimer()
+            viewModel.startTimer()
         }
     }
     
     // Title, input fields code, timer label
     var ContentView: some View {
         VStack(spacing: 60.0) {
-            Text(ENTER_CODE.info.text + phone)
+            Text(ENTER_CODE.info.text + viewModel.phone)
                 .font(Font.BodyXLargeMedium)
                 .foregroundColor(Color.greyscale900)
             
-            VerificationCodeView(array: $presenter.code, currentState: presenter.code.first ?? FieldData())
+            VerificationCodeView(array: $viewModel.code, currentState: viewModel.code.first ?? FieldData())
                 .padding(.horizontal, 24.0)
-                .onChange(of: presenter.code) { newValue in
+                .onChange(of: viewModel.code) { newValue in
                     let code = newValue.compactMap({ $0.value }).joined()
                     guard code.count == 4 else { return }
-                    
-//                    // Dashboard
-//                    let presenter = DashboardPresenter()
-//                    let interactor = DashboardInteractor(presenter: presenter)
-//                    let view = DashboardView(interactor: interactor, presenter: presenter)
-//                    setRootView(view)
+                    viewModel.checkCode()
                 }
             
             TimerLabel
-                .isHidden(!presenter.isTimerRunning)
+                .isHidden(!viewModel.isTimerRunning)
         }
     }
     
@@ -57,11 +54,11 @@ struct EnterCodeView: View {
                 .font(Font.BodyXLargeMedium)
                 .foregroundColor(Color.greyscale900)
             
-            Text(presenter.timerString)
+            Text(viewModel.timerString)
                 .font(Font.BodyXLargeBold)
                 .foregroundColor(Color.primary500)
-                .onReceive(presenter.timer) { _ in
-                    presenter.onReceveTimer()
+                .onReceive(viewModel.timer) { _ in
+                    viewModel.onReceveTimer()
                 }
             
             Text(" s")
@@ -72,7 +69,7 @@ struct EnterCodeView: View {
 }
 
 #Preview {
-    EnterCodeView(
-        phone: "+380 99 408 10 85".phoneMask
+    ModelViewBuilder.constructEnterCodeView(
+        phoneMask: "+380 99 111 22 33".phoneMask
     )
 }

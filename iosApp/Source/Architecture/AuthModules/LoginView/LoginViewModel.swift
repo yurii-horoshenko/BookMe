@@ -1,25 +1,26 @@
 //
-//  LoginPresenter.swift
-//  BookMeNow-Develop
+//  LoginViewModel.swift
+//  iosApp
 //
-//  Created by Yurii Goroshenko on 15.08.2023.
+//  Created by Yurii Goroshenko on 19.01.2024.
 //
 
+import shared
 import SwiftUI
 
-final class LoginPresenter: ObservableObject {
+final class LoginViewModel: ObservableObject {
     // MARK: - Properties
-    @Published var phoneValue = ""
+    private let repository = shared.UserRepository()
     @Published var phone = FieldData(placeholder: "Phone Number")
-    @Published var toCodeVerification = false
+    @Published var toCode = false
     
     // MARK: - Lifecycle
     deinit {
         printLog("deinit -> ", self)
     }
-    
+
     // MARK: - Public
     func codeVerification() {
-        toCodeVerification = true
+        toCode = true
     }
 }
