@@ -75,9 +75,15 @@ struct ServiceDetailView: View {
     }
     
     var DetailView: some View {
-        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Read more...")
-            .font(Font.BodyMediumRegular)
-            .foregroundColor(Color.greyscale800)
+        Text(
+            """
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ull amco laboris nisi ut aliquip. Read more...
+            """
+        )
+        .font(Font.BodyMediumRegular)
+        .foregroundColor(Color.greyscale800)
     }
     
     // Button Book Now
