@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LogoutView: View {
+    @Binding var toLogoutConfirm: Bool
+    var view: ProfileViewProtocol?
     
     // MARK: - Lifecycle
     var body: some View {
@@ -31,7 +33,7 @@ struct LogoutView: View {
                     title: "Cancel",
                     titleColor: Color.primary500,
                     backgroundColor: Color.primary100,
-                    action: { }
+                    action: { toLogoutConfirm = false }
                 )
                 
                 AppFilledButton(
@@ -39,7 +41,10 @@ struct LogoutView: View {
                     title: "Yes, Logout",
                     titleColor: Color.white,
                     backgroundColor: Color.primary500,
-                    action: { }
+                    action: {
+                        toLogoutConfirm = false
+                        view?.logout()
+                    }
                 )
             }
             .padding(.horizontal, 16.0)
@@ -48,5 +53,7 @@ struct LogoutView: View {
 }
 
 #Preview {
-    LogoutView()
+    LogoutView(
+        toLogoutConfirm: .constant(false)
+    )
 }

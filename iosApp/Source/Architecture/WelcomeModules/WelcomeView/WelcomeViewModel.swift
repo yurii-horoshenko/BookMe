@@ -18,27 +18,28 @@ final class WelcomeViewModel: ObservableObject {
     deinit {
         printLog("deinit -> ", self)
     }
-
+    
     // MARK: - Public
     func loginViaFacebook() {
         // FacebookSDK
         // RepositoryLogin
         
-        repository.login { result, error in
+        repository.login { _, _ in
             printLog("")
         }
         
-        toLogin = true
+        toSignIn = true
     }
     
     func loginViaGoogle() {
         // GoogleSDK
         // RepositoryLogin
         
-        toLogin = true
+        toSignIn = true
+        
     }
     
     func signIn() {
-        toSignIn = true
+        toLogin = true
     }
 }

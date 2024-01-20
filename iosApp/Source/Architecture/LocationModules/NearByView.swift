@@ -14,7 +14,6 @@ struct NearByView: View {
     // MARK: - Lifecycle
     var body: some View {
         ZStack {
-            
             LocationView(useTitle: false, useLocation: false)
                 .edgesIgnoringSafeArea(.top)
             
@@ -30,7 +29,7 @@ struct NearByView: View {
                 
                 Spacer()
             }
-
+            
         }
     }
 }

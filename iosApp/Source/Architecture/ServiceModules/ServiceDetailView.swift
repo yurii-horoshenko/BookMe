@@ -13,26 +13,24 @@ struct ServiceDetailView: View {
     
     // MARK: - Lifecycle
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Image("img-detail-mask")
-                        .edgesIgnoringSafeArea(.top)
-                    
-                    BaseView(
-                        navigationTitle: "",
-                        iconColor: Color.primary500,
-                        content: { ContentView }
-                    )
-                }
-            }
-            .edgesIgnoringSafeArea(.top)
-            .navigationDestination(isPresented: $viewModel.toBooking) {
-                DashboardPageBuilder.constructBookingView()
+        ScrollView {
+            VStack(alignment: .leading) {
+                Image("img-detail-mask")
+                    .edgesIgnoringSafeArea(.top)
+                
+                BaseView(
+                    navigationTitle: "",
+                    iconColor: Color.primary500,
+                    content: { ContentView }
+                )
             }
         }
+        .edgesIgnoringSafeArea(.top)
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
+        .navigationDestination(isPresented: $viewModel.toBooking) {
+            DashboardPageBuilder.constructBookingView()
+        }
     }
     
     var ContentView: some View {

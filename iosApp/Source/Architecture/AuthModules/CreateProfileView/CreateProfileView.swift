@@ -16,10 +16,10 @@ struct CreateProfileView: View {
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: CREATE_PROFILE.pageTitle.text, content: { ContentView })
-            .navigationDestination(isPresented: $viewModel.toCode) {
-                let phone = viewModel.phone.value.phoneMask
-                AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
-            }
+                .navigationDestination(isPresented: $viewModel.toCode) {
+                    let phone = viewModel.phone.value.phoneMask
+                    AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
+                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)

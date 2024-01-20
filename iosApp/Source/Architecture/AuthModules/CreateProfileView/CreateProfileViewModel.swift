@@ -23,12 +23,12 @@ final class CreateProfileViewModel: ObservableObject {
     deinit {
         printLog("deinit -> ", self)
     }
-
+    
     // MARK: - Public
     func codeVerification() {
         toCode = true
     }
-        
+    
     func genderSelection() {
         toGenderSelection = true
     }

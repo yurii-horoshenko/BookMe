@@ -11,10 +11,15 @@ import SwiftUI
 final class ProfileViewModel: ObservableObject {
     // MARK: - Properties
     private let repository = shared.UserRepository()
-    @Published var toLogout = false
+    @Published var toLogoutConfirm = false
+    var view: ProfileViewProtocol?
     
     // MARK: - Lifecycle
     deinit {
         printLog("deinit -> ", self)
+    }
+    
+    func logout() {
+        view?.logout()
     }
 }

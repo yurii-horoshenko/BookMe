@@ -21,7 +21,7 @@ struct DashboardContainerView: View {
                 }
                 .toolbarBackground(.white, for: .tabBar)
             
-            DashboardPageBuilder.constructBookingView()
+            DashboardPageBuilder.constructNearByView()
                 .tabItem {
                     HStack {
                         TabIcons.MapBold

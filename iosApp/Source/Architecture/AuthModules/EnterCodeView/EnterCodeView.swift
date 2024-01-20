@@ -8,6 +8,10 @@
 import shared
 import SwiftUI
 
+protocol EnterCodeViewProtocol {
+    func moveToDashboardPage()
+}
+
 struct EnterCodeView: View {
     // MARK: - Properties
     @StateObject var viewModel: EnterCodeViewModel
@@ -16,9 +20,6 @@ struct EnterCodeView: View {
     var body: some View {
         NavigationView {
             BaseView(navigationTitle: ENTER_CODE.pageTitle.text, content: { ContentView })
-                .navigationDestination(isPresented: $viewModel.toDashboard) {
-                    DashboardPageBuilder.constructDashboardView()
-                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -65,6 +66,14 @@ struct EnterCodeView: View {
                 .font(Font.BodyXLargeMedium)
                 .foregroundColor(Color.greyscale900)
         }
+    }
+}
+
+// MARK: - EnterCodeViewProtocol
+extension EnterCodeView: EnterCodeViewProtocol {
+    func moveToDashboardPage() {
+        let view = DashboardContainerView()
+        setRootView(view)
     }
 }
 

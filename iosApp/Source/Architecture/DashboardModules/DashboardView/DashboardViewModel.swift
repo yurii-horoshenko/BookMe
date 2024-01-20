@@ -34,7 +34,7 @@ final class DashboardViewModel: ObservableObject {
             type: PLACETYPE.barber,
             location: shared.Location(longitude: 30.5833821, latitude: 50.465645),
             radius: 17
-        ) { result, error in
+        ) { _, _ in
             //            presenter.displayPlaces(listOf(it.data?.nextPageToken.orEmpty()))
             printLog("")
         }

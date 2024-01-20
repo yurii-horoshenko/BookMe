@@ -8,6 +8,10 @@
 import shared
 import SwiftUI
 
+protocol ProfileViewProtocol {
+    func logout()
+}
+
 struct ProfileView: View {
     // MARK: - Properties
     @StateObject var viewModel: ProfileViewModel
@@ -16,21 +20,10 @@ struct ProfileView: View {
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            NavigationStack {
-                BaseView(
-                    leadingView: LeadingView.eraseToAnyView(),
-                    content: { ContentView }
-                )
-                //                .navigationDestination(isPresented: $presenter.toServiceDetail) {
-                //                    ServiceDetailView()
-                //                }
-            }
+            BaseView(leadingView: LeadingView.eraseToAnyView(), content: { ContentView })
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
-        .onAppear {
-            //            interactor?.getPlaces()
-        }
     }
     
     var ContentView: some View {
@@ -49,19 +42,22 @@ struct ProfileView: View {
             ProfileItemRow(title: "Logout", leftIcon: "ic-logout", rightIcon: "")
                 .foregroundColor(Color.error)
                 .onTapGesture {
-                    viewModel.toLogout.toggle()
+                    viewModel.toLogoutConfirm.toggle()
                 }
-                .sheet(isPresented: $viewModel.toLogout) {
-                    LogoutView()
-                        .padding(.vertical, 32.0)
-                        .readHeight()
-                        .onPreferenceChange(HeightPreferenceKey.self) { height in
-                            if let height {
-                                detentHeight = height
-                            }
+                .sheet(isPresented: $viewModel.toLogoutConfirm) {
+                    LogoutView(
+                        toLogoutConfirm: $viewModel.toLogoutConfirm,
+                        view: self
+                    )
+                    .padding(.vertical, 32.0)
+                    .readHeight()
+                    .onPreferenceChange(HeightPreferenceKey.self) { height in
+                        if let height {
+                            detentHeight = height
                         }
-                        .presentationDetents([.height(detentHeight)])
-                        .presentationDragIndicator(.visible)
+                    }
+                    .presentationDetents([.height(detentHeight)])
+                    .presentationDragIndicator(.visible)
                 }
         }
         .foregroundColor(Color.greyscale900)
@@ -76,6 +72,14 @@ struct ProfileView: View {
                 .font(Font.H4Bold)
                 .foregroundColor(Color.greyscale900)
         }
+    }
+}
+
+// MARK: - ProfileViewProtocol
+extension ProfileView: ProfileViewProtocol {
+    func logout() {
+        let view = AuthPageBuilder.constructWelcomeView()
+        setRootView(view)
     }
 }
 

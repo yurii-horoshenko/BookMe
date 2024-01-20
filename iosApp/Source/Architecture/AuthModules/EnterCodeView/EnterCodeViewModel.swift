@@ -11,14 +11,14 @@ import SwiftUI
 final class EnterCodeViewModel: ObservableObject {
     // MARK: - Properties
     private let repository = shared.UserRepository()
-    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @Published var isTimerRunning = false
     @Published var startTime = Date()
     @Published var timerString = "0.00"
     @Published var code = [FieldData(), FieldData(), FieldData(), FieldData()]
-    @Published var toDashboard = false
+    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     let phone: String
-
+    var view: EnterCodeViewProtocol?
+    
     // MARK: - Lifecycle
     deinit {
         printLog("deinit -> ", self)
@@ -27,7 +27,7 @@ final class EnterCodeViewModel: ObservableObject {
     init(phone: String) {
         self.phone = phone
     }
-        
+    
     // MARK: - Public
     func startTimer() {
         startTime = Date().addingTimeInterval(60)
@@ -48,6 +48,6 @@ final class EnterCodeViewModel: ObservableObject {
     }
     
     func checkCode() {
-        toDashboard = true
+        view?.moveToDashboardPage()
     }
 }

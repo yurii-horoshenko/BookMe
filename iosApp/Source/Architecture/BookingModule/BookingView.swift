@@ -13,13 +13,9 @@ struct BookingView: View {
     
     // MARK: - Lifecycle
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                BaseView(navigationTitle: "Book Appointment") { ContentView }
-                //        .navigationDestination(isPresented: $presenter.toCodeVerification) {
-                //            EnterCodeView(phone: presenter.phone.value.phoneMask)
-                //        }
-            }
+        
+        ScrollView {
+            BaseView(navigationTitle: "Book Appointment") { ContentView }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)

@@ -21,8 +21,8 @@ enum DashboardPageBuilder {
     }
     
     static func constructNearByView() -> some View {
-        let viewModel = BookingViewModel()
-        let view = BookingView(viewModel: viewModel)
+        let viewModel = NearByViewModel()
+        let view = NearByView(viewModel: viewModel)
         return view
     }
     

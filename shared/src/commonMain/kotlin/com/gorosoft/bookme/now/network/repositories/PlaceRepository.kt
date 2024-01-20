@@ -15,7 +15,6 @@ class PlaceRepository {
     val token = ""
 
     // GET: base_url/api/Place/Places
-    @Throws(Throwable::class)
     suspend fun getPlaces(type: PLACETYPE, location: Location, radius: Int): Result<DataResponse> {
         val result: HttpResponse = client.get("Place/Places") {
             // bearerAuth(token)
