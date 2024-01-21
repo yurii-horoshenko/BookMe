@@ -83,6 +83,7 @@ struct TutorialDescriptionModuleView: View {
             
             AppFilledButton(
                 state: .constant(.active),
+                autoWidth: true,
                 title: currectStep.buttonTitle,
                 titleColor: Color.white,
                 backgroundColor: Color.primary500,

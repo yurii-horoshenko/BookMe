@@ -18,6 +18,7 @@ struct AppButton: View {
     
     // MARK: - Properties
     @Binding var state: ButtonState
+    var autoWidth = false
     var imageName: String?
     var imageColor: Color?
     var title: String?
@@ -52,6 +53,7 @@ struct AppButton: View {
             .padding(16)
         }
         .frame(maxHeight: 60.0)
+        .frame(maxWidth: autoWidth ? .none : .infinity)
         .disabled(state == .disable)
         .opacity(state.opacity)
     }
@@ -61,6 +63,7 @@ struct AppButton: View {
 struct AppFilledButton: View {
     // MARK: - Properties
     @Binding var state: AppButton.ButtonState
+    var autoWidth = false
     var imageName: String?
     var imageColor: Color?
     var title: String?
@@ -72,6 +75,7 @@ struct AppFilledButton: View {
     var body: some View {
         AppButton(
             state: $state,
+            autoWidth: autoWidth,
             imageName: imageName,
             imageColor: imageColor,
             title: title,
@@ -88,6 +92,7 @@ struct AppFilledButton: View {
 struct AppBorderButton: View {
     // MARK: - Properties
     @Binding var state: AppButton.ButtonState
+    var autoWidth = false
     var imageName: String?
     var imageColor: Color?
     var title: String?
@@ -99,6 +104,7 @@ struct AppBorderButton: View {
     var body: some View {
         AppButton(
             state: $state,
+            autoWidth: autoWidth,
             imageName: imageName,
             imageColor: imageColor,
             title: title,
@@ -112,7 +118,8 @@ struct AppBorderButton: View {
 #Preview {
     VStack {
         AppBorderButton(
-            state: .constant(.active),
+            state: .constant(.active), 
+            autoWidth: false,
             imageName: "ic-google",
             title: "Text",
             action: {}
@@ -121,6 +128,7 @@ struct AppBorderButton: View {
         
         AppFilledButton(
             state: .constant(.active),
+            autoWidth: true,
             imageName: "ic-google",
             title: "Text",
             action: {}
