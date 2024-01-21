@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BookMe</string>
+    <string name="welcome">Welcome to 👋</string>
+    <string name="welcome_description">The best barber, salon and other\nservices in your app.</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="tutorial_text_1">Find Barbers, Salons, Doctors or Other Services Easily</string>
+    <string name="tutorial_text_2">Book Your Type of Services Quickly</string>
+</resources>
