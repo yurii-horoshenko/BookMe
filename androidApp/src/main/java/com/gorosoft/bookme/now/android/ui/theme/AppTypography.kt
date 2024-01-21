@@ -27,12 +27,27 @@ internal val fontFamily = FontFamily(
         weight = FontWeight.Normal,
         style = FontStyle.Normal,
     ),
+    Font(
+        resId = R.font.urbanist_black,
+        weight = FontWeight.Black,
+        style = FontStyle.Normal,
+    )
 )
 
 internal val typography = AppTypography(
-    heading = Heading(),
+    heading = HeadingTypography(),
+    bodyXLarge = BodyXLarge(),
+    bodyLarge = BodyLarge(),
+    bodyMedium = BodyMedium(),
+    bodySmall = BodySmall(),
+    bodyXSmall = BodyXSmall()
 )
 
 data class AppTypography(
-    val heading: Heading
+    val heading: HeadingTypography,
+    val bodyXLarge: BodyXLarge,
+    val bodyLarge: BodyLarge,
+    val bodyMedium: BodyMedium,
+    val bodySmall: BodySmall,
+    val bodyXSmall: BodyXSmall,
 )

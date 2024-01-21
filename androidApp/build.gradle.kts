@@ -49,5 +49,5 @@ dependencies {
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.material)
     implementation(libs.activity.compose)
-    implementation(libs.bundles.voager)
+    implementation(libs.navigation)
 }
