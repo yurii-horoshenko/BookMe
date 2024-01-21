@@ -37,8 +37,8 @@ struct EnterCodeView: View {
             
             VerificationCodeView(array: $viewModel.code, currentState: viewModel.code.first ?? FieldData())
                 .padding(.horizontal, 24.0)
-                .onChange(of: viewModel.code) { newValue in
-                    let code = newValue.compactMap({ $0.value }).joined()
+                .onChange(of: viewModel.code) {
+                    let code = viewModel.code.compactMap({ $0.value }).joined()
                     guard code.count == 4 else { return }
                     viewModel.checkCode()
                 }

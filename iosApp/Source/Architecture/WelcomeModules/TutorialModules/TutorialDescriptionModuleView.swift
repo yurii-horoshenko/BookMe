@@ -54,24 +54,7 @@ struct TutorialDescriptionModuleView: View {
         VStack(alignment: .center) {
             Spacer()
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 48.0) {
-                    ForEach(ImageAsset.all) { asset in
-                        Image(asset.name)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: UIScreen.screenWidth - 64.0)
-                    }
-                }
-            }
-            .scrollPosition(id: $scrollID)
-            .scrollDisabled(true)
-            .scrollTargetLayout()
-
-            Spacer()
-            
-            Text(currectStep.title)
-                .attributed(.H3Bold, color: Color.greyscale900)
+            MainContentView
             
             Spacer()
             
@@ -92,6 +75,28 @@ struct TutorialDescriptionModuleView: View {
         }
     }
     
+    var MainContentView: some View {
+        VStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 48.0) {
+                    ForEach(ImageAsset.all) { asset in
+                        Image(asset.name)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: UIScreen.screenWidth - 64.0)
+                    }
+                }
+            }
+            .scrollPosition(id: $scrollID)
+            .scrollDisabled(true)
+            .scrollTargetLayout()
+
+            Spacer()
+            
+            Text(currectStep.title)
+                .attributed(.H3Bold, color: Color.greyscale900)
+        }
+    }
 }
 
 // MARK: - TutorialDescriptionModuleViewProtocol

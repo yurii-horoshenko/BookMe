@@ -32,8 +32,8 @@ struct BirthDayInputView: View {
                     .presentationDetents([.height(360)])
             }
         }
-        .onChange(of: date) { newValue in
-            dateBirthday.value = newValue.toString
+        .onChange(of: date) {
+            dateBirthday.value = date.toString
             toCalendar = false
         }
     }

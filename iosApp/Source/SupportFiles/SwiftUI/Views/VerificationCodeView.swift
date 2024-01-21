@@ -38,20 +38,24 @@ struct VerificationCodeView: View {
         .onAppear {
             activeFieldIndex = 0
         }
-        .onChange(of: array) { _ in
+        .onChange(of: array) {
             guard let index = activeFieldIndex, index >= 0 else { return }
-            
+            let maxCount = array[index].value.count
+            let value = array[index].value
             let newIndex = index + 1
+            
             guard newIndex < array.count else { return }
-            activeFieldIndex = -1
             currentState = array[newIndex]
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                activeFieldIndex = newIndex
-            }
+            activeFieldIndex = newIndex
+            
+            if maxCount > 1 {
+                array[index].value = String(value.prefix(1))
+                array[newIndex].value = String(value.suffix(1))
+            } 
         }
-        .onChange(of: currentValue) { newValue in
+        .onChange(of: currentValue) {
             guard let index = activeFieldIndex, index >= 0 else { return }
-            let newValue = String(newValue.suffix(1))
+            let newValue = String(currentValue.suffix(1))
             array[index].value = newValue
             currentValue = newValue
         }
