@@ -50,7 +50,6 @@ struct AppButton: View {
                 }
             }
             .padding(16)
-            .frame(maxWidth: .infinity)
         }
         .frame(maxHeight: 60.0)
         .disabled(state == .disable)
@@ -81,6 +80,7 @@ struct AppFilledButton: View {
         )
         .background(backgroundColor)
         .cornerRadius(30.0)
+        .shadow(color: backgroundColor.opacity(0.75), radius: 6.0)
     }
 }
 

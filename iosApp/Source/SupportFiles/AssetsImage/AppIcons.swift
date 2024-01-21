@@ -161,3 +161,19 @@ enum Backgrounds {
             .resizable()
     }
 }
+
+struct ImageAsset: Identifiable {
+    var id: Int
+    var name: String
+    
+    static var all: [Self] {
+        [
+            .init(id: 0, name: "img-tutorial-1"),
+            .init(id: 1, name: "img-tutorial-2")
+        ]
+    }
+    
+    static func name(_ id: Int) -> String {
+        Self.all.first { $0.id == id }?.name ?? ""
+    }
+}

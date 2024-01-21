@@ -13,7 +13,7 @@ protocol TutorialDescriptionModuleViewProtocol {
 }
 
 struct TutorialDescriptionModuleView: View {
-    enum Step: Int {
+    enum Step: Hashable {
         case first
         case second
         
@@ -37,26 +37,49 @@ struct TutorialDescriptionModuleView: View {
     }
     
     // MARK: - Properties
-    @State var currectStep = Step.first
+    @State private var scrollID: Int? = 0
+    @State private var currectStep = Step.first
     
     // MARK: - Lifecycle
     var body: some View {
-        VStack(alignment: .leading) {
+        ContentView
+            .navigationBarBackButtonHidden(true)
+            .padding(24.0)
+            .onAppear {
+                scrollID = ImageAsset.all.first?.id ?? 0
+            }
+    }
+    
+    var ContentView: some View {
+        VStack(alignment: .center) {
             Spacer()
             
-            switch currectStep {
-            case .first:
-                Images.TutorialPage1
-            case .second:
-                Images.TutorialPage2
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 48.0) {
+                    ForEach(ImageAsset.all) { asset in
+                        Image(asset.name)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: UIScreen.screenWidth - 64.0)
+                    }
+                }
             }
-            
+            .scrollPosition(id: $scrollID)
+            .scrollDisabled(true)
+            .scrollTargetLayout()
+
             Spacer()
             
             Text(currectStep.title)
-                .attributed(.H4Bold, color: Color.greyscale900)
+                .attributed(.H3Bold, color: Color.greyscale900)
             
             Spacer()
+            
+            PagingView(
+                countPages: ImageAsset.all.count,
+                currectIndex: $scrollID
+            )
+            .padding(.bottom, 60.0)
             
             AppFilledButton(
                 state: .constant(.active),
@@ -65,18 +88,19 @@ struct TutorialDescriptionModuleView: View {
                 backgroundColor: Color.primary500,
                 action: { onButtonClick() }
             )
-            .padding(.horizontal, 6.0)
         }
-        .navigationBarBackButtonHidden(true)
-        .padding(24.0)
     }
+    
 }
 
 // MARK: - TutorialDescriptionModuleViewProtocol
 extension TutorialDescriptionModuleView: TutorialDescriptionModuleViewProtocol {
     func onButtonClick() {
         guard currectStep == .second else {
-            currectStep = .second
+            withAnimation {
+                currectStep = .second
+                scrollID = ImageAsset.all.last?.id
+            }
             return
         }
         
