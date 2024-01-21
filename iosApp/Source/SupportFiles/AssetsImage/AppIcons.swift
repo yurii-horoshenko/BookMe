@@ -82,11 +82,18 @@ enum Icons {
             .frame(width: 20, height: 20)
     }
     
+    static var Star: some View {
+        Image("ic-star")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 26, height: 26)
+    }
+    
     static var StarBold: some View {
         Image("ic-star-bold")
             .resizable()
             .renderingMode(.template)
-            .frame(width: 20, height: 20)
+            .frame(width: 26, height: 26)
     }
     
     static var Delete: some View {
@@ -152,6 +159,26 @@ enum Images {
         Image("img-mask")
             .resizable()
             .frame(width: 80, height: 80)
+    }
+}
+
+enum InfoImages {
+    static var Registration: some View {
+        Image("img-info-registration")
+            .resizable()
+            .scaledToFit()
+    }
+    
+    static var Location: some View {
+        Image("img-info-location")
+            .resizable()
+            .scaledToFit()
+    }
+    
+    static var Rate: some View {
+        Image("img-info-rate")
+            .resizable()
+            .scaledToFit()
     }
 }
 
