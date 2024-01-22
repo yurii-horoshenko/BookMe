@@ -5,18 +5,18 @@
 //  Created by Yurii Goroshenko on 12.09.2023.
 //
 
-import shared
 import SwiftUI
 
 struct DashboardContainerView: View {
     
+    // MARK: - Lifecycle
     var body: some View {
         TabView {
             DashboardPageBuilder.constructDashboardView()
                 .tabItem {
                     HStack {
                         TabIcons.Home
-                        Text("Home")
+                        Text(String(localized: "TAB-HOME"))
                     }
                 }
                 .toolbarBackground(.white, for: .tabBar)
@@ -25,7 +25,7 @@ struct DashboardContainerView: View {
                 .tabItem {
                     HStack {
                         TabIcons.MapBold
-                        Text("Explore")
+                        Text(String(localized: "TAB-EXPLORE"))
                     }
                 }
                 .toolbarBackground(.white, for: .tabBar)
@@ -34,7 +34,7 @@ struct DashboardContainerView: View {
                 .tabItem {
                     HStack {
                         TabIcons.Profile
-                        Text("Profile")
+                        Text(String(localized: "TAB-PROFILE"))
                     }
                 }
                 .toolbarBackground(.white, for: .tabBar)

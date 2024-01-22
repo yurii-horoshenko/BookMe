@@ -37,5 +37,5 @@ struct RateView: View {
 }
 
 #Preview {
-    RateView(currectIndex: .constant(4), action: { selectIndex in })
+    RateView(currectIndex: .constant(4), action: { _ in })
 }

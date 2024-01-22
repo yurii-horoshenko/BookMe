@@ -11,8 +11,10 @@ import SwiftUI
 final class DashboardViewModel: ObservableObject {
     // MARK: - Properties
     private let repository = shared.PlaceRepository()
-    @Published var searchData = FieldData(placeholder: "Search")
+    @Published var searchData = FieldData(placeholder: String(localized: "SEARCH"))
     @Published var toServiceDetail = false
+    @Published var toSearchFilter = false
+    @Published var toCancelVisit = false
     var restaurants = [
         Restaurant(name: "Joe's Original"),
         Restaurant(name: "The Real Joe's Original"),

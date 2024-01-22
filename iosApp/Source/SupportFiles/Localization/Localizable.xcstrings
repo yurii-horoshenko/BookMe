@@ -38,6 +38,17 @@
     "6993 Meadow Valley Terrace, New York" : {
 
     },
+    "ALL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All"
+          }
+        }
+      }
+    },
     "An error occured whilst validating the phone number." : {
 
     },
@@ -52,9 +63,6 @@
         }
       }
     },
-    "Are you sure want to cancel your barber/salon booking?" : {
-
-    },
     "Are you sure you want to log out?" : {
 
     },
@@ -64,8 +72,82 @@
     "Belle Curls" : {
 
     },
-    "BookMeNow" : {
-
+    "BOOKING-CANCEL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel Booking"
+          }
+        }
+      }
+    },
+    "BOOKING-CANCEL-DESCRIPTION" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only 80% of the money you can refund from your payment according to our policy"
+          }
+        }
+      }
+    },
+    "BOOKING-CANCEL-TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure want to cancel your barber/salon booking?"
+          }
+        }
+      }
+    },
+    "BUTTON-APPLY-FILTER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply Filter"
+          }
+        }
+      }
+    },
+    "BUTTON-CALL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Call"
+          }
+        }
+      }
+    },
+    "BUTTON-CANCEL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "BUTTON-CANCEL-BOOKING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, Cancel Booking"
+          }
+        }
+      }
     },
     "BUTTON-CONTINUE" : {
       "extractionState" : "manual",
@@ -111,6 +193,17 @@
         }
       }
     },
+    "BUTTON-MAP" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Map"
+          }
+        }
+      }
+    },
     "BUTTON-NEXT" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -118,6 +211,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next"
+          }
+        }
+      }
+    },
+    "BUTTON-RESET" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
           }
         }
       }
@@ -144,15 +248,6 @@
         }
       }
     },
-    "Call" : {
-
-    },
-    "Cancel" : {
-
-    },
-    "Cancel Booking" : {
-
-    },
     "Congratulations!" : {
 
     },
@@ -170,10 +265,29 @@
         }
       }
     },
-    "Details" : {
-
+    "DASHBOARD-NEARBY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nearby Your Location"
+          }
+        }
+      }
     },
-    "Distance" : {
+    "DASHBOARD-NEXTVISIT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Next Visit"
+          }
+        }
+      }
+    },
+    "Details" : {
 
     },
     "Enable Location" : {
@@ -212,9 +326,6 @@
         }
       }
     },
-    "Explore" : {
-
-    },
     "FEMALE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -226,8 +337,16 @@
         }
       }
     },
-    "Filter" : {
-
+    "FILTER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter"
+          }
+        }
+      }
     },
     "GENDER-TITLE" : {
       "extractionState" : "manual",
@@ -240,8 +359,8 @@
         }
       }
     },
-    "Home" : {
-
+    "Key" : {
+      "extractionState" : "manual"
     },
     "LOGIN-TITLE" : {
       "extractionState" : "manual",
@@ -271,19 +390,10 @@
         }
       }
     },
-    "Map" : {
-
-    },
     "Monday" : {
 
     },
     "Monday - Friday" : {
-
-    },
-    "Nearby Your Location" : {
-
-    },
-    "Only 80% of the money you can refund from your payment according to our policy" : {
 
     },
     "Open" : {
@@ -450,11 +560,41 @@
         }
       }
     },
-    "Rating" : {
-
-    },
     "Saturday - Sunday" : {
 
+    },
+    "SEARCH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        }
+      }
+    },
+    "SECTION-DISTANCE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance"
+          }
+        }
+      }
+    },
+    "SECTION-RATING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rating"
+          }
+        }
+      }
     },
     "See on Maps" : {
 
@@ -467,6 +607,39 @@
     },
     "Successful!" : {
 
+    },
+    "TAB-EXPLORE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explore"
+          }
+        }
+      }
+    },
+    "TAB-HOME" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
+    "TAB-PROFILE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        }
+      }
     },
     "The country code is invalid." : {
 
@@ -557,9 +730,6 @@
 
     },
     "Your account is ready to use. You will be redirected to the Home page in a few seconds.." : {
-
-    },
-    "Your Next Visit" : {
 
     }
   },

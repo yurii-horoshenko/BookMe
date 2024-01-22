@@ -15,8 +15,8 @@ struct SelectDistanceView: View {
     
     // MARK: - Lifecycle
     var body: some View {
-        VStack(alignment: .leading, spacing: 16.0) {
-            Text("Distance")
+        VStack(alignment: .leading, spacing: 24.0) {
+            Text(String(localized: "SECTION-DISTANCE"))
                 .font(Font.H5Bold)
                 .foregroundColor(Color.greyscale900)
             
@@ -26,12 +26,13 @@ struct SelectDistanceView: View {
                         Button {
                             self.seltectedItem = item
                         } label: {
-                            HStack {                                
+                            HStack {
                                 Text(item)
                                     .font(Font.BodyLargeSemibold)
-                                    .foregroundColor(seltectedItem == item ? Color.white : Color.primary500)
                             }
-                            .padding(EdgeInsets(top: 8.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
+                            .foregroundColor(seltectedItem == item ? Color.white : Color.primary500)
+                            .frame(height: 16)
+                            .padding(buttonEdgeInsets)
                         }
                         .background(seltectedItem == item ? Color.primary500 : Color.clear)
                         .cornerRadius(20.0)
@@ -39,7 +40,6 @@ struct SelectDistanceView: View {
                     }
                 }
                 .frame(height: 38.0)
-                .padding(.bottom, 16.0)
             }
         }
     }

@@ -11,6 +11,7 @@ import SwiftUI
 struct DashboardView: View {
     // MARK: - Properties
     @StateObject var viewModel: DashboardViewModel
+    @State var detentHeight: CGFloat = 0
     
     // MARK: - Lifecycle
     var body: some View {
@@ -36,20 +37,14 @@ struct DashboardView: View {
     var ContentView: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24.0) {
-                AppInputField(
-                    fieldData: $viewModel.searchData,
-                    leadingView: Icons.Search.eraseToAnyView(),
-                    trailingView: Icons.Filter.foregroundColor(Color.primary500).eraseToAnyView()
-                )
-                .padding(.top, 8.0)
+                SearchInputView
                 
-                Text("Your Next Visit")
+                Text(String(localized: "DASHBOARD-NEXTVISIT"))
                     .font(Font.H4Bold)
                 
-                NextVisitView()
-                    .shadow(radius: 16.0)
+                NextVisit
                 
-                Text("Nearby Your Location")
+                Text(String(localized: "DASHBOARD-NEARBY"))
                     .font(Font.H4Bold)
                     .foregroundColor(Color.greyscale900)
                 
@@ -71,9 +66,62 @@ struct DashboardView: View {
         HStack(spacing: 16.0) {
             Images.Logo
             
-            Text("BookMeNow")
+            Text(String(localized: "APP-NAME"))
                 .font(Font.H4Bold)
                 .foregroundColor(Color.greyscale900)
+        }
+    }
+    
+    var SearchInputView: some View {
+        AppInputField(
+            fieldData: $viewModel.searchData,
+            leadingView: Icons.Search.eraseToAnyView(),
+            trailingView: SearchFilterView.eraseToAnyView()
+        )
+        .sheet(isPresented: $viewModel.toSearchFilter) {
+            FilterView()
+                .padding(.top, 32.0)
+                .readHeight()
+                .onPreferenceChange(HeightPreferenceKey.self) { height in
+                    if let height {
+                        detentHeight = height
+                    }
+                }
+                .presentationDetents([.height(detentHeight)])
+                .presentationDragIndicator(.visible)
+        }
+        .padding(.top, 8.0)
+    }
+    
+    var SearchFilterView: some View {
+        Button(
+            action: { viewModel.toSearchFilter = true },
+            label: { Icons.Filter.foregroundColor(Color.primary500) }
+        )
+    }
+    
+    var NextVisit: some View {
+        NextVisitView(
+            onCallPress: {
+                
+            },
+            onCancelPress: { viewModel.toCancelVisit = true },
+            onMapPress: {
+                
+            }
+        )
+        .shadow(radius: 16.0)
+        .sheet(isPresented: $viewModel.toCancelVisit) {
+            CancelBookingView()
+                .padding(.top, 32.0)
+                .readHeight()
+                .onPreferenceChange(HeightPreferenceKey.self) { height in
+                    if let height {
+                        detentHeight = height + 36
+                    }
+                }
+                .presentationDetents([.height(detentHeight)])
+                .presentationDragIndicator(.visible)
         }
     }
     

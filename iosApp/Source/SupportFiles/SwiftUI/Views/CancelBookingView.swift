@@ -8,46 +8,53 @@
 import SwiftUI
 
 struct CancelBookingView: View {
+    // MARK: - Properties
+    var onCancelPress: (() -> Void)?
+    var onOkPress: (() -> Void)?
+    
     // MARK: - Lifecycle
     var body: some View {
         VStack(alignment: .center, spacing: 24.0) {
-            Text("Cancel Booking")
+            Text(String(localized: "BOOKING-CANCEL"))
                 .font(Font.H4Bold)
                 .foregroundColor(Color.error)
             
             Divider()
                 .background(Color.greyscale200)
                 .frame(height: 1.0)
-                .padding(.horizontal, 16.0)
             
-            Text("Are you sure want to cancel your barber/salon booking?")
+            Text(String(localized: "BOOKING-CANCEL-TITLE"))
                 .font(Font.H5Bold)
                 .foregroundColor(Color.greyscale900)
                 .multilineTextAlignment(.center)
             
-            Text("Only 80% of the money you can refund from your payment according to our policy")
+            Text(String(localized: "BOOKING-CANCEL-DESCRIPTION"))
                 .font(Font.BodyMediumMedium)
                 .foregroundColor(Color.greyscale800)
                 .multilineTextAlignment(.center)
             
-            HStack {
-                AppFilledButton(
-                    state: .constant(.active),
-                    title: "Cancel",
-                    titleColor: Color.primary500,
-                    backgroundColor: Color.primary100,
-                    action: {  }
-                )
-                
-                AppFilledButton(
-                    state: .constant(.active),
-                    title: "Yes, Cancel Booking",
-                    titleColor: Color.white,
-                    backgroundColor: Color.primary500,
-                    action: { }
-                )
-            }
-            .padding(.horizontal, 16.0)
+            ButtonsView
+        }
+        .padding(EdgeInsets(top: 8.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
+    }
+    
+    var ButtonsView: some View {
+        HStack(spacing: 12.0) {
+            AppFilledButton(
+                state: .constant(.active),
+                title: String(localized: "BUTTON-CANCEL"),
+                titleColor: Color.primary500,
+                backgroundColor: Color.primary100,
+                action: { onCancelPress?() }
+            )
+            
+            AppFilledButton(
+                state: .constant(.active),
+                title: String(localized: "BUTTON-CANCEL-BOOKING"),
+                titleColor: Color.white,
+                backgroundColor: Color.primary500,
+                action: { onOkPress?() }
+            )
         }
     }
 }

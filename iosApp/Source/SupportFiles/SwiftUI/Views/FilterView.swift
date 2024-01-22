@@ -8,41 +8,48 @@
 import SwiftUI
 
 struct FilterView: View {
+    // MARK: - Properties
+    var onResetPress: (() -> Void)?
+    var onApplyPress: (() -> Void)?
+    
     // MARK: - Lifecycle
     var body: some View {
         VStack(alignment: .center, spacing: 24.0) {
-            Text("Filter")
+            Text(String(localized: "FILTER"))
                 .font(Font.H4Bold)
                 .foregroundColor(Color.greyscale900)
             
             Divider()
                 .background(Color.greyscale200)
                 .frame(height: 1.0)
-                .padding(.horizontal, 16.0)
 
             SelectRateView()
             
             SelectDistanceView()
             
-            HStack {
+            Divider()
+                .background(Color.greyscale200)
+                .frame(height: 1.0)
+            
+            HStack(spacing: 12.0) {
                 AppFilledButton(
                     state: .constant(.active),
-                    title: "Reset",
+                    title: String(localized: "BUTTON-RESET"),
                     titleColor: Color.primary500,
                     backgroundColor: Color.primary100,
-                    action: {  }
+                    action: { onResetPress?() }
                 )
                 
                 AppFilledButton(
                     state: .constant(.active),
-                    title: "Apply Filter",
+                    title: String(localized: "BUTTON-APPLY-FILTER"),
                     titleColor: Color.white,
                     backgroundColor: Color.primary500,
-                    action: { }
+                    action: { onApplyPress?() }
                 )
             }
         }
-        .padding(.horizontal, 16.0)
+        .padding(defaultEdgeInsets)
     }
 }
 

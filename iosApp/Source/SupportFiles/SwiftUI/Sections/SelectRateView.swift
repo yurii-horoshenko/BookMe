@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SelectRateView: View {
     // MARK: - Properties
-    @State var seltectedItem = "All"
-    var array = ["All", "5", "4", "3", "2", "1"]
+    @State var seltectedItem = ""
+    var array = [String(localized: "ALL"), "5", "4", "3", "2", "1"]
     let shape = RoundedShapeView(color: Color.primary500, step: 2.0, isFilled: false)
     
     // MARK: - Lifecycle
     var body: some View {
-        VStack(alignment: .leading, spacing: 16.0) {
-            Text("Rating")
+        VStack(alignment: .leading, spacing: 24.0) {
+            Text(String(localized: "SECTION-RATING"))
                 .font(Font.H5Bold)
                 .foregroundColor(Color.greyscale900)
             
@@ -28,13 +28,13 @@ struct SelectRateView: View {
                         } label: {
                             HStack {
                                 Icons.StarBold
-                                    .foregroundColor(seltectedItem == item ? Color.white : Color.primary500)
                                 
                                 Text(item)
                                     .font(Font.BodyLargeSemibold)
-                                    .foregroundColor(seltectedItem == item ? Color.white : Color.primary500)
                             }
-                            .padding(EdgeInsets(top: 8.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
+                            .foregroundColor(seltectedItem == item ? Color.white : Color.primary500)
+                            .frame(height: 16)
+                            .padding(buttonEdgeInsets)
                         }
                         .background(seltectedItem == item ? Color.primary500 : Color.clear)
                         .cornerRadius(20.0)
@@ -42,8 +42,10 @@ struct SelectRateView: View {
                     }
                 }
                 .frame(height: 38.0)
-                .padding(.bottom, 16.0)
             }
+        }
+        .onAppear {
+            seltectedItem = array.first ?? ""
         }
     }
 }

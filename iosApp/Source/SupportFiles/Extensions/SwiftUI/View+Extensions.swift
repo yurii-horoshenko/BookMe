@@ -30,6 +30,10 @@ extension View {
         EdgeInsets(top: 8.0, leading: 32.0, bottom: 8.0, trailing: 32.0)
     }
     
+    var buttonEdgeInsets: EdgeInsets {
+        EdgeInsets(top: 11.0, leading: 16.0, bottom: 11.0, trailing: 16.0)
+    }
+    
     func eraseToAnyView() -> AnyView {
         AnyView(self)
     }

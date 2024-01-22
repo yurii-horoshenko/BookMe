@@ -29,7 +29,7 @@ struct SuccessRateView: View {
             
             RateView(
                 currectIndex: .constant(4),
-                action: { selectIndex in
+                action: { _ in
                     
                 }
             )
