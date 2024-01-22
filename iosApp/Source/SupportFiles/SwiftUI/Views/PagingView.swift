@@ -15,7 +15,7 @@ struct PagingView: View {
     // MARK: - Lifecycle
     var body: some View {
         HStack {
-            ForEach(0..<countPages) { index in
+            ForEach(0..<countPages, id: \.self) { index in
                 Rectangle()
                     .fill(index == currectIndex ? Color.primary500 : Color.greyscale300)
                     .frame(width: index == currectIndex ? 24.0 : 8.0, alignment: .center)

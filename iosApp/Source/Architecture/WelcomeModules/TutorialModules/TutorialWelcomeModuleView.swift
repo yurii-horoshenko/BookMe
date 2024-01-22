@@ -14,36 +14,40 @@ struct TutorialWelcomeModuleView: View {
     // MARK: - Lifecycle
     var body: some View {
         NavigationStack {
-            ZStack {
-                Backgrounds.Tutorial
-                    .opacity(0.85)
+            ContentView
+                .ignoresSafeArea(.all)
+                .background(Color.black)
+                .navigationDestination(isPresented: $toLogin) {
+                    TutorialDescriptionModuleView()
+                }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.toLogin = true
+            }
+        }
+    }
+    
+    var ContentView: some View {
+        ZStack {
+            Backgrounds.Tutorial
+                .opacity(0.85)
+            
+            VStack {
+                Spacer()
                 
-                VStack {
-                    Spacer()
+                VStack(alignment: .leading, spacing: 12.0) {
+                    Text(String(localized: "TUTORIAL-TITLE"))
+                        .attributed(.H1Bold, color: Color.white)
                     
-                    VStack(alignment: .leading, spacing: 12.0) {
-                        Text("Welcome to 👋")
-                            .attributed(.H1Bold, color: Color.white)
-                        
-                        Text("BookMe")
-                            .attributed(.H1Bold, color: Color.primary500)
-                        
-                        Text("The best barbers, salons and other services in your app.")
-                            .attributed(.BodyXLargeMedium, color: Color.white)
-                    }
-                    .padding(.bottom, 64.0)
-                    .padding(.horizontal, 32.0)
+                    Text(String(localized: "APP-NAME"))
+                        .attributed(.H1Bold, color: Color.primary500)
+                    
+                    Text(String(localized: "TUTORIAL-DESCRIPTION"))
+                        .attributed(.BodyXLargeMedium, color: Color.white)
                 }
-            }
-            .ignoresSafeArea(.all)
-            .background(Color.black)
-            .navigationDestination(isPresented: $toLogin) {
-                TutorialDescriptionModuleView()
-            }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    self.toLogin = true
-                }
+                .padding(.bottom, 64.0)
+                .padding(.horizontal, 32.0)
             }
         }
     }

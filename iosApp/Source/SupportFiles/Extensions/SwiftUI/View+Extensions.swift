@@ -27,7 +27,7 @@ extension View {
     }
     
     var defaultEdgeInsets: EdgeInsets {
-        EdgeInsets(top: 8.0, leading: 24.0, bottom: 8.0, trailing: 24.0)
+        EdgeInsets(top: 8.0, leading: 32.0, bottom: 8.0, trailing: 32.0)
     }
     
     func eraseToAnyView() -> AnyView {

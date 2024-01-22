@@ -16,7 +16,7 @@ struct RateView: View {
     // MARK: - Lifecycle
     var body: some View {
         HStack(alignment: .center, spacing: 0.0) {
-            ForEach(0..<itemCount) { index in
+            ForEach(0..<itemCount, id: \.self) { index in
                 Button {
                     currectIndex = index
                     action(currectIndex)

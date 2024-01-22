@@ -22,8 +22,8 @@ struct SplashView: View {
         VStack {
             Spacer()
             
-            Text("BookMeNow")
-                .attributed(.H1Bold, color: Color.primary500)
+            Text(String(localized: "APP-NAME"))
+                .attributed(.H0Bold, color: Color.primary500)
                 .padding(24.0)
             
             Spacer()
@@ -34,7 +34,6 @@ struct SplashView: View {
             viewModel.detectNavigation()
         }
     }
-    
 }
 
 // MARK: - SplashViewProtocol

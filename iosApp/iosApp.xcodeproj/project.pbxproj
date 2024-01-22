@@ -21,6 +21,8 @@
 		16B8696A0A9AE0133876ED7D /* iPhoneNumberField+ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD638D26F97AEC82DBF899E /* iPhoneNumberField+ViewModifiers.swift */; };
 		16FE331E2BA84E7C139F6011 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988B1869131602ED94614EB5 /* Formatter.swift */; };
 		18353DE81FCE534C949C86D9 /* UIFont+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BC56F22BF473693CCB72B /* UIFont+Init.swift */; };
+		1A5BA76A2B5E671800F3AF3C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BA7692B5E671800F3AF3C /* Localizable.xcstrings */; };
+		1A5BA76C2B5E687B00F3AF3C /* Urbanist-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BA76B2B5E687B00F3AF3C /* Urbanist-Black.ttf */; };
 		1A9D7D002B5DA9F500B717D1 /* SuccessCancelBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D7CFF2B5DA9F500B717D1 /* SuccessCancelBookingView.swift */; };
 		1A9D7D022B5DAA1900B717D1 /* SuccessRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D7D012B5DAA1900B717D1 /* SuccessRateView.swift */; };
 		1A9D7D042B5DAA3300B717D1 /* EnableLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D7D032B5DAA3300B717D1 /* EnableLocationView.swift */; };
@@ -139,6 +141,8 @@
 		176EC31AB21A6530C5366BB0 /* GetDirectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionView.swift; sourceTree = "<group>"; };
 		193C8A583F6B41B1E77DAD99 /* WorkingHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingHoursView.swift; sourceTree = "<group>"; };
 		1A392DE364D75A4662397DB6 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		1A5BA7692B5E671800F3AF3C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		1A5BA76B2B5E687B00F3AF3C /* Urbanist-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Black.ttf"; sourceTree = "<group>"; };
 		1A6A23D9C64FAB0DDE89C01D /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		1A9D7CFF2B5DA9F500B717D1 /* SuccessCancelBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCancelBookingView.swift; sourceTree = "<group>"; };
 		1A9D7D012B5DAA1900B717D1 /* SuccessRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessRateView.swift; sourceTree = "<group>"; };
@@ -194,7 +198,7 @@
 		7FA54D3B98734337F444C2AF /* AppStyleColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyleColor.swift; sourceTree = "<group>"; };
 		80E3060DE0300A1A729393F2 /* PhoneNumberParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberParser.swift; sourceTree = "<group>"; };
 		85A0CF603539FE0BA4EDAA15 /* PhoneNumberKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberKit.swift; sourceTree = "<group>"; };
-		86038AE1032E284E79B32AD6 /* iosApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86038AE1032E284E79B32AD6 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C94B2458685D37A7DC7E408 /* NetworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		8D066D8F7A92E9575F06D7D8 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		8DAD2947E86E8E799BA9EFBF /* RegexManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexManager.swift; sourceTree = "<group>"; };
@@ -320,6 +324,14 @@
 			path = Rows;
 			sourceTree = "<group>";
 		};
+		1A5BA7682B5E66D700F3AF3C /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				1A5BA7692B5E671800F3AF3C /* Localizable.xcstrings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		1A9D7CFE2B5DA97F00B717D1 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +448,7 @@
 		4B0C0589B154FD9886F6F1BF /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				1A5BA7682B5E66D700F3AF3C /* Localization */,
 				6BC835BEBB14B750C4D88F00 /* AssetsColor */,
 				3A72E1697CED545CA784580B /* AssetsFont */,
 				72C15E03E677B905C796972C /* AssetsImage */,
@@ -509,6 +522,7 @@
 		5A353E7708F1E1A9949464D7 /* Urbanist */ = {
 			isa = PBXGroup;
 			children = (
+				1A5BA76B2B5E687B00F3AF3C /* Urbanist-Black.ttf */,
 				00190B7344A9C2DE87752522 /* Urbanist-Bold.ttf */,
 				AF58D57AC7C0F541975D407E /* Urbanist-Medium.ttf */,
 				9F6229C7C69654B803AD7365 /* Urbanist-Regular.ttf */,
@@ -844,6 +858,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A5BA76C2B5E687B00F3AF3C /* Urbanist-Black.ttf in Resources */,
 				923D1EE713F94E2990D09F32 /* .env.default.sample in Resources */,
 				B036FC806EADFBBB344F7BCD /* .project.yml in Resources */,
 				DCBDD69350D66A14CD3B3A32 /* .swiftlint.yml in Resources */,
@@ -855,6 +870,7 @@
 				DAC386ECC7B7166DF5AC52E9 /* TUTORIAL.md in Resources */,
 				A045EC07C9D4CB6E1036BC8A /* Urbanist-Bold.ttf in Resources */,
 				8F7A17D6340DEE5CDA8F9936 /* Urbanist-Medium.ttf in Resources */,
+				1A5BA76A2B5E671800F3AF3C /* Localizable.xcstrings in Resources */,
 				747F530670CA4230C010F094 /* Urbanist-Regular.ttf in Resources */,
 				E063EAADB7CF35E5BCEB7013 /* Urbanist-Semibold.ttf in Resources */,
 				1D75AA2B9E3B9188FE79562C /* report.xml in Resources */,
@@ -1205,6 +1221,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gorosoft.bookme.now;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1230,6 +1250,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gorosoft.bookme.now;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

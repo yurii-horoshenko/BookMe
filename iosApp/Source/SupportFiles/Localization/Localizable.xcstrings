@@ -1,0 +1,567 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    " s" : {
+
+    },
+    ":" : {
+
+    },
+    "%@ (%@ reviews)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (%2$@ reviews)"
+          }
+        }
+      }
+    },
+    "1.2 km" : {
+
+    },
+    "5:30 PM" : {
+
+    },
+    "08:00 AM - 21:00 PM" : {
+
+    },
+    "10:00 AM - 20:00 PM" : {
+
+    },
+    "30" : {
+
+    },
+    "0993 Novick Parkway" : {
+
+    },
+    "6993 Meadow Valley Terrace, New York" : {
+
+    },
+    "An error occured whilst validating the phone number." : {
+
+    },
+    "APP-NAME" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BookMeNow"
+          }
+        }
+      }
+    },
+    "Are you sure want to cancel your barber/salon booking?" : {
+
+    },
+    "Are you sure you want to log out?" : {
+
+    },
+    "Barbarella Inova" : {
+
+    },
+    "Belle Curls" : {
+
+    },
+    "BookMeNow" : {
+
+    },
+    "BUTTON-CONTINUE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        }
+      }
+    },
+    "BUTTON-FACEBOOK" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue with Facebook"
+          }
+        }
+      }
+    },
+    "BUTTON-GOOGLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue with Google"
+          }
+        }
+      }
+    },
+    "BUTTON-LOGIN" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in"
+          }
+        }
+      }
+    },
+    "BUTTON-NEXT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
+    "BUTTON-SIGNIN" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with phone"
+          }
+        }
+      }
+    },
+    "BUTTON-STARTED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Started"
+          }
+        }
+      }
+    },
+    "Call" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Cancel Booking" : {
+
+    },
+    "Congratulations!" : {
+
+    },
+    "Contact us" : {
+
+    },
+    "CREATE-PROFILE-TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Your Profile"
+          }
+        }
+      }
+    },
+    "Details" : {
+
+    },
+    "Distance" : {
+
+    },
+    "Enable Location" : {
+
+    },
+    "ENTERCODE-DESCRIPTION" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code has been send to "
+          }
+        }
+      }
+    },
+    "ENTERCODE-TIMER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resend code in "
+          }
+        }
+      }
+    },
+    "ENTERCODE-TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter code"
+          }
+        }
+      }
+    },
+    "Explore" : {
+
+    },
+    "FEMALE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Female"
+          }
+        }
+      }
+    },
+    "Filter" : {
+
+    },
+    "GENDER-TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select your gender"
+          }
+        }
+      }
+    },
+    "Home" : {
+
+    },
+    "LOGIN-TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login to your\nAccount"
+          }
+        }
+      }
+    },
+    "Logout" : {
+
+    },
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ull amco laboris nisi ut aliquip. Read more..." : {
+
+    },
+    "MALE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Male"
+          }
+        }
+      }
+    },
+    "Map" : {
+
+    },
+    "Monday" : {
+
+    },
+    "Monday - Friday" : {
+
+    },
+    "Nearby Your Location" : {
+
+    },
+    "Only 80% of the money you can refund from your payment according to our policy" : {
+
+    },
+    "Open" : {
+
+    },
+    "OR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "or"
+          }
+        }
+      }
+    },
+    "OTHER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other"
+          }
+        }
+      }
+    },
+    "Our Address" : {
+
+    },
+    "Phone number is ambiguous." : {
+
+    },
+    "PhoneNumberKit.CountryCodePicker.Common" : {
+      "comment" : "Name of \"Common\" section",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Common"
+          }
+        }
+      }
+    },
+    "PhoneNumberKit.CountryCodePicker.Current" : {
+      "comment" : "Name of \"Current\" section",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Current"
+          }
+        }
+      }
+    },
+    "PhoneNumberKit.CountryCodePicker.SearchBarPlaceholder" : {
+      "comment" : "Placeholder for country code search field",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Search Country Codes"
+          }
+        }
+      }
+    },
+    "PhoneNumberKit.CountryCodePicker.Title" : {
+      "comment" : "Title of CountryCodePicker ViewController",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Choose your country"
+          }
+        }
+      }
+    },
+    "PhoneNumberKit.CountryCodePickerEntryButton.AccessibilityHint" : {
+      "comment" : "Accessiblity hint for currently selected country code",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%@ selected"
+          }
+        }
+      }
+    },
+    "PhoneNumberKit.CountryCodePickerEntryButton.AccessibilityLabel" : {
+      "comment" : "Accessibility Label for Country Code Picker button",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Select your country code"
+          }
+        }
+      }
+    },
+    "Please leave your review so others people can know your opinion" : {
+
+    },
+    "Profile" : {
+
+    },
+    "PROFILE-DATEBIRTHDAY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date of Birth"
+          }
+        }
+      }
+    },
+    "PROFILE-FULLNAME" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full Name"
+          }
+        }
+      }
+    },
+    "PROFILE-GENDER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gender"
+          }
+        }
+      }
+    },
+    "PROFILE-NICKNAME" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nick Name"
+          }
+        }
+      }
+    },
+    "PROFILE-PHONE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phone Number"
+          }
+        }
+      }
+    },
+    "Rating" : {
+
+    },
+    "Saturday - Sunday" : {
+
+    },
+    "See on Maps" : {
+
+    },
+    "Select Date" : {
+
+    },
+    "Select Hours" : {
+
+    },
+    "Successful!" : {
+
+    },
+    "The country code is invalid." : {
+
+    },
+    "The number provided is invalid." : {
+
+    },
+    "The number provided is too long." : {
+
+    },
+    "The number provided is too short." : {
+
+    },
+    "This function is deprecated." : {
+
+    },
+    "TUTORIAL-DESCRIPTION" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The best barbers, salons and other services in your app."
+          }
+        }
+      }
+    },
+    "TUTORIAL-INFO-1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find Barbers, Salons, Doctors or Other Services Easily"
+          }
+        }
+      }
+    },
+    "TUTORIAL-INFO-2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Book Your Type of Services Quickly"
+          }
+        }
+      }
+    },
+    "TUTORIAL-TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to 👋"
+          }
+        }
+      }
+    },
+    "Valid metadata is missing." : {
+
+    },
+    "Very good service and satisfying results 🔥" : {
+
+    },
+    "We need location access to find the nearest barber/salon around you." : {
+
+    },
+    "WELCOME-TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let’s you in"
+          }
+        }
+      }
+    },
+    "Working Hours" : {
+
+    },
+    "You have done using barber/salon service" : {
+
+    },
+    "You have successfully canceled your booking order. 80% funds will be returned to your account" : {
+
+    },
+    "Your account is ready to use. You will be redirected to the Home page in a few seconds.." : {
+
+    },
+    "Your Next Visit" : {
+
+    }
+  },
+  "version" : "1.0"
+}

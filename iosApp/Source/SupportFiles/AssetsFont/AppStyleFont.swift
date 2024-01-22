@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum BrandFontType: String {
+    case black = "Urbanist-Black"
     case bold = "Urbanist-Bold"
     case semibold = "Urbanist-SemiBold"
     case medium = "Urbanist-Medium"
@@ -16,6 +17,7 @@ enum BrandFontType: String {
 
 // MARK: - Fonts
 extension Font {
+    static let H0Bold = Font.custom(BrandFontType.black.rawValue, size: 48.0)
     // Headers
     static let H1Bold = Font.custom(BrandFontType.bold.rawValue, size: 48.0)
     static let H2Bold = Font.custom(BrandFontType.bold.rawValue, size: 40.0)

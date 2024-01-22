@@ -23,7 +23,6 @@ struct WelcomeView: View {
                     ProfilePageBuilder.constructCreateProfileView()
                 }
         }
-        
     }
     
     // Image, title, buttons
@@ -35,15 +34,14 @@ struct WelcomeView: View {
             
             Spacer()
             
-            Text(WELCOME.pageTitle.text)
+            Text(String(localized: "WELCOME-TITLE"))
                 .attributed(.H1Bold)
-                .padding(24.0)
             
             Spacer()
             
             ButtonsView
         }
-        .padding(24.0)
+        .padding(defaultEdgeInsets)
         .background(Color.background)
     }
     
@@ -53,14 +51,14 @@ struct WelcomeView: View {
             AppBorderButton(
                 state: .constant(.active),
                 imageName: "ic-facebook",
-                title: WELCOME.facebookButton.text,
+                title: String(localized: "BUTTON-FACEBOOK"),
                 action: { viewModel.loginViaFacebook() }
             )
             
             AppBorderButton(
                 state: .constant(.active),
                 imageName: "ic-google",
-                title: WELCOME.googleButton.text,
+                title: String(localized: "BUTTON-GOOGLE"),
                 action: { viewModel.loginViaGoogle() }
             )
             
@@ -68,13 +66,12 @@ struct WelcomeView: View {
             
             AppFilledButton(
                 state: .constant(.active),
-                title: WELCOME.signInButton.text,
+                title: String(localized: "BUTTON-SIGNIN"),
                 titleColor: Color.white,
                 backgroundColor: Color.primary500,
                 action: { viewModel.signIn() }
             )
         })
-        .padding(.horizontal, 6.0)
     }
     
     // OR label
@@ -83,7 +80,7 @@ struct WelcomeView: View {
             Rectangle()
                 .frame(height: 1.0)
             
-            Text(shared.GENERAL.or_.text)
+            Text(String(localized: "OR"))
                 .font(Font.BodyXLargeSemibold)
                 .foregroundColor(Color.greyscale900)
             

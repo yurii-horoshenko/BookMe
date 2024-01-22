@@ -20,18 +20,18 @@ struct TutorialDescriptionModuleView: View {
         var title: String {
             switch self {
             case .first:
-                return "Find Barbers, Salons, Doctors or Other Services Easily"
+                return String(localized: "TUTORIAL-INFO-1")
             case .second:
-                return "Book Your Type of Services Quickly"
+                return String(localized: "TUTORIAL-INFO-2")
             }
         }
         
         var buttonTitle: String {
             switch self {
             case .first:
-                return "Next"
+                return String(localized: "BUTTON-NEXT")
             case .second:
-                return "Get Started"
+                return String(localized: "BUTTON-STARTED")
             }
         }
     }
@@ -54,15 +54,36 @@ struct TutorialDescriptionModuleView: View {
         VStack(alignment: .center) {
             Spacer()
             
-            MainContentView
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 0.0) {
+                    ForEach(ImageAsset.all) { asset in
+                        Image(asset.name)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: UIScreen.screenWidth - 48.0)
+                            .frame(height: 230.0)
+                    }
+                }
+            }
+            .scrollPosition(id: $scrollID)
+            .scrollDisabled(true)
+            .scrollTargetLayout()
             
             Spacer()
+            
+            BottomContentView
+        }
+    }
+    
+    var BottomContentView: some View {
+        VStack(spacing: 60.0) {
+            Text(currectStep.title)
+                .attributed(.H3Bold, color: Color.greyscale900)
             
             PagingView(
                 countPages: ImageAsset.all.count,
                 currectIndex: $scrollID
             )
-            .padding(.bottom, 60.0)
             
             AppFilledButton(
                 state: .constant(.active),
@@ -72,29 +93,6 @@ struct TutorialDescriptionModuleView: View {
                 backgroundColor: Color.primary500,
                 action: { onButtonClick() }
             )
-        }
-    }
-    
-    var MainContentView: some View {
-        VStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 48.0) {
-                    ForEach(ImageAsset.all) { asset in
-                        Image(asset.name)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: UIScreen.screenWidth - 64.0)
-                    }
-                }
-            }
-            .scrollPosition(id: $scrollID)
-            .scrollDisabled(true)
-            .scrollTargetLayout()
-
-            Spacer()
-            
-            Text(currectStep.title)
-                .attributed(.H3Bold, color: Color.greyscale900)
         }
     }
 }
