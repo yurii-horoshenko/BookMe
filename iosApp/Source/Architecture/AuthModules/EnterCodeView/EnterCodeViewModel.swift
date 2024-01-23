@@ -48,6 +48,7 @@ final class EnterCodeViewModel: ObservableObject {
     }
     
     func checkCode() {
+        UserDefaultsManager.isLoggined = true
         view?.moveToDashboardPage()
     }
 }

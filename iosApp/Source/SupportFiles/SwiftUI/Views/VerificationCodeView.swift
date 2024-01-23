@@ -24,14 +24,18 @@ struct VerificationCodeView: View {
     var body: some View {
         HStack(spacing: 16.0) {
             ForEach(0..<array.count, id: \.self) { index in
-                ZStack {
-                    TextField("", text: $currentState.value)
-                        .keyboardType(.numberPad)
-                        .focused($activeFieldIndex, equals: -1)
-                        .frame(width: 0.0, height: 0.0)
-                    
-                    CodeItemView(by: index)
-                }
+                TextField("", text: $array[index].value)
+                    .padding(.horizontal, 16.0)
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.center)
+                    .textContentType(.oneTimeCode)
+                    .focused($activeFieldIndex, equals: index)
+                    .accentColor(Color.primary500)
+                    .frame(width: 60.0, height: 60.0)
+                    .background(selectedShape.opacity(0.08))
+                    .background(selectedBorder)
+                    .font(Font.H4Bold)
+                    .foregroundColor(Color.greyscale900)
             }
         }
         .frame(height: 60.0)
@@ -51,7 +55,7 @@ struct VerificationCodeView: View {
             if maxCount > 1 {
                 array[index].value = String(value.prefix(1))
                 array[newIndex].value = String(value.suffix(1))
-            } 
+            }
         }
         .onChange(of: currentValue) {
             guard let index = activeFieldIndex, index >= 0 else { return }
@@ -59,38 +63,6 @@ struct VerificationCodeView: View {
             array[index].value = newValue
             currentValue = newValue
         }
-    }
-    
-    func CodeItemView(by index: Int) -> some View {
-        VStack(alignment: .center) {
-            if currentState == array[index] {
-                TextField("", text: $array[index].value)
-                    .padding(.horizontal, 16.0)
-                    .keyboardType(.numberPad)
-                    .multilineTextAlignment(.center)
-                    .textContentType(.oneTimeCode)
-                    .focused($activeFieldIndex, equals: index)
-                    .accentColor(Color.primary500)
-                    .frame(width: 60.0, height: 60.0)
-                    .background(selectedShape.opacity(0.08))
-                    .background(selectedBorder)
-            } else {
-                Text(array[index].value)
-                    .frame(width: 60.0, height: 60.0)
-                    .background(unselectedShape)
-                    .background(unselectedBorder)
-                    .onTapGesture {
-                        activeFieldIndex = -1
-                        currentState = array[index]
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                            activeFieldIndex = index
-                        }
-                    }
-            }
-        }
-        .font(Font.H4Bold)
-        .foregroundColor(Color.greyscale900)
     }
 }
 

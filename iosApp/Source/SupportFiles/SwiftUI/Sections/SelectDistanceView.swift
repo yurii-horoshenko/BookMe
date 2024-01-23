@@ -39,7 +39,7 @@ struct SelectDistanceView: View {
                         .background(shape)
                     }
                 }
-                .frame(height: 38.0)
+                .frame(height: 40.0)
             }
         }
     }
