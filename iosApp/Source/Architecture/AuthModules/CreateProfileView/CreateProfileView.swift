@@ -15,7 +15,10 @@ struct CreateProfileView: View {
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(navigationTitle: String(localized: "CREATE-PROFILE-TITLE"), content: { ContentView })
+            BaseView(
+                navigationTitle: (viewModel.profile != nil) ? String(localized: "UPDATE-PROFILE-TITLE") : String(localized: "CREATE-PROFILE-TITLE"),
+                content: { ContentView }
+            )
                 .navigationDestination(isPresented: $viewModel.toCode) {
                     let phone = viewModel.phone.value.phoneMask
                     AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
@@ -80,7 +83,7 @@ struct CreateProfileView: View {
     var BottomButton: some View {
         AppFilledButton(
             state: .constant(.active),
-            title: String(localized: "BUTTON-CONTINUE"),
+            title: (viewModel.profile != nil) ? String(localized: "BUTTON-UPDATE") : String(localized: "BUTTON-CONTINUE"),
             titleColor: Color.white,
             backgroundColor: Color.primary500,
             action: { viewModel.codeVerification() }

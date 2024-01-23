@@ -20,7 +20,17 @@ struct ProfileView: View {
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(leadingView: LeadingView.eraseToAnyView(), content: { ContentView })
+            NavigationStack {
+                BaseView(
+                    leadingView: LeadingView.eraseToAnyView(),
+                    content: { ContentView }
+                )
+                .navigationDestination(isPresented: $viewModel.toSignIn) {
+                    ProfilePageBuilder.constructCreateProfileView(
+                        profile: viewModel.profile
+                    )
+                }
+            }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -29,7 +39,7 @@ struct ProfileView: View {
     var ContentView: some View {
         VStack(alignment: .center, spacing: 24.0) {
             Spacer()
-           
+            
             ProfilePreviewView(
                 displayName: "Daniel Austin",
                 email: "daniel_austin@yourdomain.com"
@@ -38,7 +48,7 @@ struct ProfileView: View {
             ProfileOptionsView
             
             Spacer()
-           
+            
             ProfileItemRow(title: "Logout", leftIcon: "ic-logout", rightIcon: "")
                 .foregroundColor(Color.error)
                 .onTapGesture {
@@ -74,6 +84,9 @@ struct ProfileView: View {
                 title: "Edit Profile",
                 leftIcon: "ic-profile"
             )
+            .onTapGesture {
+                viewModel.toSignIn = true
+            }
             
             ProfileItemRow(
                 title: "Notification",

@@ -18,10 +18,15 @@ final class CreateProfileViewModel: ObservableObject {
     @Published var gender = FieldData(placeholder: String(localized: "PROFILE-GENDER"))
     @Published var toGenderSelection = false
     @Published var toCode = false
+    var profile: Profile?
     
     // MARK: - Lifecycle
     deinit {
         printLog("deinit -> ", self)
+    }
+    
+    init(profile: Profile? = nil) {
+        self.profile = profile
     }
     
     // MARK: - Public

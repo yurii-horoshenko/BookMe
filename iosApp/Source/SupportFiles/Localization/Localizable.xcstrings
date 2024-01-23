@@ -248,6 +248,17 @@
         }
       }
     },
+    "BUTTON-UPDATE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update"
+          }
+        }
+      }
+    },
     "Congratulations!" : {
 
     },
@@ -358,9 +369,6 @@
           }
         }
       }
-    },
-    "Key" : {
-      "extractionState" : "manual"
     },
     "LOGIN-TITLE" : {
       "extractionState" : "manual",
@@ -696,6 +704,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome to 👋"
+          }
+        }
+      }
+    },
+    "UPDATE-PROFILE-TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Profile"
           }
         }
       }
