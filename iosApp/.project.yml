@@ -1,7 +1,7 @@
 name: iosApp
 settings:
     base:
-        SWIFT_VERSION: 5.7.1
+        SWIFT_VERSION: 5.10
         DEVELOPMENT_TEAM: 45N7H6HE3J
         MARKETING_VERSION: 1.0.0
         CURRENT_PROJECT_VERSION: 1
@@ -34,6 +34,7 @@ targets:
     iosApp:
         type: application
         platform: iOS
+        supportedDestinations: [iOS]
         deploymentTarget: "17.0"
         sources:
             - fastlane
