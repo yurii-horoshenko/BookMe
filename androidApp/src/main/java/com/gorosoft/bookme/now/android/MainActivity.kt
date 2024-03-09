@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gorosoft.bookme.now.android.ui.NavigationRoutes
 import com.gorosoft.bookme.now.android.ui.SplashDirection
+import com.gorosoft.bookme.now.android.ui.account_setup.LoginDirection
 import com.gorosoft.bookme.now.android.ui.onboarding.TutorialCarouselDirection
 import com.gorosoft.bookme.now.android.ui.onboarding.WelcomeDirection
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
@@ -45,7 +46,15 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(NavigationRoutes.TutorialCarousel.route) {
-                            TutorialCarouselDirection()
+                            TutorialCarouselDirection(
+                                navigateToAccountSetup = {
+                                    navController.popBackStack()
+                                    navController.navigate(NavigationRoutes.Login.route)
+                                }
+                            )
+                        }
+                        composable(NavigationRoutes.Login.route) {
+                            LoginDirection()
                         }
                     }
                 }
