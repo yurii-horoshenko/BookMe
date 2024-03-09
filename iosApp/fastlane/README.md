@@ -55,10 +55,10 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
-### ios autocorrect
+### ios lint
 
 ```sh
-[bundle exec] fastlane ios autocorrect
+[bundle exec] fastlane ios lint
 ```
 
 

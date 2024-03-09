@@ -10,10 +10,11 @@ import SwiftUI
 
 struct LocationView: View {
     // MARK: - Properties
-    @State var region = MKCoordinateRegion(
+    @State private var cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
         span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
-    )
+    ))
+    
     var useTitle = true
     var useLocation = true
     var useMap = true
@@ -51,7 +52,7 @@ struct LocationView: View {
             }
             .isHidden(!useLocation)
             
-            Map(coordinateRegion: $region)
+            Map(position: $cameraPosition)
                 .isHidden(!useMap)
         }
     }

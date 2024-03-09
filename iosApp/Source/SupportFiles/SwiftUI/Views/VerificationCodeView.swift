@@ -24,42 +24,6 @@ struct VerificationCodeView: View {
     var body: some View {
         HStack(spacing: 16.0) {
             ForEach(0..<array.count, id: \.self) { index in
-                ZStack {
-                    TextField("", text: $currentState.value)
-                        .keyboardType(.numberPad)
-                        .focused($activeFieldIndex, equals: -1)
-                        .frame(width: 0.0, height: 0.0)
-                    
-                    CodeItemView(by: index)
-                }
-            }
-        }
-        .frame(height: 60.0)
-        .onAppear {
-            activeFieldIndex = 0
-        }
-        .onChange(of: array) { _ in
-            guard let index = activeFieldIndex, index >= 0 else { return }
-            
-            let newIndex = index + 1
-            guard newIndex < array.count else { return }
-            activeFieldIndex = -1
-            currentState = array[newIndex]
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                activeFieldIndex = newIndex
-            }
-        }
-        .onChange(of: currentValue) { newValue in
-            guard let index = activeFieldIndex, index >= 0 else { return }
-            let newValue = String(newValue.suffix(1))
-            array[index].value = newValue
-            currentValue = newValue
-        }
-    }
-    
-    func CodeItemView(by index: Int) -> some View {
-        VStack(alignment: .center) {
-            if currentState == array[index] {
                 TextField("", text: $array[index].value)
                     .padding(.horizontal, 16.0)
                     .keyboardType(.numberPad)
@@ -70,23 +34,35 @@ struct VerificationCodeView: View {
                     .frame(width: 60.0, height: 60.0)
                     .background(selectedShape.opacity(0.08))
                     .background(selectedBorder)
-            } else {
-                Text(array[index].value)
-                    .frame(width: 60.0, height: 60.0)
-                    .background(unselectedShape)
-                    .background(unselectedBorder)
-                    .onTapGesture {
-                        activeFieldIndex = -1
-                        currentState = array[index]
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                            activeFieldIndex = index
-                        }
-                    }
+                    .font(Font.H4Bold)
+                    .foregroundColor(Color.greyscale900)
             }
         }
-        .font(Font.H4Bold)
-        .foregroundColor(Color.greyscale900)
+        .frame(height: 60.0)
+        .onAppear {
+            activeFieldIndex = 0
+        }
+        .onChange(of: array) {
+            guard let index = activeFieldIndex, index >= 0 else { return }
+            let maxCount = array[index].value.count
+            let value = array[index].value
+            let newIndex = index + 1
+            
+            guard newIndex < array.count else { return }
+            currentState = array[newIndex]
+            activeFieldIndex = newIndex
+            
+            if maxCount > 1 {
+                array[index].value = String(value.prefix(1))
+                array[newIndex].value = String(value.suffix(1))
+            }
+        }
+        .onChange(of: currentValue) {
+            guard let index = activeFieldIndex, index >= 0 else { return }
+            let newValue = String(currentValue.suffix(1))
+            array[index].value = newValue
+            currentValue = newValue
+        }
     }
 }
 

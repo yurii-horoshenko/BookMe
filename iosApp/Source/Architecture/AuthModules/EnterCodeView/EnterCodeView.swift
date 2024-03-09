@@ -19,7 +19,7 @@ struct EnterCodeView: View {
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(navigationTitle: ENTER_CODE.pageTitle.text, content: { ContentView })
+            BaseView(navigationTitle: String(localized: "ENTERCODE-TITLE"), content: { ContentView })
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -31,14 +31,13 @@ struct EnterCodeView: View {
     // Title, input fields code, timer label
     var ContentView: some View {
         VStack(spacing: 60.0) {
-            Text(ENTER_CODE.info.text + viewModel.phone)
+            Text(String(localized: "ENTERCODE-DESCRIPTION") + viewModel.phone)
                 .font(Font.BodyXLargeMedium)
                 .foregroundColor(Color.greyscale900)
             
             VerificationCodeView(array: $viewModel.code, currentState: viewModel.code.first ?? FieldData())
-                .padding(.horizontal, 24.0)
-                .onChange(of: viewModel.code) { newValue in
-                    let code = newValue.compactMap({ $0.value }).joined()
+                .onChange(of: viewModel.code) {
+                    let code = viewModel.code.compactMap({ $0.value }).joined()
                     guard code.count == 4 else { return }
                     viewModel.checkCode()
                 }
@@ -46,12 +45,13 @@ struct EnterCodeView: View {
             TimerLabel
                 .isHidden(!viewModel.isTimerRunning)
         }
+        .padding(defaultEdgeInsets)
     }
     
     // Label with timer
     var TimerLabel: some View {
         HStack(spacing: 4.0) {
-            Text(ENTER_CODE.timer.text)
+            Text(String(localized: "ENTERCODE-TIMER"))
                 .font(Font.BodyXLargeMedium)
                 .foregroundColor(Color.greyscale900)
             

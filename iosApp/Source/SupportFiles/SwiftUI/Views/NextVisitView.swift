@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct NextVisitView: View {
+    // MARK: - Properties
+    var onCallPress: (() -> Void)?
+    var onCancelPress: (() -> Void)?
+    var onMapPress: (() -> Void)?
+    
     // MARK: - Lifecycle
     var body: some View {
         VStack(alignment: .leading) {
@@ -66,16 +71,16 @@ struct NextVisitView: View {
     
     var CallButton: some View {
         Button {
-            print("")
+            onCallPress?()
         } label: {
             HStack(alignment: .center) {
                 Icons.Phone
-                    .foregroundColor(Color.white)
                 
-                Text("Call")
+                Text(String(localized: "BUTTON-CALL"))
                     .font(Font.BodyLargeSemibold)
-                    .foregroundColor(Color.white)
             }
+            .frame(height: 16)
+            .foregroundColor(Color.white)
             .padding(EdgeInsets(top: 8.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
         }
         .background(Color.info)
@@ -84,17 +89,17 @@ struct NextVisitView: View {
     
     var CancelButton: some View {
         Button {
-            print("")
+            onCancelPress?()
         } label: {
             HStack(alignment: .center) {
                 Icons.Delete
-                    .foregroundColor(Color.white)
                 
-                Text("Cancel")
+                Text(String(localized: "BUTTON-CANCEL"))
                     .font(Font.BodyLargeSemibold)
-                    .foregroundColor(Color.white)
             }
-            .padding(EdgeInsets(top: 8.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
+            .frame(height: 16)
+            .foregroundColor(Color.white)
+            .padding(buttonEdgeInsets)
         }
         .background(Color.error)
         .cornerRadius(19.0)
@@ -102,17 +107,17 @@ struct NextVisitView: View {
     
     var MapButton: some View {
         Button {
-            print("")
+            onMapPress?()
         } label: {
             HStack(alignment: .center) {
                 Icons.Map
-                    .foregroundColor(Color.primary500)
                 
-                Text("Map")
+                Text(String(localized: "BUTTON-MAP"))
                     .font(Font.BodyLargeSemibold)
-                    .foregroundColor(Color.primary500)
             }
-            .padding(EdgeInsets(top: 8.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
+            .frame(height: 16)
+            .foregroundColor(Color.primary500)
+            .padding(buttonEdgeInsets)
         }
         .background(Color.white)
         .cornerRadius(19.0)

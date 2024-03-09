@@ -12,6 +12,7 @@ final class NearByViewModel: ObservableObject {
     // MARK: - Properties
     private let repository = shared.UserRepository()
     @Published var searchData = FieldData(placeholder: "Search")
+    @Published var toSearchFilter = false
     
     // MARK: - Lifecycle
     deinit {

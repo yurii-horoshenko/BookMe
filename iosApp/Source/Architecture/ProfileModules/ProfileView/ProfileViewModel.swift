@@ -12,6 +12,8 @@ final class ProfileViewModel: ObservableObject {
     // MARK: - Properties
     private let repository = shared.UserRepository()
     @Published var toLogoutConfirm = false
+    @Published var toSignIn = false
+    var profile = Profile()
     var view: ProfileViewProtocol?
     
     // MARK: - Lifecycle

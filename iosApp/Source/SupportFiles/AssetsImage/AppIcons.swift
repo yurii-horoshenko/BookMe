@@ -82,11 +82,18 @@ enum Icons {
             .frame(width: 20, height: 20)
     }
     
+    static var Star: some View {
+        Image("ic-star")
+            .resizable()
+            .renderingMode(.template)
+            .frame(width: 26, height: 26)
+    }
+    
     static var StarBold: some View {
         Image("ic-star-bold")
             .resizable()
             .renderingMode(.template)
-            .frame(width: 20, height: 20)
+            .frame(width: 26, height: 26)
     }
     
     static var Delete: some View {
@@ -155,9 +162,45 @@ enum Images {
     }
 }
 
+enum InfoImages {
+    static var Registration: some View {
+        Image("img-info-registration")
+            .resizable()
+            .scaledToFit()
+    }
+    
+    static var Location: some View {
+        Image("img-info-location")
+            .resizable()
+            .scaledToFit()
+    }
+    
+    static var Rate: some View {
+        Image("img-info-rate")
+            .resizable()
+            .scaledToFit()
+    }
+}
+
 enum Backgrounds {
     static var Tutorial: some View {
         Image("bg-welcome")
             .resizable()
+    }
+}
+
+struct ImageAsset: Identifiable {
+    var id: Int
+    var name: String
+    
+    static var all: [Self] {
+        [
+            .init(id: 0, name: "img-tutorial-1"),
+            .init(id: 1, name: "img-tutorial-2")
+        ]
+    }
+    
+    static func name(_ id: Int) -> String {
+        Self.all.first { $0.id == id }?.name ?? ""
     }
 }

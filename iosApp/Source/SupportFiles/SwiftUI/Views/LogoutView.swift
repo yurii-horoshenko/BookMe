@@ -25,7 +25,7 @@ struct LogoutView: View {
             
             Text("Are you sure you want to log out?")
                 .font(Font.H5Bold)
-                .foregroundColor(Color.greyscale800)
+                .foregroundColor(Color.greyscale900)
             
             HStack {
                 AppFilledButton(

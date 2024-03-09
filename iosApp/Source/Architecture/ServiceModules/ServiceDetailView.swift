@@ -16,7 +16,6 @@ struct ServiceDetailView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 Image("img-detail-mask")
-                    .edgesIgnoringSafeArea(.top)
                 
                 BaseView(
                     navigationTitle: "",
@@ -26,11 +25,11 @@ struct ServiceDetailView: View {
             }
         }
         .edgesIgnoringSafeArea(.top)
-        .navigationBarBackButtonHidden(true)
-        .environment(\.colorScheme, .light)
         .navigationDestination(isPresented: $viewModel.toBooking) {
             DashboardPageBuilder.constructBookingView()
         }
+        .navigationBarBackButtonHidden(true)
+        .toolbarBackground(.hidden, for: .navigationBar)
     }
     
     var ContentView: some View {

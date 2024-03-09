@@ -20,7 +20,17 @@ struct ProfileView: View {
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(leadingView: LeadingView.eraseToAnyView(), content: { ContentView })
+            NavigationStack {
+                BaseView(
+                    leadingView: LeadingView.eraseToAnyView(),
+                    content: { ContentView }
+                )
+                .navigationDestination(isPresented: $viewModel.toSignIn) {
+                    ProfilePageBuilder.constructCreateProfileView(
+                        profile: viewModel.profile
+                    )
+                }
+            }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -29,16 +39,16 @@ struct ProfileView: View {
     var ContentView: some View {
         VStack(alignment: .center, spacing: 24.0) {
             Spacer()
+            
             ProfilePreviewView(
                 displayName: "Daniel Austin",
                 email: "daniel_austin@yourdomain.com"
             )
-            Divider()
-                .background(Color.greyscale200)
-                .frame(height: 1.0)
-            ProfileItemRow(title: "Edit Profile", leftIcon: "ic-profile")
-            ProfileItemRow(title: "Notification", leftIcon: "ic-notification")
+            
+            ProfileOptionsView
+            
             Spacer()
+            
             ProfileItemRow(title: "Logout", leftIcon: "ic-logout", rightIcon: "")
                 .foregroundColor(Color.error)
                 .onTapGesture {
@@ -62,6 +72,28 @@ struct ProfileView: View {
         }
         .foregroundColor(Color.greyscale900)
         .padding(.horizontal, 16.0)
+    }
+    
+    var ProfileOptionsView: some View {
+        VStack(spacing: 24.0) {
+            Divider()
+                .background(Color.greyscale200)
+                .frame(height: 1.0)
+            
+            ProfileItemRow(
+                title: "Edit Profile",
+                leftIcon: "ic-profile"
+            )
+            .onTapGesture {
+                viewModel.toSignIn = true
+            }
+            
+            ProfileItemRow(
+                title: "Notification",
+                leftIcon: "ic-notification"
+                
+            )
+        }
     }
     
     var LeadingView: some View {

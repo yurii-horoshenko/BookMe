@@ -20,8 +20,8 @@ enum ProfilePageBuilder {
         return view
     }
     
-    static func constructCreateProfileView() -> some View {
-        let viewModel = CreateProfileViewModel()
+    static func constructCreateProfileView(profile: Profile? = nil) -> some View {
+        let viewModel = CreateProfileViewModel(profile: profile)
         let view = CreateProfileView(viewModel: viewModel)
         return view
     }

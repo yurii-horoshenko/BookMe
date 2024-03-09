@@ -10,9 +10,12 @@ import SwiftUI
 
 @main
 struct BookMeNowApp: App {
+    
     var body: some Scene {
         WindowGroup {
             AuthPageBuilder.constructSplashView()
         }
     }
 }
+
+

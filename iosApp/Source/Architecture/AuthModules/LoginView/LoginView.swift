@@ -15,7 +15,7 @@ struct LoginView: View {
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(navigationTitle: LOGIN.pageTitle.text, content: { ContentView })
+            BaseView(navigationTitle: String(localized: "LOGIN-TITLE"), content: { ContentView })
             .navigationDestination(isPresented: $viewModel.toCode) {
                 let phone = viewModel.phone.value.phoneMask
                 AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
@@ -29,7 +29,9 @@ struct LoginView: View {
         VStack {
             Spacer()
             
-            AppPhoneNumber(fieldData: $viewModel.phone)
+            AppPhoneNumber(
+                fieldData: $viewModel.phone
+            )
             
             Spacer()
             
@@ -42,7 +44,7 @@ struct LoginView: View {
     var BottomButton: some View {
         AppFilledButton(
             state: .constant(.active),
-            title: LOGIN.signInButton.text,
+            title: String(localized: "BUTTON-LOGIN"),
             titleColor: Color.white,
             backgroundColor: Color.primary500,
             action: { viewModel.codeVerification() }

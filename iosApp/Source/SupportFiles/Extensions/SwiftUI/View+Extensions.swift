@@ -27,7 +27,11 @@ extension View {
     }
     
     var defaultEdgeInsets: EdgeInsets {
-        EdgeInsets(top: 8.0, leading: 24.0, bottom: 8.0, trailing: 24.0)
+        EdgeInsets(top: 8.0, leading: 32.0, bottom: 8.0, trailing: 32.0)
+    }
+    
+    var buttonEdgeInsets: EdgeInsets {
+        EdgeInsets(top: 11.0, leading: 16.0, bottom: 11.0, trailing: 16.0)
     }
     
     func eraseToAnyView() -> AnyView {
@@ -46,4 +50,10 @@ extension View {
             self
         }
     }
+}
+
+extension UIScreen {
+   static let screenWidth = UIScreen.main.bounds.size.width
+   static let screenHeight = UIScreen.main.bounds.size.height
+   static let screenSize = UIScreen.main.bounds.size
 }
