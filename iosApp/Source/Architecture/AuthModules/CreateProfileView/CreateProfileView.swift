@@ -19,10 +19,18 @@ struct CreateProfileView: View {
                 navigationTitle: (viewModel.profile != nil) ? String(localized: "UPDATE-PROFILE-TITLE") : String(localized: "CREATE-PROFILE-TITLE"),
                 content: { ContentView }
             )
-                .navigationDestination(isPresented: $viewModel.toCode) {
-                    let phone = viewModel.phone.value.phoneMask
-                    AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
-                }
+//            .navigationDestination(isPresented: $viewModel.toCode) {
+//                let phone = viewModel.phone.value.phoneMask
+//                AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
+//            }
+            .navigationDestination(for: Steps.self) { step in
+                step.PageView
+                
+//                if step == .empty {
+//                    let phone = viewModel.phone.value.phoneMask
+//                    AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
+//                }
+            }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -48,7 +56,10 @@ struct CreateProfileView: View {
             
             Spacer()
             
-            BottomButton
+            NavigationButton<Steps>(
+                title: (viewModel.profile != nil) ? String(localized: "BUTTON-UPDATE") : String(localized: "BUTTON-CONTINUE"),
+                navigationType: .enterCode(viewModel.phone.value.phoneMask)
+            )
         }
         .padding(defaultEdgeInsets)
     }
@@ -77,17 +88,6 @@ struct CreateProfileView: View {
                 viewModel.gender.state = .active
             }
         }
-    }
-    
-    // Button Continue
-    var BottomButton: some View {
-        AppFilledButton(
-            state: .constant(.active),
-            title: (viewModel.profile != nil) ? String(localized: "BUTTON-UPDATE") : String(localized: "BUTTON-CONTINUE"),
-            titleColor: Color.white,
-            backgroundColor: Color.primary500,
-            action: { viewModel.codeVerification() }
-        )
     }
 }
 

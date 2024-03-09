@@ -18,6 +18,7 @@ final class CreateProfileViewModel: ObservableObject {
     @Published var gender = FieldData(placeholder: String(localized: "PROFILE-GENDER"))
     @Published var toGenderSelection = false
     @Published var toCode = false
+    @Published var state: Steps = .empty
     var profile: Profile?
     
     // MARK: - Lifecycle

@@ -60,6 +60,10 @@ targets:
                 INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
                 INFOPLIST_KEY_UIUserInterfaceStyle: Light
                 PRODUCT_BUNDLE_IDENTIFIER: "com.gorosoft.bookme.now"
+                SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+                SUPPORTS_MACCATALYST: NO
+                SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+                SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
         scheme:
             environmentVariables:
             - variable: OS_ACTIVITY_MODE
