@@ -17,5 +17,3 @@ struct BookMeNowApp: App {
         }
     }
 }
-
-
