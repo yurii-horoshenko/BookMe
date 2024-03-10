@@ -1,8 +1,15 @@
 package com.gorosoft.bookme.now.android.ui.theme
 
 import androidx.compose.foundation.LocalIndication
+import androidx.compose.foundation.LocalOverscrollConfiguration
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.LocalContentColor
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Shapes
+import androidx.compose.material.Typography
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.material.ripple.rememberRipple
@@ -11,6 +18,12 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 val LocalColors = staticCompositionLocalOf { lightColor }
 
@@ -55,7 +68,7 @@ fun AppTheme(
         LocalColors provides color,
         LocalTypography provides typography,
         LocalIndication provides rippleIndication,
-        LocalRippleTheme provides AppRippleTheme
+        LocalRippleTheme provides AppRippleTheme,
     ) {
         content.invoke()
     }

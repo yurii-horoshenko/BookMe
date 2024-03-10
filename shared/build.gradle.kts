@@ -9,7 +9,7 @@ plugins {
 kotlin {
     targetHierarchy.default()
 
-    androidTarget {
+    android {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"

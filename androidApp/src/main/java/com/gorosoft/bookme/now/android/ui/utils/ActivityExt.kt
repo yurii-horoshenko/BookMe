@@ -11,12 +11,12 @@ fun ComponentActivity.enableRealEdgeToEdge() {
     enableEdgeToEdge(
         statusBarStyle = SystemBarStyle.auto(
             lightScrim = Color.Transparent.toArgb(),
-            darkScrim = Color.Transparent.toArgb()
+            darkScrim = Color.Transparent.toArgb(),
         ),
         navigationBarStyle = SystemBarStyle.auto(
             lightScrim = Color.Transparent.toArgb(),
-            darkScrim = Color.Transparent.toArgb()
-        )
+            darkScrim = Color.Transparent.toArgb(),
+        ),
     )
 
     // For API29(Q) or higher and 3-button navigation,

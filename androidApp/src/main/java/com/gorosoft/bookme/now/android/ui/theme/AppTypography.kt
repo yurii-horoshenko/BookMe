@@ -10,27 +10,27 @@ internal val fontFamily = FontFamily(
     Font(
         resId = R.font.urbanist_bold,
         weight = FontWeight.Bold,
-        style = FontStyle.Normal
+        style = FontStyle.Normal,
     ),
     Font(
         resId = R.font.urbanist_semibold,
         weight = FontWeight.SemiBold,
-        style = FontStyle.Normal
+        style = FontStyle.Normal,
     ),
     Font(
         resId = R.font.urbanist_medium,
         weight = FontWeight.Medium,
-        style = FontStyle.Normal
+        style = FontStyle.Normal,
     ),
     Font(
         resId = R.font.urbanist_regular,
         weight = FontWeight.Normal,
-        style = FontStyle.Normal
+        style = FontStyle.Normal,
     ),
     Font(
         resId = R.font.urbanist_black,
         weight = FontWeight.Black,
-        style = FontStyle.Normal
+        style = FontStyle.Normal,
     )
 )
 
@@ -49,5 +49,5 @@ data class AppTypography(
     val bodyLarge: BodyLarge,
     val bodyMedium: BodyMedium,
     val bodySmall: BodySmall,
-    val bodyXSmall: BodyXSmall
+    val bodyXSmall: BodyXSmall,
 )
