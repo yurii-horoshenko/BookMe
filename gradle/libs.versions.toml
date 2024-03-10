@@ -1,40 +1,46 @@
 [versions]
-android-gradle-plugin = "8.2.2"
-activity-compose = "1.8.2"
-compose-bom = "2024.02.02"
-coroutinesVersion = "1.7.3"
-kotlin = "1.9.10"
-ktorVersion = "2.3.6"
-serializationVersion = "1.6.1"
+android-gradle-plugin-version = "8.2.2"
+activity-compose-version = "1.8.2"
+compose-bom-version = "2024.02.02"
+compose-compiler-version = "1.5.10"
+coroutines-version = "1.7.3"
+kotlin-version = "1.9.22"
+ktor-version = "2.3.6"
+serialization-version = "1.6.1"
 nav-version = "2.7.7"
 ktlint-version = "12.1.0"
 detekt = "1.23.5"
+ksp-version = "1.9.22-1.0.17"
+compose-destinations-version = "1.9.63"
 
 
 [libraries]
-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose-version" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom-version" }
 androidx-material = { group = "androidx.compose.material", name = "material" }
 androidx-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationVersion" }
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
-ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktorVersion" }
-ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorVersion" }
-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorVersion" }
-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktorVersion" }
-ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorVersion" }
-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorVersion" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-version" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-version" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor-version" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-version" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-version" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-version" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor-version" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav-version" }
+compose-destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "compose-destinations-version" }
+compose-destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "compose-destinations-version" }
 
 [bundles]
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
-android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+android-application = { id = "com.android.application", version.ref = "android-gradle-plugin-version" }
+android-library = { id = "com.android.library", version.ref = "android-gradle-plugin-version" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-version" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-version" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
