@@ -37,10 +37,12 @@ import kotlinx.coroutines.launch
 private const val TutorialPagesCount = 2
 
 @Composable
-fun TutorialCarouselDirection() {
-//    val navController = LocalNavigator.current
-//    navController.navigate("")
-    TutorialCarouselScreen()
+fun TutorialCarouselDirection(
+    navigateToAccountSetup: () -> Unit = {},
+) {
+    TutorialCarouselScreen(
+        navigateToAccountSetup = navigateToAccountSetup
+    )
 }
 
 @Suppress("MagicNumber")
@@ -131,7 +133,8 @@ private fun TutorialPage(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(stringRes),
             textAlign = TextAlign.Center,
-            style = AppTheme.typography.heading.h2
+            style = AppTheme.typography.heading.h2,
+            color = AppTheme.colors.grayscale.gs900,
         )
     }
 }

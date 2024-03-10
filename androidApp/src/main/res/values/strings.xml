@@ -7,4 +7,8 @@
     <string name="get_started">Get Started</string>
     <string name="tutorial_text_1">Find Barbers, Salons, Doctors or Other Services Easily</string>
     <string name="tutorial_text_2">Book Your Type of Services Quickly</string>
+    <string name="login_button_text">Sign in with phone</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="lets_you_in">Let’s you in</string>
 </resources>
