@@ -17,7 +17,6 @@ import com.gorosoft.bookme.now.android.ui.utils.LocalNavigator
 import com.gorosoft.bookme.now.android.ui.utils.enableRealEdgeToEdge
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableRealEdgeToEdge()
@@ -34,7 +33,7 @@ class MainActivity : ComponentActivity() {
                                 navigateToWelcomeScreen = {
                                     navController.popBackStack()
                                     navController.navigate(NavigationRoutes.Welcome.route)
-                                },
+                                }
                             )
                         }
                         composable(NavigationRoutes.Welcome.route) {

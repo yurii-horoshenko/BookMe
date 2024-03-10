@@ -3,6 +3,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -38,6 +40,35 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+//tasks.getByPath("preBuild").dependsOn("ktlintCheck")
+//tasks.getByPath("preBuild").dependsOn("detekt")
+//tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+//    exclude(".*/build/.*,.*/resources/.*")
+//}
+
+ktlint {
+    android = true
+    ignoreFailures = false
+    verbose = true
+    outputToConsole = true
+    reporters {
+        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
+        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.SARIF)
+    }
+
+    filter {
+        exclude("**/generated/**")
+        exclude("**.gradle.kts")
+    }
+}
+
+detekt {
+    toolVersion = libs.versions.detekt.get()
+    config.setFrom(file("${rootDir}/config/detekt/detekt.yml"))
+    buildUponDefaultConfig = true
 }
 
 dependencies {
