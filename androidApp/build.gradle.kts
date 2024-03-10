@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -21,7 +22,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.version.get()
     }
     packaging {
         resources {
@@ -81,4 +82,7 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.activity.compose)
     implementation(libs.navigation)
+//    implementation(libs.bundles.compose.destinations.bundle)
+    implementation(libs.compose.destinations.core)
+    ksp(libs.compose.destinations.ksp)
 }

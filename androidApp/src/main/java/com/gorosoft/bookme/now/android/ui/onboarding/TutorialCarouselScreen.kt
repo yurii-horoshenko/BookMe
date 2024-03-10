@@ -28,26 +28,33 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gorosoft.bookme.now.android.R
+import com.gorosoft.bookme.now.android.ui.destinations.LoginScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.ButtonDefaultBottomPadding
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.WormPageIndicator
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
 private const val TutorialPagesCount = 2
 
+@Destination
 @Composable
-fun TutorialCarouselDirection(
-    navigateToAccountSetup: () -> Unit = {},
+fun TutorialCarouselScreen(
+    navigator: DestinationsNavigator,
 ) {
-    TutorialCarouselScreen(
-        navigateToAccountSetup = navigateToAccountSetup
+    TutorialCarouselContent(
+        navigateToAccountSetup = {
+            navigator.popBackStack()
+            navigator.navigate(LoginScreenDestination)
+        }
     )
 }
 
 @Suppress("MagicNumber")
 @Composable
-private fun TutorialCarouselScreen(navigateToAccountSetup: () -> Unit = {}) {
+private fun TutorialCarouselContent(navigateToAccountSetup: () -> Unit = {}) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(pageCount = { TutorialPagesCount })
     val buttonTextRes = if (pagerState.currentPage == 0) {
@@ -143,6 +150,6 @@ private fun TutorialPage(
 @Composable
 private fun TutorialCarouselScreenPreview() {
     AppTheme {
-        TutorialCarouselScreen()
+        TutorialCarouselContent()
     }
 }

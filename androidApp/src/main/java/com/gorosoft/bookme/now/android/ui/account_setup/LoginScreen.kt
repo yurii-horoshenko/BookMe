@@ -35,22 +35,21 @@ import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.ButtonDefaultBottomPadding
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @Composable
-fun LoginDirection(
-    continueWithFacebook: () -> Unit = {},
-    continueWithGoogle: () -> Unit = {},
-    singInWithPhone: () -> Unit = {},
-) {
-    LoginScreen(
-        continueWithFacebook = continueWithFacebook,
-        continueWithGoogle = continueWithGoogle,
-        singInWithPhone = singInWithPhone,
+fun LoginScreen() {
+    LoginContent(
+//        continueWithFacebook = continueWithFacebook,
+//        continueWithGoogle = continueWithGoogle,
+//        singInWithPhone = singInWithPhone,
     )
 }
 
+@Suppress("MagicNumber")
 @Composable
-fun LoginScreen(
+fun LoginContent(
     continueWithFacebook: () -> Unit = {},
     continueWithGoogle: () -> Unit = {},
     singInWithPhone: () -> Unit = {},
@@ -108,6 +107,7 @@ fun LoginScreen(
     }
 }
 
+@Suppress("MagicNumber")
 @Composable
 private fun ContinueWithButton(
     @StringRes stringRes: Int,
@@ -120,7 +120,8 @@ private fun ContinueWithButton(
             .fillMaxWidth()
             .height(60.dp)
             .border(
-                1.dp, color = AppTheme.colors.grayscale.gs200,
+                width = 1.dp,
+                color = AppTheme.colors.grayscale.gs200,
                 shape = shape
             )
             .clip(shape)
@@ -142,6 +143,7 @@ private fun ContinueWithButton(
     }
 }
 
+@Suppress("MagicNumber")
 @Composable
 private fun CustomDivider() {
     Row(
@@ -187,6 +189,6 @@ private fun ContinueWithButtonPreview() {
 @Composable
 private fun LoginScreenPreview() {
     AppTheme {
-        LoginScreen()
+        LoginContent()
     }
 }

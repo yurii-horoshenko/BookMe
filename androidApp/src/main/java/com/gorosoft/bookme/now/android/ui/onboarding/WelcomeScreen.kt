@@ -21,21 +21,28 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gorosoft.bookme.now.android.R
+import com.gorosoft.bookme.now.android.ui.destinations.TutorialCarouselScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.delay
 
-@Composable
 @Suppress("MagicNumber")
-fun WelcomeDirection(navigateToTutorialCarousel: () -> Unit = {}) {
+@Destination
+@Composable
+fun WelcomeScreen(
+    navigator: DestinationsNavigator,
+) {
     LaunchedEffect(key1 = Unit) {
         delay(3000)
-        navigateToTutorialCarousel.invoke()
+        navigator.popBackStack()
+        navigator.navigate(TutorialCarouselScreenDestination)
     }
-    WelcomeScreen()
+    WelcomeContent()
 }
 
 @Composable
-private fun WelcomeScreen() {
+private fun WelcomeContent() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -79,6 +86,6 @@ private fun WelcomeScreen() {
 @Composable
 private fun WelcomePreview() {
     AppTheme {
-        WelcomeScreen()
+        WelcomeContent()
     }
 }
