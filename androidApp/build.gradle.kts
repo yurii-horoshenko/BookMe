@@ -3,9 +3,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ktlint)
-    alias(libs.plugins.detekt)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -22,7 +19,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.version.get()
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     packaging {
         resources {
@@ -43,35 +40,6 @@ android {
     }
 }
 
-//tasks.getByPath("preBuild").dependsOn("ktlintCheck")
-//tasks.getByPath("preBuild").dependsOn("detekt")
-//tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
-//    exclude(".*/build/.*,.*/resources/.*")
-//}
-
-ktlint {
-    android = true
-    ignoreFailures = false
-    verbose = true
-    outputToConsole = true
-    reporters {
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.SARIF)
-    }
-
-    filter {
-        exclude("**/generated/**")
-        exclude("**.gradle.kts")
-    }
-}
-
-detekt {
-    toolVersion = libs.versions.detekt.get()
-    config.setFrom(file("${rootDir}/config/detekt/detekt.yml"))
-    buildUponDefaultConfig = true
-}
-
 dependencies {
     implementation(project(":shared"))
     implementation(platform(libs.compose.bom))
@@ -82,7 +50,4 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.activity.compose)
     implementation(libs.navigation)
-//    implementation(libs.bundles.compose.destinations.bundle)
-    implementation(libs.compose.destinations.core)
-    ksp(libs.compose.destinations.ksp)
 }

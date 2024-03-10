@@ -22,15 +22,6 @@ struct WelcomeView: View {
                 .navigationDestination(isPresented: $viewModel.toSignIn) {
                     ProfilePageBuilder.constructCreateProfileView()
                 }
-            
-                .navigationDestination(for: Steps.self) { step in
-                    step.PageView
-                    
-    //                if step == .empty {
-    //                    let phone = viewModel.phone.value.phoneMask
-    //                    AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
-    //                }
-                }
         }
     }
     
@@ -49,11 +40,6 @@ struct WelcomeView: View {
             Spacer()
             
             ButtonsView
-            
-            NavigationButton<Steps>(
-                title: "sdgsbd",
-                navigationType: .enterCode("")
-            )
         }
         .padding(defaultEdgeInsets)
         .background(Color.background)

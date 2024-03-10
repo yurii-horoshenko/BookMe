@@ -28,7 +28,7 @@ fun PrimaryButton(
     text: String,
     onClick: () -> Unit,
     enabled: Boolean = true,
-    shadowEnabled: Boolean = false
+    shadowEnabled: Boolean = false,
 ) {
     if (shadowEnabled) {
         val shadowModifier = if (enabled) {
@@ -36,7 +36,7 @@ fun PrimaryButton(
                 elevation = 10.dp,
                 shape = CircleShape,
                 ambientColor = AppTheme.colors.mainColors.primary500.copy(alpha = 1f),
-                spotColor = AppTheme.colors.mainColors.primary500.copy(alpha = 1f)
+                spotColor = AppTheme.colors.mainColors.primary500.copy(alpha = 1f),
             )
         } else {
             Modifier
@@ -50,7 +50,7 @@ fun PrimaryButton(
                 modifier = modifier,
                 text = text,
                 onClick = onClick,
-                enabled = enabled
+                enabled = enabled,
             )
             Box(
                 modifier = Modifier
@@ -66,7 +66,7 @@ fun PrimaryButton(
             modifier = modifier,
             text = text,
             onClick = onClick,
-            enabled = enabled
+            enabled = enabled,
         )
     }
 }
@@ -76,7 +76,7 @@ private fun PrimaryButtonInternal(
     modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     val debouncer = remember { ClickDebouncer() }
     Button(
@@ -87,22 +87,21 @@ private fun PrimaryButtonInternal(
         elevation = ButtonDefaults.elevation(0.dp, 0.dp, 0.dp, 0.dp, 0.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = AppTheme.colors.mainColors.primary500,
-            disabledBackgroundColor = AppTheme.colors.alertStatus.disabledButton
-        )
+            disabledBackgroundColor = AppTheme.colors.alertStatus.disabledButton,
+        ),
     ) {
         Text(
             text = text,
             color = Color.White,
             style = AppTheme.typography.bodyLarge.bold,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     }
 }
 
 @Preview(
-    showBackground = true,
-    backgroundColor = 0xFFFFFFFF,
-    uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL
+    showBackground = true, backgroundColor = 0xFFFFFFFF,
+    uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL,
 )
 @Composable
 private fun PrimaryButtonPreview() {
@@ -112,7 +111,7 @@ private fun PrimaryButtonPreview() {
             shadowEnabled = true,
             text = "Some text",
             enabled = true,
-            onClick = {}
+            onClick = {},
         )
     }
 }

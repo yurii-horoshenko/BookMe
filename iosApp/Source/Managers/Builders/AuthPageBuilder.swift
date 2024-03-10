@@ -8,24 +8,10 @@
 import SwiftUI
 
 enum AuthPageBuilder {
-    static func detectSplashNavigationView() -> any View {
-        guard UserDefaultsManager.isLoggined else {
-            return detectAuthNavigationView()
-        }
-        
-        return DashboardContainerView()
-    }
-    
-    static func detectAuthNavigationView() -> any View {
-        guard UserDefaultsManager.wasTutorial else {
-            return TutorialWelcomeModuleView()
-        }
-        
-        return constructWelcomeView()
-    }
-    
     static func constructSplashView() -> some View {
-        let view = SplashView()
+        let viewModel = SplashViewModel()
+        let view = SplashView(viewModel: viewModel)
+        viewModel.view = view
         return view
     }
     

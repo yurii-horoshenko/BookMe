@@ -85,11 +85,6 @@ struct TutorialDescriptionModuleView: View {
                 currectIndex: $scrollID
             )
             
-            NavigationButton<Steps>(
-                title: currectStep.buttonTitle,
-                navigationType: .dashboard
-            )
-            
             AppFilledButton(
                 state: .constant(.active),
                 autoWidth: true,

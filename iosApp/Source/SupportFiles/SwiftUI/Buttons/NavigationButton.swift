@@ -10,7 +10,6 @@ import SwiftUI
 enum Steps: Hashable {
     case empty
     case enterCode(String)
-    case dashboard
     
     var PageView: some View {
         switch self {
@@ -19,10 +18,6 @@ enum Steps: Hashable {
             
         case .enterCode(let phone):
             return AnyView(AuthPageBuilder.constructEnterCodeView(phoneMask: ""))
-            
-        case .dashboard:
-            return AnyView(AuthPageBuilder.constructEnterCodeView(phoneMask: ""))
-
         }
     }
 }
