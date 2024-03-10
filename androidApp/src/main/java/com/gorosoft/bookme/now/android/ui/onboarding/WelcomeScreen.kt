@@ -21,22 +21,28 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gorosoft.bookme.now.android.R
+import com.gorosoft.bookme.now.android.ui.destinations.TutorialCarouselScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.delay
 
+@Suppress("MagicNumber")
+@Destination
 @Composable
-fun WelcomeDirection(
-    navigateToTutorialCarousel: () -> Unit = {},
+fun WelcomeScreen(
+    navigator: DestinationsNavigator,
 ) {
     LaunchedEffect(key1 = Unit) {
         delay(3000)
-        navigateToTutorialCarousel.invoke()
+        navigator.popBackStack()
+        navigator.navigate(TutorialCarouselScreenDestination)
     }
-    WelcomeScreen()
+    WelcomeContent()
 }
 
 @Composable
-private fun WelcomeScreen() {
+private fun WelcomeContent() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -54,7 +60,7 @@ private fun WelcomeScreen() {
             Text(
                 text = stringResource(R.string.welcome),
                 style = AppTheme.typography.heading.h1,
-                color = Color.White,
+                color = Color.White
             )
             Text(
                 modifier = Modifier.padding(top = 12.dp),
@@ -62,9 +68,9 @@ private fun WelcomeScreen() {
                 style = AppTheme.typography.heading.h1.copy(
                     brush = Brush.horizontalGradient(AppTheme.colors.otherColors.orangeGradient),
                     fontSize = 96.sp,
-                    fontWeight = FontWeight.Black,
+                    fontWeight = FontWeight.Black
                 ),
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Center
             )
             Text(
                 modifier = Modifier.padding(top = 24.dp),
@@ -80,6 +86,6 @@ private fun WelcomeScreen() {
 @Composable
 private fun WelcomePreview() {
     AppTheme {
-        WelcomeScreen()
+        WelcomeContent()
     }
 }

@@ -28,27 +28,35 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gorosoft.bookme.now.android.R
+import com.gorosoft.bookme.now.android.ui.destinations.LoginScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.ButtonDefaultBottomPadding
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.WormPageIndicator
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
-private const val TUTORIAL_PAGES_COUNT = 2
+private const val TutorialPagesCount = 2
 
+@Destination
 @Composable
-fun TutorialCarouselDirection() {
-//    val navController = LocalNavigator.current
-//    navController.navigate("")
-    TutorialCarouselScreen()
+fun TutorialCarouselScreen(
+    navigator: DestinationsNavigator,
+) {
+    TutorialCarouselContent(
+        navigateToAccountSetup = {
+            navigator.popBackStack()
+            navigator.navigate(LoginScreenDestination)
+        }
+    )
 }
 
+@Suppress("MagicNumber")
 @Composable
-private fun TutorialCarouselScreen(
-    navigateToAccountSetup: () -> Unit = {},
-) {
+private fun TutorialCarouselContent(navigateToAccountSetup: () -> Unit = {}) {
     val coroutineScope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(pageCount = { TUTORIAL_PAGES_COUNT })
+    val pagerState = rememberPagerState(pageCount = { TutorialPagesCount })
     val buttonTextRes = if (pagerState.currentPage == 0) {
         R.string.next
     } else {
@@ -87,7 +95,7 @@ private fun TutorialCarouselScreen(
             WormPageIndicator(
                 modifier = Modifier.fillMaxWidth(),
                 currentPage = pagerState.currentPage,
-                totalPages = TUTORIAL_PAGES_COUNT,
+                totalPages = TutorialPagesCount,
                 indicatorSize = 8.dp,
                 selectedMultiplier = 4
             )
@@ -100,7 +108,7 @@ private fun TutorialCarouselScreen(
             text = stringResource(buttonTextRes),
             shadowEnabled = false,
             onClick = {
-                if (pagerState.currentPage == TUTORIAL_PAGES_COUNT - 1) {
+                if (pagerState.currentPage == TutorialPagesCount - 1) {
                     navigateToAccountSetup.invoke()
                 } else {
                     val nextPage = pagerState.currentPage + 1
@@ -108,29 +116,32 @@ private fun TutorialCarouselScreen(
                         pagerState.animateScrollToPage(nextPage)
                     }
                 }
-            })
+            }
+        )
     }
 }
 
+@Suppress("MagicNumber")
 @Composable
 private fun TutorialPage(
     @StringRes stringRes: Int,
-    @DrawableRes drawableRes: Int,
+    @DrawableRes drawableRes: Int
 ) {
     Column(
-        modifier = Modifier.padding(horizontal = 24.dp),
+        modifier = Modifier.padding(horizontal = 24.dp)
     ) {
         Image(
             modifier = Modifier.fillMaxWidth(),
             painter = painterResource(drawableRes),
-            contentDescription = "entertainment image #1",
+            contentDescription = "entertainment image #1"
         )
         Spacer(modifier = Modifier.fillMaxHeight(0.2f))
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(stringRes),
             textAlign = TextAlign.Center,
-            style = AppTheme.typography.heading.h2
+            style = AppTheme.typography.heading.h2,
+            color = AppTheme.colors.grayscale.gs900,
         )
     }
 }
@@ -139,6 +150,6 @@ private fun TutorialPage(
 @Composable
 private fun TutorialCarouselScreenPreview() {
     AppTheme {
-        TutorialCarouselScreen()
+        TutorialCarouselContent()
     }
 }

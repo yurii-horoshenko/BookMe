@@ -17,24 +17,32 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.gorosoft.bookme.now.android.R
+import com.gorosoft.bookme.now.android.ui.destinations.WelcomeScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.delay
 
+// TODO move to new SplashScreen API
+@Suppress("MagicNumber")
+@RootNavGraph(start = true)
+@Destination
 @Composable
-fun SplashDirection(
-    navigateToWelcomeScreen: () -> Unit = {},
-    navigateToAccountSetup: () -> Unit = {},
-    navigateToHome: () -> Unit = {},
+fun SplashScreen(
+    navigator: DestinationsNavigator,
 ) {
     LaunchedEffect(key1 = Unit) {
-        delay(2000)
-        navigateToWelcomeScreen.invoke()
+        // don't do this. It's just emulate the work
+        delay(1000)
+        navigator.popBackStack()
+        navigator.navigate(WelcomeScreenDestination)
     }
-    SplashScreen()
+    SplashContent()
 }
 
 @Composable
-private fun SplashScreen() {
+private fun SplashContent() {
     Box(
         modifier = Modifier
             .background(AppTheme.colors.backgroundThemed.backgroundMain)
@@ -49,9 +57,9 @@ private fun SplashScreen() {
             style = AppTheme.typography.heading.h1.copy(
                 brush = Brush.horizontalGradient(AppTheme.colors.otherColors.orangeGradient),
                 fontSize = 96.sp,
-                fontWeight = FontWeight.Black,
+                fontWeight = FontWeight.Black
             ),
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -60,6 +68,6 @@ private fun SplashScreen() {
 @Composable
 private fun SplashPreview() {
     AppTheme {
-        SplashScreen()
+        SplashContent()
     }
 }
