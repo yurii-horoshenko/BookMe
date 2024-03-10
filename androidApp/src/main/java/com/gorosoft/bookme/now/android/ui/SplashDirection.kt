@@ -20,11 +20,10 @@ import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import kotlinx.coroutines.delay
 
+@Suppress("MagicNumber")
 @Composable
 fun SplashDirection(
-    navigateToWelcomeScreen: () -> Unit = {},
-    navigateToAccountSetup: () -> Unit = {},
-    navigateToHome: () -> Unit = {},
+    navigateToWelcomeScreen: () -> Unit = {}
 ) {
     LaunchedEffect(key1 = Unit) {
         delay(2000)
@@ -49,9 +48,9 @@ private fun SplashScreen() {
             style = AppTheme.typography.heading.h1.copy(
                 brush = Brush.horizontalGradient(AppTheme.colors.otherColors.orangeGradient),
                 fontSize = 96.sp,
-                fontWeight = FontWeight.Black,
+                fontWeight = FontWeight.Black
             ),
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Center
         )
     }
 }

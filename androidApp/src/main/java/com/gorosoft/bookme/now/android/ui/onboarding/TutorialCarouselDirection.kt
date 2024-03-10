@@ -34,7 +34,7 @@ import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.WormPageIndicator
 import kotlinx.coroutines.launch
 
-private const val TUTORIAL_PAGES_COUNT = 2
+private const val TutorialPagesCount = 2
 
 @Composable
 fun TutorialCarouselDirection() {
@@ -43,12 +43,11 @@ fun TutorialCarouselDirection() {
     TutorialCarouselScreen()
 }
 
+@Suppress("MagicNumber")
 @Composable
-private fun TutorialCarouselScreen(
-    navigateToAccountSetup: () -> Unit = {},
-) {
+private fun TutorialCarouselScreen(navigateToAccountSetup: () -> Unit = {}) {
     val coroutineScope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(pageCount = { TUTORIAL_PAGES_COUNT })
+    val pagerState = rememberPagerState(pageCount = { TutorialPagesCount })
     val buttonTextRes = if (pagerState.currentPage == 0) {
         R.string.next
     } else {
@@ -87,7 +86,7 @@ private fun TutorialCarouselScreen(
             WormPageIndicator(
                 modifier = Modifier.fillMaxWidth(),
                 currentPage = pagerState.currentPage,
-                totalPages = TUTORIAL_PAGES_COUNT,
+                totalPages = TutorialPagesCount,
                 indicatorSize = 8.dp,
                 selectedMultiplier = 4
             )
@@ -100,7 +99,7 @@ private fun TutorialCarouselScreen(
             text = stringResource(buttonTextRes),
             shadowEnabled = false,
             onClick = {
-                if (pagerState.currentPage == TUTORIAL_PAGES_COUNT - 1) {
+                if (pagerState.currentPage == TutorialPagesCount - 1) {
                     navigateToAccountSetup.invoke()
                 } else {
                     val nextPage = pagerState.currentPage + 1
@@ -108,22 +107,24 @@ private fun TutorialCarouselScreen(
                         pagerState.animateScrollToPage(nextPage)
                     }
                 }
-            })
+            }
+        )
     }
 }
 
+@Suppress("MagicNumber")
 @Composable
 private fun TutorialPage(
     @StringRes stringRes: Int,
-    @DrawableRes drawableRes: Int,
+    @DrawableRes drawableRes: Int
 ) {
     Column(
-        modifier = Modifier.padding(horizontal = 24.dp),
+        modifier = Modifier.padding(horizontal = 24.dp)
     ) {
         Image(
             modifier = Modifier.fillMaxWidth(),
             painter = painterResource(drawableRes),
-            contentDescription = "entertainment image #1",
+            contentDescription = "entertainment image #1"
         )
         Spacer(modifier = Modifier.fillMaxHeight(0.2f))
         Text(

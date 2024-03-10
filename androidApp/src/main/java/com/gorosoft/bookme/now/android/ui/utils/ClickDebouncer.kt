@@ -10,10 +10,10 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.semantics.Role
 
-const val DEFAULT_THRESHOLD: Long = 350
+const val DefaultThreshold: Long = 350
 
 internal class ClickDebouncer(
-    private val thresholdDuration: Long = DEFAULT_THRESHOLD
+    private val thresholdDuration: Long = DefaultThreshold
 ) {
     private var lastClickTime: Long = 0
 
@@ -29,7 +29,7 @@ fun Modifier.debounceClick(
     enabled: Boolean = true,
     onClickLabel: String? = null,
     role: Role? = null,
-    thresholdDuration: Long = DEFAULT_THRESHOLD,
+    thresholdDuration: Long = DefaultThreshold,
     hasRipple: Boolean = true,
     customRippleColor: Indication? = null,
     onClick: () -> Unit
@@ -54,6 +54,6 @@ fun Modifier.debounceClick(
         onClick = { debouncer.processClick(onClick) },
         role = role,
         indication = indication,
-        interactionSource = remember { MutableInteractionSource() },
+        interactionSource = remember { MutableInteractionSource() }
     )
 }
