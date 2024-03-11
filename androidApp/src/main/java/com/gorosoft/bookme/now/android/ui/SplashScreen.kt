@@ -37,7 +37,6 @@ fun SplashScreen(
         delay(1000)
         navigator.popBackStack()
         navigator.navigate(WelcomeScreenDestination)
-//        navigator.navigate(MainScreenDestination)
     }
     SplashContent()
 }

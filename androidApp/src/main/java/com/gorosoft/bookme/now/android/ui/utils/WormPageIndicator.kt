@@ -44,7 +44,7 @@ fun WormPageIndicator(
                 if (selected) indicatorSize * selectedMultiplier else indicatorSize,
                 label = "DpAnimation"
             )
-            val color = if(selected) activeColor else nonActiveColor
+            val color = if (selected) activeColor else nonActiveColor
             Canvas(
                 modifier = Modifier.size(width, indicatorSize),
                 onDraw = {

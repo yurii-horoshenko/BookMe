@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 package com.gorosoft.bookme.now.android.ui.theme
 
 import androidx.compose.ui.graphics.Color
@@ -6,18 +8,18 @@ internal val lightColor = AppColors(
     backgroundThemed = BackgroundThemed(
         backgroundMain = Color(0xFFFFFFFF),
         backgroundSecondary = Color(0xFFFAFAFA),
-        backgroundTertiary = Color(0xFFEEEEEE),
+        backgroundTertiary = Color(0xFFEEEEEE)
     ),
-    isLight = true,
+    isLight = true
 )
 
 internal val darkColor = AppColors(
     backgroundThemed = BackgroundThemed(
         backgroundMain = Color(0xFF181A20),
         backgroundSecondary = Color(0xFF1F222A),
-        backgroundTertiary = Color(0xFF35383F),
+        backgroundTertiary = Color(0xFF35383F)
     ),
-    isLight = false,
+    isLight = false
 )
 
 data class AppColors(
@@ -26,7 +28,7 @@ data class AppColors(
     val grayscale: Grayscale = Grayscale(),
     val otherColors: OtherColors = OtherColors(),
     val backgroundThemed: BackgroundThemed,
-    val isLight: Boolean,
+    val isLight: Boolean
 )
 
 data class MainColors(
@@ -39,7 +41,7 @@ data class MainColors(
     val secondary400: Color = Color(0xFFFFDC33),
     val secondary300: Color = Color(0xFFFFE566),
     val secondary200: Color = Color(0xFFFFED99),
-    val secondary100: Color = Color(0xFFFFFBE6),
+    val secondary100: Color = Color(0xFFFFFBE6)
 )
 
 data class AlertStatus(
@@ -54,7 +56,7 @@ data class AlertStatus(
 data class BackgroundThemed(
     val backgroundMain: Color,
     val backgroundSecondary: Color,
-    val backgroundTertiary: Color,
+    val backgroundTertiary: Color
 )
 
 data class Grayscale(
@@ -67,7 +69,7 @@ data class Grayscale(
     val gs300: Color = Color(0xFFE0E0E0),
     val gs200: Color = Color(0xFFEEEEEE),
     val gs100: Color = Color(0xFFF5F5F5),
-    val gs50: Color = Color(0xFFFAFAFA),
+    val gs50: Color = Color(0xFFFAFAFA)
 )
 
 data class OtherColors(
