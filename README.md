@@ -4,9 +4,9 @@
 
 *BookMe* is a mobile application designed for finding and booking barber shops, beauty salons, and other services nearby with you. It helps users quickly find nearby establishments, view information about them, and schedule appointments at their convenience.
 
-![](../documentation/images/splash_screen.png)
-![](../documentation/images/welcome_screen.png)
-![](../documentation/images/login_to_account.png)
+![](./documentation/images/splash_screen.png)
+![](./documentation/images/welcome_screen.png)
+![](./documentation/images/login_to_account.png)
 
 *Key Features of the Application:*
 
@@ -20,9 +20,9 @@
 
 5. **Navigation:** Users can navigate to the selected establishment by using integrated maps and navigation services.
 
-![](../documentation/images/dashboard.png)
-![](../documentation/images/service_detail.png)
-![](../documentation/images/booking_calendar.png)
+![](./documentation/images/dashboard.png)
+![](./documentation/images/service_detail.png)
+![](./documentation/images/booking_calendar.png)
 
 ### Technologies:
 
@@ -34,8 +34,8 @@
 
 The "BookMe" project targets a wide audience, including young people, professionals, and anyone looking for a convenient way to find and schedule beauty services. This includes both men and women of all ages and social statuses.
 
-![](../documentation/images/map.png)
-![](../documentation/images/map_detail.png)
+![](./documentation/images/map.png)
+![](./documentation/images/map_detail.png)
 
 #### Advantages of the Application:
 
