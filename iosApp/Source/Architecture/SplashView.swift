@@ -22,11 +22,11 @@ struct SplashView: View {
         .ignoresSafeArea(.all)
         .background(Color.background)
         .onAppear {
-            setRootView(AuthPageBuilder.detectSplashNavigationView())
+            setRootView(Steps.splashAfter.PageView)
         }
     }
 }
 
 #Preview {
-    AuthPageBuilder.constructSplashView()
+    Steps.splash.PageView
 }

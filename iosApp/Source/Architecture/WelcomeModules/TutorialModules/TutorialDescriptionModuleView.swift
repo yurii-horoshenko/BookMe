@@ -20,18 +20,18 @@ struct TutorialDescriptionModuleView: View {
         var title: String {
             switch self {
             case .first:
-                return String(localized: "TUTORIAL-INFO-1")
+                String(localized: "TUTORIAL-INFO-1")
             case .second:
-                return String(localized: "TUTORIAL-INFO-2")
+                String(localized: "TUTORIAL-INFO-2")
             }
         }
         
         var buttonTitle: String {
             switch self {
             case .first:
-                return String(localized: "BUTTON-NEXT")
+                String(localized: "BUTTON-NEXT")
             case .second:
-                return String(localized: "BUTTON-STARTED")
+                String(localized: "BUTTON-STARTED")
             }
         }
     }
@@ -85,11 +85,6 @@ struct TutorialDescriptionModuleView: View {
                 currectIndex: $scrollID
             )
             
-            NavigationButton<Steps>(
-                title: currectStep.buttonTitle,
-                navigationType: .dashboard
-            )
-            
             AppFilledButton(
                 state: .constant(.active),
                 autoWidth: true,
@@ -118,8 +113,7 @@ extension TutorialDescriptionModuleView: TutorialDescriptionModuleViewProtocol {
     }
     
     func moveToWelcomePage() {
-        let view = AuthPageBuilder.constructWelcomeView()
-        setRootView(view)
+        setRootView(Steps.welcome.PageView)
     }
 }
 

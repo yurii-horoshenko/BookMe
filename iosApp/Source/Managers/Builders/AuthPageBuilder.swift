@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum AuthPageBuilder {
+    // MARK: - Detect
     static func detectSplashNavigationView() -> any View {
         guard UserDefaultsManager.isLoggined else {
             return detectAuthNavigationView()
@@ -24,6 +25,7 @@ enum AuthPageBuilder {
         return constructWelcomeView()
     }
     
+    // MARK: - Construct
     static func constructSplashView() -> some View {
         let view = SplashView()
         return view

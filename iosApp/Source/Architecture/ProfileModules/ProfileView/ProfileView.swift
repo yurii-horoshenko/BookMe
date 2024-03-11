@@ -26,9 +26,9 @@ struct ProfileView: View {
                     content: { ContentView }
                 )
                 .navigationDestination(isPresented: $viewModel.toSignIn) {
-                    ProfilePageBuilder.constructCreateProfileView(
-                        profile: viewModel.profile
-                    )
+//                    ProfilePageBuilder.constructCreateProfileView(
+//                        profile: viewModel.profile
+//                    )
                 }
             }
         }
