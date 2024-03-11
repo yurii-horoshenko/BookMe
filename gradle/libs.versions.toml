@@ -12,6 +12,11 @@ ktlint-version = "12.1.0"
 detekt = "1.23.5"
 ksp-version = "1.9.22-1.0.17"
 compose-destinations-version = "1.9.63"
+hilt-verstion = "2.51"
+hilt-compose-navigation-version = "1.2.0"
+lifecycle-compose-version = "2.7.0"
+material3-version = "1.2.1"
+
 
 
 [libraries]
@@ -33,6 +38,11 @@ ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav-version" }
 compose-destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "compose-destinations-version" }
 compose-destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "compose-destinations-version" }
+hilt-library = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-verstion" }
+hilt-kapt = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-verstion" }
+hilt-compose-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-compose-navigation-version" }
+lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle-compose-version" }
+androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3-version" }
 
 [bundles]
 
@@ -44,3 +54,4 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-version" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-verstion" }
