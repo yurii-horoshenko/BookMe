@@ -11,10 +11,9 @@ protocol ProfileViewProtocol {
     func logout()
 }
 
-struct ProfileView: View {
+struct ProfileView<ViewModel>: View where ViewModel: ProfileViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ProfileViewModel
-    @State var detentHeight: CGFloat = 0
+    @StateObject var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
@@ -62,10 +61,10 @@ struct ProfileView: View {
                     .readHeight()
                     .onPreferenceChange(HeightPreferenceKey.self) { height in
                         if let height {
-                            detentHeight = height
+                            viewModel.detectHeight = height
                         }
                     }
-                    .presentationDetents([.height(detentHeight)])
+                    .presentationDetents([.height(viewModel.detectHeight)])
                     .presentationDragIndicator(.visible)
                 }
         }
@@ -90,7 +89,6 @@ struct ProfileView: View {
             ProfileItemRow(
                 title: "Notification",
                 leftIcon: "ic-notification"
-                
             )
         }
     }

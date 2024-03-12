@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-struct DashboardView: View {
+struct DashboardView<ViewModel>: View where ViewModel: DashboardViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: DashboardViewModel
-    @State var detentHeight: CGFloat = 0
+    @StateObject var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
@@ -83,10 +82,10 @@ struct DashboardView: View {
                 .readHeight()
                 .onPreferenceChange(HeightPreferenceKey.self) { height in
                     if let height {
-                        detentHeight = height
+                        viewModel.detectHeight = height
                     }
                 }
-                .presentationDetents([.height(detentHeight)])
+                .presentationDetents([.height(viewModel.detectHeight)])
                 .presentationDragIndicator(.visible)
         }
         .padding(.top, 8.0)
@@ -116,10 +115,10 @@ struct DashboardView: View {
                 .readHeight()
                 .onPreferenceChange(HeightPreferenceKey.self) { height in
                     if let height {
-                        detentHeight = height + 36
+                        viewModel.detectHeight = height + 36
                     }
                 }
-                .presentationDetents([.height(detentHeight)])
+                .presentationDetents([.height(viewModel.detectHeight)])
                 .presentationDragIndicator(.visible)
         }
     }

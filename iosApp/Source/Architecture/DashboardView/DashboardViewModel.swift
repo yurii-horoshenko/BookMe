@@ -8,13 +8,26 @@
 import shared
 import SwiftUI
 
-final class DashboardViewModel: ObservableObject {
+protocol DashboardViewModelProtocol: ObservableObject {
+    var searchData: FieldData { get set }
+    var toServiceDetail: Bool { get set }
+    var toSearchFilter: Bool { get set }
+    var toCancelVisit: Bool { get set }
+    var detectHeight: CGFloat { get set }
+    var restaurants: [Restaurant] { get set }
+    
+    func displayPlaces(data: [String])
+    func getPlaces()
+}
+
+final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Properties
     private let repository = shared.PlaceRepository()
     @Published var searchData = FieldData(placeholder: String(localized: "SEARCH"))
     @Published var toServiceDetail = false
     @Published var toSearchFilter = false
     @Published var toCancelVisit = false
+    @Published var detectHeight: CGFloat = 0
     var restaurants = [
         Restaurant(name: "Joe's Original"),
         Restaurant(name: "The Real Joe's Original"),

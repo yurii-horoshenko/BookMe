@@ -8,7 +8,11 @@
 import shared
 import SwiftUI
 
-final class ServiceDetailViewModel: ObservableObject {
+protocol ServiceDetailViewModelProtocol: ObservableObject {
+    var toBooking: Bool { get set }
+}
+
+final class ServiceDetailViewModel: ServiceDetailViewModelProtocol {
     // MARK: - Properties
     private let repository = shared.UserRepository()
     @Published var toBooking = false

@@ -12,6 +12,7 @@ struct DashboardContainerView: View {
     // MARK: - Lifecycle
     var body: some View {
         TabView {
+            // Dashboard Page
             DashboardPageBuilder.constructDashboardView()
                 .tabItem {
                     HStack {
@@ -21,6 +22,7 @@ struct DashboardContainerView: View {
                 }
                 .toolbarBackground(.white, for: .tabBar)
             
+            // Map Page
             DashboardPageBuilder.constructNearByView()
                 .tabItem {
                     HStack {
@@ -30,6 +32,7 @@ struct DashboardContainerView: View {
                 }
                 .toolbarBackground(.white, for: .tabBar)
             
+            // Profile Page
             ProfilePageBuilder.constructProfileView()
                 .tabItem {
                     HStack {

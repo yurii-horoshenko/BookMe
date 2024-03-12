@@ -22,7 +22,7 @@ struct FilterView: View {
             Divider()
                 .background(Color.greyscale200)
                 .frame(height: 1.0)
-
+            
             SelectRateView()
             
             SelectDistanceView()

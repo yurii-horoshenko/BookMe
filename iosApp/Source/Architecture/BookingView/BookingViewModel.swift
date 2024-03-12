@@ -8,7 +8,11 @@
 import shared
 import SwiftUI
 
-final class BookingViewModel: ObservableObject {
+protocol BookingViewModelProtocol: ObservableObject {
+    var date: Date { get set }
+}
+
+final class BookingViewModel: BookingViewModelProtocol {
     // MARK: - Properties
     private let repository = shared.UserRepository()
     @Published var date = Date.now

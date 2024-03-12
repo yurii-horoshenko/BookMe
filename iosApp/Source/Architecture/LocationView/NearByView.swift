@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-struct NearByView: View {
+struct NearByView<ViewModel>: View where ViewModel: NearByViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: NearByViewModel
-    @State var detentHeight: CGFloat = 0
+    @StateObject var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
@@ -41,10 +40,10 @@ struct NearByView: View {
                 .readHeight()
                 .onPreferenceChange(HeightPreferenceKey.self) { height in
                     if let height {
-                        detentHeight = height
+                        viewModel.detectHeight = height
                     }
                 }
-                .presentationDetents([.height(detentHeight)])
+                .presentationDetents([.height(viewModel.detectHeight)])
                 .presentationDragIndicator(.visible)
         }
         .padding(.top, 8.0)

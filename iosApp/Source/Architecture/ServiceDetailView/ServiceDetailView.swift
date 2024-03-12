@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ServiceDetailView: View {
+struct ServiceDetailView<ViewModel>: View where ViewModel: ServiceDetailViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ServiceDetailViewModel
+    @StateObject var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
@@ -35,20 +35,35 @@ struct ServiceDetailView: View {
     var ContentView: some View {
         VStack(alignment: .leading, spacing: 24.0) {
             TitleView
-            LocationView(useTitle: false, useMap: false)
+            
+            LocationView(
+                useTitle: false,
+                useMap: false
+            )
+            
             ReviewView()
+            
             Divider()
                 .background(Color.greyscale200)
                 .frame(height: 1.0)
+            
             DetailView
+            
             WorkingHoursView()
-            ContactsView(contacts: ["(406) 555-0120", "(406) 555-0121"])
+            
+            ContactsView(
+                contacts: ["(406) 555-0120", "(406) 555-0121"]
+            )
+            
             LocationView()
                 .frame(height: 300.0)
+            
             Divider()
                 .background(Color.greyscale200)
                 .frame(height: 1.0)
+            
             BottomButton
+            
             Spacer()
         }
         .padding(.horizontal, 32.0)

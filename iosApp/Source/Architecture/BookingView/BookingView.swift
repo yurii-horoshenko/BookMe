@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-struct BookingView: View {
+struct BookingView<ViewModel>: View where ViewModel: BookingViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: BookingViewModel
+    @StateObject var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
-        
         ScrollView {
             BaseView(navigationTitle: "Book Appointment") { ContentView }
         }

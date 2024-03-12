@@ -11,7 +11,7 @@ struct ProfileItemRow: View {
     let title: String
     let leftIcon: String
     var rightIcon: String = "ic-arrow-right"
-     
+    
     // MARK: - Lifecycle
     var body: some View {
         VStack(alignment: .leading) {
