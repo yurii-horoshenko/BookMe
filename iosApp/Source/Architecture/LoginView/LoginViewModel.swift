@@ -8,7 +8,14 @@
 import shared
 import SwiftUI
 
-final class LoginViewModel: ObservableObject {
+protocol LoginViewModelProtocol: ObservableObject {
+    var phone: FieldData { get set }
+    var toCode: Bool { get set }
+    
+    func codeVerification()
+}
+
+final class LoginViewModel: LoginViewModelProtocol {
     // MARK: - Properties
     private let repository = shared.UserRepository()
     @Published var phone = FieldData(placeholder: "Phone Number")

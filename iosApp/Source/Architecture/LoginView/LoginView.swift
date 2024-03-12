@@ -5,17 +5,19 @@
 //  Created by Yurii Goroshenko on 15.08.2023.
 //
 
-import shared
 import SwiftUI
 
-struct LoginView: View {
+struct LoginView<ViewModel>: View where ViewModel: LoginViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: LoginViewModel
+    @StateObject var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(navigationTitle: String(localized: "LOGIN-TITLE"), content: { ContentView })
+            BaseView(
+                navigationTitle: String(localized: "LOGIN-TITLE"),
+                content: { ContentView }
+            )
             .navigationDestination(isPresented: $viewModel.toCode) {
                 let phone = viewModel.phone.value.phoneMask
                 AuthPageBuilder.constructEnterCodeView(phoneMask: phone)

@@ -5,7 +5,6 @@
 //  Created by Yurii Goroshenko on 24.07.2023.
 //
 
-import shared
 import SwiftUI
 
 struct DashboardView: View {

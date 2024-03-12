@@ -8,7 +8,21 @@
 import shared
 import SwiftUI
 
-final class CreateProfileViewModel: ObservableObject {
+protocol CreateProfileViewModelProtocol: ObservableObject {
+    var profile: Profile? { get set }
+    var fullname: FieldData { get set }
+    var nickname: FieldData { get set }
+    var dateBirthday: FieldData { get set }
+    var phone: FieldData { get set }
+    var gender: FieldData { get set }
+    var toGenderSelection: Bool { get set }
+    var toCode: Bool { get set }
+    
+    func codeVerification()
+    func genderSelection()
+}
+
+final class CreateProfileViewModel: CreateProfileViewModelProtocol {
     // MARK: - Properties
     private let repository = shared.UserRepository()
     @Published var fullname = FieldData(placeholder: String(localized: "PROFILE-FULLNAME"))

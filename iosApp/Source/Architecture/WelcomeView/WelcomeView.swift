@@ -5,7 +5,6 @@
 //  Created by Yurii Goroshenko on 20.07.2023.
 //
 
-import shared
 import SwiftUI
 
 struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {

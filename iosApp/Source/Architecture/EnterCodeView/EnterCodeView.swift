@@ -5,21 +5,24 @@
 //  Created by Yurii Goroshenko on 04.08.2023.
 //
 
-import shared
 import SwiftUI
 
 protocol EnterCodeViewProtocol {
     func moveToDashboardPage()
 }
 
-struct EnterCodeView: View {
+struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: EnterCodeViewModel
+    @StateObject var viewModel: ViewModel
+    private let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(navigationTitle: String(localized: "ENTERCODE-TITLE"), content: { ContentView })
+            BaseView(
+                navigationTitle: String(localized: "ENTERCODE-TITLE"),
+                content: { ContentView }
+            )
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -58,7 +61,7 @@ struct EnterCodeView: View {
             Text(viewModel.timerString)
                 .font(Font.BodyXLargeBold)
                 .foregroundColor(Color.primary500)
-                .onReceive(viewModel.timer) { _ in
+                .onReceive(timer) { _ in
                     viewModel.onReceveTimer()
                 }
             

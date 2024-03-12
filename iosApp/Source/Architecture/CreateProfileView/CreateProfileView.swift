@@ -5,18 +5,24 @@
 //  Created by Yurii Goroshenko on 03.08.2023.
 //
 
-import shared
 import SwiftUI
 
-struct CreateProfileView: View {
+struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: CreateProfileViewModel
+    @StateObject var viewModel: ViewModel
+    var title: String {
+        (viewModel.profile != nil) ? String(localized: "UPDATE-PROFILE-TITLE") : String(localized: "CREATE-PROFILE-TITLE")
+    }
+    
+    var nextButtonTitile: String {
+        (viewModel.profile != nil) ? String(localized: "BUTTON-UPDATE") : String(localized: "BUTTON-CONTINUE")
+    }
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             BaseView(
-                navigationTitle: (viewModel.profile != nil) ? String(localized: "UPDATE-PROFILE-TITLE") : String(localized: "CREATE-PROFILE-TITLE"),
+                navigationTitle: title,
                 content: { ContentView }
             )
             .navigationDestination(isPresented: $viewModel.toCode) {
@@ -36,6 +42,10 @@ struct CreateProfileView: View {
             )
             .padding(.top, 24.0)
             
+            AppInputField(
+                fieldData: $viewModel.nickname
+            )
+            
             BirthDayInputView(
                 dateBirthday: $viewModel.dateBirthday
             )
@@ -49,18 +59,18 @@ struct CreateProfileView: View {
             Spacer()
             
             BottomButton
-//            NavigationButton<Steps>(
-//                title: (viewModel.profile != nil) ? String(localized: "BUTTON-UPDATE") : String(localized: "BUTTON-CONTINUE"),
-//                navigationType: .enterCode(viewModel.phone.value.phoneMask)
-//            )
         }
         .padding(defaultEdgeInsets)
     }
     
     var GenderInput: some View {
-        AppInputField(fieldData: $viewModel.gender, trailingView: Icons.ArrowDown.eraseToAnyView()) {
-            viewModel.genderSelection()
-        }
+        AppInputField(
+            fieldData: $viewModel.gender,
+            trailingView: Icons.ArrowDown.eraseToAnyView(),
+            onTapPress: {
+                viewModel.genderSelection()
+            }
+        )
         .confirmationDialog(
             String(localized: "GENDER-TITLE"),
             isPresented: $viewModel.toGenderSelection,

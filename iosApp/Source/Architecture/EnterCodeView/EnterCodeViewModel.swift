@@ -8,15 +8,27 @@
 import shared
 import SwiftUI
 
-final class EnterCodeViewModel: ObservableObject {
+protocol EnterCodeViewModelProtocol: ObservableObject {
+    var isTimerRunning: Bool { get set }
+    var startTime: Date { get set }
+    var timerString: String { get set }
+    var code: [FieldData] { get set }
+    var phone: String { get set }
+    var view: EnterCodeViewProtocol? { get set }
+    
+    func startTimer()
+    func onReceveTimer()
+    func checkCode()
+}
+
+final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     // MARK: - Properties
     private let repository = shared.UserRepository()
     @Published var isTimerRunning = false
     @Published var startTime = Date()
     @Published var timerString = "0.00"
     @Published var code = [FieldData(), FieldData(), FieldData(), FieldData()]
-    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-    let phone: String
+    var phone: String
     var view: EnterCodeViewProtocol?
     
     // MARK: - Lifecycle

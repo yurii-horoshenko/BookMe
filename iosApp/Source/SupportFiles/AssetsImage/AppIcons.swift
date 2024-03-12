@@ -5,7 +5,6 @@
 //  Created by Yurii Goroshenko on 17.08.2023.
 //
 
-import shared
 import SwiftUI
 
 enum Icons {
