@@ -8,9 +8,9 @@
 import shared
 import SwiftUI
 
-struct WelcomeView: View {
+struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: WelcomeViewModel
+    @StateObject var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {

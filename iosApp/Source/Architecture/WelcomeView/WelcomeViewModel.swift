@@ -8,7 +8,16 @@
 import shared
 import SwiftUI
 
-final class WelcomeViewModel: ObservableObject {
+protocol WelcomeViewModelProtocol: ObservableObject {
+    var toLogin: Bool { get set }
+    var toSignIn: Bool { get set }
+    
+    func loginViaFacebook()
+    func loginViaGoogle()
+    func signIn()
+}
+
+final class WelcomeViewModel: WelcomeViewModelProtocol {
     // MARK: - Properties
     private let repository = shared.UserRepository()
     @Published var toLogin = false
@@ -36,7 +45,6 @@ final class WelcomeViewModel: ObservableObject {
         // RepositoryLogin
         
         toSignIn = true
-        
     }
     
     func signIn() {
