@@ -49,17 +49,16 @@ struct BaseView<Content>: View where Content: View {
         } else {
             VStack { content }
                 .frame(maxWidth: .infinity)
-                .navigationBarItems(leading: leadingView ?? backButton)
+                .navigationBarItems(leading: leadingView ?? AnyView(backButton))
                 .navigationBarItems(trailing: trailingView)
                 .navigationTitle(navigationTitle)
         }
     }
     
-    var backButton: AnyView {
+    var backButton: some View {
         Button(
             action: { presentationMode.wrappedValue.dismiss() },
             label: { Icons.Back.foregroundColor(iconColor) }
         )
-        .eraseToAnyView()
     }
 }

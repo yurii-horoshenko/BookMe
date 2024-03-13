@@ -31,8 +31,8 @@ struct NearByView<ViewModel>: View where ViewModel: NearByViewModelProtocol {
     var SearchInputView: some View {
         AppInputField(
             fieldData: $viewModel.searchData,
-            leadingView: Icons.Search.eraseToAnyView(),
-            trailingView: SearchFilterView.eraseToAnyView()
+            leadingView: AnyView(Icons.Search),
+            trailingView: AnyView(SearchFilterView)
         )
         .sheet(isPresented: $viewModel.toSearchFilter) {
             FilterView()

@@ -16,7 +16,10 @@ def project_pods
   pod 'Kingfisher', :inhibit_warnings => true
   pod 'SwiftLint', :inhibit_warnings => true
   
-  #  pod 'GoogleSignIn'
+  pod 'AppAuth', :inhibit_warnings => true
+  pod 'GoogleSignIn', :inhibit_warnings => true
+  pod 'GoogleSignInSwiftSupport', :inhibit_warnings => true
+  
   #  pod 'FacebookCore'
   #  pod 'FacebookLogin'
   

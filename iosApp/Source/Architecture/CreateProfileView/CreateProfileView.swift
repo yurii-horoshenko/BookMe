@@ -66,7 +66,7 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
     var GenderInput: some View {
         AppInputField(
             fieldData: $viewModel.gender,
-            trailingView: Icons.ArrowDown.eraseToAnyView(),
+            trailingView: AnyView(Icons.ArrowDown),
             onTapPress: {
                 viewModel.genderSelection()
             }

@@ -16,8 +16,8 @@ struct DashboardView<ViewModel>: View where ViewModel: DashboardViewModelProtoco
         NavigationView {
             NavigationStack {
                 BaseView(
-                    leadingView: LeadingView.eraseToAnyView(),
-                    trailingView: TrailingView.eraseToAnyView(),
+                    leadingView: AnyView(LeadingView),
+                    trailingView: AnyView(TrailingView),
                     content: { ContentView }
                 )
                 .navigationDestination(isPresented: $viewModel.toServiceDetail) {
@@ -73,8 +73,8 @@ struct DashboardView<ViewModel>: View where ViewModel: DashboardViewModelProtoco
     var SearchInputView: some View {
         AppInputField(
             fieldData: $viewModel.searchData,
-            leadingView: Icons.Search.eraseToAnyView(),
-            trailingView: SearchFilterView.eraseToAnyView()
+            leadingView: AnyView(Icons.Search),
+            trailingView: AnyView(SearchFilterView)
         )
         .sheet(isPresented: $viewModel.toSearchFilter) {
             FilterView()

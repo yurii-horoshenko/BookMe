@@ -20,7 +20,7 @@ struct ProfileView<ViewModel>: View where ViewModel: ProfileViewModelProtocol {
         NavigationView {
             NavigationStack {
                 BaseView(
-                    leadingView: LeadingView.eraseToAnyView(),
+                    leadingView: AnyView(LeadingView),
                     content: { ContentView }
                 )
                 .navigationDestination(isPresented: $viewModel.toSignIn) {

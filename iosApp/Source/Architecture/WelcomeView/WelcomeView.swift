@@ -5,6 +5,7 @@
 //  Created by Yurii Goroshenko on 20.07.2023.
 //
 
+import GoogleSignIn
 import SwiftUI
 
 struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {

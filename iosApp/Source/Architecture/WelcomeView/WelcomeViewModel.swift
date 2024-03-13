@@ -44,7 +44,9 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
         // GoogleSDK
         // RepositoryLogin
         
-        toSignIn = true
+        GoogleManager.signIn { [weak self] _ in
+            self?.toSignIn = true
+        }
     }
     
     func signIn() {
