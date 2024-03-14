@@ -32,12 +32,14 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
     func loginViaFacebook() {
         // FacebookSDK
         // RepositoryLogin
-        
-        repository.login { _, _ in
-            printLog("")
+  
+        FacebookManager.loginWithFacebook { [weak self] _ in
+            self?.toSignIn = true
         }
         
-        toSignIn = true
+//        repository.login { _, _ in
+//            printLog("")
+//        }
     }
     
     func loginViaGoogle() {
