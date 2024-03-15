@@ -15,10 +15,17 @@ def project_pods
   #  pod 'PhoneNumberKit'
   pod 'Kingfisher', :inhibit_warnings => true
   pod 'SwiftLint', :inhibit_warnings => true
-  
-  #  pod 'GoogleSignIn'
-  #  pod 'FacebookCore'
-  #  pod 'FacebookLogin'
+
+  # Google
+  pod 'AppAuth', :inhibit_warnings => true
+  pod 'GoogleSignIn', :inhibit_warnings => true
+  pod 'GoogleSignInSwiftSupport', :inhibit_warnings => true
+
+  # Facebook
+  pod 'FBSDKCoreKit', :inhibit_warnings => true
+  pod 'FBSDKLoginKit', :inhibit_warnings => true
+  pod 'FacebookCore', :inhibit_warnings => true
+  pod 'FacebookLogin', :inhibit_warnings => true
   
   # KMM Core
   #  pod 'BookMeCore', :git => 'https://github.com/wizardwork/BookMe-KMM.git', :branch => 'cocoapods'

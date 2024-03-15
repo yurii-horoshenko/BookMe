@@ -15,25 +15,25 @@ enum Steps: Hashable {
     case createProfile
     case dashboard
     
-    var PageView: some View {
+    var PageView: AnyView {
         switch self {
         case .splash:
-            AuthPageBuilder.constructSplashView().eraseToAnyView()
+            AnyView(AuthPageBuilder.constructSplashView())
             
         case .splashAfter:
-            AuthPageBuilder.detectSplashNavigationView().eraseToAnyView()
+            AnyView(AuthPageBuilder.detectSplashNavigationView())
             
         case .welcome:
-            AuthPageBuilder.constructWelcomeView().eraseToAnyView()
+            AnyView(AuthPageBuilder.constructWelcomeView())
             
         case .enterCode(let phone):
-            AuthPageBuilder.constructEnterCodeView(phoneMask: phone).eraseToAnyView()
+            AnyView(AuthPageBuilder.constructEnterCodeView(phoneMask: phone))
             
         case .createProfile:
-            ProfilePageBuilder.constructCreateProfileView().eraseToAnyView()
+            AnyView(ProfilePageBuilder.constructCreateProfileView())
             
         case .dashboard:
-            AuthPageBuilder.constructEnterCodeView(phoneMask: "").eraseToAnyView()
+            AnyView(AuthPageBuilder.constructEnterCodeView(phoneMask: ""))
 
         }
     }

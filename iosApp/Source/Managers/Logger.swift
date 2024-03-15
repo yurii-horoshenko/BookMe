@@ -20,7 +20,7 @@ enum LoggerConfigurator {
     static let printErrorLog = true
     static let printNetworkLog = true
 }
- 
+
 // MARK: - Debugs
 func printLog(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     if LoggerConfigurator.printLog {

@@ -15,7 +15,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.832700470851-e9ug3e3drtcvdicvqkajv86q357vqch1</string>
+				<string>com.googleusercontent.apps.832700470851-a7otksgpt4rj8dvkgoj891pnkvfku60j</string>
 				<string>fb1366629087524114</string>
 			</array>
 		</dict>
@@ -29,7 +29,7 @@
 	<key>FacebookDisplayName</key>
 	<string>APP-NAME</string>
 	<key>GIDClientID</key>
-	<string>832700470851-e9ug3e3drtcvdicvqkajv86q357vqch1.apps.googleusercontent.com</string>
+	<string>832700470851-a7otksgpt4rj8dvkgoj891pnkvfku60j.apps.googleusercontent.com</string>
 	<key>CFBundleDisplayName</key>
 	<string>BookMeNow</string>
 	<key>CFBundleIdentifier</key>

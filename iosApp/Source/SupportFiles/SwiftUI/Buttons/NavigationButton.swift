@@ -58,7 +58,7 @@ struct NavigationDestinationButton: View {
         
         NavigationDestinationButton(
             title: "Next",
-            nextView: Steps.dashboard.PageView.eraseToAnyView()
+            nextView: Steps.dashboard.PageView
         )
     }
 }

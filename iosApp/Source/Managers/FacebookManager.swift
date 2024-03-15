@@ -5,31 +5,35 @@
 //  Created by Yurii Goroshenko on 29.03.2023.
 //
 
-// import FBSDKCoreKit
-// import FBSDKLoginKit
-//
-// enum FacebookManager {
-//    static func setup(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        FBSDKCoreKit.ApplicationDelegate.shared.application(
-//            application,
-//            didFinishLaunchingWithOptions: launchOptions
-//        )
-//    }
-//
-//    static func signIn(sender: UIViewController?) {
-//        let loginManager = LoginManager()
-//        loginManager.logIn(permissions: ["email"], from: sender) { result, error in
-//            if let error {
-//                print("Encountered Erorr: \(error)")
-//            } else if let result, result.isCancelled {
-//                print("Cancelled")
-//            } else {
-//                print("Logged In")
-//            }
-//        }
-//    }
-//
-//    static func handle(_ url: URL) -> Bool {
-//        true
-//    }
-// }
+import FacebookLogin
+
+struct FacebookUser {
+    let token: String?
+    let name: String?
+    let email: String?
+}
+
+enum FacebookManager {
+    static func loginWithFacebook(completionHandler: @escaping (FacebookUser) -> Void) {
+        guard let controller = UIApplication.shared.firstKeyWindow?.rootViewController else {
+            return
+        }
+        
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: ["public_profile", "email"], viewController: controller) { result in
+            switch result {
+            case .success(granted: _, declined: _, token: _):
+                print("Facebook login successful.")
+                // Perform actions after successful login
+            case .cancelled:
+                print("Facebook login was cancelled.")
+            case .failed(let error):
+                print("Error logging in with Facebook: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    static func handle(_ url: URL) -> Bool {
+        true
+    }
+}

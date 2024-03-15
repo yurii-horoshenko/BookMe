@@ -15,9 +15,13 @@ struct BirthDayInputView: View {
     
     // MARK: - Lifecycle
     var body: some View {
-        AppInputField(fieldData: $dateBirthday, trailingView: Icons.Calendar.eraseToAnyView()) {
-            toCalendar = true
-        }
+        AppInputField(
+            fieldData: $dateBirthday,
+            trailingView: AnyView(Icons.Calendar),
+            onTapPress: {
+                toCalendar = true
+            }
+        )
         .sheet(isPresented: $toCalendar) {
             ZStack {
                 Color.primary500
