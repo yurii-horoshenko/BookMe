@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -82,7 +84,18 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.activity.compose)
     implementation(libs.navigation)
-//    implementation(libs.bundles.compose.destinations.bundle)
+    implementation(libs.lifecycle.compose)
+
     implementation(libs.compose.destinations.core)
     ksp(libs.compose.destinations.ksp)
+
+    implementation(libs.hilt.compose.navigation)
+    implementation(libs.hilt.library)
+    ksp(libs.hilt.kapt)
+
+    implementation(libs.androidx.material3)
+}
+
+hilt {
+    enableAggregatingTask = false
 }
