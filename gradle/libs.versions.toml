@@ -5,6 +5,7 @@ compose-bom-version = "2024.02.02"
 compose-compiler-version = "1.5.10"
 coroutines-version = "1.7.3"
 kotlin-version = "1.9.22"
+kotlinx-datetime = "0.6.0-RC.2"
 ktor-version = "2.3.6"
 serialization-version = "1.6.1"
 nav-version = "2.7.7"
@@ -25,6 +26,7 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 androidx-material = { group = "androidx.compose.material", name = "material" }
 androidx-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-version" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-version" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor-version" }

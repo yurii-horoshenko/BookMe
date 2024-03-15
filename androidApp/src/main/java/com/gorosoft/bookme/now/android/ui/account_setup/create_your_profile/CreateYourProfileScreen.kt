@@ -5,10 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,11 +17,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.rememberModalBottomSheetState
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDefaults
-import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,7 +26,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,16 +33,19 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gorosoft.bookme.now.android.R
+import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.BirthDatePickerDialog
+import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.GenderBottomSheetContent
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
-import com.gorosoft.bookme.now.android.ui.utils.CancelButton
-import com.gorosoft.bookme.now.android.ui.utils.DateUtils
+import com.gorosoft.bookme.now.android.ui.utils.ButtonDefaultBottomPadding
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
-import com.gorosoft.bookme.now.android.ui.utils.SecondaryButton
+import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
-import com.gorosoft.bookme.now.android.ui_models.UserGender
+import com.gorosoft.bookme.now.android.ui_models.title
+import com.gorosoft.bookme.now.domain.models.UserGender
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
@@ -58,13 +53,18 @@ import java.time.LocalDate
 @Composable
 fun CreateYourProfileScreen(
     viewModel: CreateYourProfileViewModel = hiltViewModel(),
+    navigator: DestinationsNavigator,
 ) {
     val profileState by viewModel.profileState.collectAsStateWithLifecycle()
+    val buttonEnabledState by viewModel.buttonEnablingState.collectAsStateWithLifecycle()
     CreateYourProfileContent(
         profileState = profileState,
+        isButtonEnabledState = buttonEnabledState,
         onNewNameInputted = viewModel::updateName,
         onGenderSelected = viewModel::updateGender,
         onBirthDateSelected = viewModel::updateDateOfBirth,
+        navigateForward = { navigator.popBackStack() },
+        navigateBack = { navigator.popBackStack() },
     )
 }
 
@@ -72,9 +72,12 @@ fun CreateYourProfileScreen(
 @Composable
 private fun CreateYourProfileContent(
     profileState: CreateProfileUiModel,
+    isButtonEnabledState: Boolean,
     onNewNameInputted: (String) -> Unit = {},
     onGenderSelected: (UserGender) -> Unit = {},
     onBirthDateSelected: (selectedDate: LocalDate) -> Unit = {},
+    navigateForward: () -> Unit = {},
+    navigateBack: () -> Unit = {},
 ) {
     val coroutineScope = rememberCoroutineScope()
     val genderBottomSheetState = rememberModalBottomSheetState(
@@ -108,7 +111,10 @@ private fun CreateYourProfileContent(
                     modifier = Modifier.padding(vertical = 24.dp, horizontal = 24.dp),
                     verticalArrangement = Arrangement.spacedBy(24.dp)
                 ) {
-                    BackButtonToolbar(title = R.string.create_your_profile)
+                    BackButtonToolbar(
+                        title = R.string.create_your_profile,
+                        navigateBack = navigateBack,
+                    )
                     NameInput(
                         text = profileState.fullName,
                         onNewNameInputted = onNewNameInputted,
@@ -124,6 +130,16 @@ private fun CreateYourProfileContent(
                         }
                     )
                 }
+                PrimaryButton(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                        .padding(bottom = ButtonDefaultBottomPadding),
+                    text = stringResource(R.string.continue_text),
+                    onClick = navigateForward,
+                    enabled = isButtonEnabledState
+                )
             }
             if (showDateDialog) {
                 BirthDatePickerDialog(
@@ -139,93 +155,12 @@ private fun CreateYourProfileContent(
 }
 
 @Composable
-private fun GenderBottomSheetContent(
-    onCancelGenderSelection: () -> Unit = {},
-    onGenderSelected: (UserGender) -> Unit = {},
-) {
-    Column(
-        modifier = Modifier
-            .padding(vertical = 24.dp, horizontal = 24.dp)
-            .navigationBarsPadding()
-            .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        UserGender.entries.forEach {
-            SecondaryButton(
-                modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .fillMaxWidth(),
-                text = stringResource(it.titleRes),
-                onClick = { onGenderSelected.invoke(it) }
-            )
-        }
-        Spacer(modifier = Modifier.padding(top = 8.dp))
-        CancelButton(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .fillMaxWidth(),
-            onClick = { onCancelGenderSelection.invoke() }
-        )
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun BirthDatePickerDialog(
-    onBirthDateSelected: (selectedDate: LocalDate) -> Unit = {},
-    hideDialog: () -> Unit = {},
-) {
-    val pickerState = rememberDatePickerState()
-    DatePickerDialog(
-        colors = DatePickerDefaults.colors(
-            containerColor = AppTheme.colors.backgroundThemed.backgroundMain,
-        ),
-        onDismissRequest = hideDialog,
-        confirmButton = {
-            PrimaryButton(
-                text = stringResource(R.string.ok),
-                onClick = {
-                    onBirthDateSelected.invoke(
-                        DateUtils.convertMillisToLocalDate(pickerState.selectedDateMillis)
-                    )
-                },
-            )
-        },
-        dismissButton = { CancelButton(onClick = hideDialog) }
-    ) {
-        DatePicker(
-            state = pickerState,
-            showModeToggle = true,
-            colors = DatePickerDefaults.colors(
-                titleContentColor = AppTheme.colors.grayscale.gs900,
-                headlineContentColor = AppTheme.colors.grayscale.gs900,
-                navigationContentColor = AppTheme.colors.grayscale.gs900,
-                dayContentColor = AppTheme.colors.grayscale.gs900,
-                subheadContentColor = AppTheme.colors.grayscale.gs900,
-                dividerColor = AppTheme.colors.grayscale.gs900,
-                currentYearContentColor = AppTheme.colors.grayscale.gs900,
-                selectedDayContentColor = Color.White,
-                selectedDayContainerColor = AppTheme.colors.mainColors.primary500,
-                todayContentColor = AppTheme.colors.grayscale.gs900,
-                todayDateBorderColor = Color.Transparent,
-                containerColor = AppTheme.colors.backgroundThemed.backgroundMain,
-                weekdayContentColor = AppTheme.colors.grayscale.gs900,
-                yearContentColor = AppTheme.colors.grayscale.gs900,
-                selectedYearContentColor = AppTheme.colors.grayscale.gs900,
-                selectedYearContainerColor = AppTheme.colors.mainColors.primary500,
-            ),
-        )
-    }
-}
-
-@Composable
 private fun GenderInput(
     modifier: Modifier = Modifier,
     gender: UserGender? = null,
     onGenderFieldClick: () -> Unit = {},
 ) {
-    val genderText = gender?.titleRes?.let { stringResource(it) } ?: ""
+    val genderText = gender?.title() ?: ""
     TextField(
         enabled = false,
         singleLine = true,
@@ -242,15 +177,7 @@ private fun GenderInput(
                 color = AppTheme.colors.grayscale.gs500,
             )
         },
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = AppTheme.colors.grayscale.gs900,
-            backgroundColor = AppTheme.colors.grayscale.gs50,
-            cursorColor = AppTheme.colors.mainColors.primary500,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent,
-            disabledTextColor = AppTheme.colors.grayscale.gs900,
-        ),
+        colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
         trailingIcon = {
             Image(
@@ -283,15 +210,7 @@ private fun DateOfBirthInput(
                 color = AppTheme.colors.grayscale.gs500,
             )
         },
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = AppTheme.colors.grayscale.gs900,
-            backgroundColor = AppTheme.colors.grayscale.gs50,
-            cursorColor = AppTheme.colors.mainColors.primary500,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent,
-            disabledTextColor = AppTheme.colors.grayscale.gs900,
-        ),
+        colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
         trailingIcon = {
             Image(
@@ -322,31 +241,9 @@ private fun NameInput(
                 color = AppTheme.colors.grayscale.gs500,
             )
         },
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = AppTheme.colors.grayscale.gs900,
-            backgroundColor = AppTheme.colors.grayscale.gs50,
-            cursorColor = AppTheme.colors.mainColors.primary500,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-        ),
+        colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
     )
-}
-
-@Preview
-@Composable
-private fun BirthDatePickerDialogPreview() {
-    AppTheme {
-        BirthDatePickerDialog()
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
-@Composable
-private fun GenderBottomSheetContentPreview() {
-    AppTheme {
-        GenderBottomSheetContent()
-    }
 }
 
 @Preview
@@ -356,7 +253,8 @@ private fun CreateYourProfileScreenPreview() {
         CreateYourProfileContent(
             profileState = CreateProfileUiModel(
                 fullName = "Joseph Gordon Levit",
-            )
+            ),
+            isButtonEnabledState = true,
         )
     }
 }

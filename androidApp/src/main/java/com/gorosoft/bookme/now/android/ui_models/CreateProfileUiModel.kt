@@ -1,9 +1,11 @@
 package com.gorosoft.bookme.now.android.ui_models
 
 import android.os.Parcelable
-import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.utils.DateUtils
+import com.gorosoft.bookme.now.domain.models.UserGender
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDate
 
@@ -17,8 +19,11 @@ data class CreateProfileUiModel(
     val dateOfBirthText get() = DateUtils.dateToString(dateOfBirthDate)
 }
 
-enum class UserGender(@StringRes val titleRes: Int) {
-    Male(R.string.male_gender),
-    Female(R.string.female_gender),
-    Other(R.string.other_gender)
+@Composable
+fun UserGender.title(): String {
+    return when (this) {
+        UserGender.Male -> stringResource(R.string.male_gender)
+        UserGender.Female -> stringResource(R.string.female_gender)
+        UserGender.Other -> stringResource(R.string.other_gender)
+    }
 }
