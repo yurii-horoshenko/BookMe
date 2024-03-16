@@ -22,4 +22,8 @@
     <string name="continue_text">Continue</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="enter_code">Enter code</string>
+    <string name="code_sent_to">Code has been send to %s</string>
+    <string name="resend_code">Resend code in</string>
+    <string name="seconds_of_resend_code">s</string>
 </resources>
