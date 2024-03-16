@@ -60,7 +60,7 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     }
     
     func checkCode() {
-        UserDefaultsManager.isLoggined = true
+        LocalManager.shared.kmmDefaults.isLoggined = true
         view?.moveToDashboardPage()
     }
 }

@@ -16,10 +16,6 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 class KtorManager {
-    fun get(s: String, function: () -> Unit): HttpResponse {
-        TODO("Not yet implemented")
-    }
-
     val client = HttpClient {
         defaultRequest {
             url {

@@ -5,6 +5,7 @@
 //  Created by Yurii Goroshenko on 16.01.2024.
 //
 
+import shared
 import SwiftUI
 
 protocol TutorialDescriptionModuleViewProtocol {
@@ -108,7 +109,7 @@ extension TutorialDescriptionModuleView: TutorialDescriptionModuleViewProtocol {
             return
         }
         
-        UserDefaultsManager.wasTutorial = true
+        LocalManager.shared.kmmDefaults.wasTutorial = true
         moveToWelcomePage()
     }
     
