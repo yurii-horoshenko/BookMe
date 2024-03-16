@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +37,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.BirthDatePickerDialog
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.GenderBottomSheetContent
+import com.gorosoft.bookme.now.android.ui.destinations.EnterOtpScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
 import com.gorosoft.bookme.now.android.ui.utils.ButtonDefaultBottomPadding
@@ -63,7 +66,9 @@ fun CreateYourProfileScreen(
         onNewNameInputted = viewModel::updateName,
         onGenderSelected = viewModel::updateGender,
         onBirthDateSelected = viewModel::updateDateOfBirth,
-        navigateForward = { navigator.popBackStack() },
+        navigateForward = {
+            navigator.navigate(EnterOtpScreenDestination(phoneNumber = "+380 63 111 22 33"))
+        },
         navigateBack = { navigator.popBackStack() },
     )
 }
@@ -84,6 +89,7 @@ private fun CreateYourProfileContent(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true,
     )
+    val keyboardController = LocalSoftwareKeyboardController.current
     var showDateDialog by remember { mutableStateOf(false) }
     ModalBottomSheetLayout(
         sheetContentColor = AppTheme.colors.backgroundThemed.backgroundMain,
@@ -126,6 +132,7 @@ private fun CreateYourProfileContent(
                     GenderInput(
                         gender = profileState.gender,
                         onGenderFieldClick = {
+                            keyboardController?.hide()
                             coroutineScope.launch { genderBottomSheetState.show() }
                         }
                     )
@@ -135,7 +142,8 @@ private fun CreateYourProfileContent(
                         .align(Alignment.BottomCenter)
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp)
-                        .padding(bottom = ButtonDefaultBottomPadding),
+                        .padding(bottom = ButtonDefaultBottomPadding)
+                        .imePadding(),
                     text = stringResource(R.string.continue_text),
                     onClick = navigateForward,
                     enabled = isButtonEnabledState
