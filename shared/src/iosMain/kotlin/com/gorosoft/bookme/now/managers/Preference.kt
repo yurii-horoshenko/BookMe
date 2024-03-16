@@ -1,8 +1,12 @@
+@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+
 package com.gorosoft.bookme.now.managers
+
 import platform.Foundation.NSUserDefaults
 import platform.darwin.NSObject
 
 actual typealias KMMContext = NSObject
+
 actual fun KMMContext.putString(key: String, value: String) {
     NSUserDefaults.standardUserDefaults.setObject(value, key)
 }
