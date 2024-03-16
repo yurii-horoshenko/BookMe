@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now.entities.requests
+package com.gorosoft.bookme.now.entities
 
 data class CodeRequest(
     val phone: String,

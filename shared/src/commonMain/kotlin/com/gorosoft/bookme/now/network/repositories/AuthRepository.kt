@@ -1,8 +1,8 @@
 package com.gorosoft.bookme.now.network.repositories
 
-import com.gorosoft.bookme.now.entities.requests.CodeRequest
-import com.gorosoft.bookme.now.entities.requests.ProfileRequest
-import com.gorosoft.bookme.now.entities.responses.SuccessResponse
+import com.gorosoft.bookme.now.entities.CodeRequest
+import com.gorosoft.bookme.now.entities.Profile
+import com.gorosoft.bookme.now.entities.SuccessResponse
 import com.gorosoft.bookme.now.network.KtorManager
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -38,7 +38,7 @@ class AuthRepository {
     }
 
     // POST: base_url/auth/create-profile
-    suspend fun createProfile(profile: ProfileRequest, resend: Boolean): Result<SuccessResponse> {
+    suspend fun createProfile(profile: Profile): Result<SuccessResponse> {
         val result: HttpResponse = client.get {
             bearerAuth(token)
             setBody(profile)

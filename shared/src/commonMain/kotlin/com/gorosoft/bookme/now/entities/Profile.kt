@@ -1,10 +1,10 @@
-package com.gorosoft.bookme.now.entities.requests
+package com.gorosoft.bookme.now.entities
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ProfileRequest(
+data class Profile(
     val fullname: String,
     val phone: String,
     val gender: String,
@@ -12,5 +12,6 @@ data class ProfileRequest(
     @SerialName("facebook_token")
     val facebookToken: String?,
     @SerialName("google_token")
-    val googleToken: String?
+    val googleToken: String?,
+    val isExist: Boolean
 )

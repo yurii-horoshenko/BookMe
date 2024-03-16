@@ -1,9 +1,9 @@
 PODS:
-  - AppAuth (1.7.2):
-    - AppAuth/Core (= 1.7.2)
-    - AppAuth/ExternalUserAgent (= 1.7.2)
-  - AppAuth/Core (1.7.2)
-  - AppAuth/ExternalUserAgent (1.7.2):
+  - AppAuth (1.7.3):
+    - AppAuth/Core (= 1.7.3)
+    - AppAuth/ExternalUserAgent (= 1.7.3)
+  - AppAuth/Core (1.7.3)
+  - AppAuth/ExternalUserAgent (1.7.3):
     - AppAuth/Core
   - FacebookCore (0.9.0):
     - FBSDKCoreKit (~> 5.0)
@@ -66,7 +66,7 @@ EXTERNAL SOURCES:
     :path: "../shared"
 
 SPEC CHECKSUMS:
-  AppAuth: ca2458caccec349cc1e26d8d9e8fd7d22f1d01f3
+  AppAuth: a13994980c1ec792f7e2e665acd4d4aa6be43240
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
@@ -79,6 +79,6 @@ SPEC CHECKSUMS:
   shared: c133c49697085ba65e4031b78e671fc97617a40d
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
 
-PODFILE CHECKSUM: c9740b1e4842aa68a4f9102e97265a18f0f45f62
+PODFILE CHECKSUM: e0e53a0d0c05b54842312c0dab58bba478f67bc3
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2

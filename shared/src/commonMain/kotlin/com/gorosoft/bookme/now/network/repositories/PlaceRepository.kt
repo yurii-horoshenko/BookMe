@@ -1,8 +1,8 @@
 package com.gorosoft.bookme.now.network.repositories
 
-import com.gorosoft.bookme.now.entities.responses.DataResponse
-import com.gorosoft.bookme.now.entities.responses.Location
-import com.gorosoft.bookme.now.entities.responses.PLACETYPE
+import com.gorosoft.bookme.now.entities.DataResponse
+import com.gorosoft.bookme.now.entities.Location
+import com.gorosoft.bookme.now.entities.PLACETYPE
 import com.gorosoft.bookme.now.network.KtorManager
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

@@ -7,6 +7,7 @@ import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
 import com.gorosoft.bookme.now.domain.models.CreateProfileModel
 import com.gorosoft.bookme.now.domain.models.UserGender
 import com.gorosoft.bookme.now.domain.use_case.CreateProfileIsValidUseCase
+import com.gorosoft.bookme.now.network.KtorManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -28,15 +29,7 @@ class CreateYourProfileViewModel @Inject constructor(
     val profileState = savedStateHandle.getStateFlow(ProfileKey, CreateProfileUiModel())
 
     val buttonEnablingState: StateFlow<Boolean> = profileState.map { uiModel ->
-        profileIsValidUseCase.execute(
-            model = CreateProfileModel(
-                fullName = uiModel.fullName,
-                gender = uiModel.gender,
-                dayOfBirth = uiModel.dateOfBirthDate?.dayOfMonth,
-                monthOfBirth = uiModel.dateOfBirthDate?.monthValue,
-                yearOfBirth = uiModel.dateOfBirthDate?.year
-            )
-        )
+        profileIsValidUseCase.execute()
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), initialValue = false)
 
     fun updateName(newFullName: String) {
