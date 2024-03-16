@@ -5,6 +5,7 @@ compose-bom-version = "2024.02.02"
 compose-compiler-version = "1.5.10"
 coroutines-version = "1.7.3"
 kotlin-version = "1.9.22"
+kotlinx-datetime = "0.6.0-RC.2"
 ktor-version = "2.3.6"
 serialization-version = "1.6.1"
 nav-version = "2.7.7"
@@ -12,6 +13,11 @@ ktlint-version = "12.1.0"
 detekt = "1.23.5"
 ksp-version = "1.9.22-1.0.17"
 compose-destinations-version = "1.9.63"
+hilt-verstion = "2.51"
+hilt-compose-navigation-version = "1.2.0"
+lifecycle-compose-version = "2.7.0"
+material3-version = "1.2.1"
+
 
 
 [libraries]
@@ -20,6 +26,7 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 androidx-material = { group = "androidx.compose.material", name = "material" }
 androidx-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-version" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-version" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor-version" }
@@ -33,6 +40,11 @@ ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav-version" }
 compose-destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "compose-destinations-version" }
 compose-destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "compose-destinations-version" }
+hilt-library = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-verstion" }
+hilt-kapt = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-verstion" }
+hilt-compose-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-compose-navigation-version" }
+lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle-compose-version" }
+androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3-version" }
 
 [bundles]
 
@@ -44,3 +56,4 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-version" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-verstion" }
