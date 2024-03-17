@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gorosoft.bookme.now.android.R
+import com.gorosoft.bookme.now.android.ui.NavGraphs
+import com.gorosoft.bookme.now.android.ui.destinations.MainScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
 import com.ramcosta.composedestinations.annotation.Destination
@@ -43,7 +45,11 @@ fun EnterOtpScreen(
         viewModel.effect.collect {
             when (it) {
                 EnterOtpEffects.ShowSuccessDialog -> {
-                    Unit
+//                    Unit
+                    navigator.navigate(MainScreenDestination) {
+                        this.launchSingleTop = true
+                        popUpTo(NavGraphs.root.route) { inclusive = true }
+                    }
                 }
             }
             viewModel.consumeEffect()
