@@ -22,7 +22,7 @@ enum FacebookManager {
         let loginManager = LoginManager()
         loginManager.logIn(permissions: ["public_profile", "email"], viewController: controller) { result in
             switch result {
-            case .success(granted: _, declined: _, token: _):
+            case .success:
                 print("Facebook login successful.")
                 // Perform actions after successful login
             case .cancelled:

@@ -1,4 +1,4 @@
-git_url("git@bitbucket.org:fjordsv2/ios-certs.git")
+#git_url("git@bitbucket.org:/ios-certs.git")
 
 storage_mode("git")
 

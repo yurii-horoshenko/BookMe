@@ -11,14 +11,9 @@ struct GoogleManagerUser {
     let email: String?
 }
 
-// 832700470851-a7otksgpt4rj8dvkgoj891pnkvfku60j.apps.googleusercontent.com
-
-struct GoogleManager {
-    // MARK: - Properties
-    static let clientID = "832700470851-e9ug3e3drtcvdicvqkajv86q357vqch1.apps.googleusercontent.com"
-    
+enum GoogleManager {
     // MARK: - Public
-    static func setup() {
+    static func setup(clientID: String) {
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config

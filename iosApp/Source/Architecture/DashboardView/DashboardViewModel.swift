@@ -18,11 +18,12 @@ protocol DashboardViewModelProtocol: ObservableObject {
     
     func displayPlaces(data: [String])
     func getPlaces()
+    func loadData()
 }
 
 final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.PlaceRepository()
+    private let repository = shared.BookingRepository()
     @Published var searchData = FieldData(placeholder: String(localized: "SEARCH"))
     @Published var toServiceDetail = false
     @Published var toSearchFilter = false
@@ -45,13 +46,19 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     func getPlaces() {
-        repository.getPlaces(
-            type: PLACETYPE.barber,
-            location: shared.Location(longitude: 30.5833821, latitude: 50.465645),
-            radius: 17
-        ) { _, _ in
-            //            presenter.displayPlaces(listOf(it.data?.nextPageToken.orEmpty()))
-            printLog("")
+//        repository.getPlaces(
+//            type: PLACETYPE.barber,
+//            location: shared.Location(longitude: 30.5833821, latitude: 50.465645),
+//            radius: 17
+//        ) { _, _ in
+//            //            presenter.displayPlaces(listOf(it.data?.nextPageToken.orEmpty()))
+//            printLog("")
+//        }
+    }
+    
+    func loadData() {
+        repository.getBooking(count: 10) { _, _ in
+            print("")
         }
     }
 }

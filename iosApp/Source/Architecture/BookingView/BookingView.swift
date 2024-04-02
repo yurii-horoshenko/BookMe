@@ -18,7 +18,9 @@ struct BookingView<ViewModel>: View where ViewModel: BookingViewModelProtocol {
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
-        
+        .onAppear {
+            viewModel.loadData()
+        }
     }
     
     var ContentView: some View {

@@ -28,7 +28,7 @@ struct DashboardView<ViewModel>: View where ViewModel: DashboardViewModelProtoco
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
         .onAppear {
-            viewModel.getPlaces()
+            viewModel.loadData()
         }
     }
     
