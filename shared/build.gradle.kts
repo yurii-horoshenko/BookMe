@@ -1,14 +1,16 @@
 plugins {
+//    alias(libs.plugins.kotlinMultiplatform)
+//    alias(libs.plugins.kotlinCocoapods)
+//    alias(libs.plugins.androidLibrary)
+
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
     kotlin("plugin.serialization") version "1.9.20"
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
+//@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
-
     androidTarget {
         compilations.all {
             kotlinOptions {
@@ -24,38 +26,32 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
-        ios.deploymentTarget = "16.0"
+        ios.deploymentTarget = "17.0"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            isStatic = true
         }
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                //put your multiplatform dependencies here
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.logging)
-                implementation(libs.ktor.client.content.negotiation)
-                implementation(libs.ktor.serialization.kotlinx.json)
-                implementation(libs.kotlinx.datetime)
-
-                implementation(libs.kotlinx.coroutines.core)
-            }
+        commonMain.dependencies {
+            //put your multiplatform dependencies here
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.coroutines.core)
         }
 
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
-                //implementation("io.ktor:ktor-client-ios:2.3.6")
-            }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
 
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.android)
-            }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.android)
+//            implementation(libs.ktor.client.okhttp)
         }
     }
 }
@@ -65,5 +61,9 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 28
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
