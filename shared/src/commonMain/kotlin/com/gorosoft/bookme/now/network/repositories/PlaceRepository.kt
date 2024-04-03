@@ -26,4 +26,14 @@ class PlaceRepository {
 
         return runCatching { result.body() }
     }
+
+    // GET: base_url/api/Place/Details
+    suspend fun getPlaceDetail(placeId: String): Result<DataResponse> {
+        val result: HttpResponse = client.get("Place/Details") {
+            // bearerAuth(token)
+            parameter("placeId", placeId)
+        }
+
+        return runCatching { result.body() }
+    }
 }

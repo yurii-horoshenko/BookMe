@@ -16,6 +16,10 @@ data class DataResponse(
     val data: PlaceResponse? = null
 )
 
+data class PlaceInfoResponse(
+    val placeId: String? = null
+)
+
 @Serializable
 data class PlaceResponse(
     @SerialName("nextPageToken")
