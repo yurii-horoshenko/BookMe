@@ -1,15 +1,10 @@
 plugins {
-//    alias(libs.plugins.kotlinMultiplatform)
-//    alias(libs.plugins.kotlinCocoapods)
-//    alias(libs.plugins.androidLibrary)
-
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.serialization)
     kotlin("native.cocoapods")
-    id("com.android.library")
-    kotlin("plugin.serialization") version "1.9.20"
 }
 
-//@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     androidTarget {
         compilations.all {
@@ -36,7 +31,6 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.content.negotiation)
@@ -51,9 +45,10 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
-//            implementation(libs.ktor.client.okhttp)
         }
     }
+    // don't remove. This is the work around for normal build process
+    task("testClasses")
 }
 
 android {
@@ -61,9 +56,5 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 28
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }

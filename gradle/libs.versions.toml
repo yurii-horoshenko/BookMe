@@ -1,23 +1,22 @@
 [versions]
 android-gradle-plugin-version = "8.2.2"
 activity-compose-version = "1.8.2"
-compose-bom-version = "2024.02.02"
-compose-compiler-version = "1.5.10"
-coroutines-version = "1.7.3"
-kotlin-version = "1.9.22"
+compose-bom-version = "2024.03.00"
+compose-compiler-version = "1.5.11"
+coroutines-version = "1.8.1-Beta"
+kotlin-version = "1.9.23"
 kotlinx-datetime = "0.6.0-RC.2"
 ktor-version = "2.3.6"
 serialization-version = "1.6.1"
 nav-version = "2.7.7"
 ktlint-version = "12.1.0"
 detekt = "1.23.5"
-ksp-version = "1.9.22-1.0.17"
+ksp-version = "1.9.23-1.0.19"
 compose-destinations-version = "1.9.63"
 hilt-verstion = "2.51"
 hilt-compose-navigation-version = "1.2.0"
 lifecycle-compose-version = "2.7.0"
 material3-version = "1.2.1"
-
 
 
 [libraries]
@@ -53,6 +52,7 @@ android-application = { id = "com.android.application", version.ref = "android-g
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin-version" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-version" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-version" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
