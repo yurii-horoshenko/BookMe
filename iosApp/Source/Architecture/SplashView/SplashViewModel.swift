@@ -16,7 +16,7 @@ protocol SplashViewModelProtocol: ObservableObject {
 
 final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Properties
-    private let repository: UserRepositoryProtocol = shared.UserRepository(remote: UserRemoteDataSource(client: KtorManager.shared.client, token: ""))
+    private let repository: UserRepositoryProtocol = ServiceLocator.shared.userRepository
     @Published var toLogin = false
     @Published var toSignIn = false
     
