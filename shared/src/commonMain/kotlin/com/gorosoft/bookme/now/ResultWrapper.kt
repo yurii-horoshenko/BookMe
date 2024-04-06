@@ -42,3 +42,13 @@ inline fun <T, R> ResultWrapper<T>.map(mapper: (T) -> R): ResultWrapper<R> {
         is ResultWrapper.Error -> this
     }
 }
+
+inline fun <T> ResultWrapper<T>.onSuccess(action: (T) -> Unit): ResultWrapper<T> {
+    if (this is ResultWrapper.Success) action(value)
+    return this
+}
+
+inline fun <T> ResultWrapper<T>.onError(action: (ResultWrapper.Error) -> Unit): ResultWrapper<T> {
+    if (this is ResultWrapper.Error) action(this)
+    return this
+}

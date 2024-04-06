@@ -1,18 +1,19 @@
 package com.gorosoft.bookme.now.data.repositories
 
 import com.gorosoft.bookme.now.ResultWrapper
+import com.gorosoft.bookme.now.data.network.KtorManager
 import com.gorosoft.bookme.now.data.network.datasource.UserRemoteDataSource
 import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
 import com.gorosoft.bookme.now.data.network.model.request.toRequest
 import com.gorosoft.bookme.now.data.network.model.response.toDomain
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
-import com.gorosoft.bookme.now.domain.repository.UserRepository
+import com.gorosoft.bookme.now.domain.repository.UserRepositoryProtocol
 import com.gorosoft.bookme.now.map
 
-class UserRepositoryImpl(
-    private val remote: UserRemoteDataSource,
-) : UserRepository {
+class UserRepository(
+    private val remote: UserRemoteDataSource = UserRemoteDataSource(client = KtorManager.client)
+) : UserRepositoryProtocol {
 
     // read token from some secure storage
     private val token = ""

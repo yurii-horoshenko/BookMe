@@ -5,7 +5,7 @@ import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
 
-interface UserRepository {
+interface UserRepositoryProtocol {
 
     suspend fun login(): ResultWrapper<ProfileModel>
 
