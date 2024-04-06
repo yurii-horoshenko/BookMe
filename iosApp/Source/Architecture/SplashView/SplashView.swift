@@ -26,7 +26,8 @@ struct SplashView<ViewModel>: View where ViewModel: SplashViewModelProtocol {
         .ignoresSafeArea(.all)
         .background(Color.background)
         .onAppear {
-            setRootView(Steps.splashAfter.PageView)
+            viewModel.detectPage()
+//            setRootView(Steps.splashAfter.PageView)
         }
     }
 }

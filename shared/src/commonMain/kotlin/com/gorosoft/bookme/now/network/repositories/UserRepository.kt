@@ -1,5 +1,6 @@
 package com.gorosoft.bookme.now.network.repositories
 
+import com.gorosoft.bookme.now.entities.CodeRequest
 import com.gorosoft.bookme.now.entities.Profile
 import com.gorosoft.bookme.now.entities.DataResponse
 import com.gorosoft.bookme.now.network.KtorManager
@@ -42,7 +43,7 @@ class UserRepository{
     suspend fun createProfile(profile: Profile): Result<DataResponse> {
         val token = ""
 
-        val result: HttpResponse = client.post("user/validation") {
+        val result: HttpResponse = client.post("user/create_profile") {
             bearerAuth(token)
             setBody(profile)
         }
@@ -64,14 +65,13 @@ class UserRepository{
         return runCatching { result.body() }
     }
 
-    // GET:  base_url/user/code
-    suspend fun code(phone: String, code: String): Result<DataResponse> {
+    // POST:  base_url/user/code
+    suspend fun code(code: CodeRequest): Result<DataResponse> {
         val token = ""
 
         val result: HttpResponse = client.post("user/code") {
             bearerAuth(token)
-            parameter("phone", phone)
-            parameter("code", code)
+            setBody(code)
         }
 
         return runCatching { result.body() }

@@ -27,15 +27,8 @@ final class SplashViewModel: SplashViewModelProtocol {
     
     // MARK: - Public
     func detectPage() {
-        // FacebookSDK
-        // RepositoryLogin
-        
-        FacebookManager.loginWithFacebook { [weak self] _ in
-            self?.toSignIn = true
+        repository.login { _, _ in
+            printLog("")
         }
-        
-        //        repository.login { _, _ in
-        //            printLog("")
-        //        }
     }
 }
