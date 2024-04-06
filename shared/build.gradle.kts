@@ -1,14 +1,11 @@
 plugins {
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.serialization)
     kotlin("native.cocoapods")
-    id("com.android.library")
-    kotlin("plugin.serialization") version "1.9.20"
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
-
     androidTarget {
         compilations.all {
             kotlinOptions {
@@ -24,40 +21,34 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
-        ios.deploymentTarget = "16.0"
+        ios.deploymentTarget = "17.0"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            isStatic = true
         }
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                //put your multiplatform dependencies here
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.logging)
-                implementation(libs.ktor.client.content.negotiation)
-                implementation(libs.ktor.serialization.kotlinx.json)
-                implementation(libs.kotlinx.datetime)
-
-                implementation(libs.kotlinx.coroutines.core)
-            }
+        commonMain.dependencies {
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.coroutines.core)
         }
 
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
-                //implementation("io.ktor:ktor-client-ios:2.3.6")
-            }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
 
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.android)
-            }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.android)
         }
     }
+    // don't remove. This is the work around for normal build process
+    task("testClasses")
 }
 
 android {

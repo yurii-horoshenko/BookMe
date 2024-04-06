@@ -6,6 +6,7 @@
 //
 
 import FacebookLogin
+import FBSDKCoreKit
 
 struct FacebookUser {
     let token: String?
@@ -15,16 +16,26 @@ struct FacebookUser {
 
 enum FacebookManager {
     static func loginWithFacebook(completionHandler: @escaping (FacebookUser) -> Void) {
-        guard let controller = UIApplication.shared.firstKeyWindow?.rootViewController else {
-            return
-        }
+        guard let controller = UIApplication.shared.rootController else { return }
         
         let loginManager = LoginManager()
         loginManager.logIn(permissions: ["public_profile", "email"], viewController: controller) { result in
             switch result {
-            case .success(granted: _, declined: _, token: _):
-                print("Facebook login successful.")
-                // Perform actions after successful login
+            case .success:
+                if AccessToken.current != nil {
+                    GraphRequest(graphPath: "me", parameters: ["fields": "email, id, name"]).start { _, result, error in
+                        if error == nil, let result = result as? [String: String] {
+                            
+                            let user = FacebookUser(
+                                token: result["id"],
+                                name: result["name"],
+                                email: result["email"]
+                            )
+                            
+                            completionHandler(user)
+                        }
+                    }
+                }
             case .cancelled:
                 print("Facebook login was cancelled.")
             case .failed(let error):

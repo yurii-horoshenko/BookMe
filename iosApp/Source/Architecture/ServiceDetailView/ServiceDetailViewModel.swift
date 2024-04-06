@@ -6,7 +6,6 @@
 //
 
 import shared
-import SwiftUI
 
 protocol ServiceDetailViewModelProtocol: ObservableObject {
     var toBooking: Bool { get set }

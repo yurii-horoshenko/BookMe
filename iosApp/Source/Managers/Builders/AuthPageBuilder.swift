@@ -27,7 +27,8 @@ enum AuthPageBuilder {
     
     // MARK: - Construct
     static func constructSplashView() -> some View {
-        let view = SplashView()
+        let viewModel = SplashViewModel()
+        let view = SplashView(viewModel: viewModel)
         return view
     }
     

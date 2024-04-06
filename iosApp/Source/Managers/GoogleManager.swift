@@ -11,14 +11,9 @@ struct GoogleManagerUser {
     let email: String?
 }
 
-// 832700470851-a7otksgpt4rj8dvkgoj891pnkvfku60j.apps.googleusercontent.com
-
-struct GoogleManager {
-    // MARK: - Properties
-    static let clientID = "832700470851-e9ug3e3drtcvdicvqkajv86q357vqch1.apps.googleusercontent.com"
-    
+enum GoogleManager {
     // MARK: - Public
-    static func setup() {
+    static func setup(clientID: String) {
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
@@ -29,17 +24,17 @@ struct GoogleManager {
     }
     
     static func signIn(completionHandler: @escaping (GoogleManagerUser) -> Void) {
-        guard let controller = UIApplication.shared.firstKeyWindow?.rootViewController else {
-            return
-        }
+        guard let controller = UIApplication.shared.rootController else { return }
         
         GIDSignIn.sharedInstance.signIn(withPresenting: controller) { signInResult, error in
             guard error == nil, let value = signInResult?.user else { return }
+            
             let user = GoogleManagerUser(
                 token: value.idToken?.tokenString,
                 name: value.profile?.name,
                 email: value.profile?.email
             )
+           
             completionHandler(user)
         }
     }

@@ -6,7 +6,6 @@
 //
 
 import shared
-import SwiftUI
 
 protocol LoginViewModelProtocol: ObservableObject {
     var phone: FieldData { get set }

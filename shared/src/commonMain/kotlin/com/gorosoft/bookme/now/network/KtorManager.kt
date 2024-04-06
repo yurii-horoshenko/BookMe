@@ -20,12 +20,11 @@ class KtorManager {
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
-                host = "goroshenko.azurewebsites.net"
+                host = "bookmeservice.azurewebsites.net"
                 path("api/")
             }
             contentType(ContentType.Application.Json)
         }
-
         // Plugings
         install(ContentNegotiation) {
             json(
