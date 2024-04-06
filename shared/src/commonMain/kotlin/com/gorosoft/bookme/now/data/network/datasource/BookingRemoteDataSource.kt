@@ -11,25 +11,17 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.statement.HttpResponse
 
-class PlaceRemoteDataSource(
+class BookingRemoteDataSource(
     private val client: HttpClient,
     private val token: String
 ) {
-    // GET: base_url/api/place/list
+    // GET: base_url/api/booking/list
     suspend fun getPlaces(
-        query: String? = null,
-        type: PlaceType,
-        location: LocationModel,
-        radius: Int,
+        count: Int
     ): Response<PlaceResponse> {
-        val result: HttpResponse = client.get("place/list") {
+        val result: HttpResponse = client.get("booking/list") {
             // bearerAuth(token)
-            parameter("query", query)
-            parameter("filter", type)
-            parameter("lat", location.latitude)
-            parameter("lon", location.longitude)
-            parameter("radius", radius)
-            parameter("token", token)
+            parameter("count", count)
         }
 
         return safeDataResponseCall { result.body() }
