@@ -44,7 +44,7 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(libs.ktor.client.android)
+            api(libs.ktor.client.android)
         }
     }
     // don't remove. This is the work around for normal build process

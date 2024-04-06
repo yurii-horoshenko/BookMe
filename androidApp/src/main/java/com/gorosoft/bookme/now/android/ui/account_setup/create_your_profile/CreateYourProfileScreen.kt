@@ -46,7 +46,7 @@ import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
 import com.gorosoft.bookme.now.android.ui_models.title
-import com.gorosoft.bookme.now.domain.models.UserGender
+import com.gorosoft.bookme.now.domain.models.UserGenderType
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
@@ -79,7 +79,7 @@ private fun CreateYourProfileContent(
     profileState: CreateProfileUiModel,
     isButtonEnabledState: Boolean,
     onNewNameInputted: (String) -> Unit = {},
-    onGenderSelected: (UserGender) -> Unit = {},
+    onGenderSelected: (UserGenderType) -> Unit = {},
     onBirthDateSelected: (selectedDate: LocalDate) -> Unit = {},
     navigateForward: () -> Unit = {},
     navigateBack: () -> Unit = {},
@@ -165,7 +165,7 @@ private fun CreateYourProfileContent(
 @Composable
 private fun GenderInput(
     modifier: Modifier = Modifier,
-    gender: UserGender? = null,
+    gender: UserGenderType? = null,
     onGenderFieldClick: () -> Unit = {},
 ) {
     val genderText = gender?.title() ?: ""
