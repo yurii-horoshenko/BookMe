@@ -29,4 +29,7 @@
     <string name="home">Home</string>
     <string name="explore">Explore</string>
     <string name="profile">Profile</string>
+    <string name="search">Search</string>
+    <string name="call">Call</string>
+    <string name="map">Map</string>
 </resources>
