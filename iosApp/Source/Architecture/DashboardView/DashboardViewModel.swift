@@ -23,7 +23,7 @@ protocol DashboardViewModelProtocol: ObservableObject {
 
 final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.BookingRepository()
+//    private let repository = shared.BookingRepository()
     @Published var searchData = FieldData(placeholder: String(localized: "SEARCH"))
     @Published var toServiceDetail = false
     @Published var toSearchFilter = false
@@ -57,8 +57,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     func loadData() {
-        repository.getBooking(count: 10) { _, _ in
-            print("")
-        }
+//        repository.getBooking(count: 10) { _, _ in
+//            print("")
+//        }
     }
 }

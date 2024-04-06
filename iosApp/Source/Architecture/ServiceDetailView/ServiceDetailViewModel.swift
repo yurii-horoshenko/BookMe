@@ -13,7 +13,7 @@ protocol ServiceDetailViewModelProtocol: ObservableObject {
 
 final class ServiceDetailViewModel: ServiceDetailViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.UserRepository()
+//    private let repository = shared.UserRepository()
     @Published var toBooking = false
     
     // MARK: - Lifecycle

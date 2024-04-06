@@ -25,7 +25,7 @@ class UserRemoteDataSource(
         val result: HttpResponse = client.get("user/login") {
             bearerAuth(token)
         }
-        return safeCall { result.body() }
+        return safeDataResponseCall { result.body() }
     }
 
     // GET:  base_url/user/validation

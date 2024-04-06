@@ -16,7 +16,7 @@ protocol SplashViewModelProtocol: ObservableObject {
 
 final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.UserRepository()
+    private let repository: UserRepositoryProtocol = shared.UserRepository(remote: UserRemoteDataSource(client: KtorManager.shared.client))
     @Published var toLogin = false
     @Published var toSignIn = false
     
@@ -27,8 +27,21 @@ final class SplashViewModel: SplashViewModelProtocol {
     
     // MARK: - Public
     func detectPage() {
-        repository.login { _, _ in
-            printLog("")
+        repository.login { result, error in
+            switch result {
+            case is ResultWrapperSuccess<ProfileModel>:
+                let object = (result as? ResultWrapperSuccess<ProfileModel>)?.value
+                printLog("How")
+                
+            case is ResultWrapperError:
+                printLog("How")
+                
+            default:
+                break
+            }
         }
     }
 }
+
+
+

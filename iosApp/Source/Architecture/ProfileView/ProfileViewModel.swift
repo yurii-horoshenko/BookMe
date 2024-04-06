@@ -19,7 +19,7 @@ protocol ProfileViewModelProtocol: ObservableObject {
 
 final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.UserRepository()
+//    private let repository = shared.UserRepositoryImpl(remote: UserRemoteDataSource(client: KtorManager.shared.client))
     @Published var toLogoutConfirm = false
     @Published var toSignIn = false
     @Published var detectHeight: CGFloat = 0

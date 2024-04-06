@@ -10,7 +10,7 @@ data class ProfileResponse(
     @SerialName("fullname")
     val fullName: String? = null,
     val phone: String? = null,
-    val gender: UserGenderType? = null,
+    val gender: Int? = null,
     val birthday: Long? = null,
     @SerialName("isExist")
     val isExist: Boolean? = null
@@ -20,7 +20,7 @@ fun ProfileResponse.toDomain(): ProfileModel {
     return ProfileModel(
         fullName = fullName ?: "",
         phone = phone ?: "",
-        gender = gender ?: UserGenderType.OTHER,
+        gender = UserGenderType.OTHER,
         birthday = birthday ?: 0,
         facebookToken = null,
         googleToken = null,
