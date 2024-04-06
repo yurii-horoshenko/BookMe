@@ -13,7 +13,6 @@ import io.ktor.client.statement.HttpResponse
 
 class PlaceRemoteDataSource(
     private val client: HttpClient,
-    private val token: String
 ) {
     // GET: base_url/api/place/list
     suspend fun getPlaces(
@@ -29,7 +28,6 @@ class PlaceRemoteDataSource(
             parameter("lat", location.latitude)
             parameter("lon", location.longitude)
             parameter("radius", radius)
-            parameter("token", token)
         }
 
         return safeDataResponseCall { result.body() }

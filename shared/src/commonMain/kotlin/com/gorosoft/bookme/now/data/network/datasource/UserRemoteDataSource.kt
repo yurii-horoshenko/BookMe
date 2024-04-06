@@ -8,7 +8,6 @@ import com.gorosoft.bookme.now.data.network.model.response.ProfileTokenResponse
 import com.gorosoft.bookme.now.safeDataResponseCall
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.request.bearerAuth
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
@@ -17,14 +16,10 @@ import io.ktor.client.statement.HttpResponse
 
 class UserRemoteDataSource(
     private val client: HttpClient,
-    private val token: String
 ) {
     // GET:  base_url/user/login
     suspend fun login(): Response<ProfileResponse> {
-        val result: HttpResponse = client.get("user/login") {
-            bearerAuth(token)
-        }
-
+        val result: HttpResponse = client.get("user/login")
         return safeDataResponseCall { result.body() }
     }
 
@@ -35,7 +30,6 @@ class UserRemoteDataSource(
         phone: String?
     ): Response<ProfileResponse> {
         val result: HttpResponse = client.get("user/validation") {
-            bearerAuth(token)
             parameter("facebook_token", facebookToken)
             parameter("google_token", googleToken)
             parameter("phone", phone)
@@ -49,7 +43,6 @@ class UserRemoteDataSource(
         profile: ProfileRequest
     ): Response<ProfileResponse> {
         val result: HttpResponse = client.post("user/create_profile") {
-            bearerAuth(token)
             setBody(profile)
         }
 
@@ -62,7 +55,6 @@ class UserRemoteDataSource(
         resend: Boolean
     ): Response<Boolean> {
         val result: HttpResponse = client.get("user/code") {
-            bearerAuth(token)
             parameter("phone", phone)
             parameter("resend", resend)
         }
@@ -75,7 +67,6 @@ class UserRemoteDataSource(
         code: CodeRequest
     ): Response<ProfileTokenResponse> {
         val result: HttpResponse = client.post("user/code") {
-            bearerAuth(token)
             setBody(code)
         }
 

@@ -1,7 +1,6 @@
 package com.gorosoft.bookme.now.data.repositories
 
 import com.gorosoft.bookme.now.Response
-import com.gorosoft.bookme.now.data.network.KtorManager
 import com.gorosoft.bookme.now.data.network.datasource.UserRemoteDataSource
 import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
 import com.gorosoft.bookme.now.data.network.model.request.toRequest
@@ -12,10 +11,7 @@ import com.gorosoft.bookme.now.domain.repository.UserRepositoryProtocol
 import com.gorosoft.bookme.now.map
 
 class UserRepository(
-    private val remote: UserRemoteDataSource = UserRemoteDataSource(
-        client = KtorManager.client,
-        token = "",
-        )
+    private val remote: UserRemoteDataSource
 ) : UserRepositoryProtocol {
 
     override suspend fun login(): Response<ProfileModel> {

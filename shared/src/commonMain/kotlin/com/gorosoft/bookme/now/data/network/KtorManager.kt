@@ -2,6 +2,9 @@ package com.gorosoft.bookme.now.data.network
 
 import io.ktor.client.*
 import io.ktor.client.plugins.HttpResponseValidator
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BearerTokens
+import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.DEFAULT
@@ -40,6 +43,11 @@ object KtorManager {
         install(Logging) {
             logger = Logger.DEFAULT
             level = LogLevel.ALL
+        }
+        install(Auth) {
+            bearer {
+                BearerTokens(accessToken = "", refreshToken = "")
+            }
         }
         HttpResponseValidator {
             validateResponse { response ->
