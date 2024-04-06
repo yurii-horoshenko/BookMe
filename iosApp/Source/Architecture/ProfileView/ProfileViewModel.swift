@@ -6,7 +6,6 @@
 //
 
 import shared
-import SwiftUI
 
 protocol ProfileViewModelProtocol: ObservableObject {
     var toLogoutConfirm: Bool { get set }

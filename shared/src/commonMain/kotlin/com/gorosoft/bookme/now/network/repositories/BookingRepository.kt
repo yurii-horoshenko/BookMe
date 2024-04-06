@@ -12,9 +12,9 @@ class BookingRepository {
     private val client: HttpClient = KtorManager().client
     val token = ""
 
-    // GET: base_url/api/Booking/list
+    // GET: base_url/api/booking/list
     suspend fun getBooking(count: Int): Result<Array<PlaceInfoResponse>> {
-        val result: HttpResponse = client.get("Booking/list") {
+        val result: HttpResponse = client.get("booking/list") {
             // bearerAuth(token)
             parameter("count", count)
         }

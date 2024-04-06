@@ -6,7 +6,6 @@
 //
 
 import shared
-import SwiftUI
 
 protocol WelcomeViewModelProtocol: ObservableObject {
     var toLogin: Bool { get set }
