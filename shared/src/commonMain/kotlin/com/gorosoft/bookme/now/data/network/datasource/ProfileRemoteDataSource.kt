@@ -14,7 +14,7 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
 
-class UserRemoteDataSource(
+class ProfileRemoteDataSource(
     private val client: HttpClient,
 ) {
     // GET:  base_url/user/login

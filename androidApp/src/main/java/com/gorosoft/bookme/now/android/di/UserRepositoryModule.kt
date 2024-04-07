@@ -1,9 +1,9 @@
 package com.gorosoft.bookme.now.android.di
 
 import com.gorosoft.bookme.now.data.network.KtorManager
-import com.gorosoft.bookme.now.data.network.datasource.UserRemoteDataSource
-import com.gorosoft.bookme.now.data.repositories.UserRepository
-import com.gorosoft.bookme.now.domain.repository.UserRepositoryProtocol
+import com.gorosoft.bookme.now.data.network.datasource.ProfileRemoteDataSource
+import com.gorosoft.bookme.now.data.repositories.ProfileRepository
+import com.gorosoft.bookme.now.domain.repository.ProfileRepositoryProtocol
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,12 +14,12 @@ import dagger.hilt.components.SingletonComponent
 class UserRepositoryModule {
 
     @Provides
-    fun provideUserRemoteDataSource(): UserRemoteDataSource {
-        return UserRemoteDataSource(client = KtorManager.client)
+    fun provideUserRemoteDataSource(): ProfileRemoteDataSource {
+        return ProfileRemoteDataSource(client = KtorManager.client)
     }
 
     @Provides
-    fun provideUserRepository(remote: UserRemoteDataSource): UserRepositoryProtocol {
-        return UserRepository(remote = remote)
+    fun provideUserRepository(remote: ProfileRemoteDataSource): ProfileRepositoryProtocol {
+        return ProfileRepository(remote = remote)
     }
 }

@@ -16,7 +16,7 @@ protocol SplashViewModelProtocol: ObservableObject {
 
 final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Properties
-    private let repository: UserRepositoryProtocol = ServiceLocator.shared.userRepository
+    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.userRepository
     @Published var toLogin = false
     @Published var toSignIn = false
     
@@ -28,9 +28,9 @@ final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Public
     func detectPage() {
         repository.login { result, _ in
-            result?.onSuccess(result: { _ in
+            result?.onSuccess(result: { profile in
                 print("")
-            }).onError(result: { _, _ in
+            })?.onError(result: { error  in
                 print("")
             })
         }

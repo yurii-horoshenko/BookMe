@@ -1,18 +1,18 @@
 package com.gorosoft.bookme.now.data.repositories
 
 import com.gorosoft.bookme.now.Response
-import com.gorosoft.bookme.now.data.network.datasource.UserRemoteDataSource
+import com.gorosoft.bookme.now.data.network.datasource.ProfileRemoteDataSource
 import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
 import com.gorosoft.bookme.now.data.network.model.request.toRequest
 import com.gorosoft.bookme.now.data.network.model.response.toDomain
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
-import com.gorosoft.bookme.now.domain.repository.UserRepositoryProtocol
+import com.gorosoft.bookme.now.domain.repository.ProfileRepositoryProtocol
 import com.gorosoft.bookme.now.map
 
-class UserRepository(
-    private val remote: UserRemoteDataSource
-) : UserRepositoryProtocol {
+class ProfileRepository(
+    private val remote: ProfileRemoteDataSource
+) : ProfileRepositoryProtocol {
 
     override suspend fun login(): Response<ProfileModel> {
         return remote.login().map { it.toDomain() }
