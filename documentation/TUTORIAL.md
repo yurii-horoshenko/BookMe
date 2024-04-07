@@ -1,5 +1,13 @@
 # BookMeNow
 
+# Design
+https://www.figma.com/file/tQct25XxTRIIkbyPTU2lnW/BookMe-v1?type=design&node-id=727%3A25421&mode=design&t=eBtOgRJ4RPWPOBlG-1
+
+# API
+https://bookmeservice.azurewebsites.net/swagger/index.html
+
+
+# iOS Setup
 ## Pre-install gem tools
 fastlane(https://fastlane.tools)
 
