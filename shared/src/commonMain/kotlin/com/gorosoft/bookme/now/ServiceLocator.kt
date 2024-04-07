@@ -10,6 +10,11 @@ import com.gorosoft.bookme.now.data.repositories.ProfileRepository
 import com.gorosoft.bookme.now.domain.repository.BookingRepositoryProtocol
 import com.gorosoft.bookme.now.domain.repository.PlaceRepositoryProtocol
 import com.gorosoft.bookme.now.domain.repository.ProfileRepositoryProtocol
+import com.gorosoft.bookme.now.domain.usecase.HadTutorialUseCase
+import com.gorosoft.bookme.now.domain.usecase.IsLoggedInUseCase
+import com.gorosoft.bookme.now.domain.usecase.LoginUseCase
+import com.gorosoft.bookme.now.domain.usecase.SetHadTutorialUseCase
+import com.gorosoft.bookme.now.managers.KMMUserDefaults
 
 // utility class to provide dependencies for iOS
 object ServiceLocator {
@@ -33,4 +38,15 @@ object ServiceLocator {
     val bookingRepository: BookingRepositoryProtocol by lazy {
         BookingRepository(bookingRemote)
     }
+
+    val hadTutorialUseCase: (KMMUserDefaults) -> HadTutorialUseCase =
+        { defaults -> HadTutorialUseCase(defaults) }
+
+    val setHadTutorialUseCase: (KMMUserDefaults) -> SetHadTutorialUseCase =
+        { defaults -> SetHadTutorialUseCase(defaults) }
+
+    val loginUseCase get() = LoginUseCase(profileRepository)
+
+    val isLoggedInUseCase: (KMMUserDefaults) -> IsLoggedInUseCase =
+        { defaults -> IsLoggedInUseCase(defaults) }
 }

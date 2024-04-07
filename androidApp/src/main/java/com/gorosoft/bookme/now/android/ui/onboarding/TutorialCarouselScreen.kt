@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.destinations.LoginScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
@@ -43,9 +44,11 @@ private const val TutorialPagesCount = 2
 @Composable
 fun TutorialCarouselScreen(
     navigator: DestinationsNavigator,
+    viewModel: TutorialCarouselViewModel = hiltViewModel(),
 ) {
     TutorialCarouselContent(
         navigateToAccountSetup = {
+            viewModel.setHadTutorial()
             navigator.popBackStack()
             navigator.navigate(LoginScreenDestination)
         }
