@@ -3,9 +3,9 @@ package com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gorosoft.bookme.now.android.ui.usecase.CreateProfileUiIsValidUseCase
+import com.gorosoft.bookme.now.android.ui.usecase.ProfileUiIsValidUseCase
 import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
-import com.gorosoft.bookme.now.domain.models.UserGender
+import com.gorosoft.bookme.now.domain.models.UserGenderType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +19,7 @@ private const val ProfileKey = "CreateYourProfile"
 @HiltViewModel
 class CreateYourProfileViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val profileIsValidUseCase: CreateProfileUiIsValidUseCase,
+    private val profileIsValidUseCase: ProfileUiIsValidUseCase,
 ) : ViewModel() {
 
     private val state get() = profileState.value
@@ -38,7 +38,7 @@ class CreateYourProfileViewModel @Inject constructor(
         updateState { copy(fullName = newFullName) }
     }
 
-    fun updateGender(gender: UserGender) {
+    fun updateGender(gender: UserGenderType) {
         updateState { copy(gender = gender) }
     }
 

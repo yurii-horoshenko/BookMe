@@ -6,6 +6,9 @@ import android.content.SharedPreferences
 
 private const val PREFERENCES_NAME = "book_me_shared_preferences"
 
+// Temp solution.
+// I don't like this bullshit. Cause it should be separated from the KMMContext
+// It should be a separate wrapper for the SharedPreferences for iOS and Android
 private val KMMContext.sharedPref
     get() = getSharedPreferences(PREFERENCES_NAME, Application.MODE_PRIVATE)
 

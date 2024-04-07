@@ -10,7 +10,7 @@ import SwiftUI
 enum AuthPageBuilder {
     // MARK: - Detect
     static func detectSplashNavigationView() -> any View {
-        guard LocalManager.shared.kmmDefaults.isLoggined else {
+        guard LocalManager.shared.kmmDefaults.isLoggedIn else {
             return detectAuthNavigationView()
         }
         

@@ -23,7 +23,7 @@ protocol EnterCodeViewModelProtocol: ObservableObject {
 
 final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.UserRepository()
+//    private let repository = shared.UserRepositoryImpl(remote: UserRemoteDataSource(client: KtorManager.shared.client))
     @Published var isTimerRunning = false
     @Published var startTime = Date()
     @Published var timerString = "0.00"
@@ -60,7 +60,7 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     }
     
     func checkCode() {
-        LocalManager.shared.kmmDefaults.isLoggined = true
+        LocalManager.shared.kmmDefaults.isLoggedIn = true
         view?.moveToDashboardPage()
     }
 }

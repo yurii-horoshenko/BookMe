@@ -16,7 +16,7 @@ protocol NearByViewModelProtocol: ObservableObject {
 
 final class NearByViewModel: NearByViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.UserRepository()
+//    private let repository = shared.UserRepository()
     @Published var searchData = FieldData(placeholder: "Search")
     @Published var detectHeight: CGFloat = 0
     @Published var toSearchFilter = false

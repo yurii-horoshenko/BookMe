@@ -18,7 +18,7 @@ protocol WelcomeViewModelProtocol: ObservableObject {
 
 final class WelcomeViewModel: WelcomeViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.UserRepository()
+//    private let repository = shared.UserRepository()
     @Published var toLogin = false
     @Published var toSignIn = false
     

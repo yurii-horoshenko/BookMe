@@ -16,7 +16,7 @@ protocol LoginViewModelProtocol: ObservableObject {
 
 final class LoginViewModel: LoginViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.UserRepository()
+//    private let repository = shared.UserRepositoryImpl(remote: UserRemoteDataSource(client: KtorManager.shared.client))
     @Published var phone = FieldData(placeholder: "Phone Number")
     @Published var toCode = false
     
