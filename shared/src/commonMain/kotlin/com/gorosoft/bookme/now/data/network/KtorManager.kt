@@ -23,6 +23,17 @@ object KtorManager {
     private const val HOST = "bookmeservice.azurewebsites.net"
     private const val BASE_PATH = "api/"
 
+    private var accessToken: String = ""
+    private var refreshToken: String = ""
+
+    fun setAccessToken(token: String) {
+        this.accessToken = token
+    }
+
+    fun setRefreshToken(token: String) {
+        this.refreshToken = token
+    }
+
     val client = HttpClient {
         defaultRequest {
             url {
@@ -46,7 +57,7 @@ object KtorManager {
         }
         install(Auth) {
             bearer {
-                BearerTokens(accessToken = "", refreshToken = "")
+                BearerTokens(accessToken = accessToken, refreshToken = "")
             }
         }
         HttpResponseValidator {

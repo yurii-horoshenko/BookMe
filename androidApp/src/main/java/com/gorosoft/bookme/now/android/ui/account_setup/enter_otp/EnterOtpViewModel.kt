@@ -2,6 +2,7 @@ package com.gorosoft.bookme.now.android.ui.account_setup.enter_otp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +19,7 @@ sealed class EnterOtpEffects {
     data object ShowSuccessDialog : EnterOtpEffects()
 }
 
+@HiltViewModel
 class EnterOtpViewModel @Inject constructor() : ViewModel() {
 
     private val _resendCodeFlow = MutableStateFlow(59)

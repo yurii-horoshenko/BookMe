@@ -1,5 +1,6 @@
-package com.gorosoft.bookme.now.android.ui
+package com.gorosoft.bookme.now.android.ui.splash_screen
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,18 +12,21 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.gorosoft.bookme.now.android.R
+import com.gorosoft.bookme.now.android.ui.destinations.HomeScreenDestination
+import com.gorosoft.bookme.now.android.ui.destinations.LoginScreenDestination
 import com.gorosoft.bookme.now.android.ui.destinations.WelcomeScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.delay
 
 // TODO move to new SplashScreen API
 @Suppress("MagicNumber")
@@ -31,13 +35,33 @@ import kotlinx.coroutines.delay
 @Composable
 fun SplashScreen(
     navigator: DestinationsNavigator,
+    viewModel: SplashScreenViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(key1 = Unit) {
-        // don't do this. It's just emulate the work
-        delay(1000)
-        navigator.popBackStack()
-        navigator.navigate(WelcomeScreenDestination)
-//        navigator.navigate(MainScreenDestination)
+    val context = LocalContext.current
+    LaunchedEffect(key1 = viewModel.effects) {
+        viewModel.effects.collect {
+            when (it) {
+                is SplashScreenEffect.NavigateToLogin -> {
+                    navigator.popBackStack()
+                    navigator.navigate(LoginScreenDestination)
+                }
+
+                is SplashScreenEffect.NavigateToWelcome -> {
+                    navigator.popBackStack()
+                    navigator.navigate(WelcomeScreenDestination)
+                }
+
+                is SplashScreenEffect.NavigateToHome -> {
+                    navigator.popBackStack()
+                    navigator.navigate(HomeScreenDestination)
+                }
+
+                is SplashScreenEffect.ShowError -> {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+            viewModel.consumeEffect()
+        }
     }
     SplashContent()
 }
