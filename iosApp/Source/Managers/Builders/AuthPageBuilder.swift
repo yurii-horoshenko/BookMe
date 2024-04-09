@@ -8,23 +8,6 @@
 import SwiftUI
 
 enum AuthPageBuilder {
-    // MARK: - Detect
-    static func detectSplashNavigationView() -> any View {
-        guard LocalManager.shared.kmmDefaults.isLoggedIn else {
-            return detectAuthNavigationView()
-        }
-        
-        return DashboardContainerView()
-    }
-    
-    static func detectAuthNavigationView() -> any View {
-        guard LocalManager.shared.kmmDefaults.wasTutorial else {
-            return TutorialWelcomeModuleView()
-        }
-        
-        return constructWelcomeView()
-    }
-    
     // MARK: - Construct
     static func constructSplashView() -> some View {
         let viewModel = SplashViewModel()
@@ -42,6 +25,11 @@ enum AuthPageBuilder {
         let viewModel = EnterCodeViewModel(phone: phoneMask)
         let view = EnterCodeView(viewModel: viewModel)
         viewModel.view = view
+        return view
+    }
+    
+    static func constructDashboardView() -> some View {
+        let view = DashboardContainerView()
         return view
     }
 }

@@ -9,31 +9,27 @@ import SwiftUI
 
 enum Steps: Hashable {
     case splash
-    case splashAfter
     case welcome
     case enterCode(String)
     case createProfile
     case dashboard
     
-    var PageView: AnyView {
+    @ViewBuilder var PageView: some View {
         switch self {
         case .splash:
-            AnyView(AuthPageBuilder.constructSplashView())
-            
-        case .splashAfter:
-            AnyView(AuthPageBuilder.detectSplashNavigationView())
+            AuthPageBuilder.constructSplashView()
             
         case .welcome:
-            AnyView(AuthPageBuilder.constructWelcomeView())
+            AuthPageBuilder.constructWelcomeView()
             
         case .enterCode(let phone):
-            AnyView(AuthPageBuilder.constructEnterCodeView(phoneMask: phone))
+            AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
             
         case .createProfile:
-            AnyView(ProfilePageBuilder.constructCreateProfileView())
+            ProfilePageBuilder.constructCreateProfileView()
             
         case .dashboard:
-            AnyView(AuthPageBuilder.constructEnterCodeView(phoneMask: ""))
+            AuthPageBuilder.constructEnterCodeView(phoneMask: "")
 
         }
     }

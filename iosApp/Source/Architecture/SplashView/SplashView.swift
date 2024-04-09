@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+protocol SplashViewProtocol {
+    func setNextPage(view: some View)
+}
+
 // MARK: - Splash Page
 struct SplashView<ViewModel>: View where ViewModel: SplashViewModelProtocol {
     // MARK: - Properties
@@ -26,9 +30,15 @@ struct SplashView<ViewModel>: View where ViewModel: SplashViewModelProtocol {
         .ignoresSafeArea(.all)
         .background(Color.background)
         .onAppear {
-            viewModel.detectPage()
-//            setRootView(Steps.splashAfter.PageView)
+            viewModel.detectPage(owner: self)
         }
+    }
+}
+
+// MARK: - SplashViewProtocol
+extension SplashView: SplashViewProtocol {
+    func setNextPage(view: some View) {
+        setRootView(view)
     }
 }
 

@@ -8,17 +8,12 @@
 import shared
 
 protocol SplashViewModelProtocol: ObservableObject {
-    var toLogin: Bool { get set }
-    var toSignIn: Bool { get set }
-    
-    func detectPage()
+    func detectPage(owner: SplashViewProtocol)
 }
 
 final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Properties
-    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.userRepository
-    @Published var toLogin = false
-    @Published var toSignIn = false
+    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
     
     // MARK: - Lifecycle
     deinit {
@@ -26,13 +21,36 @@ final class SplashViewModel: SplashViewModelProtocol {
     }
     
     // MARK: - Public
-    func detectPage() {
+    func detectPage(owner: SplashViewProtocol) {
+        // Check is loggeIn
+        guard LocalManager.shared.kmmDefaults.isLoggedIn else {
+            // Check was tutorial
+            guard LocalManager.shared.kmmDefaults.wasTutorial else {
+                owner.setNextPage(view: TutorialWelcomeModuleView())
+                return
+            }
+            
+            // Move to Welcome Page
+            owner.setNextPage(view: AuthPageBuilder.constructWelcomeView())
+            return
+        }
+        
         repository.login { result, _ in
-            result?.onSuccess(result: { profile in
-                print("")
-            })?.onError(result: { error  in
-                print("")
-            })
+            DispatchQueue.main.async {
+                result?
+                    .onSuccess(result: { object in
+                        let profile = object as? ProfileModel
+                                
+                        // Move to Dashboard Page
+                        let view = AuthPageBuilder.constructDashboardView()
+                        owner.setNextPage(view: view)
+                    })?
+                    .onError(result: { error in
+                        print(error)
+                        // Move to Welcome Page
+                        owner.setNextPage(view: AuthPageBuilder.constructWelcomeView())
+                    })
+            }
         }
     }
 }
