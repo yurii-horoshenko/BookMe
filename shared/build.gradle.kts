@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.serialization)
     kotlin("native.cocoapods")
+    id("io.realm.kotlin") version "1.11.0"
 }
 
 kotlin {
@@ -38,6 +39,7 @@ kotlin {
             implementation(libs.ktor.client.auth)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.library.base)
         }
 
         iosMain.dependencies {

@@ -30,7 +30,6 @@ inline fun <T, R> Response<T>.map(mapper: (T) -> R): Response<R> {
     }
 }
 
-
 inline fun <T> Response<T>.onSuccess(result: (T) -> Unit): Response<T>? {
     if (this is Response.Success) result(data) else return this
     return null

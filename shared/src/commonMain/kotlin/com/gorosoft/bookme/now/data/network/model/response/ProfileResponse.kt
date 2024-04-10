@@ -10,7 +10,7 @@ data class ProfileResponse(
     @SerialName("fullname")
     val fullName: String? = null,
     val phone: String? = null,
-    val gender: Int? = null,
+    val gender: String? = null,
     val birthday: Long? = null,
     @SerialName("isExist")
     val isExist: Boolean? = null
