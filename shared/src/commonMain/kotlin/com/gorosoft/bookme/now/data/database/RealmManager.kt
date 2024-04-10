@@ -1,19 +1,15 @@
 package com.gorosoft.bookme.now.data.database
 
-import com.gorosoft.bookme.now.data.database.model.Profile
+import com.gorosoft.bookme.now.data.database.model.ProfileEntity
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 
-class RealmManager {
+private val tables = setOf(ProfileEntity::class)
 
-    fun setup() {
-        // Creates a realm with default configuration values
-        val config = RealmConfiguration.create(
-            // Pass object classes for the realm schema
-            schema = setOf(Profile::class)
-        )
-        // Open the realm with the configuration object
-        val realm = Realm.open(config)
+object RealmManager {
+
+    val realm by lazy {
+        val config = RealmConfiguration.create(schema = tables)
+        Realm.open(config)
     }
-
 }

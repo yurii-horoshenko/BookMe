@@ -12,5 +12,5 @@ enum class UserGenderType {
     FEMALE,
 
     @SerialName("other")
-    OTHER
+    OTHER;
 }
