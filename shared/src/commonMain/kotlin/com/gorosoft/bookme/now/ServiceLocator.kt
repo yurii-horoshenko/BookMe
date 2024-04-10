@@ -1,5 +1,7 @@
 package com.gorosoft.bookme.now
 
+import com.gorosoft.bookme.now.data.database.RealmManager
+import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSource
 import com.gorosoft.bookme.now.data.network.KtorManager
 import com.gorosoft.bookme.now.data.network.datasource.BookingRemoteDataSource
 import com.gorosoft.bookme.now.data.network.datasource.PlaceRemoteDataSource
@@ -19,6 +21,8 @@ import com.gorosoft.bookme.now.managers.KMMUserDefaults
 // utility class to provide dependencies for iOS
 object ServiceLocator {
 
+    private val realm get() = RealmManager.realm
+
     private val httpClient by lazy { KtorManager.client }
 
     private val profileRemote by lazy { ProfileRemoteDataSource(httpClient) }
@@ -27,8 +31,10 @@ object ServiceLocator {
 
     private val bookingRemote by lazy { BookingRemoteDataSource(httpClient) }
 
+    private val profileCache by lazy { ProfileCacheDataSource(realm) }
+
     val profileRepository: ProfileRepositoryProtocol by lazy {
-        ProfileRepository(profileRemote)
+        ProfileRepository(remote = profileRemote, cache = profileCache)
     }
 
     val placeRepository: PlaceRepositoryProtocol by lazy {
