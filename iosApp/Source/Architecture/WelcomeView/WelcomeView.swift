@@ -8,6 +8,10 @@
 import GoogleSignIn
 import SwiftUI
 
+protocol WelcomeViewProtocol {
+    func moveToDashboard(view: some View)
+}
+
 struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
     // MARK: - Properties
     @StateObject var viewModel: ViewModel
@@ -88,6 +92,13 @@ struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
                 .frame(height: 1.0)
         }
         .foregroundColor(Color.greyscale200)
+    }
+}
+
+// MARK: - WelcomeViewProtocol
+extension WelcomeView: WelcomeViewProtocol {
+    func moveToDashboard(view: some View) {
+        setRootView(view)
     }
 }
 

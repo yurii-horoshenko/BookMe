@@ -18,7 +18,7 @@ protocol WelcomeViewModelProtocol: ObservableObject {
 
 final class WelcomeViewModel: WelcomeViewModelProtocol {
     // MARK: - Properties
-//    private let repository = shared.UserRepository()
+    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
     @Published var toLogin = false
     @Published var toSignIn = false
     
@@ -28,29 +28,37 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
     }
     
     // MARK: - Public
+    func signIn() {
+        toLogin = true
+    }
+    
     func loginViaFacebook() {
-        // FacebookSDK
-        // RepositoryLogin
-  
-        FacebookManager.loginWithFacebook { [weak self] _ in
-            self?.toSignIn = true
+        FacebookManager.loginWithFacebook { [weak self] facebookObject in
+            self?.login(facebookToken: facebookObject.token)
         }
-        
-//        repository.login { _, _ in
-//            printLog("")
-//        }
     }
     
     func loginViaGoogle() {
-        // GoogleSDK
-        // RepositoryLogin
-        
-        GoogleManager.signIn { [weak self] _ in
-            self?.toSignIn = true
+        GoogleManager.signIn { [weak self] googleObject in
+            self?.login(facebookToken: googleObject.token)
         }
     }
-    
-    func signIn() {
-        toLogin = true
+}
+
+// MARK: - Private
+private extension WelcomeViewModel {
+    func login(facebookToken: String? = nil, googleToken: String? = nil, phone: String? = nil) {
+        repository.validation(facebookToken: facebookToken, googleToken: googleToken, phone: phone) { result, _ in
+            DispatchQueue.main.async { [weak self] in
+                result?
+                    .onSuccess(result: { object in
+                        let profile = object as? ProfileModel
+                        // Navigate to Dashboard
+                    })?
+                    .onError(result: { error in
+                        self?.toSignIn = true
+                    })
+            }
+        }
     }
 }
