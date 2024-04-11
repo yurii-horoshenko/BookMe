@@ -8,6 +8,12 @@
 import shared
 import SwiftUI
 
+// TEMP
+struct Restaurant: Identifiable {
+    let id = UUID()
+    let name: String
+}
+
 protocol DashboardViewModelProtocol: ObservableObject {
     var searchData: FieldData { get set }
     var toServiceDetail: Bool { get set }

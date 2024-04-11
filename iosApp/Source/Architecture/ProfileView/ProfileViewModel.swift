@@ -11,7 +11,7 @@ protocol ProfileViewModelProtocol: ObservableObject {
     var toLogoutConfirm: Bool { get set }
     var toSignIn: Bool { get set }
     var detectHeight: CGFloat { get set }
-    var profile: Profile { get set }
+    var profile: shared.ProfileModel? { get set }
     var view: ProfileViewProtocol? { get set }
     
     func logout()
@@ -23,7 +23,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     @Published var toLogoutConfirm = false
     @Published var toSignIn = false
     @Published var detectHeight: CGFloat = 0
-    var profile = Profile()
+    var profile: shared.ProfileModel?
     var view: ProfileViewProtocol?
     
     // MARK: - Lifecycle

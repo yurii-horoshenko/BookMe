@@ -5,6 +5,7 @@
 //  Created by Yurii Goroshenko on 19.01.2024.
 //
 
+import shared
 import SwiftUI
 
 enum ProfilePageBuilder {
@@ -20,7 +21,7 @@ enum ProfilePageBuilder {
         return view
     }
     
-    static func constructCreateProfileView(profile: Profile? = nil) -> some View {
+    static func constructCreateProfileView(profile: shared.ProfileModel? = nil) -> some View {
         let viewModel = CreateProfileViewModel(profile: profile)
         let view = CreateProfileView(viewModel: viewModel)
         return view

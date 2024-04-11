@@ -24,7 +24,7 @@ struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
                     ProfilePageBuilder.constructLoginView()
                 }
                 .navigationDestination(isPresented: $viewModel.toSignIn) {
-                    ProfilePageBuilder.constructCreateProfileView()
+                    ProfilePageBuilder.constructCreateProfileView(profile: viewModel.profile)
                 }
         }
     }
@@ -56,14 +56,14 @@ struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
                 state: .constant(.active),
                 imageName: "ic-facebook",
                 title: String(localized: "BUTTON-FACEBOOK"),
-                action: { viewModel.loginViaFacebook() }
+                action: { viewModel.loginViaFacebook(sender: self) }
             )
             
             AppBorderButton(
                 state: .constant(.active),
                 imageName: "ic-google",
                 title: String(localized: "BUTTON-GOOGLE"),
-                action: { viewModel.loginViaGoogle() }
+                action: { viewModel.loginViaGoogle(sender: self) }
             )
             
             ORView

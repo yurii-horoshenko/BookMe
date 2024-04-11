@@ -38,9 +38,7 @@ final class SplashViewModel: SplashViewModelProtocol {
         repository.login { result, _ in
             DispatchQueue.main.async {
                 result?
-                    .onSuccess(result: { object in
-                        let profile = object as? ProfileModel
-                                
+                    .onSuccess(result: { _ in
                         // Move to Dashboard Page
                         let view = AuthPageBuilder.constructDashboardView()
                         owner.setNextPage(view: view)

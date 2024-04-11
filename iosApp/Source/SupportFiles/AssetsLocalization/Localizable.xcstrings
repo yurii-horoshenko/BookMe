@@ -524,6 +524,17 @@
         }
       }
     },
+    "PROFILE-EMAIL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        }
+      }
+    },
     "PROFILE-FULLNAME" : {
       "extractionState" : "manual",
       "localizations" : {

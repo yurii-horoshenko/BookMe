@@ -10,18 +10,20 @@ class ProfileEntity() : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
     var fullName: String = ""
-    var phone: String = ""
-    var gender: String = ""
     var birthday: Long = 0
+    var gender: String = ""
+    var email: String = ""
+    var phone: String = ""
     var isExist: Boolean = false
 }
 
 fun ProfileEntity.toDomain(): ProfileModel {
     return ProfileModel(
         fullName = fullName,
-        phone = phone,
-        gender = UserGenderType.entries.find { it.name == this.gender } ?: UserGenderType.OTHER,
         birthday = birthday,
+        gender = UserGenderType.entries.find { it.name == this.gender } ?: UserGenderType.OTHER,
+        email = email,
+        phone = phone,
         facebookToken = null,
         googleToken = null,
         isExist = isExist,

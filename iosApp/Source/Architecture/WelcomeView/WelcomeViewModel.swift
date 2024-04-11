@@ -8,11 +8,12 @@
 import shared
 
 protocol WelcomeViewModelProtocol: ObservableObject {
+    var profile: shared.ProfileModel? { get set }
     var toLogin: Bool { get set }
     var toSignIn: Bool { get set }
     
-    func loginViaFacebook()
-    func loginViaGoogle()
+    func loginViaFacebook(sender: WelcomeViewProtocol)
+    func loginViaGoogle(sender: WelcomeViewProtocol)
     func signIn()
 }
 
@@ -21,6 +22,7 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
     private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
     @Published var toLogin = false
     @Published var toSignIn = false
+    var profile: shared.ProfileModel?
     
     // MARK: - Lifecycle
     deinit {
@@ -32,30 +34,58 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
         toLogin = true
     }
     
-    func loginViaFacebook() {
+    func loginViaFacebook(sender: WelcomeViewProtocol) {
         FacebookManager.loginWithFacebook { [weak self] facebookObject in
-            self?.login(facebookToken: facebookObject.token)
+            self?.profile = ProfileModel(
+                fullName: facebookObject.name ?? "",
+                birthday: 0,
+                gender: UserGenderType.other,
+                email: facebookObject.email ?? "",
+                phone: "",
+                facebookToken: facebookObject.token,
+                googleToken: nil,
+                isExist: false
+            )
+            
+            self?.login(facebookToken: facebookObject.token, sender: sender)
         }
     }
     
-    func loginViaGoogle() {
+    func loginViaGoogle(sender: WelcomeViewProtocol) {
         GoogleManager.signIn { [weak self] googleObject in
-            self?.login(facebookToken: googleObject.token)
+            self?.profile = ProfileModel(
+                fullName: googleObject.name ?? "",
+                birthday: 0,
+                gender: UserGenderType.other,
+                email: googleObject.email ?? "",
+                phone: "",
+                facebookToken: nil,
+                googleToken: googleObject.token,
+                isExist: false
+            )
+
+            self?.login(facebookToken: googleObject.token, sender: sender)
         }
     }
 }
 
 // MARK: - Private
 private extension WelcomeViewModel {
-    func login(facebookToken: String? = nil, googleToken: String? = nil, phone: String? = nil) {
+    func login(facebookToken: String? = nil, googleToken: String? = nil, phone: String? = nil, sender: WelcomeViewProtocol) {
         repository.validation(facebookToken: facebookToken, googleToken: googleToken, phone: phone) { result, _ in
             DispatchQueue.main.async { [weak self] in
                 result?
                     .onSuccess(result: { object in
-                        let profile = object as? ProfileModel
-                        // Navigate to Dashboard
+                        guard let profile = object as? ProfileModel else { return }
+                        
+                        if profile.isExist {
+                            let view = AuthPageBuilder.constructDashboardView()
+                            sender.moveToDashboard(view: view)
+                        } else {
+                            self?.toSignIn = true
+                        }
                     })?
-                    .onError(result: { error in
+                    .onError(result: { _ in
                         self?.toSignIn = true
                     })
             }

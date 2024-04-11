@@ -10,9 +10,10 @@ import kotlinx.serialization.Serializable
 data class ProfileResponse(
     @SerialName("fullname")
     val fullName: String? = null,
-    val phone: String? = null,
-    val gender: UserGenderType? = null,
     val birthday: Long? = null,
+    val gender: UserGenderType? = null,
+    val email: String? = null,
+    val phone: String? = null,
     @SerialName("isExist")
     val isExist: Boolean? = null
 )
@@ -20,9 +21,10 @@ data class ProfileResponse(
 fun ProfileResponse.toDomain(): ProfileModel {
     return ProfileModel(
         fullName = fullName ?: "",
-        phone = phone ?: "",
-        gender = UserGenderType.OTHER,
         birthday = birthday ?: 0,
+        gender = UserGenderType.OTHER,
+        email = email ?: "",
+        phone = phone ?: "",
         facebookToken = null,
         googleToken = null,
         isExist = isExist ?: false,
@@ -32,9 +34,10 @@ fun ProfileResponse.toDomain(): ProfileModel {
 fun ProfileResponse.toEntity(): ProfileEntity {
     return ProfileEntity().also {
         it.fullName = this.fullName ?: ""
-        it.phone = this.phone ?: ""
-        it.gender = this.gender?.name ?: UserGenderType.OTHER.name
         it.birthday = this.birthday ?: 0
+        it.gender = this.gender?.name ?: UserGenderType.OTHER.name
+        it.email = this.email ?: ""
+        it.phone = this.phone ?: ""
         it.isExist = this.isExist ?: false
     }
 }
