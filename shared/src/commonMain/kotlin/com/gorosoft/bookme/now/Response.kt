@@ -8,6 +8,15 @@ sealed class Response<out T> {
     data class Failure(val exception: Throwable) : Response<Nothing>()
 }
 
+suspend fun <T> safeResponseCall(call: suspend () -> T): Response<T> {
+    return try {
+        val body = call.invoke()
+        return Response.Success(body)
+    } catch (e: Exception) {
+        Response.Failure(e)
+    }
+}
+
 suspend fun <T> safeDataResponseCall(call: suspend () -> DataResponse<T>): Response<T> {
     return try {
         val body = call.invoke()

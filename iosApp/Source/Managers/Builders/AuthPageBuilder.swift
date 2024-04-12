@@ -24,7 +24,6 @@ enum AuthPageBuilder {
     static func constructEnterCodeView(phoneMask: String) -> some View {
         let viewModel = EnterCodeViewModel(phone: phoneMask)
         let view = EnterCodeView(viewModel: viewModel)
-        viewModel.view = view
         return view
     }
     

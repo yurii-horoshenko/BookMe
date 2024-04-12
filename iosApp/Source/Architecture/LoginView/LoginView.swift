@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+protocol LoginViewProtocol {
+    func moveToDashboard(view: some View)
+}
+
 struct LoginView<ViewModel>: View where ViewModel: LoginViewModelProtocol {
     // MARK: - Properties
     @StateObject var viewModel: ViewModel
@@ -49,8 +53,15 @@ struct LoginView<ViewModel>: View where ViewModel: LoginViewModelProtocol {
             title: String(localized: "BUTTON-LOGIN"),
             titleColor: Color.white,
             backgroundColor: Color.primary500,
-            action: { viewModel.codeVerification() }
+            action: { viewModel.login(sender: self) }
         )
+    }
+}
+
+// MARK: - WelcomeViewProtocol
+extension LoginView: LoginViewProtocol {
+    func moveToDashboard(view: some View) {
+        setRootView(view)
     }
 }
 

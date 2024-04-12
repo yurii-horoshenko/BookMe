@@ -10,3 +10,9 @@ data class DataResponse<T>(
     val success: Boolean? = null,
     val error: String? = null,
 )
+
+@Serializable
+data class SuccessResponse(
+    val success: Boolean,
+    val error: String? = null
+)

@@ -47,7 +47,7 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
                 isExist: false
             )
             
-            self?.login(facebookToken: facebookObject.token, sender: sender)
+            self?.login(sender: sender, facebookToken: facebookObject.token)
         }
     }
     
@@ -63,16 +63,25 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
                 googleToken: googleObject.token,
                 isExist: false
             )
-
-            self?.login(facebookToken: googleObject.token, sender: sender)
+            
+            self?.login(sender: sender, googleToken: googleObject.token)
         }
     }
 }
 
 // MARK: - Private
 private extension WelcomeViewModel {
-    func login(facebookToken: String? = nil, googleToken: String? = nil, phone: String? = nil, sender: WelcomeViewProtocol) {
-        repository.validation(facebookToken: facebookToken, googleToken: googleToken, phone: phone) { result, _ in
+    func login(
+        sender: WelcomeViewProtocol,
+        facebookToken: String? = nil,
+        googleToken: String? = nil,
+        phone: String? = nil
+    ) {
+        repository.validation(
+            facebookToken: facebookToken,
+            googleToken: googleToken,
+            phone: phone
+        ) { result, _ in
             DispatchQueue.main.async { [weak self] in
                 result?
                     .onSuccess(result: { object in

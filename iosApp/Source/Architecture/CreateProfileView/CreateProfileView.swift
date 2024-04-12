@@ -11,11 +11,15 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
     // MARK: - Properties
     @StateObject var viewModel: ViewModel
     var title: String {
-        viewModel.currentProfile.isExist ? String(localized: "UPDATE-PROFILE-TITLE") : String(localized: "CREATE-PROFILE-TITLE")
+        viewModel.currentProfile.isExist
+        ? String(localized: "UPDATE-PROFILE-TITLE")
+        : String(localized: "CREATE-PROFILE-TITLE")
     }
     
-    var nextButtonTitile: String {
-        viewModel.currentProfile.isExist ? String(localized: "BUTTON-UPDATE") : String(localized: "BUTTON-CONTINUE")
+    var nextButtonTitle: String {
+        viewModel.currentProfile.isExist
+        ? String(localized: "BUTTON-UPDATE")
+        : String(localized: "BUTTON-CONTINUE")
     }
     
     // MARK: - Lifecycle
@@ -42,9 +46,9 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
             )
             .padding(.top, 24.0)
             
-//            AppInputField(
-//                fieldData: $viewModel.nickname
-//            )
+            //            AppInputField(
+            //                fieldData: $viewModel.nickname
+            //            )
             
             BirthDayInputView(
                 dateBirthday: $viewModel.dateBirthday
@@ -59,7 +63,6 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
             AppPhoneNumber(
                 fieldData: $viewModel.phone
             )
-            
             
             Spacer()
             
@@ -102,7 +105,7 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
     var BottomButton: some View {
         AppFilledButton(
             state: .constant(.active),
-            title: viewModel.currentProfile.isExist ? String(localized: "BUTTON-UPDATE") : String(localized: "BUTTON-CONTINUE"),
+            title: nextButtonTitle,
             titleColor: Color.white,
             backgroundColor: Color.primary500,
             action: { viewModel.codeVerification() }
