@@ -53,7 +53,7 @@ struct LoginView<ViewModel>: View where ViewModel: LoginViewModelProtocol {
             title: String(localized: "BUTTON-LOGIN"),
             titleColor: Color.white,
             backgroundColor: Color.primary500,
-            action: { viewModel.login(sender: self) }
+            action: { viewModel.login() }
         )
     }
 }

@@ -10,8 +10,9 @@ import shared
 protocol LoginViewModelProtocol: ObservableObject {
     var phone: FieldData { get set }
     var toCode: Bool { get set }
+    var view: LoginViewProtocol? { get set }
     
-    func login(sender: LoginViewProtocol)
+    func login()
 }
 
 final class LoginViewModel: LoginViewModelProtocol {
@@ -19,6 +20,7 @@ final class LoginViewModel: LoginViewModelProtocol {
     private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
     @Published var phone = FieldData(placeholder: "Phone Number")
     @Published var toCode = false
+    var view: LoginViewProtocol?
     
     // MARK: - Lifecycle
     deinit {
@@ -26,7 +28,7 @@ final class LoginViewModel: LoginViewModelProtocol {
     }
     
     // MARK: - Public
-    func login(sender: LoginViewProtocol) {
+    func login() {
         repository.validation(
             facebookToken: nil,
             googleToken: nil,
@@ -38,8 +40,8 @@ final class LoginViewModel: LoginViewModelProtocol {
                         guard let profile = object as? ProfileModel else { return }
                         
                         if profile.isExist {
-                            let view = AuthPageBuilder.constructDashboardView()
-                            sender.moveToDashboard(view: view)
+                            let nextView = AuthPageBuilder.constructDashboardView()
+                            self?.view?.moveToDashboard(view: nextView)
                         } else {
                             self?.toCode = true
                         }

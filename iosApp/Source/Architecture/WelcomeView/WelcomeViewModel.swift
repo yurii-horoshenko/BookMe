@@ -11,9 +11,10 @@ protocol WelcomeViewModelProtocol: ObservableObject {
     var profile: shared.ProfileModel? { get set }
     var toLogin: Bool { get set }
     var toSignIn: Bool { get set }
+    var view: WelcomeViewProtocol? { get set }
     
-    func loginViaFacebook(sender: WelcomeViewProtocol)
-    func loginViaGoogle(sender: WelcomeViewProtocol)
+    func loginViaFacebook()
+    func loginViaGoogle()
     func signIn()
 }
 
@@ -23,6 +24,7 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
     @Published var toLogin = false
     @Published var toSignIn = false
     var profile: shared.ProfileModel?
+    var view: WelcomeViewProtocol?
     
     // MARK: - Lifecycle
     deinit {
@@ -34,7 +36,7 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
         toLogin = true
     }
     
-    func loginViaFacebook(sender: WelcomeViewProtocol) {
+    func loginViaFacebook() {
         FacebookManager.loginWithFacebook { [weak self] facebookObject in
             self?.profile = ProfileModel(
                 fullName: facebookObject.name ?? "",
@@ -47,11 +49,11 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
                 isExist: false
             )
             
-            self?.login(sender: sender, facebookToken: facebookObject.token)
+            self?.login(facebookToken: facebookObject.token)
         }
     }
     
-    func loginViaGoogle(sender: WelcomeViewProtocol) {
+    func loginViaGoogle() {
         GoogleManager.signIn { [weak self] googleObject in
             self?.profile = ProfileModel(
                 fullName: googleObject.name ?? "",
@@ -64,7 +66,7 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
                 isExist: false
             )
             
-            self?.login(sender: sender, googleToken: googleObject.token)
+            self?.login(googleToken: googleObject.token)
         }
     }
 }
@@ -72,7 +74,6 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
 // MARK: - Private
 private extension WelcomeViewModel {
     func login(
-        sender: WelcomeViewProtocol,
         facebookToken: String? = nil,
         googleToken: String? = nil,
         phone: String? = nil
@@ -88,8 +89,8 @@ private extension WelcomeViewModel {
                         guard let profile = object as? ProfileModel else { return }
                         
                         if profile.isExist {
-                            let view = AuthPageBuilder.constructDashboardView()
-                            sender.moveToDashboard(view: view)
+                            let nextView = AuthPageBuilder.constructDashboardView()
+                            self?.view?.moveToDashboard(view: nextView)
                         } else {
                             self?.toSignIn = true
                         }

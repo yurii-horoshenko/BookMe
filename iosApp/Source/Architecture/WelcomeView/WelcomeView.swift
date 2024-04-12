@@ -56,14 +56,14 @@ struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
                 state: .constant(.active),
                 imageName: "ic-facebook",
                 title: String(localized: "BUTTON-FACEBOOK"),
-                action: { viewModel.loginViaFacebook(sender: self) }
+                action: { viewModel.loginViaFacebook() }
             )
             
             AppBorderButton(
                 state: .constant(.active),
                 imageName: "ic-google",
                 title: String(localized: "BUTTON-GOOGLE"),
-                action: { viewModel.loginViaGoogle(sender: self) }
+                action: { viewModel.loginViaGoogle() }
             )
             
             ORView

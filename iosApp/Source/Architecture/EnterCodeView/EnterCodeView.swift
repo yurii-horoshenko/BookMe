@@ -38,10 +38,13 @@ struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtoco
                 .font(Font.BodyXLargeMedium)
                 .foregroundColor(Color.greyscale900)
             
-            VerificationCodeView(array: $viewModel.code, currentState: viewModel.code.first ?? FieldData())
-                .onChange(of: viewModel.code) {
-                    viewModel.checkCode(sender: self)
-                }
+            VerificationCodeView(
+                array: $viewModel.code,
+                currentState: viewModel.code.first ?? FieldData()
+            )
+            .onChange(of: viewModel.code) {
+                viewModel.checkCode()
+            }
             
             TimerLabel
                 .isHidden(!viewModel.isTimerRunning)

@@ -14,10 +14,11 @@ protocol EnterCodeViewModelProtocol: ObservableObject {
     var timerString: String { get set }
     var code: [FieldData] { get set }
     var phone: String { get set }
+    var view: EnterCodeViewProtocol? { get set }
     
     func sendCode(resend: Bool)
     func onReceveTimer()
-    func checkCode(sender: EnterCodeViewProtocol)
+    func checkCode()
 }
 
 final class EnterCodeViewModel: EnterCodeViewModelProtocol {
@@ -28,6 +29,7 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     @Published var timerString = "0.00"
     @Published var code = [FieldData(), FieldData(), FieldData(), FieldData()]
     var phone: String
+    var view: EnterCodeViewProtocol?
     
     // MARK: - Lifecycle
     deinit {
@@ -40,7 +42,7 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     
     // MARK: - Public
     func sendCode(resend: Bool = false) {
-        repository.code(phone: phone, resend: resend) { result, error in
+        repository.code(phone: phone, resend: resend) { result, _ in
             DispatchQueue.main.async { [weak self] in
                 result?
                     .onSuccess(result: { object in
@@ -77,20 +79,20 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
         }
     }
     
-    func checkCode(sender: EnterCodeViewProtocol) {
+    func checkCode() {
         let resultCode = code.compactMap({ $0.value }).joined()
         guard resultCode.count == 4 else { return }
         
         let request = CodeRequest(phone: phone, code: resultCode)
-        repository.code(code: request, completionHandler: { result, error in
-            DispatchQueue.main.async {
+        repository.code(code: request, completionHandler: { result, _ in
+            DispatchQueue.main.async { [weak self] in
                 result?
                     .onSuccess(result: { object in
                         guard let result = object as? ProfileTokenModel else { return }
                         
                         LocalManager.shared.kmmDefaults.isLoggedIn = true
-                        let view = AuthPageBuilder.constructDashboardView()
-                        sender.moveToDashboard(view: view)
+                        let nextView = AuthPageBuilder.constructDashboardView()
+                        self?.view?.moveToDashboard(view: nextView)
                     })?
                     .onError(result: { _ in
                         // Error
