@@ -30,7 +30,7 @@ struct SplashView<ViewModel>: View where ViewModel: SplashViewModelProtocol {
         .ignoresSafeArea(.all)
         .background(Color.background)
         .onAppear {
-            viewModel.detectPage(owner: self)
+            viewModel.detectPage()
         }
     }
 }

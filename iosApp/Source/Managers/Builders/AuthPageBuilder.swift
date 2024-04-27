@@ -12,12 +12,14 @@ enum AuthPageBuilder {
     static func constructSplashView() -> some View {
         let viewModel = SplashViewModel()
         let view = SplashView(viewModel: viewModel)
+        viewModel.view = view
         return view
     }
     
     static func constructWelcomeView() -> some View {
         let viewModel = WelcomeViewModel()
         let view = WelcomeView(viewModel: viewModel)
+        viewModel.view = view
         return view
     }
     

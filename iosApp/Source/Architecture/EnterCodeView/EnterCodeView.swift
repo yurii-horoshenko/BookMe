@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol EnterCodeViewProtocol {
-    func moveToDashboardPage()
+    func moveToDashboard(view: some View)
 }
 
 struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtocol {
@@ -27,7 +27,7 @@ struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtoco
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
         .onAppear {
-            viewModel.startTimer()
+            viewModel.sendCode(resend: false)
         }
     }
     
@@ -38,12 +38,13 @@ struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtoco
                 .font(Font.BodyXLargeMedium)
                 .foregroundColor(Color.greyscale900)
             
-            VerificationCodeView(array: $viewModel.code, currentState: viewModel.code.first ?? FieldData())
-                .onChange(of: viewModel.code) {
-                    let code = viewModel.code.compactMap({ $0.value }).joined()
-                    guard code.count == 4 else { return }
-                    viewModel.checkCode()
-                }
+            VerificationCodeView(
+                array: $viewModel.code,
+                currentState: viewModel.code.first ?? FieldData()
+            )
+            .onChange(of: viewModel.code) {
+                viewModel.checkCode()
+            }
             
             TimerLabel
                 .isHidden(!viewModel.isTimerRunning)
@@ -74,8 +75,7 @@ struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtoco
 
 // MARK: - EnterCodeViewProtocol
 extension EnterCodeView: EnterCodeViewProtocol {
-    func moveToDashboardPage() {
-        let view = DashboardContainerView()
+    func moveToDashboard(view: some View) {
         setRootView(view)
     }
 }

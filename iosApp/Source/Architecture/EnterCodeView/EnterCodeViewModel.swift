@@ -16,14 +16,14 @@ protocol EnterCodeViewModelProtocol: ObservableObject {
     var phone: String { get set }
     var view: EnterCodeViewProtocol? { get set }
     
-    func startTimer()
+    func sendCode(resend: Bool)
     func onReceveTimer()
     func checkCode()
 }
 
 final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     // MARK: - Properties
-//    private let repository = shared.UserRepositoryImpl(remote: UserRemoteDataSource(client: KtorManager.shared.client))
+    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
     @Published var isTimerRunning = false
     @Published var startTime = Date()
     @Published var timerString = "0.00"
@@ -41,6 +41,26 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     }
     
     // MARK: - Public
+    func sendCode(resend: Bool = false) {
+        repository.code(phone: phone, resend: resend) { result, _ in
+            DispatchQueue.main.async { [weak self] in
+                result?
+                    .onSuccess(result: { object in
+                        guard let success = object as? Bool else { return }
+                        
+                        if success {
+                            self?.startTimer()
+                        } else {
+                            // Error
+                        }
+                    })?
+                    .onError(result: { _ in
+                        // Error
+                    })
+            }
+        }
+    }
+    
     func startTimer() {
         startTime = Date().addingTimeInterval(60)
         isTimerRunning.toggle()
@@ -60,7 +80,24 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     }
     
     func checkCode() {
-        LocalManager.shared.kmmDefaults.isLoggedIn = true
-        view?.moveToDashboardPage()
+        let resultCode = code.compactMap({ $0.value }).joined()
+        guard resultCode.count == 4 else { return }
+        
+        let request = CodeRequest(phone: phone, code: resultCode)
+        repository.code(code: request, completionHandler: { result, _ in
+            DispatchQueue.main.async { [weak self] in
+                result?
+                    .onSuccess(result: { object in
+                        guard let result = object as? ProfileTokenModel else { return }
+                        
+                        LocalManager.shared.kmmDefaults.isLoggedIn = true
+                        let nextView = AuthPageBuilder.constructDashboardView()
+                        self?.view?.moveToDashboard(view: nextView)
+                    })?
+                    .onError(result: { _ in
+                        // Error
+                    })
+            }
+        })
     }
 }

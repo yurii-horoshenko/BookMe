@@ -5,7 +5,9 @@ import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
 import com.gorosoft.bookme.now.data.network.model.request.ProfileRequest
 import com.gorosoft.bookme.now.data.network.model.response.ProfileResponse
 import com.gorosoft.bookme.now.data.network.model.response.ProfileTokenResponse
+import com.gorosoft.bookme.now.data.network.model.response.SuccessResponse
 import com.gorosoft.bookme.now.safeDataResponseCall
+import com.gorosoft.bookme.now.safeResponseCall
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -59,7 +61,7 @@ class ProfileRemoteDataSource(
             parameter("resend", resend)
         }
 
-        return safeDataResponseCall { result.body() }
+        return safeResponseCall { result.body<SuccessResponse>().success }
     }
 
     // POST:  base_url/user/code

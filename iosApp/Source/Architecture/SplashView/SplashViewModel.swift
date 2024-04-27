@@ -8,12 +8,15 @@
 import shared
 
 protocol SplashViewModelProtocol: ObservableObject {
-    func detectPage(owner: SplashViewProtocol)
+    var view: SplashViewProtocol? { get set }
+    
+    func detectPage()
 }
 
 final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Properties
     private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
+    var view: SplashViewProtocol?
     
     // MARK: - Lifecycle
     deinit {
@@ -21,34 +24,32 @@ final class SplashViewModel: SplashViewModelProtocol {
     }
     
     // MARK: - Public
-    func detectPage(owner: SplashViewProtocol) {
+    func detectPage() {
         // Check is loggeIn
         guard LocalManager.shared.kmmDefaults.isLoggedIn else {
             // Check was tutorial
             guard LocalManager.shared.kmmDefaults.wasTutorial else {
-                owner.setNextPage(view: TutorialWelcomeModuleView())
+                view?.setNextPage(view: TutorialWelcomeModuleView())
                 return
             }
             
             // Move to Welcome Page
-            owner.setNextPage(view: AuthPageBuilder.constructWelcomeView())
+            view?.setNextPage(view: AuthPageBuilder.constructWelcomeView())
             return
         }
         
         repository.login { result, _ in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 result?
-                    .onSuccess(result: { object in
-                        let profile = object as? ProfileModel
-                                
+                    .onSuccess(result: { _ in
                         // Move to Dashboard Page
-                        let view = AuthPageBuilder.constructDashboardView()
-                        owner.setNextPage(view: view)
+                        let nextView = AuthPageBuilder.constructDashboardView()
+                        self?.view?.setNextPage(view: nextView)
                     })?
                     .onError(result: { error in
                         print(error)
                         // Move to Welcome Page
-                        owner.setNextPage(view: AuthPageBuilder.constructWelcomeView())
+                        self?.view?.setNextPage(view: AuthPageBuilder.constructWelcomeView())
                     })
             }
         }

@@ -24,7 +24,7 @@ struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
                     ProfilePageBuilder.constructLoginView()
                 }
                 .navigationDestination(isPresented: $viewModel.toSignIn) {
-                    ProfilePageBuilder.constructCreateProfileView()
+                    ProfilePageBuilder.constructCreateProfileView(profile: viewModel.profile)
                 }
         }
     }

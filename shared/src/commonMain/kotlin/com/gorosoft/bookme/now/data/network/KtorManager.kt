@@ -1,5 +1,6 @@
 package com.gorosoft.bookme.now.data.network
 
+import com.gorosoft.bookme.now.data.LocalProperties
 import io.ktor.client.*
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.auth.Auth
@@ -19,10 +20,6 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 object KtorManager {
-
-    private const val HOST = "bookmeservice.azurewebsites.net"
-    private const val BASE_PATH = "api/"
-
     private var accessToken: String = ""
     private var refreshToken: String = ""
 
@@ -38,8 +35,8 @@ object KtorManager {
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
-                host = HOST
-                path(BASE_PATH)
+                host = LocalProperties.HOST
+                path(LocalProperties.BASE_PATH)
             }
             contentType(ContentType.Application.Json)
         }
