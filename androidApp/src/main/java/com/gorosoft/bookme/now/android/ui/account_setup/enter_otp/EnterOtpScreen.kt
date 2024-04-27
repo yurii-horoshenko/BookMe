@@ -45,7 +45,6 @@ fun EnterOtpScreen(
         viewModel.effect.collect {
             when (it) {
                 EnterOtpEffects.ShowSuccessDialog -> {
-//                    Unit
                     navigator.navigate(MainScreenDestination) {
                         this.launchSingleTop = true
                         popUpTo(NavGraphs.root.route) { inclusive = true }

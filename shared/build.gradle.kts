@@ -39,7 +39,7 @@ kotlin {
             implementation(libs.ktor.client.auth)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.realm.base)
+            api(libs.realm.base)
         }
 
         iosMain.dependencies {
