@@ -1,7 +1,9 @@
 [versions]
-android-gradle-plugin-version = "8.2.0"
-activity-compose-version = "1.8.2"
-compose-bom-version = "2024.04.00"
+accompanist-permissions-version = "0.35.0-alpha"
+android-gradle-plugin-version = "8.2.2"
+activity-compose-version = "1.9.0"
+coil-version = "2.6.0"
+compose-bom-version = "2024.04.01"
 compose-compiler-version = "1.5.11"
 coroutines-version = "1.8.1-Beta"
 kotlin-version = "1.9.23"
@@ -14,14 +16,16 @@ ktlint-version = "12.1.0"
 detekt = "1.23.5"
 ksp-version = "1.9.23-1.0.19"
 compose-destinations-version = "1.9.63"
-hilt-verstion = "2.51"
+hilt-verstion = "2.51.1"
 hilt-compose-navigation-version = "1.2.0"
 lifecycle-compose-version = "2.7.0"
 material3-version = "1.2.1"
 
 
 [libraries]
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist-permissions-version" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose-version" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-version" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom-version" }
 androidx-material = { group = "androidx.compose.material", name = "material" }
 androidx-foundation = { group = "androidx.compose.foundation", name = "foundation" }

@@ -32,4 +32,7 @@
     <string name="search">Search</string>
     <string name="call">Call</string>
     <string name="map">Map</string>
+    <string name="nearby_your_location">Nearby Your Location</string>
+    <string name="enable_location">Enable Location</string>
+    <string name="enable_location_description">We need location access to find the nearest barber/salon around you.</string>
 </resources>

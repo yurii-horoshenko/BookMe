@@ -1,9 +1,7 @@
 package com.gorosoft.bookme.now.domain.repository
 
 import com.gorosoft.bookme.now.Response
-import com.gorosoft.bookme.now.data.database.model.ProfileEntity
 import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
-import com.gorosoft.bookme.now.data.network.model.response.ProfileResponse
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
 

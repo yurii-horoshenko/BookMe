@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.destinations.CreateYourProfileScreenDestination
+import com.gorosoft.bookme.now.android.ui.destinations.MainScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.ButtonDefaultBottomPadding
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
@@ -46,7 +47,9 @@ fun LoginScreen(
 ) {
     LoginContent(
 //        continueWithFacebook = continueWithFacebook,
-//        continueWithGoogle = continueWithGoogle,
+        continueWithGoogle = {
+            navigator.navigate(MainScreenDestination)
+        },
         singInWithPhone = { navigator.navigate(CreateYourProfileScreenDestination) },
     )
 }
