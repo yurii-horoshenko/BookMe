@@ -73,5 +73,6 @@ data class Grayscale(
 )
 
 data class OtherColors(
-    val orangeGradient: List<Color> = listOf(Color(0xFFFFAB38), Color(0xFFFB9400))
+    val orangeGradient: List<Color> = listOf(Color(0xFFFFAB38), Color(0xFFFB9400)),
+    val blueGradient: List<Color> = listOf(Color(0xFF6F9EFF), Color(0xFF246BFD))
 )

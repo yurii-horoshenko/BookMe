@@ -1,9 +1,9 @@
 PODS:
-  - AppAuth (1.7.4):
-    - AppAuth/Core (= 1.7.4)
-    - AppAuth/ExternalUserAgent (= 1.7.4)
-  - AppAuth/Core (1.7.4)
-  - AppAuth/ExternalUserAgent (1.7.4):
+  - AppAuth (1.7.5):
+    - AppAuth/Core (= 1.7.5)
+    - AppAuth/ExternalUserAgent (= 1.7.5)
+  - AppAuth/Core (1.7.5)
+  - AppAuth/ExternalUserAgent (1.7.5):
     - AppAuth/Core
   - FBAEMKit (17.0.0):
     - FBSDKCoreKit_Basics (= 17.0.0)
@@ -22,7 +22,7 @@ PODS:
   - GTMAppAuth (4.1.1):
     - AppAuth/Core (~> 1.7)
     - GTMSessionFetcher/Core (< 4.0, >= 3.3)
-  - GTMSessionFetcher/Core (3.3.2)
+  - GTMSessionFetcher/Core (3.4.1)
   - Kingfisher (7.11.0)
   - shared (1.0)
   - SwiftLint (0.54.0)
@@ -56,7 +56,7 @@ EXTERNAL SOURCES:
     :path: "../shared"
 
 SPEC CHECKSUMS:
-  AppAuth: 182c5b88630569df5acb672720534756c29b3358
+  AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   FBAEMKit: 31a20c2d8744d8c57d3a5b7ae4e27b4fdd819193
   FBSDKCoreKit: dac911b656816f8d0b06e5fa4bac60e89505bb3b
   FBSDKCoreKit_Basics: 92b7b7458d57091370b0b6cc197578874c3b4b16
@@ -64,7 +64,7 @@ SPEC CHECKSUMS:
   GoogleSignIn: d4281ab6cf21542b1cfaff85c191f230b399d2db
   GoogleSignInSwiftSupport: bbbd5afe90c9e22e91d2fa5a55498e00e3227cef
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
-  GTMSessionFetcher: 0e876eea9782ec6462e91ab872711c357322c94f
+  GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   shared: 1e9400e9d604ca501aef3969ac484e8d4536bee9
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211

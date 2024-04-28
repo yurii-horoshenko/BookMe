@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now.android.ui.main_screen.home_screen
+package com.gorosoft.bookme.now.android.ui.main_screen.home
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -32,7 +32,7 @@ import java.time.LocalDateTime
 import java.time.Month
 
 @Composable
-fun NextVisitBadge(
+fun NextVisitBanner(
     modifier: Modifier = Modifier,
     nexVisitDateTime: LocalDateTime
 ) {
@@ -179,6 +179,6 @@ private fun CalendarItemPreview() {
 @Composable
 private fun NextVisitBadgePreview() {
     AppTheme {
-        NextVisitBadge(nexVisitDateTime = LocalDateTime.of(2024, Month.AUGUST, 30, 17, 30))
+        NextVisitBanner(nexVisitDateTime = LocalDateTime.of(2024, Month.AUGUST, 30, 17, 30))
     }
 }

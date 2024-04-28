@@ -94,6 +94,8 @@ dependencies {
     ksp(libs.hilt.kapt)
 
     implementation(libs.androidx.material3)
+    implementation(libs.coil.compose)
+    implementation(libs.accompanist.permissions)
 }
 
 hilt {

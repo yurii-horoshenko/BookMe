@@ -23,7 +23,7 @@ fun SearchInput(
     modifier: Modifier = Modifier,
     searchText: String,
     onClick: () -> Unit = {},
-    onValueChange: (String) -> Unit = {},
+    onValueChanged: (String) -> Unit = {},
 ) {
     TextField(
         modifier = modifier
@@ -31,7 +31,7 @@ fun SearchInput(
             .clip(RoundedCornerShape(12.dp))
             .debounceClick(onClick = onClick),
         value = searchText,
-        onValueChange = onValueChange,
+        onValueChange = onValueChanged,
         placeholder = {
             Text(
                 text = stringResource(R.string.search),
