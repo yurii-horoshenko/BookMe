@@ -3,6 +3,7 @@ package com.gorosoft.bookme.now.android.ui.main_screen.explore
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -42,31 +43,7 @@ fun EnableLocationDialog(
                 .background(AppTheme.colors.backgroundThemed.backgroundMain),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Image(
-                modifier = Modifier.padding(top = 40.dp),
-                painter = painterResource(R.drawable.image_location_permission),
-                contentDescription = "location permission image"
-            )
-            Text(
-                modifier = Modifier.padding(top = 16.dp),
-                text = stringResource(R.string.enable_location),
-                style = AppTheme.typography.heading.h4,
-                color = AppTheme.colors.mainColors.primary500,
-            )
-            Text(
-                modifier = Modifier.padding(top = 16.dp, start = 32.dp, end = 32.dp),
-                text = stringResource(R.string.enable_location_description),
-                style = AppTheme.typography.bodyLarge.regular,
-                color = AppTheme.colors.grayscale.gs900,
-                textAlign = TextAlign.Center,
-            )
-            PrimaryButton(
-                modifier = Modifier
-                    .padding(top = 32.dp, start = 32.dp, end = 32.dp)
-                    .fillMaxWidth(),
-                text = stringResource(R.string.enable_location),
-                onClick = onEnableLocation,
-            )
+            EnableLocationContent(onEnableLocation)
             SecondaryButton(
                 modifier = Modifier
                     .padding(top = 16.dp, start = 32.dp, end = 32.dp, bottom = 32.dp)
@@ -76,6 +53,35 @@ fun EnableLocationDialog(
             )
         }
     }
+}
+
+@Composable
+fun ColumnScope.EnableLocationContent(onEnableLocation: () -> Unit) {
+    Image(
+        modifier = Modifier.padding(top = 40.dp),
+        painter = painterResource(R.drawable.image_location_permission),
+        contentDescription = "location permission image"
+    )
+    Text(
+        modifier = Modifier.padding(top = 16.dp),
+        text = stringResource(R.string.enable_location),
+        style = AppTheme.typography.heading.h4,
+        color = AppTheme.colors.mainColors.primary500,
+    )
+    Text(
+        modifier = Modifier.padding(top = 16.dp, start = 32.dp, end = 32.dp),
+        text = stringResource(R.string.enable_location_description),
+        style = AppTheme.typography.bodyLarge.regular,
+        color = AppTheme.colors.grayscale.gs900,
+        textAlign = TextAlign.Center,
+    )
+    PrimaryButton(
+        modifier = Modifier
+            .padding(top = 32.dp, start = 32.dp, end = 32.dp)
+            .fillMaxWidth(),
+        text = stringResource(R.string.enable_location),
+        onClick = onEnableLocation,
+    )
 }
 
 @Preview
