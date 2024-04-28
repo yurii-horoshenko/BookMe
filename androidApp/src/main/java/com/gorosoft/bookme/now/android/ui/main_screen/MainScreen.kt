@@ -3,7 +3,6 @@ package com.gorosoft.bookme.now.android.ui.main_screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,7 +11,6 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
@@ -39,17 +37,6 @@ fun MainScreen() {
 @Composable
 private fun MainScreenContent() {
     val navController = rememberNavController()
-    Box {
-        DestinationsNavHost(
-            modifier = Modifier,
-            navGraph = NavGraphs.bottomBar,
-            navController = navController,
-        )
-        BottomBar(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            navController = navController
-        )
-    }
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
     ) { paddingValues ->
