@@ -1,6 +1,6 @@
 package com.gorosoft.bookme.now.data.database.datasource
 
-import com.gorosoft.bookme.now.data.database.model.ProfileEntity
+import com.bookme.cache.ProfileEntity
 
 interface ProfileCacheDataSourceProtocol {
 

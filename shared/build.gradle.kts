@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.sqldelight)
     kotlin("native.cocoapods")
     id("io.realm.kotlin") version "1.11.0"
 }
@@ -39,15 +40,17 @@ kotlin {
             implementation(libs.ktor.client.auth)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)
-            api(libs.realm.base)
+            implementation(libs.sqldelight.runtime)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelight.native.driver)
         }
 
         androidMain.dependencies {
             api(libs.ktor.client.android)
+            implementation(libs.sqldelight.android.driver)
         }
     }
     // don't remove. This is the work around for normal build process
@@ -59,5 +62,13 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 28
+    }
+}
+
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("com.bookme.cache")
+        }
     }
 }

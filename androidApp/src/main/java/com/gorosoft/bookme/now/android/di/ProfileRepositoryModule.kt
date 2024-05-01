@@ -1,6 +1,8 @@
 package com.gorosoft.bookme.now.android.di
 
-import com.gorosoft.bookme.now.data.database.RealmManager
+import android.app.Application
+import com.bookme.cache.AndroidDatabaseDriverFactory
+import com.bookme.cache.Database
 import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSource
 import com.gorosoft.bookme.now.data.network.KtorManager
 import com.gorosoft.bookme.now.data.network.datasource.ProfileRemoteDataSource
@@ -16,13 +18,18 @@ import dagger.hilt.components.SingletonComponent
 class ProfileRepositoryModule {
 
     @Provides
+    fun provideDatabase(app: Application): Database {
+        return Database(AndroidDatabaseDriverFactory(app.applicationContext))
+    }
+
+    @Provides
     fun provideProfileRemoteDataSource(): ProfileRemoteDataSource {
         return ProfileRemoteDataSource(client = KtorManager.client)
     }
 
     @Provides
-    fun provideProfileCacheDataSource(): ProfileCacheDataSource {
-        return ProfileCacheDataSource(realm = RealmManager.realm)
+    fun provideProfileCacheDataSource(database: Database): ProfileCacheDataSource {
+        return ProfileCacheDataSource(db = database)
     }
 
     @Provides

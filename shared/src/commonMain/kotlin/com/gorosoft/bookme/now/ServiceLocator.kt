@@ -1,7 +1,9 @@
 package com.gorosoft.bookme.now
 
-import com.gorosoft.bookme.now.data.database.RealmManager
+import com.bookme.cache.Database
+import com.bookme.cache.DatabaseDriverFactory
 import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSource
+import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSourceProtocol
 import com.gorosoft.bookme.now.data.network.KtorManager
 import com.gorosoft.bookme.now.data.network.datasource.BookingRemoteDataSource
 import com.gorosoft.bookme.now.data.network.datasource.PlaceRemoteDataSource
@@ -21,8 +23,6 @@ import com.gorosoft.bookme.now.managers.KMMUserDefaults
 // utility class to provide dependencies for iOS
 object ServiceLocator {
 
-    private val realm get() = RealmManager.realm
-
     private val httpClient by lazy { KtorManager.client }
 
     private val profileRemote by lazy { ProfileRemoteDataSource(httpClient) }
@@ -30,12 +30,6 @@ object ServiceLocator {
     private val placeRemote by lazy { PlaceRemoteDataSource(httpClient) }
 
     private val bookingRemote by lazy { BookingRemoteDataSource(httpClient) }
-
-    private val profileCache by lazy { ProfileCacheDataSource(realm) }
-
-    val profileRepository: ProfileRepositoryProtocol by lazy {
-        ProfileRepository(remote = profileRemote, cache = profileCache)
-    }
 
     val placeRepository: PlaceRepositoryProtocol by lazy {
         PlaceRepository(placeRemote)
@@ -51,8 +45,17 @@ object ServiceLocator {
     val setHadTutorialUseCase: (KMMUserDefaults) -> SetHadTutorialUseCase =
         { defaults -> SetHadTutorialUseCase(defaults) }
 
-    val loginUseCase get() = LoginUseCase(profileRepository)
-
     val isLoggedInUseCase: (KMMUserDefaults) -> IsLoggedInUseCase =
         { defaults -> IsLoggedInUseCase(defaults) }
+
+    val database: (DatabaseDriverFactory) -> Database = { factory -> Database(factory) }
+
+    val profileCache: (DatabaseDriverFactory) -> ProfileCacheDataSourceProtocol =
+        { factory -> ProfileCacheDataSource(database(factory)) }
+
+    val profileRepository: (ProfileCacheDataSourceProtocol) -> ProfileRepositoryProtocol =
+        { cache -> ProfileRepository(remote = profileRemote, cache = cache) }
+
+    val loginUseCase: (ProfileRepositoryProtocol) -> LoginUseCase =
+        { repository -> LoginUseCase(repository) }
 }

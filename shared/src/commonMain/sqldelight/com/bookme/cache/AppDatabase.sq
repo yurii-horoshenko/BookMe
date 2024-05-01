@@ -1,0 +1,23 @@
+import kotlin.Boolean;
+
+-- ./gradlew generateCommonMainAppDatabaseInterface
+
+CREATE TABLE ProfileEntity (
+id INTEGER NOT NULL PRIMARY KEY DEFAULT 0,
+fullName TEXT NOT NULL,
+birthday INTEGER NOT NULL,
+gender TEXT NOT NULL,
+email TEXT NOT NULL,
+phone TEXT NOT NULL,
+isExist INTEGER AS Boolean NOT NULL DEFAULT 0
+);
+
+insertProfile:
+INSERT OR REPLACE INTO ProfileEntity (id, fullName, birthday, gender, email, phone, isExist)
+VALUES (0, ?, ?, ?, ?, ?, ?);
+
+deleteProfile:
+DELETE FROM ProfileEntity;
+
+getProfile:
+SELECT * FROM ProfileEntity;
