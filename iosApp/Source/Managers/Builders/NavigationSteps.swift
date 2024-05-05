@@ -5,13 +5,15 @@
 //  Created by Yurii Goroshenko on 11.03.2024.
 //
 
+import shared
 import SwiftUI
 
 enum Steps: Hashable {
     case splash
     case welcome
-    case enterCode(String)
-    case createProfile
+    case enterCode(String, Bool)
+    case createProfile(ProfileModel)
+    case updateProfile(ProfileModel)
     case dashboard
     
     @ViewBuilder var PageView: some View {
@@ -22,14 +24,17 @@ enum Steps: Hashable {
         case .welcome:
             AuthPageBuilder.constructWelcomeView()
             
-        case .enterCode(let phone):
-            AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
+        case .enterCode(let phone, let newProfile):
+            AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: newProfile)
             
-        case .createProfile:
-            ProfilePageBuilder.constructCreateProfileView()
-            
+        case .createProfile(let profile):
+            ProfilePageBuilder.constructCreateProfileView(profile: profile)
+
+        case .updateProfile(let profile):
+            ProfilePageBuilder.constructUpdateProfileView(profile: profile)
+
         case .dashboard:
-            AuthPageBuilder.constructEnterCodeView(phoneMask: "")
+            DashboardPageBuilder.constructDashboardView()
 
         }
     }

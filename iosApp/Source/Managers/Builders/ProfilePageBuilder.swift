@@ -21,8 +21,14 @@ enum ProfilePageBuilder {
         return view
     }
     
-    static func constructCreateProfileView(profile: shared.ProfileModel? = nil) -> some View {
-        let viewModel = CreateProfileViewModel(profile: profile)
+    static func constructCreateProfileView(profile: shared.ProfileModel) -> some View {
+        let viewModel = CreateProfileViewModel(profile: profile, isCreate: true)
+        let view = CreateProfileView(viewModel: viewModel)
+        return view
+    }
+    
+    static func constructUpdateProfileView(profile: shared.ProfileModel) -> some View {
+        let viewModel = CreateProfileViewModel(profile: profile, isCreate: false)
         let view = CreateProfileView(viewModel: viewModel)
         return view
     }

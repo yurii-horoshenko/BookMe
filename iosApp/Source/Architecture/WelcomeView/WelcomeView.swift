@@ -24,7 +24,9 @@ struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
                     ProfilePageBuilder.constructLoginView()
                 }
                 .navigationDestination(isPresented: $viewModel.toSignIn) {
-                    ProfilePageBuilder.constructCreateProfileView(profile: viewModel.profile)
+                    if let profile = viewModel.profile {
+                        ProfilePageBuilder.constructCreateProfileView(profile: profile)
+                    }
                 }
         }
     }
@@ -103,5 +105,5 @@ extension WelcomeView: WelcomeViewProtocol {
 }
 
 #Preview {
-    Steps.welcome.PageView
+    AuthPageBuilder.constructWelcomeView()
 }

@@ -5,6 +5,7 @@
 //  Created by Yurii Goroshenko on 03.08.2023.
 //
 
+import shared
 import SwiftUI
 
 struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewModelProtocol {
@@ -30,8 +31,8 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
                 content: { ContentView }
             )
             .navigationDestination(isPresented: $viewModel.toCode) {
-                let phone = viewModel.phone.value.phoneMask
-                AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
+                let phone = viewModel.phone.value
+                AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: viewModel.isCreate)
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -45,10 +46,6 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
                 fieldData: $viewModel.fullname
             )
             .padding(.top, 24.0)
-            
-            //            AppInputField(
-            //                fieldData: $viewModel.nickname
-            //            )
             
             BirthDayInputView(
                 dateBirthday: $viewModel.dateBirthday
@@ -114,5 +111,16 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
 }
 
 #Preview {
-    ProfilePageBuilder.constructCreateProfileView()
+    ProfilePageBuilder.constructCreateProfileView(
+        profile: shared.ProfileModel(
+            fullName: "",
+            birthday: 0,
+            gender: UserGenderType.other,
+            email: "",
+            phone: "",
+            facebookToken: nil,
+            googleToken: nil,
+            isExist: false
+        )
+    )
 }

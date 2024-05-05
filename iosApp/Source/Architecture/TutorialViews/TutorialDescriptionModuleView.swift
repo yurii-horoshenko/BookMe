@@ -109,7 +109,7 @@ extension TutorialDescriptionModuleView: TutorialDescriptionModuleViewProtocol {
         }
         
         LocalManager.shared.kmmDefaults.wasTutorial = true
-        setRootView(Steps.welcome.PageView)
+        setRootView(AuthPageBuilder.constructWelcomeView())
     }    
 }
 

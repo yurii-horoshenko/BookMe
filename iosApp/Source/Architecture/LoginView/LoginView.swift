@@ -23,8 +23,8 @@ struct LoginView<ViewModel>: View where ViewModel: LoginViewModelProtocol {
                 content: { ContentView }
             )
             .navigationDestination(isPresented: $viewModel.toCode) {
-                let phone = viewModel.phone.value.phoneMask
-                AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
+                let phone = viewModel.phone.value
+                AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: false)
             }
         }
         .navigationBarBackButtonHidden(true)

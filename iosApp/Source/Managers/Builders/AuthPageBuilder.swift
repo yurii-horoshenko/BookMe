@@ -23,8 +23,8 @@ enum AuthPageBuilder {
         return view
     }
     
-    static func constructEnterCodeView(phoneMask: String) -> some View {
-        let viewModel = EnterCodeViewModel(phone: phoneMask)
+    static func constructEnterCodeView(phone: String, newProfile: Bool) -> some View {
+        let viewModel = EnterCodeViewModel(phone: phone, newProfile: newProfile)
         let view = EnterCodeView(viewModel: viewModel)
         viewModel.view = view
         return view

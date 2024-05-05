@@ -34,7 +34,7 @@ struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtoco
     // Title, input fields code, timer label
     var ContentView: some View {
         VStack(spacing: 60.0) {
-            Text(String(localized: "ENTERCODE-DESCRIPTION") + viewModel.phone)
+            Text(String(localized: "ENTERCODE-DESCRIPTION") + viewModel.phone.phoneMask)
                 .font(Font.BodyXLargeMedium)
                 .foregroundColor(Color.greyscale900)
             
@@ -82,6 +82,6 @@ extension EnterCodeView: EnterCodeViewProtocol {
 
 #Preview {
     AuthPageBuilder.constructEnterCodeView(
-        phoneMask: "+380 99 111 22 33".phoneMask
+        phone: "+380991112233", newProfile: true
     )
 }

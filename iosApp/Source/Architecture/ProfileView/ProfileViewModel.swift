@@ -11,7 +11,7 @@ protocol ProfileViewModelProtocol: ObservableObject {
     var toLogoutConfirm: Bool { get set }
     var toSignIn: Bool { get set }
     var detectHeight: CGFloat { get set }
-    var profile: shared.ProfileModel? { get set }
+    var profile: shared.ProfileModel { get set }
     var view: ProfileViewProtocol? { get set }
     
     func loadData()
@@ -24,7 +24,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     @Published var toLogoutConfirm = false
     @Published var toSignIn = false
     @Published var detectHeight: CGFloat = 0
-    @Published var profile: shared.ProfileModel?
+    @Published var profile: shared.ProfileModel = ProfileModel(fullName: "", birthday: 0, gender: .other, email: "", phone: "", facebookToken: nil, googleToken: nil, isExist: false)
     var view: ProfileViewProtocol?
     
     // MARK: - Lifecycle
@@ -33,9 +33,10 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     func loadData() {
-        repository.getProfile { [weak self] profile, _ in
-            self?.profile = profile
-        }
+//        repository.getProfile { [weak self] result, error in
+//            guard let profile = result as? ProfileModel else { return }
+//            self?.profile = profile
+//        }
     }
     
     func logout() {

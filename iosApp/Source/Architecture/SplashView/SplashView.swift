@@ -43,5 +43,5 @@ extension SplashView: SplashViewProtocol {
 }
 
 #Preview {
-    Steps.splash.PageView
+    AuthPageBuilder.constructSplashView()
 }

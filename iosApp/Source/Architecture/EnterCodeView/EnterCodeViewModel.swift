@@ -29,6 +29,7 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     @Published var timerString = "0.00"
     @Published var code = [FieldData(), FieldData(), FieldData(), FieldData()]
     var phone: String
+    var newProfile: Bool
     var view: EnterCodeViewProtocol?
     
     // MARK: - Lifecycle
@@ -36,13 +37,15 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
         printLog("deinit -> ", self)
     }
     
-    init(phone: String) {
+    init(phone: String, newProfile: Bool) {
         self.phone = phone
+        self.newProfile = newProfile
     }
     
     // MARK: - Public
     func sendCode(resend: Bool = false) {
-        repository.code(phone: phone, resend: resend) { result, _ in
+        let formattedPhone = phone.filter { !$0.isWhitespace }
+        repository.code(phone: formattedPhone, resend: resend) { result, _ in
             DispatchQueue.main.async { [weak self] in
                 result?
                     .onSuccess(result: { object in
@@ -82,8 +85,10 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     func checkCode() {
         let resultCode = code.compactMap({ $0.value }).joined()
         guard resultCode.count == 4 else { return }
+       
+        let formattedPhone = phone.filter { !$0.isWhitespace }
+        let request = CodeRequest(phone: formattedPhone, code: resultCode)
         
-        let request = CodeRequest(phone: phone, code: resultCode)
         repository.code(code: request, completionHandler: { result, _ in
             DispatchQueue.main.async { [weak self] in
                 result?

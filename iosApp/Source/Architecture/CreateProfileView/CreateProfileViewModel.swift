@@ -10,6 +10,7 @@ import SwiftUI
 
 protocol CreateProfileViewModelProtocol: ObservableObject {
     var currentProfile: shared.ProfileModel { get set }
+    var isCreate: Bool { get set }
     var fullname: FieldData { get set }
     var nickname: FieldData { get set }
     var dateBirthday: FieldData { get set }
@@ -35,24 +36,16 @@ final class CreateProfileViewModel: CreateProfileViewModelProtocol {
     @Published var toGenderSelection = false
     @Published var toCode = false
     var currentProfile: shared.ProfileModel
+    var isCreate: Bool
     
     // MARK: - Lifecycle
     deinit {
         printLog("deinit -> ", self)
     }
     
-    init(profile: shared.ProfileModel? = nil) {
-        self.currentProfile = profile ?? ProfileModel(
-            fullName: "",
-            birthday: 0,
-            gender: UserGenderType.other,
-            email: "",
-            phone: "",
-            facebookToken: nil,
-            googleToken: nil,
-            isExist: false
-        )
-        
+    init(profile: shared.ProfileModel, isCreate: Bool) {
+        self.currentProfile = profile
+        self.isCreate = isCreate
         fullname.value = currentProfile.fullName
         email.value = currentProfile.email
     }

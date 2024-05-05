@@ -27,7 +27,9 @@ struct ProfileView<ViewModel>: View where ViewModel: ProfileViewModelProtocol {
                     viewModel.loadData()
                 }
                 .navigationDestination(isPresented: $viewModel.toSignIn) {
-                    ProfilePageBuilder.constructCreateProfileView(profile: viewModel.profile)
+//                    Steps.updateProfile(viewModel.profile)
+                    
+//                    ProfilePageBuilder.constructCreateProfileView(profile: viewModel.profile)
                 }
             }
         }
@@ -40,8 +42,8 @@ struct ProfileView<ViewModel>: View where ViewModel: ProfileViewModelProtocol {
             Spacer()
             
             ProfilePreviewView(
-                displayName: viewModel.profile?.fullName ?? "",
-                email: viewModel.profile?.email ?? ""
+                displayName: viewModel.profile.fullName,
+                email: viewModel.profile.email
             )
             
             ProfileOptionsView
