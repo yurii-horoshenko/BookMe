@@ -1,6 +1,6 @@
 package com.gorosoft.bookme.now.android.di
 
-import com.gorosoft.bookme.now.data.database.RealmManager
+import com.gorosoft.bookme.now.data.database.dao.ProfileDao
 import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSource
 import com.gorosoft.bookme.now.data.network.KtorManager
 import com.gorosoft.bookme.now.data.network.datasource.ProfileRemoteDataSource
@@ -21,8 +21,8 @@ class ProfileRepositoryModule {
     }
 
     @Provides
-    fun provideProfileCacheDataSource(): ProfileCacheDataSource {
-        return ProfileCacheDataSource(realm = RealmManager.realm)
+    fun provideProfileCacheDataSource(dao: ProfileDao): ProfileCacheDataSource {
+        return ProfileCacheDataSource(dao = dao)
     }
 
     @Provides

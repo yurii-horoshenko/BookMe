@@ -1,7 +1,8 @@
 package com.gorosoft.bookme.now
 
-import com.gorosoft.bookme.now.data.database.RealmManager
+import com.gorosoft.bookme.now.data.database.dao.ProfileDao
 import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSource
+import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSourceProtocol
 import com.gorosoft.bookme.now.data.network.KtorManager
 import com.gorosoft.bookme.now.data.network.datasource.BookingRemoteDataSource
 import com.gorosoft.bookme.now.data.network.datasource.PlaceRemoteDataSource
@@ -21,8 +22,6 @@ import com.gorosoft.bookme.now.managers.KMMUserDefaults
 // utility class to provide dependencies for iOS
 object ServiceLocator {
 
-    private val realm get() = RealmManager.realm
-
     private val httpClient by lazy { KtorManager.client }
 
     private val profileRemote by lazy { ProfileRemoteDataSource(httpClient) }
@@ -31,11 +30,11 @@ object ServiceLocator {
 
     private val bookingRemote by lazy { BookingRemoteDataSource(httpClient) }
 
-    private val profileCache by lazy { ProfileCacheDataSource(realm) }
+    private val profileCache: (ProfileDao) -> ProfileCacheDataSourceProtocol =
+        { dao -> ProfileCacheDataSource(dao) }
 
-    val profileRepository: ProfileRepositoryProtocol by lazy {
-        ProfileRepository(remote = profileRemote, cache = profileCache)
-    }
+    val profileRepository: (ProfileCacheDataSourceProtocol) -> ProfileRepositoryProtocol =
+        { cache -> ProfileRepository(remote = profileRemote, cache = cache) }
 
     val placeRepository: PlaceRepositoryProtocol by lazy {
         PlaceRepository(placeRemote)
@@ -51,7 +50,8 @@ object ServiceLocator {
     val setHadTutorialUseCase: (KMMUserDefaults) -> SetHadTutorialUseCase =
         { defaults -> SetHadTutorialUseCase(defaults) }
 
-    val loginUseCase get() = LoginUseCase(profileRepository)
+    val loginUseCase: (ProfileRepositoryProtocol) -> LoginUseCase =
+        { profileRepository -> LoginUseCase(profileRepository) }
 
     val isLoggedInUseCase: (KMMUserDefaults) -> IsLoggedInUseCase =
         { defaults -> IsLoggedInUseCase(defaults) }
