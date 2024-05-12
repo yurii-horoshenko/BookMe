@@ -16,10 +16,11 @@ class BookingRemoteDataSource(
     suspend fun getPlaces(
         count: Int
     ): Response<PlaceResponse> {
-        val result: HttpResponse = client.get("booking/list") {
-            parameter("count", count)
+        return safeDataResponseCall {
+            val result: HttpResponse = client.get("booking/list") {
+                parameter("count", count)
+            }
+            result.body()
         }
-
-        return safeDataResponseCall { result.body() }
     }
 }

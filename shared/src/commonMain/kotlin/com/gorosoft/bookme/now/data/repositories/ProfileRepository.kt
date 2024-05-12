@@ -1,25 +1,24 @@
 package com.gorosoft.bookme.now.data.repositories
 
 import com.gorosoft.bookme.now.Response
-import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSource
-import com.gorosoft.bookme.now.data.database.model.ProfileEntity
+import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSourceProtocol
 import com.gorosoft.bookme.now.data.database.model.toDomain
-import com.gorosoft.bookme.now.data.network.KtorManager
 import com.gorosoft.bookme.now.data.network.datasource.ProfileRemoteDataSource
 import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
 import com.gorosoft.bookme.now.data.network.model.request.toRequest
-import com.gorosoft.bookme.now.data.network.model.response.ProfileResponse
 import com.gorosoft.bookme.now.data.network.model.response.toDomain
 import com.gorosoft.bookme.now.data.network.model.response.toEntity
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
 import com.gorosoft.bookme.now.domain.repository.ProfileRepositoryProtocol
 import com.gorosoft.bookme.now.map
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class ProfileRepository(
-    private val remote: ProfileRemoteDataSource,
-    private val cache: ProfileCacheDataSource,
-) : ProfileRepositoryProtocol {
+class ProfileRepository : ProfileRepositoryProtocol, KoinComponent {
+
+    private val remote: ProfileRemoteDataSource by inject()
+    private val cache: ProfileCacheDataSourceProtocol by inject()
 
     override suspend fun login(): Response<ProfileModel> {
         return remote.login()

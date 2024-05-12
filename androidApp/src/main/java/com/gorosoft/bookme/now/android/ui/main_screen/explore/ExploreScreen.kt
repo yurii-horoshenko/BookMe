@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
@@ -26,6 +25,7 @@ import com.gorosoft.bookme.now.android.ui.utils.isAllPermissionGranted
 import com.gorosoft.bookme.now.android.ui.utils.openAppSystemSettings
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import org.koin.androidx.compose.koinViewModel
 
 @BottomBarNavGraph
 @Destination
@@ -33,7 +33,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Suppress("UnusedParameter")
 fun ExploreScreen(
     navigator: DestinationsNavigator,
-    viewModel: ExploreViewModel = hiltViewModel(),
+    viewModel: ExploreViewModel = koinViewModel(),
 ) {
     val isShowNavigateToSettingsState =
         viewModel.isShowNavigateToSettingsState.collectAsStateWithLifecycle()

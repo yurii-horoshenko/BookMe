@@ -6,18 +6,15 @@ import androidx.lifecycle.viewModelScope
 import com.gorosoft.bookme.now.android.ui.usecase.ProfileUiIsValidUseCase
 import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
 import com.gorosoft.bookme.now.domain.models.UserGenderType
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import java.time.LocalDate
-import javax.inject.Inject
 
 private const val ProfileKey = "CreateYourProfile"
 
-@HiltViewModel
-class CreateYourProfileViewModel @Inject constructor(
+class CreateYourProfileViewModel(
     private val savedStateHandle: SavedStateHandle,
     private val profileIsValidUseCase: ProfileUiIsValidUseCase,
 ) : ViewModel() {

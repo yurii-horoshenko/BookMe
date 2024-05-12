@@ -8,10 +8,12 @@ import com.gorosoft.bookme.now.domain.models.PlaceModel
 import com.gorosoft.bookme.now.domain.models.PlaceType
 import com.gorosoft.bookme.now.domain.repository.PlaceRepositoryProtocol
 import com.gorosoft.bookme.now.map
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class PlaceRepository(
-    private val remote: PlaceRemoteDataSource,
-) : PlaceRepositoryProtocol {
+class PlaceRepository : PlaceRepositoryProtocol, KoinComponent {
+
+    private val remote: PlaceRemoteDataSource by inject()
 
     override suspend fun getPlaces(
         query: String?,

@@ -1,21 +1,21 @@
 package com.gorosoft.bookme.now.data.database.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.UserGenderType
-import io.realm.kotlin.types.RealmObject
-import io.realm.kotlin.types.annotations.PrimaryKey
-import org.mongodb.kbson.ObjectId
 
-class ProfileEntity : RealmObject {
+@Entity
+data class ProfileEntity(
     @PrimaryKey
-    var _id: ObjectId = ObjectId()
-    var fullName: String = ""
-    var birthday: Long = 0
-    var gender: String = ""
-    var email: String = ""
-    var phone: String = ""
-    var isExist: Boolean = false
-}
+    val id: Int = 0,
+    val fullName: String,
+    val birthday: Long,
+    val gender: String,
+    val email: String,
+    val phone: String,
+    val isExist: Boolean,
+)
 
 fun ProfileEntity.toDomain(): ProfileModel {
     return ProfileModel(

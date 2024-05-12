@@ -32,12 +32,12 @@ fun ProfileResponse.toDomain(): ProfileModel {
 }
 
 fun ProfileResponse.toEntity(): ProfileEntity {
-    return ProfileEntity().also {
-        it.fullName = this.fullName ?: ""
-        it.birthday = this.birthday ?: 0
-        it.gender = this.gender?.name ?: UserGenderType.OTHER.name
-        it.email = this.email ?: ""
-        it.phone = this.phone ?: ""
-        it.isExist = this.isExist ?: false
-    }
+    return ProfileEntity(
+        fullName = this.fullName ?: "",
+        birthday = this.birthday ?: 0,
+        gender = this.gender?.name ?: UserGenderType.OTHER.name,
+        email = this.email ?: "",
+        phone = this.phone ?: "",
+        isExist = this.isExist ?: false,
+    )
 }
