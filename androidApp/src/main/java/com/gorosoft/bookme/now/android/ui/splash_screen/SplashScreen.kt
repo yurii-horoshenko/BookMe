@@ -18,7 +18,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.destinations.HomeScreenDestination
 import com.gorosoft.bookme.now.android.ui.destinations.LoginScreenDestination
@@ -27,6 +26,7 @@ import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import org.koin.androidx.compose.koinViewModel
 
 // TODO move to new SplashScreen API
 @Suppress("MagicNumber")
@@ -35,7 +35,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun SplashScreen(
     navigator: DestinationsNavigator,
-    viewModel: SplashScreenViewModel = hiltViewModel()
+    viewModel: SplashScreenViewModel = koinViewModel()
 ) {
     val context = LocalContext.current
     LaunchedEffect(key1 = viewModel.effects) {

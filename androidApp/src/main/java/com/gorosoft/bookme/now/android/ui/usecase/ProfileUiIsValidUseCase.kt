@@ -1,9 +1,8 @@
 package com.gorosoft.bookme.now.android.ui.usecase
 
 import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
-import javax.inject.Inject
 
-class ProfileUiIsValidUseCase @Inject constructor() {
+class ProfileUiIsValidUseCase {
 
     fun execute(model: CreateProfileUiModel): Boolean {
         return model.gender != null &&

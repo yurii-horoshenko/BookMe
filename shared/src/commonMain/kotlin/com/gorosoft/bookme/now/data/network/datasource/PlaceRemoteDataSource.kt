@@ -21,15 +21,16 @@ class PlaceRemoteDataSource(
         location: LocationModel,
         radius: Int,
     ): Response<PlaceResponse> {
-        val result: HttpResponse = client.get("place/list") {
-            // bearerAuth(token)
-            parameter("query", query)
-            parameter("filter", type)
-            parameter("lat", location.latitude)
-            parameter("lon", location.longitude)
-            parameter("radius", radius)
+        return safeDataResponseCall {
+            val result: HttpResponse = client.get("place/list") {
+                // bearerAuth(token)
+                parameter("query", query)
+                parameter("filter", type)
+                parameter("lat", location.latitude)
+                parameter("lon", location.longitude)
+                parameter("radius", radius)
+            }
+            result.body()
         }
-
-        return safeDataResponseCall { result.body() }
     }
 }

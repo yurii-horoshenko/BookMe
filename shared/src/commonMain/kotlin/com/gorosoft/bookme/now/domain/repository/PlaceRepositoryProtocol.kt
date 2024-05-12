@@ -13,5 +13,4 @@ interface PlaceRepositoryProtocol {
         location: LocationModel,
         radius: Int,
     ): Response<PlaceModel>
-
 }

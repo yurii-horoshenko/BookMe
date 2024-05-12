@@ -12,11 +12,13 @@ import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
 import com.gorosoft.bookme.now.domain.repository.ProfileRepositoryProtocol
 import com.gorosoft.bookme.now.map
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class ProfileRepository(
-    private val remote: ProfileRemoteDataSource,
-    private val cache: ProfileCacheDataSourceProtocol,
-) : ProfileRepositoryProtocol {
+class ProfileRepository : ProfileRepositoryProtocol, KoinComponent {
+
+    private val remote: ProfileRemoteDataSource by inject()
+    private val cache: ProfileCacheDataSourceProtocol by inject()
 
     override suspend fun login(): Response<ProfileModel> {
         return remote.login()

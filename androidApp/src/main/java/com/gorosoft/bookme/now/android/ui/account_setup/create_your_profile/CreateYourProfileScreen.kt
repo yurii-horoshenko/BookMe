@@ -32,7 +32,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.BirthDatePickerDialog
@@ -50,12 +49,13 @@ import com.gorosoft.bookme.now.domain.models.UserGenderType
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDate
 
 @Destination
 @Composable
 fun CreateYourProfileScreen(
-    viewModel: CreateYourProfileViewModel = hiltViewModel(),
+    viewModel: CreateYourProfileViewModel = koinViewModel(),
     navigator: DestinationsNavigator,
 ) {
     val profileState by viewModel.profileState.collectAsStateWithLifecycle()
