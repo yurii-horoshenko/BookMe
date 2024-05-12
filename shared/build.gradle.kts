@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
     kotlin("native.cocoapods")
-    id("io.realm.kotlin") version "1.11.0"
 }
 
 kotlin {
@@ -43,6 +42,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             api(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
+            api(libs.koin.core)
         }
 
         iosMain.dependencies {

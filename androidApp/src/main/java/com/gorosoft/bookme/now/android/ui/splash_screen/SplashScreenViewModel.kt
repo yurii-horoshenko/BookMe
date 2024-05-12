@@ -8,12 +8,10 @@ import com.gorosoft.bookme.now.domain.usecase.LoginUseCase
 import com.gorosoft.bookme.now.onError
 import com.gorosoft.bookme.now.onFailure
 import com.gorosoft.bookme.now.onSuccess
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 sealed class SplashScreenEffect {
     data object NavigateToLogin : SplashScreenEffect()
@@ -22,8 +20,7 @@ sealed class SplashScreenEffect {
     data class ShowError(val message: String) : SplashScreenEffect()
 }
 
-@HiltViewModel
-class SplashScreenViewModel @Inject constructor(
+class SplashScreenViewModel(
     hadTutorialUseCase: HadTutorialUseCase,
     isLoggedInUseCase: IsLoggedInUseCase,
     private val loginUseCase: LoginUseCase,

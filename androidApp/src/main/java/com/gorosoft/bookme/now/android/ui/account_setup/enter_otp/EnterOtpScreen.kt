@@ -21,7 +21,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.NavGraphs
@@ -30,13 +29,14 @@ import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import org.koin.androidx.compose.koinViewModel
 
 @Destination
 @Composable
 fun EnterOtpScreen(
     phoneNumber: String,
     navigator: DestinationsNavigator,
-    viewModel: EnterOtpViewModel = hiltViewModel()
+    viewModel: EnterOtpViewModel = koinViewModel()
 ) {
     val otpCode by viewModel.otpStateFlow.collectAsStateWithLifecycle()
     val resendOtpTime by viewModel.resendCodeFlow.collectAsStateWithLifecycle()

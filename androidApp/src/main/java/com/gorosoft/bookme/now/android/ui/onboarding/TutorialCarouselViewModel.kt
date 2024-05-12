@@ -2,11 +2,8 @@ package com.gorosoft.bookme.now.android.ui.onboarding
 
 import androidx.lifecycle.ViewModel
 import com.gorosoft.bookme.now.domain.usecase.SetHadTutorialUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class TutorialCarouselViewModel @Inject constructor(
+class TutorialCarouselViewModel(
     private val setHadTutorialUseCase: SetHadTutorialUseCase,
 ) : ViewModel() {
 

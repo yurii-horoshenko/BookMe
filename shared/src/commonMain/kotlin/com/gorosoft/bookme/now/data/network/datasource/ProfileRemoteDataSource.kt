@@ -21,8 +21,10 @@ class ProfileRemoteDataSource(
 ) {
     // GET:  base_url/user/login
     suspend fun login(): Response<ProfileResponse> {
-        val result: HttpResponse = client.get("user/login")
-        return safeDataResponseCall { result.body() }
+        return safeDataResponseCall {
+            val result: HttpResponse = client.get("user/login")
+            result.body()
+        }
     }
 
     // GET:  base_url/user/validation
@@ -31,24 +33,28 @@ class ProfileRemoteDataSource(
         googleToken: String?,
         phone: String?
     ): Response<ProfileResponse> {
-        val result: HttpResponse = client.get("user/validation") {
-            parameter("facebook_token", facebookToken)
-            parameter("google_token", googleToken)
-            parameter("phone", phone)
-        }
+        return safeDataResponseCall {
+            val result: HttpResponse = client.get("user/validation") {
+                parameter("facebook_token", facebookToken)
+                parameter("google_token", googleToken)
+                parameter("phone", phone)
+            }
 
-        return safeDataResponseCall { result.body() }
+            result.body()
+        }
     }
 
     // POST:  base_url/user/create_profile
     suspend fun createProfile(
         profile: ProfileRequest
     ): Response<ProfileResponse> {
-        val result: HttpResponse = client.post("user/create_profile") {
-            setBody(profile)
-        }
+        return safeDataResponseCall {
+            val result: HttpResponse = client.post("user/create_profile") {
+                setBody(profile)
+            }
 
-        return safeDataResponseCall { result.body() }
+            result.body()
+        }
     }
 
     // GET:  base_url/user/code
@@ -56,22 +62,26 @@ class ProfileRemoteDataSource(
         phone: String,
         resend: Boolean
     ): Response<Boolean> {
-        val result: HttpResponse = client.get("user/code") {
-            parameter("phone", phone)
-            parameter("resend", resend)
-        }
+        return safeResponseCall {
+            val result: HttpResponse = client.get("user/code") {
+                parameter("phone", phone)
+                parameter("resend", resend)
+            }
 
-        return safeResponseCall { result.body<SuccessResponse>().success }
+            result.body<SuccessResponse>().success
+        }
     }
 
     // POST:  base_url/user/code
     suspend fun code(
         code: CodeRequest
     ): Response<ProfileTokenResponse> {
-        val result: HttpResponse = client.post("user/code") {
-            setBody(code)
-        }
+        return safeDataResponseCall {
+            val result: HttpResponse = client.post("user/code") {
+                setBody(code)
+            }
 
-        return safeDataResponseCall { result.body() }
+            result.body()
+        }
     }
 }
