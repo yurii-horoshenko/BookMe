@@ -24,7 +24,7 @@ enum Steps: Hashable {
         case .welcome:
             AuthPageBuilder.constructWelcomeView()
             
-        case .enterCode(let phone, let newProfile):
+        case let .enterCode(phone, newProfile):
             AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: newProfile)
             
         case .createProfile(let profile):

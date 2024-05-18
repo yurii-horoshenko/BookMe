@@ -25,7 +25,7 @@ PODS:
   - GTMSessionFetcher/Core (3.4.1)
   - Kingfisher (7.11.0)
   - shared (1.0)
-  - SwiftLint (0.54.0)
+  - SwiftLint (0.55.1)
 
 DEPENDENCIES:
   - AppAuth
@@ -67,7 +67,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   shared: 1e9400e9d604ca501aef3969ac484e8d4536bee9
-  SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
+  SwiftLint: 3fe909719babe5537c552ee8181c0031392be933
 
 PODFILE CHECKSUM: e864761effdb5166fce34b5f4c8827fd8e0ec2d8
 

@@ -6,6 +6,7 @@
 //
 
 import FBSDKCoreKit
+import shared
 import UIKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -13,6 +14,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        
+        // Setup
+        HelperKtKt.doInitKoin()
+        
         // Initialize Facebook SDK
         FBSDKCoreKit.ApplicationDelegate.shared.application(
             application,

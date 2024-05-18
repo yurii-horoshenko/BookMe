@@ -26,7 +26,7 @@ protocol CreateProfileViewModelProtocol: ObservableObject {
 
 final class CreateProfileViewModel: CreateProfileViewModelProtocol {
     // MARK: - Properties
-    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
+    private let repository: ProfileRepositoryProtocol = ProfileRepository()
     @Published var fullname = FieldData(placeholder: String(localized: "PROFILE-FULLNAME"))
     @Published var nickname = FieldData(placeholder: String(localized: "PROFILE-NICKNAME"))
     @Published var dateBirthday = FieldData(placeholder: String(localized: "PROFILE-DATEBIRTHDAY"))

@@ -20,7 +20,7 @@ protocol WelcomeViewModelProtocol: ObservableObject {
 
 final class WelcomeViewModel: WelcomeViewModelProtocol {
     // MARK: - Properties
-    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
+    private let repository: ProfileRepositoryProtocol = ProfileRepository()
     @Published var toLogin = false
     @Published var toSignIn = false
     var profile: shared.ProfileModel?

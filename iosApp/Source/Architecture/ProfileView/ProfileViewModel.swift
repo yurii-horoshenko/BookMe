@@ -20,7 +20,7 @@ protocol ProfileViewModelProtocol: ObservableObject {
 
 final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Properties
-    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
+    private let repository: ProfileRepositoryProtocol = ProfileRepository()
     @Published var toLogoutConfirm = false
     @Published var toSignIn = false
     @Published var detectHeight: CGFloat = 0

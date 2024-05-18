@@ -23,7 +23,7 @@ protocol EnterCodeViewModelProtocol: ObservableObject {
 
 final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     // MARK: - Properties
-    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
+    private let repository: ProfileRepositoryProtocol = ProfileRepository()
     @Published var isTimerRunning = false
     @Published var startTime = Date()
     @Published var timerString = "0.00"
@@ -94,7 +94,6 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
                 result?
                     .onSuccess(result: { object in
                         guard let result = object as? ProfileTokenModel else { return }
-                        
                         LocalManager.shared.kmmDefaults.isLoggedIn = true
                         let nextView = AuthPageBuilder.constructDashboardView()
                         self?.view?.moveToDashboard(view: nextView)

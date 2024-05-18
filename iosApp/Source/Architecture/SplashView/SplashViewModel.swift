@@ -15,7 +15,7 @@ protocol SplashViewModelProtocol: ObservableObject {
 
 final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Properties
-    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
+    private let repository: ProfileRepositoryProtocol = ProfileRepository()
     var view: SplashViewProtocol?
     
     // MARK: - Lifecycle

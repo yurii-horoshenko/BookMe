@@ -17,7 +17,7 @@ protocol LoginViewModelProtocol: ObservableObject {
 
 final class LoginViewModel: LoginViewModelProtocol {
     // MARK: - Properties
-    private let repository: ProfileRepositoryProtocol = ServiceLocator.shared.profileRepository
+    private let repository: ProfileRepositoryProtocol = ProfileRepository()
     @Published var phone = FieldData(placeholder: "Phone Number")
     @Published var toCode = false
     var view: LoginViewProtocol?
