@@ -16,6 +16,9 @@ def project_pods
   pod 'Kingfisher', :inhibit_warnings => true
   pod 'SwiftLint', :inhibit_warnings => true
 
+  # Firebase
+  pod 'FirebaseMessaging'
+  
   # Google
   pod 'AppAuth', :inhibit_warnings => true
   pod 'GoogleSignIn', :inhibit_warnings => true

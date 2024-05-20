@@ -29,6 +29,9 @@ struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
                     }
                 }
         }
+        .onAppear {
+            PermissionManager.shared.registerForRemoteNotifications()
+        }
     }
     
     // Image, title, buttons
