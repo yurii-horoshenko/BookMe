@@ -51,10 +51,12 @@ class ProfileRepository : ProfileRepositoryProtocol, KoinComponent {
     }
 
     override suspend fun code(phone: String, resend: Boolean): Response<Boolean> {
-        return remote.code(phone = phone, resend = resend).map { it }
+        return remote.code(phone = phone, resend = resend)
+            .map { it }
     }
 
     override suspend fun code(code: CodeRequest): Response<ProfileTokenModel> {
-        return remote.code(code = code).map { it.toDomain() }
+        return remote.code(code = code)
+            .map { it.toDomain() }
     }
 }
