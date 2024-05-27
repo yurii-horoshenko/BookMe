@@ -2,6 +2,7 @@ package com.gorosoft.bookme.now.android
 
 import android.app.Application
 import com.gorosoft.bookme.now.android.di.uiUseCaseModule
+import com.gorosoft.bookme.now.android.di.utilsModule
 import com.gorosoft.bookme.now.android.di.viewModelModule
 import com.gorosoft.bookme.now.data.network.KtorManager
 import com.gorosoft.bookme.now.di.sharedModule
@@ -23,6 +24,7 @@ class App : Application() {
                 sharedModule(),
                 uiUseCaseModule(),
                 viewModelModule(),
+                utilsModule()
             )
         }
 

@@ -1,11 +1,17 @@
 package com.gorosoft.bookme.now.android.ui.main_screen.explore
 
+import android.location.Location
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.gorosoft.bookme.now.android.managers.LocationTracker
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class ExploreViewModel : ViewModel() {
+class ExploreViewModel(
+    private val locationTracker: LocationTracker,
+) : ViewModel() {
 
     private val _isShowLocationRationale = MutableStateFlow(false)
     val isShowLocationRationale = _isShowLocationRationale.asStateFlow()
@@ -16,14 +22,21 @@ class ExploreViewModel : ViewModel() {
     private val _isShowMapState = MutableStateFlow(false)
     val isShowMapState = _isShowMapState.asStateFlow()
 
+    private val _currentLocation = MutableStateFlow<Location?>(null)
+    val currentLocation = _currentLocation.asStateFlow()
+
     fun navigateToSettings() {
         _isShowMapState.update { false }
         _isShowNavigateToSettingsState.update { true }
     }
 
     fun showMap() {
-        _isShowNavigateToSettingsState.update { false }
-        _isShowMapState.update { true }
+        viewModelScope.launch {
+            val location = locationTracker.getCurrentLocation()
+            _currentLocation.update { location }
+            _isShowNavigateToSettingsState.update { false }
+            _isShowMapState.update { true }
+        }
     }
 
     fun showLocationRationale(isShow: Boolean) {

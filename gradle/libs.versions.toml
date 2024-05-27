@@ -9,6 +9,9 @@ coroutines-version = "1.8.1-Beta"
 kotlin-version = "1.9.23"
 kotlinx-datetime = "0.6.0-RC.2"
 ktor-version = "2.3.9"
+mapsComposeVersion = "4.4.1"
+playServicesLocationVersion = "21.2.0"
+secretsGradlePluginVersion = "2.0.1"
 serialization-version = "1.6.3"
 nav-version = "2.7.7"
 ktlint-version = "12.1.0"
@@ -40,6 +43,9 @@ ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-ve
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-version" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor-version" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsComposeVersion" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocationVersion" }
+secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePluginVersion" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav-version" }
