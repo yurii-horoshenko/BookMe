@@ -1,7 +1,9 @@
 package com.gorosoft.bookme.now.data.network
 
 import com.gorosoft.bookme.now.data.LocalProperties
-import io.ktor.client.*
+import com.gorosoft.bookme.now.data.network.headers_holder.HeadersHolderProtocol
+import com.gorosoft.bookme.now.data.network.token_holder.TokenHolderProtocol
+import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.auth.providers.BearerTokens
@@ -15,22 +17,15 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
+import io.ktor.http.headers
 import io.ktor.http.path
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-object KtorManager {
-    private var accessToken: String = ""
-    private var refreshToken: String = ""
-
-    fun setAccessToken(token: String) {
-        this.accessToken = token
-    }
-
-    fun setRefreshToken(token: String) {
-        this.refreshToken = token
-    }
-
+class KtorManager(
+    private val tokenHolder: TokenHolderProtocol,
+    private val headersHolder: HeadersHolderProtocol,
+) {
     val client = HttpClient {
         defaultRequest {
             url {
@@ -54,8 +49,14 @@ object KtorManager {
         }
         install(Auth) {
             bearer {
-                BearerTokens(accessToken = accessToken, refreshToken = "")
+                BearerTokens(
+                    accessToken = tokenHolder.accessToken.orEmpty(),
+                    refreshToken = tokenHolder.refreshToken.orEmpty(),
+                )
             }
+        }
+        headers {
+            headersHolder.addHeaders(this)
         }
         HttpResponseValidator {
             validateResponse { response ->

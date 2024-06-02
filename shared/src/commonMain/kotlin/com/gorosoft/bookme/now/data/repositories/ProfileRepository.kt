@@ -8,6 +8,7 @@ import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
 import com.gorosoft.bookme.now.data.network.model.request.toRequest
 import com.gorosoft.bookme.now.data.network.model.response.toDomain
 import com.gorosoft.bookme.now.data.network.model.response.toEntity
+import com.gorosoft.bookme.now.data.network.token_holder.TokenHolderProtocol
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
 import com.gorosoft.bookme.now.domain.repository.ProfileRepositoryProtocol
@@ -19,6 +20,7 @@ class ProfileRepository : ProfileRepositoryProtocol, KoinComponent {
 
     private val remote: ProfileRemoteDataSource by inject()
     private val cache: ProfileCacheDataSourceProtocol by inject()
+    private val tokenHolder: TokenHolderProtocol by inject()
 
     override suspend fun login(): Response<ProfileModel> {
         return remote.login()
@@ -58,5 +60,9 @@ class ProfileRepository : ProfileRepositoryProtocol, KoinComponent {
     override suspend fun code(code: CodeRequest): Response<ProfileTokenModel> {
         return remote.code(code = code)
             .map { it.toDomain() }
+            .map {
+                tokenHolder.accessToken = it.accessToken
+                it
+            }
     }
 }
