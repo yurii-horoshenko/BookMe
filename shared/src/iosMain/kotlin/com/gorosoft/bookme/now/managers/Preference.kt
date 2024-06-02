@@ -7,7 +7,7 @@ import platform.darwin.NSObject
 
 actual typealias KMMContext = NSObject
 
-actual fun KMMContext.putString(key: String, value: String) {
+actual fun KMMContext.putString(key: String, value: String?) {
     NSUserDefaults.standardUserDefaults.setObject(value, key)
 }
 

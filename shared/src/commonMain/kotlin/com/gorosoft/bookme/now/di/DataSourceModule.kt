@@ -5,7 +5,12 @@ import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSourcePr
 import com.gorosoft.bookme.now.data.network.datasource.BookingRemoteDataSource
 import com.gorosoft.bookme.now.data.network.datasource.PlaceRemoteDataSource
 import com.gorosoft.bookme.now.data.network.datasource.ProfileRemoteDataSource
+import com.gorosoft.bookme.now.data.network.headers_holder.HeadersHolderProtocol
+import com.gorosoft.bookme.now.data.network.headers_holder.RuntimeHeadersHolder
+import com.gorosoft.bookme.now.data.network.token_holder.TokenHolder
+import com.gorosoft.bookme.now.data.network.token_holder.TokenHolderProtocol
 import org.koin.dsl.module
+import kotlin.math.sin
 
 fun dataSourceModule() = module {
     factory<ProfileCacheDataSourceProtocol> {
@@ -30,4 +35,8 @@ fun dataSourceModule() = module {
             client = get(),
         )
     }
+
+    single<TokenHolderProtocol> { TokenHolder(context = get()) }
+
+    single<HeadersHolderProtocol> { RuntimeHeadersHolder() }
 }

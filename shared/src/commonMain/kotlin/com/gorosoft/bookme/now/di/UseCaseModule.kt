@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 fun useCaseModule() = module {
     factory { HadTutorialUseCase(defaults = get()) }
-    factory { IsLoggedInUseCase(defaults = get()) }
+    factory { IsLoggedInUseCase(holder = get()) }
     factory {
         LoginUseCase(
             profileRepository = get(),
