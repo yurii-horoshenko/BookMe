@@ -22,8 +22,11 @@ class ExploreViewModel(
     private val _isShowMapState = MutableStateFlow(false)
     val isShowMapState = _isShowMapState.asStateFlow()
 
-    private val _currentLocation = MutableStateFlow<LocationResult?>(null)
-    val currentLocation = _currentLocation.asStateFlow()
+    private val _userLocationResult = MutableStateFlow<LocationResult?>(null)
+    val userLocationResult = _userLocationResult.asStateFlow()
+
+    private val _searchText = MutableStateFlow("")
+    val searchText = _searchText.asStateFlow()
 
     fun navigateToSettings() {
         _isShowMapState.update { false }
@@ -33,7 +36,7 @@ class ExploreViewModel(
     fun showMap() {
         viewModelScope.launch {
             val location = locationTracker.getCurrentLocation()
-            _currentLocation.update { location }
+            _userLocationResult.update { location }
             _isShowNavigateToSettingsState.update { false }
             _isShowMapState.update { true }
         }
@@ -41,5 +44,9 @@ class ExploreViewModel(
 
     fun showLocationRationale(isShow: Boolean) {
         _isShowLocationRationale.update { isShow }
+    }
+
+    fun onSearchTextChange(text: String) {
+        _searchText.update { text }
     }
 }

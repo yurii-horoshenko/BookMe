@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.gms.tasks.Task
 import com.gorosoft.bookme.now.android.managers.LocationTracker.LocationResult
 import com.gorosoft.bookme.now.android.managers.LocationTracker.LocationResult.GpsNotAvailable
 import com.gorosoft.bookme.now.android.managers.LocationTracker.LocationResult.PermissionsNotGranted
@@ -57,30 +58,49 @@ class OneTimeLocationTracker(
             isGpsEnabled.not() -> return GpsNotAvailable
         }
 
-        return suspendCancellableCoroutine { continuation ->
-            val cancellationTokenSource = CancellationTokenSource()
-            locationClient.getCurrentLocation(
+        val fastLocationRequest = handleLocationTask(locationClient.lastLocation)
+        if (fastLocationRequest is Success) {
+            return fastLocationRequest
+        }
+        val cancellationTokenSource = CancellationTokenSource()
+        val longLocationRequest = handleLocationTask(
+            task = locationClient.getCurrentLocation(
                 Priority.PRIORITY_HIGH_ACCURACY,
                 cancellationTokenSource.token
-            ).apply {
+            ),
+            onTerminalEvent = { cancellationTokenSource.cancel() }
+        )
+        return longLocationRequest
+    }
+
+    private suspend fun handleLocationTask(
+        task: Task<Location>,
+        onTerminalEvent: () -> Unit = {},
+    ): LocationResult {
+        return suspendCancellableCoroutine { continuation ->
+            task.apply {
                 if (isComplete) {
-                    if (isSuccessful) {
+                    if (isSuccessful && result != null) {
                         continuation.resume(Success(result))
                     } else {
                         continuation.resume(UndefinedLocation)
                     }
                     return@suspendCancellableCoroutine
                 }
-                addOnSuccessListener { location: Location ->
-                    continuation.resume(Success(location))
-                    cancellationTokenSource.cancel()
+                addOnSuccessListener { location: Location? ->
+                    if (location == null) {
+                        continuation.resume(UndefinedLocation)
+                    } else {
+                        continuation.resume(Success(location))
+                    }
+                    onTerminalEvent.invoke()
                 }
                 addOnFailureListener {
                     continuation.resume(UndefinedLocation)
-                    cancellationTokenSource.cancel()
+                    onTerminalEvent.invoke()
                 }
                 addOnCanceledListener {
-                    cancellationTokenSource.cancel()
+                    onTerminalEvent.invoke()
                     continuation.cancel()
                 }
             }
