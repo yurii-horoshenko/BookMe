@@ -18,3 +18,4 @@ build-cache
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+secrets.properties

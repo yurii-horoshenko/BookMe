@@ -32,5 +32,9 @@ fun viewModelModule() = module {
 
     viewModel { EnterOtpViewModel() }
 
-    viewModel { ExploreViewModel() }
+    viewModel {
+        ExploreViewModel(
+            locationTracker = get(),
+        )
+    }
 }

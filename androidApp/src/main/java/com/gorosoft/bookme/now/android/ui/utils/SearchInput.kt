@@ -3,6 +3,8 @@ package com.gorosoft.bookme.now.android.ui.utils
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -13,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gorosoft.bookme.now.android.R
@@ -22,14 +25,13 @@ import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 fun SearchInput(
     modifier: Modifier = Modifier,
     searchText: String,
-    onClick: () -> Unit = {},
+    onSearch: () -> Unit = {},
     onValueChanged: (String) -> Unit = {},
 ) {
     TextField(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .debounceClick(onClick = onClick),
+            .clip(RoundedCornerShape(12.dp)),
         value = searchText,
         onValueChange = onValueChanged,
         placeholder = {
@@ -56,6 +58,9 @@ fun SearchInput(
         textStyle = AppTheme.typography.bodyMedium.semibold.copy(
             color = AppTheme.colors.grayscale.gs900
         ),
+        maxLines = 1,
+        keyboardActions = KeyboardActions(onSearch = { onSearch() }),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
         colors = TextFieldDefaults.colors().copy(
             focusedContainerColor = AppTheme.colors.grayscale.gs100,
             unfocusedContainerColor = AppTheme.colors.grayscale.gs100,
