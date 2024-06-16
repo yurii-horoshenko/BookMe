@@ -12,7 +12,7 @@ private const val PREFERENCES_NAME = "book_me_shared_preferences"
 private val KMMContext.sharedPref
     get() = getSharedPreferences(PREFERENCES_NAME, Application.MODE_PRIVATE)
 
-actual fun KMMContext.putString(key: String, value: String) {
+actual fun KMMContext.putString(key: String, value: String?) {
     sharedPref.edit { putString(key, value).apply() }
 }
 
