@@ -47,7 +47,7 @@ fun EnterOtpScreen(
                 EnterOtpEffects.ShowSuccessDialog -> {
                     navigator.navigate(MainScreenDestination) {
                         this.launchSingleTop = true
-                        popUpTo(NavGraphs.root.route) { inclusive = true }
+                        popUpTo(NavGraphs.root) { inclusive = true }
                     }
                 }
             }

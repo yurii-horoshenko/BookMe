@@ -1,29 +1,28 @@
 [versions]
 accompanist-permissions-version = "0.35.0-alpha"
-android-gradle-plugin-version = "8.5.1"
+android-gradle-plugin-version = "8.5.2"
 activity-compose-version = "1.9.1"
 coil-version = "2.7.0"
 compose-bom-version = "2024.06.00"
 compose-compiler-version = "1.5.11"
-coroutines-version = "1.8.1-Beta"
-kotlin-version = "1.9.23"
+coroutines-version = "1.8.1"
+kotlin-version = "2.0.0"
 kotlinx-datetime = "0.6.0-RC.2"
 ktor-version = "2.3.9"
 mapsComposeVersion = "6.1.1"
 playServicesLocationVersion = "21.3.0"
 secretsGradlePluginVersion = "2.0.1"
 serialization-version = "1.6.3"
-nav-version = "2.7.7"
 ktlint-version = "12.1.0"
 detekt = "1.23.5"
-ksp-version = "1.9.23-1.0.19"
-compose-destinations-version = "1.10.2"
+ksp-version = "2.0.0-1.0.24"
+compose-destinations-version = "1.11.3-alpha"
 lifecycle-compose-version = "2.8.4"
 material3-version = "1.2.1"
-androidx-room = "2.7.0-alpha05"
+androidx-room = "2.7.0-alpha01"
 sqlite = "2.5.0-SNAPSHOT"
-koin = "3.6.0-alpha3"
-koinCompose = "3.6.0-alpha3"
+koin = "4.0.0-RC1"
+koinCompose = "4.0.0-RC1"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist-permissions-version" }
@@ -48,7 +47,6 @@ play-services-location = { module = "com.google.android.gms:play-services-locati
 secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePluginVersion" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav-version" }
 compose-destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "compose-destinations-version" }
 compose-destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "compose-destinations-version" }
 lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle-compose-version" }
@@ -72,3 +70,4 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-version" 
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
 room = { id = "androidx.room", version.ref = "androidx-room" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin-version" }
