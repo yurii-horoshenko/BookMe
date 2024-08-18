@@ -18,11 +18,12 @@ protocol WelcomeViewModelProtocol: ObservableObject {
     func signIn()
 }
 
+@Observable
 final class WelcomeViewModel: WelcomeViewModelProtocol {
     // MARK: - Properties
     private let repository: ProfileRepositoryProtocol = ProfileRepository()
-    @Published var toLogin = false
-    @Published var toSignIn = false
+    var toLogin = false
+    var toSignIn = false
     var profile: shared.ProfileModel?
     var view: WelcomeViewProtocol?
     

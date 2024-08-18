@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ServiceDetailView<ViewModel>: View where ViewModel: ServiceDetailViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {

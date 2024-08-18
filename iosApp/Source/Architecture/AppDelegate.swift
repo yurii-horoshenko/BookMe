@@ -5,7 +5,6 @@
 //  Created by Yurii Goroshenko on 12.04.2024.
 //
 
-import FBSDKCoreKit
 import shared
 import UIKit
 
@@ -22,11 +21,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // Setup
         HelperKtKt.doInitKoin(headers: [:])
         
-        // Initialize Facebook SDK
-        FBSDKCoreKit.ApplicationDelegate.shared.application(
-            application,
-            didFinishLaunchingWithOptions: launchOptions
-        )
         return true
     }
     

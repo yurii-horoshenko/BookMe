@@ -13,7 +13,7 @@ protocol EnterCodeViewProtocol {
 
 struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     private let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     
     // MARK: - Lifecycle

@@ -14,10 +14,11 @@ protocol BookingViewModelProtocol: ObservableObject {
     func loadData()
 }
 
+@Observable
 final class BookingViewModel: BookingViewModelProtocol {
     // MARK: - Properties
 //    private let repository = shared.BookingRepository()
-    @Published var date = Date.now
+    var date = Date.now
     
     // MARK: - Lifecycle
     deinit {

@@ -21,13 +21,14 @@ protocol EnterCodeViewModelProtocol: ObservableObject {
     func checkCode()
 }
 
+@Observable
 final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     // MARK: - Properties
     private let repository: ProfileRepositoryProtocol = ProfileRepository()
-    @Published var isTimerRunning = false
-    @Published var startTime = Date()
-    @Published var timerString = "0.00"
-    @Published var code = [FieldData(), FieldData(), FieldData(), FieldData()]
+    var isTimerRunning = false
+    var startTime = Date()
+    var timerString = "0.00"
+    var code = [FieldData(), FieldData(), FieldData(), FieldData()]
     var phone: String
     var newProfile: Bool
     var view: EnterCodeViewProtocol?

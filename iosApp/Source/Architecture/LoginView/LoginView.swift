@@ -13,7 +13,7 @@ protocol LoginViewProtocol {
 
 struct LoginView<ViewModel>: View where ViewModel: LoginViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {

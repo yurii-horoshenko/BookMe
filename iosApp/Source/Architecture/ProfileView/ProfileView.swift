@@ -13,7 +13,7 @@ protocol ProfileViewProtocol {
 
 struct ProfileView<ViewModel>: View where ViewModel: ProfileViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {

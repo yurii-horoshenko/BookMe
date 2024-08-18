@@ -13,6 +13,7 @@ protocol SplashViewModelProtocol: ObservableObject {
     func detectPage()
 }
 
+@Observable
 final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Properties
     private let repository: ProfileRepositoryProtocol = ProfileRepository()
@@ -38,20 +39,22 @@ final class SplashViewModel: SplashViewModelProtocol {
 //            return
 //        }
         
-        repository.login { result, _ in
-            DispatchQueue.main.async { [weak self] in
-                result?
-                    .onSuccess(result: { _ in
-                        // Move to Dashboard Page
-                        let nextView = AuthPageBuilder.constructDashboardView()
-                        self?.view?.setNextPage(view: nextView)
-                    })?
-                    .onError(result: { error in
-                        print(error)
-                        // Move to Welcome Page
-                        self?.view?.setNextPage(view: AuthPageBuilder.constructWelcomeView())
-                    })
-            }
-        }
+//        repository.login { result, _ in
+//            DispatchQueue.main.async { [weak self] in
+//                result?
+//                    .onSuccess(result: { _ in
+//                        // Move to Dashboard Page
+//                        let nextView = AuthPageBuilder.constructDashboardView()
+//                        self?.view?.setNextPage(view: nextView)
+//                    })?
+//                    .onError(result: { error in
+//                        print(error)
+//                        // Move to Welcome Page
+//                        self?.view?.setNextPage(view: AuthPageBuilder.constructWelcomeView())
+//                    })
+//            }
+//        }
+        
+        view?.setNextPage(view: AuthPageBuilder.constructWelcomeView())
     }
 }
