@@ -94,7 +94,7 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
                 result?
                     .onSuccess(result: { object in
                         guard let result = object as? ProfileTokenModel else { return }
-                        LocalManager.shared.kmmDefaults.isLoggedIn = true
+//                        LocalManager.shared.kmmDefaults.isLoggedIn = true
                         let nextView = AuthPageBuilder.constructDashboardView()
                         self?.view?.moveToDashboard(view: nextView)
                     })?

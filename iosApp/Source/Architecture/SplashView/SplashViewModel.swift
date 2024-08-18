@@ -26,17 +26,17 @@ final class SplashViewModel: SplashViewModelProtocol {
     // MARK: - Public
     func detectPage() {
         // Check is loggeIn
-        guard LocalManager.shared.kmmDefaults.isLoggedIn else {
-            // Check was tutorial
-            guard LocalManager.shared.kmmDefaults.wasTutorial else {
-                view?.setNextPage(view: TutorialWelcomeModuleView())
-                return
-            }
-            
-            // Move to Welcome Page
-            view?.setNextPage(view: AuthPageBuilder.constructWelcomeView())
-            return
-        }
+//        guard LocalManager.shared.kmmDefaults.isLoggedIn else {
+//            // Check was tutorial
+//            guard LocalManager.shared.kmmDefaults.wasTutorial else {
+//                view?.setNextPage(view: TutorialWelcomeModuleView())
+//                return
+//            }
+//            
+//            // Move to Welcome Page
+//            view?.setNextPage(view: AuthPageBuilder.constructWelcomeView())
+//            return
+//        }
         
         repository.login { result, _ in
             DispatchQueue.main.async { [weak self] in

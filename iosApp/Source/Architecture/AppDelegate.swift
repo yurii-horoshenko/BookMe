@@ -20,7 +20,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         PermissionManager.shared.setupNotifications()
         
         // Setup
-        HelperKtKt.doInitKoin()
+        HelperKtKt.doInitKoin(headers: [:])
         
         // Initialize Facebook SDK
         FBSDKCoreKit.ApplicationDelegate.shared.application(

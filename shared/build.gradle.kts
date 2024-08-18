@@ -15,6 +15,7 @@ kotlin {
             }
         }
     }
+
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -27,7 +28,7 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
-            isStatic = true
+            isStatic = false
         }
     }
 
@@ -40,8 +41,8 @@ kotlin {
             implementation(libs.ktor.client.auth)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)
-            api(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
+            api(libs.androidx.room.runtime)
             api(libs.koin.core)
         }
 
@@ -59,9 +60,9 @@ kotlin {
 
 dependencies {
     add("kspAndroid", libs.androidx.room.compiler)
-    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
     add("kspIosX64", libs.androidx.room.compiler)
     add("kspIosArm64", libs.androidx.room.compiler)
+    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
 }
 
 android {

@@ -1,6 +1,5 @@
 //
 //  RoundedShape.swift
-//  TransfloFuel
 //
 //  Created by Yurii Goroshenko on 4/6/23.
 //
