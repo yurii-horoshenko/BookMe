@@ -9,14 +9,6 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - PromisesObjC (~> 2.4)
-  - FBAEMKit (17.0.3):
-    - FBSDKCoreKit_Basics (= 17.0.3)
-  - FBSDKCoreKit (17.0.3):
-    - FBAEMKit (= 17.0.3)
-    - FBSDKCoreKit_Basics (= 17.0.3)
-  - FBSDKCoreKit_Basics (17.0.3)
-  - FBSDKLoginKit (17.0.3):
-    - FBSDKCoreKit (= 17.0.3)
   - FirebaseCore (11.0.0):
     - FirebaseCoreInternal (~> 11.0)
     - GoogleUtilities/Environment (~> 8.0)
@@ -87,8 +79,6 @@ PODS:
 
 DEPENDENCIES:
   - AppAuth
-  - FBSDKCoreKit
-  - FBSDKLoginKit
   - FirebaseMessaging
   - GoogleSignIn
   - GoogleSignInSwiftSupport
@@ -100,10 +90,6 @@ SPEC REPOS:
   trunk:
     - AppAuth
     - AppCheckCore
-    - FBAEMKit
-    - FBSDKCoreKit
-    - FBSDKCoreKit_Basics
-    - FBSDKLoginKit
     - FirebaseCore
     - FirebaseCoreInternal
     - FirebaseInstallations
@@ -126,10 +112,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   AppCheckCore: e25aaaac234b333320b0bebb8fc21ed3576819ba
-  FBAEMKit: 9900b2edd99a2d21629a6277e6166f14c6215799
-  FBSDKCoreKit: 0791f8f68a8630931a4c12aa23a56cc021551596
-  FBSDKCoreKit_Basics: 46d6b472c0dd0a5a7e972c025033d1c567f54eb4
-  FBSDKLoginKit: b4a4eba1d62eb452544411824f41689adabd5bd2
   FirebaseCore: 3cf438f431f18c12cdf2aaf64434648b63f7e383
   FirebaseCoreInternal: cac45dbc4824e152fe93cdd5dd46bd503c3fdffb
   FirebaseInstallations: 833536e8ff1dfadd4b5f80e8dfef69e8edbd071d
@@ -146,6 +128,6 @@ SPEC CHECKSUMS:
   shared: 1e9400e9d604ca501aef3969ac484e8d4536bee9
   SwiftLint: c5fa0b7eece474d43d2178b581a1242a16267347
 
-PODFILE CHECKSUM: 0dbf47852fe4384431da678c614a3d0c27b92d66
+PODFILE CHECKSUM: c14329521411b90fd2f1a51f14ff1c593b921fbe
 
 COCOAPODS: 1.15.2
