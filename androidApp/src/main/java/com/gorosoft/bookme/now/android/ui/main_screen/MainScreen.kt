@@ -26,7 +26,8 @@ import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.BottomNavigationShape
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.navigate
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.utils.rememberDestinationsNavigator
 
 @Destination
 @Composable
@@ -37,8 +38,14 @@ fun MainScreen() {
 @Composable
 private fun MainScreenContent() {
     val navController = rememberNavController()
+    val destinationNavigator = navController.rememberDestinationsNavigator()
     Scaffold(
-        bottomBar = { BottomBar(navController = navController) }
+        bottomBar = {
+            BottomBar(
+                navController = navController,
+                destinationsNavigator = destinationNavigator,
+            )
+        }
     ) { paddingValues ->
         DestinationsNavHost(
             modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding()),
@@ -59,7 +66,8 @@ private fun MainScreenContentPreview() {
 @Composable
 fun BottomBar(
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavController,
+    destinationsNavigator: DestinationsNavigator,
 ) {
     val currentDestination = navController.appCurrentDestinationAsState().value
         ?: NavGraphs.bottomBar.startAppDestination
@@ -80,8 +88,8 @@ fun BottomBar(
             BottomNavigationItem(
                 selected = isSelected,
                 onClick = {
-                    navController.navigate(it.direction) {
-                        popUpTo(NavGraphs.bottomBar.startAppDestination.route) {
+                    destinationsNavigator.navigate(it.direction) {
+                        popUpTo(NavGraphs.bottomBar.startRoute) {
                             saveState = true
                         }
                         launchSingleTop = true
@@ -116,6 +124,10 @@ fun BottomBar(
 private fun BottomBarPreview() {
     AppTheme {
         val navController = rememberNavController()
-        BottomBar(navController = navController)
+        val destinationNavigator = navController.rememberDestinationsNavigator()
+        BottomBar(
+            navController = navController,
+            destinationsNavigator = destinationNavigator,
+        )
     }
 }
