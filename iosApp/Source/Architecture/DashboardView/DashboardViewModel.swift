@@ -27,14 +27,15 @@ protocol DashboardViewModelProtocol: ObservableObject {
     func loadData()
 }
 
+@Observable
 final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Properties
 //    private let repository = shared.BookingRepository()
-    @Published var searchData = FieldData(placeholder: String(localized: "SEARCH"))
-    @Published var toServiceDetail = false
-    @Published var toSearchFilter = false
-    @Published var toCancelVisit = false
-    @Published var detectHeight: CGFloat = 0
+    var searchData = FieldData(placeholder: String(localized: "SEARCH"))
+    var toServiceDetail = false
+    var toSearchFilter = false
+    var toCancelVisit = false
+    var detectHeight: CGFloat = 0
     var restaurants = [
         Restaurant(name: "Joe's Original"),
         Restaurant(name: "The Real Joe's Original"),

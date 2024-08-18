@@ -18,13 +18,14 @@ protocol ProfileViewModelProtocol: ObservableObject {
     func logout()
 }
 
+@Observable
 final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Properties
     private let repository: ProfileRepositoryProtocol = ProfileRepository()
-    @Published var toLogoutConfirm = false
-    @Published var toSignIn = false
-    @Published var detectHeight: CGFloat = 0
-    @Published var profile: shared.ProfileModel = ProfileModel(fullName: "", birthday: 0, gender: .other, email: "", phone: "", facebookToken: nil, googleToken: nil, isExist: false)
+    var toLogoutConfirm = false
+    var toSignIn = false
+    var detectHeight: CGFloat = 0
+    var profile: shared.ProfileModel = ProfileModel(fullName: "", birthday: 0, gender: .other, email: "", phone: "", facebookToken: nil, googleToken: nil, isExist: false)
     var view: ProfileViewProtocol?
     
     // MARK: - Lifecycle

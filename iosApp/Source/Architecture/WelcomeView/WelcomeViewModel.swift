@@ -18,11 +18,12 @@ protocol WelcomeViewModelProtocol: ObservableObject {
     func signIn()
 }
 
+@Observable
 final class WelcomeViewModel: WelcomeViewModelProtocol {
     // MARK: - Properties
     private let repository: ProfileRepositoryProtocol = ProfileRepository()
-    @Published var toLogin = false
-    @Published var toSignIn = false
+    var toLogin = false
+    var toSignIn = false
     var profile: shared.ProfileModel?
     var view: WelcomeViewProtocol?
     
@@ -37,20 +38,20 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
     }
     
     func loginViaFacebook() {
-        FacebookManager.loginWithFacebook { [weak self] facebookObject in
-            self?.profile = ProfileModel(
-                fullName: facebookObject.name ?? "",
-                birthday: 0,
-                gender: UserGenderType.other,
-                email: facebookObject.email ?? "",
-                phone: "",
-                facebookToken: facebookObject.token,
-                googleToken: nil,
-                isExist: false
-            )
-            
-            self?.login(facebookToken: facebookObject.token)
-        }
+//        FacebookManager.loginWithFacebook { [weak self] facebookObject in
+//            self?.profile = ProfileModel(
+//                fullName: facebookObject.name ?? "",
+//                birthday: 0,
+//                gender: UserGenderType.other,
+//                email: facebookObject.email ?? "",
+//                phone: "",
+//                facebookToken: facebookObject.token,
+//                googleToken: nil,
+//                isExist: false
+//            )
+//            
+//            self?.login(facebookToken: facebookObject.token)
+//        }
     }
     
     func loginViaGoogle() {

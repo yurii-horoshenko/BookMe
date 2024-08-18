@@ -11,10 +11,11 @@ protocol ServiceDetailViewModelProtocol: ObservableObject {
     var toBooking: Bool { get set }
 }
 
+@Observable
 final class ServiceDetailViewModel: ServiceDetailViewModelProtocol {
     // MARK: - Properties
 //    private let repository = shared.UserRepository()
-    @Published var toBooking = false
+    var toBooking = false
     
     // MARK: - Lifecycle
     deinit {

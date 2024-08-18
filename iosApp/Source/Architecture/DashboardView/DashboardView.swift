@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DashboardView<ViewModel>: View where ViewModel: DashboardViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {

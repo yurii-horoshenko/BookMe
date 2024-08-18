@@ -24,17 +24,18 @@ protocol CreateProfileViewModelProtocol: ObservableObject {
     func genderSelection()
 }
 
+@Observable
 final class CreateProfileViewModel: CreateProfileViewModelProtocol {
     // MARK: - Properties
     private let repository: ProfileRepositoryProtocol = ProfileRepository()
-    @Published var fullname = FieldData(placeholder: String(localized: "PROFILE-FULLNAME"))
-    @Published var nickname = FieldData(placeholder: String(localized: "PROFILE-NICKNAME"))
-    @Published var dateBirthday = FieldData(placeholder: String(localized: "PROFILE-DATEBIRTHDAY"))
-    @Published var phone = FieldData(placeholder: String(localized: "PROFILE-PHONE"))
-    @Published var email = FieldData(placeholder: String(localized: "PROFILE-EMAIL"))
-    @Published var gender = FieldData(placeholder: String(localized: "PROFILE-GENDER"))
-    @Published var toGenderSelection = false
-    @Published var toCode = false
+    var fullname = FieldData(placeholder: String(localized: "PROFILE-FULLNAME"))
+    var nickname = FieldData(placeholder: String(localized: "PROFILE-NICKNAME"))
+    var dateBirthday = FieldData(placeholder: String(localized: "PROFILE-DATEBIRTHDAY"))
+    var phone = FieldData(placeholder: String(localized: "PROFILE-PHONE"))
+    var email = FieldData(placeholder: String(localized: "PROFILE-EMAIL"))
+    var gender = FieldData(placeholder: String(localized: "PROFILE-GENDER"))
+    var toGenderSelection = false
+    var toCode = false
     var currentProfile: shared.ProfileModel
     var isCreate: Bool
     

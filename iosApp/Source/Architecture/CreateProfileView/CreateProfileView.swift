@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     var title: String {
         viewModel.currentProfile.isExist
         ? String(localized: "UPDATE-PROFILE-TITLE")

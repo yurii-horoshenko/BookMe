@@ -15,11 +15,12 @@ protocol LoginViewModelProtocol: ObservableObject {
     func login()
 }
 
+@Observable
 final class LoginViewModel: LoginViewModelProtocol {
     // MARK: - Properties
     private let repository: ProfileRepositoryProtocol = ProfileRepository()
-    @Published var phone = FieldData(placeholder: "Phone Number")
-    @Published var toCode = false
+    var phone = FieldData(placeholder: "Phone Number")
+    var toCode = false
     var view: LoginViewProtocol?
     
     // MARK: - Lifecycle

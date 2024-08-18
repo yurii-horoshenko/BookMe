@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BookingView<ViewModel>: View where ViewModel: BookingViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {

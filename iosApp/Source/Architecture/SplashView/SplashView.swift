@@ -14,7 +14,7 @@ protocol SplashViewProtocol {
 // MARK: - Splash Page
 struct SplashView<ViewModel>: View where ViewModel: SplashViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
