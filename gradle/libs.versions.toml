@@ -23,6 +23,7 @@ androidx-room = "2.7.0-alpha01"
 sqlite = "2.5.0-SNAPSHOT"
 koin = "4.0.0-RC1"
 koinCompose = "4.0.0-RC1"
+credentials = "1.3.0-rc01"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist-permissions-version" }
@@ -57,8 +58,12 @@ sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sql
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
+credentials-play-services = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
+google-identity = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "credentials" }
 
 [bundles]
+credentials = ["credentials", "credentials-play-services", "google-identity"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin-version" }
