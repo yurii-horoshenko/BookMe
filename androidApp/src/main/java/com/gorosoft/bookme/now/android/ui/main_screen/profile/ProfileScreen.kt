@@ -33,6 +33,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 @Composable
 fun ProfileScreen(
+    todo: String,
     navigator: DestinationsNavigator,
 ) {
     ProfileScreenContent()
