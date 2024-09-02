@@ -41,9 +41,8 @@ import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 
 @Preview
 @Composable
-fun EnableLocationDialog(
+fun Logout(
     modifier: Modifier = Modifier,
-    onEnableLocation: () -> Unit = { },
     onDismiss: () -> Unit = { },
 ) {
     Dialog(
