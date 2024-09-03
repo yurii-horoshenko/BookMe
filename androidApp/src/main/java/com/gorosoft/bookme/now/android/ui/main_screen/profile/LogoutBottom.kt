@@ -19,7 +19,9 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.Surface
 import androidx.compose.material.TabRowDefaults.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -45,66 +47,75 @@ fun Logout(
     modifier: Modifier = Modifier,
     onDismiss: () -> Unit = { },
 ) {
-    Dialog(
-        onDismissRequest = onDismiss,
-        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+
+    Box(
+        modifier = Modifier
+            .width(428.dp)
+            .height(266.dp)
+            .clip(RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp))
+            .background(AppTheme.colors.backgroundThemed.backgroundMain)
+            .border(1.dp, Color(0xF5F5F5))
+
+
     ) {
-        Box(
+
+        Text(
             modifier = Modifier
-                .width(428.dp)
-                .height(266.dp)
-                .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
-                .background(AppTheme.colors.backgroundThemed.backgroundMain)
+                .padding(40.dp)
+                .align(Alignment.TopCenter),
+            text = "Logout",
+            style = AppTheme.typography.heading.h4,
+            color = Color(0xFFF75555)
+        )
+        HorizontalDivider(
+            modifier =Modifier
+                .align(Alignment.TopCenter)
+                .width(380.dp)
+                .padding(top = 95.dp)
+            ,
+            color = AppTheme.colors.grayscale.gs200,
+            thickness = 1.dp,
+        )
+
+
+        Text(
+            modifier = Modifier
+                .align(Alignment.Center),
+            text = "Are you sure you want to log out?",
+            style = AppTheme.typography.heading.h5,
+            color = Color.Black,
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp))
+                .padding(24.dp)
+                .align(Alignment.BottomCenter)
+
 
         ) {
-
-            Text(
+            SecondaryButton(
                 modifier = Modifier
-                    .padding(40.dp)
-                    .align(Alignment.TopCenter),
-                text = "Logout",
-                style = AppTheme.typography.bodyLarge.semibold,
-                color = Color(0xFFF75555)
-            )
-
-            Text(
-                modifier = Modifier
-                    .align(Alignment.Center),
-                text = "Are you sure you want to log out?",
-                style = AppTheme.typography.bodyLarge.semibold,
-                color = Color.Black,
-            )
-            Row(
-                modifier = Modifier
+                    .padding(top = 32.dp, start = 1.dp, end = 3.dp)
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(20.dp))
-                    .padding(24.dp)
-                    .align(Alignment.BottomCenter)
-
-
-            ) {
-                SecondaryButton(
-                    modifier = Modifier
-                        .padding(top = 32.dp, start = 1.dp, end = 3.dp)
-                        .fillMaxWidth()
-                        .weight(1f),
-                    text = stringResource(R.string.cancel),
-                    onClick = {},
-                )
-                PrimaryButton(
-                    modifier = Modifier
-                        .padding(top = 32.dp, start = 1.dp, end = 3.dp)
-                        .fillMaxWidth()
-                        .weight(1f),
-                    text = "Yes, logout",
-                    onClick = {},
-                )
-
-            }
+                    .weight(1f),
+                text = stringResource(R.string.cancel),
+                onClick = {},
+            )
+            PrimaryButton(
+                modifier = Modifier
+                    .padding(top = 32.dp, start = 1.dp, end = 3.dp)
+                    .fillMaxWidth()
+                    .weight(1f),
+                text = "Yes, Logout",
+                onClick = {},
+            )
 
         }
+
     }
 }
+
 
 
 
