@@ -15,6 +15,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -80,10 +82,14 @@ fun Toolbar(modifier: Modifier = Modifier) {
 
 @Composable
 private fun TopSection(modifier: Modifier = Modifier) {
+
+    val showLogout = remember { mutableStateOf(false) }
+
+
     Box(
         modifier = modifier
             .padding(top = 34.dp)
-            .debounceClick(onClick = {})
+            .debounceClick(onClick = { showLogout.value = true })
     ) {
         Image(
             modifier = Modifier
@@ -110,6 +116,9 @@ private fun TopSection(modifier: Modifier = Modifier) {
         style = AppTheme.typography.bodyMedium.semibold,
         color = AppTheme.colors.grayscale.gs900,
     )
+    if (showLogout.value) {
+        LogoutBottomSheet(modifier .padding(top = 225.dp), onCancel = { showLogout.value = false })
+    }
 }
 
 @Preview

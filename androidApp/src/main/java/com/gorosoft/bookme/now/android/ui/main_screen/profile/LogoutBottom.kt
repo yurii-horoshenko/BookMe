@@ -26,7 +26,7 @@ import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.SecondaryButton
 
 @Composable
-fun Logout(
+fun LogoutBottomSheet(
     modifier: Modifier = Modifier,
     onLogout: () -> Unit = { },
     onCancel: () -> Unit = { },
@@ -104,9 +104,9 @@ fun Logout(
 
 @Preview
 @Composable
-private fun LogoutPreview() {
+private fun LogoutBottomSheetPreview() {
     AppTheme {
-        Logout()
+        LogoutBottomSheet()
     }
 }
 
