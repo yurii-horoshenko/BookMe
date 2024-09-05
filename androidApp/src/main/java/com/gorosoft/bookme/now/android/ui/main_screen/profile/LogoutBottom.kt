@@ -57,8 +57,8 @@ fun Logout(
             text = stringResource(R.string.logout),
             style = AppTheme.typography.heading.h4,
             color = AppTheme.colors.alertStatus.error
-
         )
+
         HorizontalDivider(
             modifier = Modifier
                 .width(380.dp)
