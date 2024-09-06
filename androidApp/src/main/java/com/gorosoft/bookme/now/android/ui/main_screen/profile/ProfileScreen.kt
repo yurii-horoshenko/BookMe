@@ -12,8 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -80,16 +83,18 @@ fun Toolbar(modifier: Modifier = Modifier) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopSection(modifier: Modifier = Modifier) {
 
-    val showLogout = remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState()
+    val showLogoutBottomSheet = remember { mutableStateOf(false) }
 
 
     Box(
         modifier = modifier
             .padding(top = 34.dp)
-            .debounceClick(onClick = { showLogout.value = true })
+            .debounceClick(onClick = { showLogoutBottomSheet.value = true })
     ) {
         Image(
             modifier = Modifier
@@ -116,8 +121,20 @@ private fun TopSection(modifier: Modifier = Modifier) {
         style = AppTheme.typography.bodyMedium.semibold,
         color = AppTheme.colors.grayscale.gs900,
     )
-    if (showLogout.value) {
-        LogoutBottomSheet(modifier .padding(top = 225.dp), onCancel = { showLogout.value = false })
+    if (showLogoutBottomSheet.value) {
+
+        ModalBottomSheet(
+            onDismissRequest = {
+                showLogoutBottomSheet.value = false
+            },
+            sheetState = sheetState,
+            dragHandle = {
+
+            }
+        ) {
+            LogoutBottomSheet(
+                onCancel = { showLogoutBottomSheet.value = false })
+        }
     }
 }
 
