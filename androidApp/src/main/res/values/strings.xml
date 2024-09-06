@@ -40,4 +40,15 @@
     <string name="logout">Logout</string>
     <string name="language">Language</string>
     <string name="suggested">Suggested</string>
+    <string name="russian">Russian</string>
+    <string name="bengali">Bengali</string>
+    <string name="arabic">Arabic</string>
+    <string name="french">French</string>
+    <string name="spanish">Spanish</string>
+    <string name="hindi">Hindi</string>
+    <string name="mandarin">Mandarin</string>
+    <string name="changeLanguage">Language</string>
+    <string name="english_uk">English (UK)</string>
+    <string name="english_us">English (US)</string>
+    <string name="indonesia">Indonesia</string>
 </resources>

@@ -2,6 +2,7 @@ package com.gorosoft.bookme.now.android.ui.main_screen.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,12 +23,10 @@ import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 
 
-@Preview
 @Composable
 fun ChooseLanguageScreen(
     modifier: Modifier = Modifier,
-    onLogout: () -> Unit = { },
-    onCancel: () -> Unit = { },
+    onChoose: () -> Unit = { },
 ) {
 
     Column(
@@ -56,35 +55,39 @@ fun ChooseLanguageScreen(
         )
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp),
-                text = "English (US)",
+                modifier = Modifier,
+                text = stringResource(R.string.english_us),
                 style = AppTheme.typography.bodyXLarge.semibold,
                 color = AppTheme.colors.grayscale.gs900
             )
             Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
+                modifier = Modifier.padding(end = 24.dp),
                 painter = painterResource(R.drawable.ic_radio_selected),
                 contentDescription = "Selected radio button image",
             )
         }
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp),
-                text = "English (UK)",
+                modifier = Modifier,
+                text = stringResource(R.string.english_uk),
                 style = AppTheme.typography.bodyXLarge.semibold,
                 color = AppTheme.colors.grayscale.gs900
             )
             Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
+                modifier = Modifier.padding(end = 24.dp),
                 painter = painterResource(R.drawable.ic_radio),
                 contentDescription = "radio button image",
             )
@@ -105,156 +108,176 @@ fun ChooseLanguageScreen(
             Text(
                 modifier = Modifier
                     .padding(top = 24.dp, start = 24.dp),
-                text = "Language",
+                text = stringResource(R.string.changeLanguage),
                 style = AppTheme.typography.heading.h4,
                 color = AppTheme.colors.grayscale.gs900
             )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                modifier = Modifier,
+                //.padding(top = 24.dp, start = 24.dp),
+                text = stringResource(R.string.mandarin),
+                style = AppTheme.typography.bodyXLarge.semibold,
+                color = AppTheme.colors.grayscale.gs900
+            )
             Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
+                modifier = Modifier.padding(end = 24.dp),
                 painter = painterResource(R.drawable.ic_radio),
                 contentDescription = "radio button image",
             )
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp),
-                text = "Mandarin",
+                modifier = Modifier,
+                text = stringResource(R.string.hindi),
                 style = AppTheme.typography.bodyXLarge.semibold,
                 color = AppTheme.colors.grayscale.gs900
             )
             Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
+                modifier = Modifier.padding(end = 24.dp),
                 painter = painterResource(R.drawable.ic_radio),
                 contentDescription = "radio button image",
             )
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp),
-                text = "Hindi",
+                modifier = Modifier,
+                text = stringResource(R.string.spanish),
                 style = AppTheme.typography.bodyXLarge.semibold,
                 color = AppTheme.colors.grayscale.gs900
             )
             Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
+                modifier = Modifier.padding(end = 24.dp),
                 painter = painterResource(R.drawable.ic_radio),
                 contentDescription = "radio button image",
             )
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp),
-                text = "Spanish",
+                modifier = Modifier,
+                text = stringResource(R.string.french),
                 style = AppTheme.typography.bodyXLarge.semibold,
                 color = AppTheme.colors.grayscale.gs900
             )
             Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
+                modifier = Modifier.padding(end = 24.dp),
                 painter = painterResource(R.drawable.ic_radio),
                 contentDescription = "radio button image",
             )
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp),
-                text = "French",
+                modifier = Modifier,
+                text = stringResource(R.string.arabic),
                 style = AppTheme.typography.bodyXLarge.semibold,
                 color = AppTheme.colors.grayscale.gs900
             )
             Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
+                modifier = Modifier.padding(end = 24.dp),
                 painter = painterResource(R.drawable.ic_radio),
                 contentDescription = "radio button image",
             )
         }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                modifier = Modifier,
+                text = stringResource(R.string.bengali),
+                style = AppTheme.typography.bodyXLarge.semibold,
+                color = AppTheme.colors.grayscale.gs900
+            )
+            Image(
+                modifier = Modifier.padding(end = 24.dp),
+                painter = painterResource(R.drawable.ic_radio),
+                contentDescription = "radio button image",
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                modifier = Modifier,
+                text = stringResource(R.string.russian),
+                style = AppTheme.typography.bodyXLarge.semibold,
+                color = AppTheme.colors.grayscale.gs900
+            )
+            Image(
+                modifier = Modifier.padding(end = 24.dp),
+                painter = painterResource(R.drawable.ic_radio),
+                contentDescription = "radio button image",
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp, start = 24.dp, bottom = 40.dp)
+                .clickable(onClick = onChoose),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                modifier = Modifier,
+                text = stringResource(R.string.indonesia),
+                style = AppTheme.typography.bodyXLarge.semibold,
+                color = AppTheme.colors.grayscale.gs900
+            )
+            Image(
+                modifier = Modifier.padding(end = 24.dp),
+                painter = painterResource(R.drawable.ic_radio),
+                contentDescription = "radio button image",
+            )
+        }
+    }
+}
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp),
-                text = "Arabic",
-                style = AppTheme.typography.bodyXLarge.semibold,
-                color = AppTheme.colors.grayscale.gs900
-            )
-            Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
-                painter = painterResource(R.drawable.ic_radio),
-                contentDescription = "radio button image",
-            )
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp),
-                text = "Bengali",
-                style = AppTheme.typography.bodyXLarge.semibold,
-                color = AppTheme.colors.grayscale.gs900
-            )
-            Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
-                painter = painterResource(R.drawable.ic_radio),
-                contentDescription = "radio button image",
-            )
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp),
-                text = "Russian",
-                style = AppTheme.typography.bodyXLarge.semibold,
-                color = AppTheme.colors.grayscale.gs900
-            )
-            Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
-                painter = painterResource(R.drawable.ic_radio),
-                contentDescription = "radio button image",
-            )
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                modifier = Modifier
-                    .padding(top = 24.dp, start = 24.dp, bottom = 40.dp),
-                text = "Indonesia",
-                style = AppTheme.typography.bodyXLarge.semibold,
-                color = AppTheme.colors.grayscale.gs900
-            )
-            Image(
-                modifier = Modifier.padding(top = 24.dp, end = 24.dp),
-                painter = painterResource(R.drawable.ic_radio),
-                contentDescription = "radio button image",
-            )
-        }
+@Preview
+@Composable
+private fun ChooseLanguageScreenPreview() {
+    AppTheme {
+        ChooseLanguageScreen()
     }
 }
