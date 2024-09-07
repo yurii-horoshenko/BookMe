@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
+import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 
 
 @Composable
@@ -37,14 +38,25 @@ fun ChooseLanguageScreen(
         horizontalAlignment = Alignment.Start,
     ) {
 
-        Text(
+        Row(
             modifier = Modifier
-                .padding(top = 33.5.dp, start = 24.dp),
-            text = stringResource(R.string.language),
-            style = AppTheme.typography.heading.h4,
-            color = AppTheme.colors.grayscale.gs900
-        )
-
+                .fillMaxWidth()
+                .padding(top = 24.dp, start = 24.dp)
+                .clickable(onClick = onChoose),
+        ) {
+            Image(
+                modifier = Modifier.padding(),
+                painter = painterResource(R.drawable.ic_arrow_back),
+                contentDescription = "back arrow",
+            )
+            Text(
+                modifier = Modifier
+                    .padding( start = 16.dp),
+                text = stringResource(R.string.language),
+                style = AppTheme.typography.heading.h4,
+                color = AppTheme.colors.grayscale.gs900
+            )
+        }
 
         Text(
             modifier = Modifier
@@ -95,7 +107,7 @@ fun ChooseLanguageScreen(
 
         HorizontalDivider(
             modifier = Modifier
-                .width(380.dp)
+                .fillMaxWidth()
                 .padding(top = 24.dp, start = 24.dp, end = 24.dp),
             color = AppTheme.colors.grayscale.gs200,
             thickness = 1.dp,
