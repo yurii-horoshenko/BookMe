@@ -124,13 +124,11 @@ private fun TopSection(modifier: Modifier = Modifier) {
     if (showLogoutBottomSheet.value) {
 
         ModalBottomSheet(
+            containerColor = AppTheme.colors.backgroundThemed.backgroundMain,
             onDismissRequest = {
                 showLogoutBottomSheet.value = false
             },
             sheetState = sheetState,
-            dragHandle = {
-
-            }
         ) {
             LogoutBottomSheet(
                 onCancel = { showLogoutBottomSheet.value = false })

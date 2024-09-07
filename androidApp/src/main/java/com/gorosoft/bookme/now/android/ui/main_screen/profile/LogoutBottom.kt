@@ -35,25 +35,12 @@ fun LogoutBottomSheet(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .wrapContentHeight()
-            .clip(RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp))
-            .background(AppTheme.colors.backgroundThemed.backgroundMain)
-            .border(1.dp, Color(0xFFF5F5F5)),
+            .wrapContentHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
-
-
-        ) {
-        HorizontalDivider(
-            modifier = Modifier
-                .width(38.dp)
-                .padding(top = 8.dp),
-            color = AppTheme.colors.grayscale.gs200,
-            thickness = 3.dp,
-        )
+    ) {
 
         Text(
-            modifier = Modifier
-                .padding(top = 24.dp),
+            modifier = Modifier,
             text = stringResource(R.string.logout),
             style = AppTheme.typography.heading.h4,
             color = AppTheme.colors.alertStatus.error
@@ -61,7 +48,7 @@ fun LogoutBottomSheet(
         )
         HorizontalDivider(
             modifier = Modifier
-                .width(380.dp)
+                .fillMaxWidth()
                 .padding(top = 24.dp, start = 24.dp, end = 24.dp),
             color = AppTheme.colors.grayscale.gs200,
             thickness = 1.dp,
