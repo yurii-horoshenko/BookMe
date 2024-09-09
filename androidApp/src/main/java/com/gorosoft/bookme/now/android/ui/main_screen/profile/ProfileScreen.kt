@@ -32,14 +32,11 @@ import com.gorosoft.bookme.now.android.annotations.BottomBarNavGraph
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @BottomBarNavGraph
 @Destination
 @Composable
-fun ProfileScreen(
-    navigator: DestinationsNavigator,
-) {
+fun ProfileScreen() {
     ProfileScreenContent()
 }
 
@@ -86,10 +83,8 @@ fun Toolbar(modifier: Modifier = Modifier) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopSection(modifier: Modifier = Modifier) {
-
     val sheetState = rememberModalBottomSheetState()
     val showLogoutBottomSheet = remember { mutableStateOf(false) }
-
 
     Box(
         modifier = modifier
@@ -122,7 +117,6 @@ private fun TopSection(modifier: Modifier = Modifier) {
         color = AppTheme.colors.grayscale.gs900,
     )
     if (showLogoutBottomSheet.value) {
-
         ModalBottomSheet(
             containerColor = AppTheme.colors.backgroundThemed.backgroundMain,
             onDismissRequest = {
@@ -131,7 +125,8 @@ private fun TopSection(modifier: Modifier = Modifier) {
             sheetState = sheetState,
         ) {
             LogoutBottomSheet(
-                onCancel = { showLogoutBottomSheet.value = false })
+                onCancel = { showLogoutBottomSheet.value = false }
+            )
         }
     }
 }

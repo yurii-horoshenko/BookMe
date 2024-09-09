@@ -27,14 +27,12 @@ fun LogoutBottomSheet(
     onLogout: () -> Unit = { },
     onCancel: () -> Unit = { },
 ) {
-
     Column(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
         Text(
             modifier = Modifier,
             text = stringResource(R.string.logout),
@@ -50,7 +48,6 @@ fun LogoutBottomSheet(
             thickness = 1.dp,
         )
 
-
         Text(
             modifier = Modifier
                 .padding(top = 24.dp),
@@ -64,7 +61,6 @@ fun LogoutBottomSheet(
                 .clip(RoundedCornerShape(20.dp))
                 .padding(top = 24.dp, start = 24.dp, end = 24.dp, bottom = 48.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
-
 
         ) {
             SecondaryButton(
@@ -92,6 +88,3 @@ private fun LogoutBottomSheetPreview() {
         LogoutBottomSheet()
     }
 }
-
-
-
