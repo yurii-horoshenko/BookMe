@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.RadioButton
 import androidx.compose.material.RadioButtonDefaults
@@ -30,13 +31,11 @@ import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 
-
 @Composable
 fun ChooseLanguageScreen(
     modifier: Modifier = Modifier,
     onChoose: () -> Unit = { },
 ) {
-
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -44,7 +43,6 @@ fun ChooseLanguageScreen(
             .background(AppTheme.colors.backgroundThemed.backgroundMain),
         horizontalAlignment = Alignment.Start,
     ) {
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -73,15 +71,15 @@ fun ChooseLanguageScreen(
             color = AppTheme.colors.grayscale.gs900
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.english_us
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.english_uk
-       )
+        )
 
         HorizontalDivider(
             modifier = Modifier
@@ -104,42 +102,42 @@ fun ChooseLanguageScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.mandarin
         )
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.hindi
         )
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.spanish
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.french
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.arabic
         )
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.bengali
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.russian
         )
-  Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         ChooseLanguageItem(
             languaheId = R.string.indonesia
         )
-
+        Spacer(modifier = Modifier.height(40.dp))
     }
 }
 
@@ -152,25 +150,24 @@ private fun ChooseLanguageItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 24.dp,end = 10.dp)
+            .padding(start = 24.dp, end = 24.dp)
             .debounceClick { selectedOption = !selectedOption },
-        //horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier,
             text = stringResource(languaheId),
             style = AppTheme.typography.bodyXLarge.semibold,
             color = AppTheme.colors.grayscale.gs900
         )
         RadioButton(
-            modifier = Modifier,
+            modifier = Modifier.size(20.dp),
             selected = selectedOption,
             onClick = { selectedOption = !selectedOption },
             colors = RadioButtonDefaults.colors(
                 selectedColor = AppTheme.colors.mainColors.primary500,
-                unselectedColor =  AppTheme.colors.mainColors.primary500,
-                disabledColor =  AppTheme.colors.mainColors.primary500,
+                unselectedColor = AppTheme.colors.mainColors.primary500,
+                disabledColor = AppTheme.colors.mainColors.primary500,
             )
         )
     }
