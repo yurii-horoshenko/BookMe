@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -57,6 +56,8 @@ fun ProfileScreenContent() {
             color = AppTheme.colors.grayscale.gs200,
             thickness = 1.dp,
         )
+        Spacer(modifier = Modifier.height(24.dp))
+        ProfileScreenSettings()
     }
 }
 
@@ -120,5 +121,3 @@ private fun ProfileScreenContentPreview() {
         ProfileScreenContent()
     }
 }
-
-
