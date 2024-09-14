@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now.android.ui.main_screen.profile
+package com.gorosoft.bookme.now.android.ui.main_screen.profile.choose_language
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,7 +30,9 @@ import androidx.compose.ui.unit.dp
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @Composable
 fun ChooseLanguageScreen(
     modifier: Modifier = Modifier,
