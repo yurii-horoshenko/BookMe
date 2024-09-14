@@ -25,10 +25,11 @@ import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 
+@Suppress("LongMethod")
 @Composable
 fun ProfileScreenSettings(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    onLanguageClick: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
@@ -60,7 +61,7 @@ fun ProfileScreenSettings(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .debounceClick { onClick },
+                .debounceClick(onClick = onLanguageClick),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
@@ -96,7 +97,7 @@ fun ProfileScreenSettings(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .debounceClick { onClick },
+                .debounceClick { onLanguageClick },
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
@@ -138,7 +139,7 @@ fun ProfileScreenSettings(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .debounceClick { onClick },
+                .debounceClick { onLanguageClick },
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(

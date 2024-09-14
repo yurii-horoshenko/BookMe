@@ -59,7 +59,9 @@ fun ProfileScreenContent() {
             thickness = 1.dp,
         )
         Spacer(modifier = Modifier.height(24.dp))
-        ProfileScreenSettings()
+        ProfileScreenSettings(
+            onLanguageClick = {},
+        )
     }
 }
 
