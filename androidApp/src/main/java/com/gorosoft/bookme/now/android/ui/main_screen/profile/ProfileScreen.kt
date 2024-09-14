@@ -58,6 +58,8 @@ fun ProfileScreenContent() {
             color = AppTheme.colors.grayscale.gs200,
             thickness = 1.dp,
         )
+        Spacer(modifier = Modifier.height(24.dp))
+        ProfileScreenSettings()
     }
 }
 
