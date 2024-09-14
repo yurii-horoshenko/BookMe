@@ -1,6 +1,6 @@
 [versions]
 accompanist-permissions-version = "0.35.0-alpha"
-android-gradle-plugin-version = "8.5.2"
+android-gradle-plugin-version = "8.6.0"
 activity-compose-version = "1.9.1"
 coil-version = "2.7.0"
 compose-bom-version = "2024.06.00"

@@ -189,6 +189,7 @@ private fun MainContent(
     }
 }
 
+@Suppress("MagicNumber")
 @Composable
 private fun BoxScope.MyCurrentLocation(
     modifier: Modifier = Modifier,
