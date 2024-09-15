@@ -1,10 +1,7 @@
-@file:OptIn(ExperimentalFoundationApi::class)
-
 package com.gorosoft.bookme.now.android.ui.onboarding
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -27,30 +24,28 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.gorosoft.bookme.now.android.NavGraphDestination
 import com.gorosoft.bookme.now.android.R
-import com.gorosoft.bookme.now.android.ui.destinations.LoginScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.ButtonDefaultBottomPadding
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.WormPageIndicator
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 private const val TutorialPagesCount = 2
 
-@Destination
 @Composable
 fun TutorialCarouselScreen(
-    navigator: DestinationsNavigator,
+    navController: NavController,
     viewModel: TutorialCarouselViewModel = koinViewModel(),
 ) {
     TutorialCarouselContent(
         navigateToAccountSetup = {
             viewModel.setHadTutorial()
-            navigator.popBackStack()
-            navigator.navigate(LoginScreenDestination)
+            navController.popBackStack()
+            navController.navigate(NavGraphDestination.Login.route)
         }
     )
 }

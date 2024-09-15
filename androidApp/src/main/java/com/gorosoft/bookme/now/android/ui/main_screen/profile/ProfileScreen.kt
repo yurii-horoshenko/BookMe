@@ -12,9 +12,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,23 +28,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gorosoft.bookme.now.android.R
-import com.gorosoft.bookme.now.android.annotations.BottomBarNavGraph
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@BottomBarNavGraph
-@Destination
 @Composable
-fun ProfileScreen(
-    navigator: DestinationsNavigator,
-) {
-    ProfileScreenContent()
+fun ProfileScreen() {
+    ProfileScreenContent(
+        onLanguageClick = {
+        }
+    )
 }
 
 @Composable
-fun ProfileScreenContent() {
+fun ProfileScreenContent(
+    onLanguageClick: () -> Unit = {},
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -55,6 +58,10 @@ fun ProfileScreenContent() {
         HorizontalDivider(
             color = AppTheme.colors.grayscale.gs200,
             thickness = 1.dp,
+        )
+        Spacer(modifier = Modifier.height(24.dp))
+        ProfileScreenSettings(
+            onLanguageClick = onLanguageClick,
         )
     }
 }
@@ -78,12 +85,16 @@ fun Toolbar(modifier: Modifier = Modifier) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopSection(modifier: Modifier = Modifier) {
+    val sheetState = rememberModalBottomSheetState()
+    val showLogoutBottomSheet = remember { mutableStateOf(false) }
+
     Box(
         modifier = modifier
             .padding(top = 34.dp)
-            .debounceClick(onClick = {})
+            .debounceClick(onClick = { showLogoutBottomSheet.value = true })
     ) {
         Image(
             modifier = Modifier
@@ -110,6 +121,19 @@ private fun TopSection(modifier: Modifier = Modifier) {
         style = AppTheme.typography.bodyMedium.semibold,
         color = AppTheme.colors.grayscale.gs900,
     )
+    if (showLogoutBottomSheet.value) {
+        ModalBottomSheet(
+            containerColor = AppTheme.colors.backgroundThemed.backgroundMain,
+            onDismissRequest = {
+                showLogoutBottomSheet.value = false
+            },
+            sheetState = sheetState,
+        ) {
+            LogoutBottomSheet(
+                onCancel = { showLogoutBottomSheet.value = false }
+            )
+        }
+    }
 }
 
 @Preview

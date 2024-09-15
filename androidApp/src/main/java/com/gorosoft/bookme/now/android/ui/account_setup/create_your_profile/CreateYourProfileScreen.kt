@@ -33,10 +33,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
+import com.gorosoft.bookme.now.android.NavGraphDestination
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.BirthDatePickerDialog
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.GenderBottomSheetContent
-import com.gorosoft.bookme.now.android.ui.destinations.EnterOtpScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
 import com.gorosoft.bookme.now.android.ui.utils.ButtonDefaultBottomPadding
@@ -46,17 +47,14 @@ import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
 import com.gorosoft.bookme.now.android.ui_models.title
 import com.gorosoft.bookme.now.domain.models.UserGenderType
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDate
 
-@Destination
 @Composable
 fun CreateYourProfileScreen(
+    navController: NavController,
     viewModel: CreateYourProfileViewModel = koinViewModel(),
-    navigator: DestinationsNavigator,
 ) {
     val profileState by viewModel.profileState.collectAsStateWithLifecycle()
     val buttonEnabledState by viewModel.buttonEnablingState.collectAsStateWithLifecycle()
@@ -67,9 +65,14 @@ fun CreateYourProfileScreen(
         onGenderSelected = viewModel::updateGender,
         onBirthDateSelected = viewModel::updateDateOfBirth,
         navigateForward = {
-            navigator.navigate(EnterOtpScreenDestination(phoneNumber = "+380 63 111 22 33"))
+            navController.navigate(
+                route = NavGraphDestination.EnterOtp.route.replace(
+                    "{phoneNumber}",
+                    "+380 63 111 22 33"
+                )
+            )
         },
-        navigateBack = { navigator.popBackStack() },
+        navigateBack = { navController.popBackStack() },
     )
 }
 

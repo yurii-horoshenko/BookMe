@@ -35,4 +35,16 @@
     <string name="nearby_your_location">Nearby Your Location</string>
     <string name="enable_location">Enable Location</string>
     <string name="enable_location_description">We need location access to find the nearest barber/salon around you.</string>
+    <string name="are_you_sure_you_want_to_log_out">Are you sure you want to log out?</string>
+    <string name="yes_logout">Yes, Logout</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="notification">Notification</string>
+    <string name="wallet">Wallet</string>
+    <string name="security">Security</string>
+    <string name="language">Language</string>
+    <string name="english_us">English (US)</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="logout">Logout</string>
 </resources>
