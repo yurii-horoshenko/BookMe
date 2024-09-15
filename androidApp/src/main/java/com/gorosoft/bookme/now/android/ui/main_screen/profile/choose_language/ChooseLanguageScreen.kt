@@ -2,7 +2,6 @@ package com.gorosoft.bookme.now.android.ui.main_screen.profile.choose_language
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,16 +26,35 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
-import com.ramcosta.composedestinations.annotation.Destination
+import com.gorosoft.bookme.now.android.ui_models.LanguageUiModel
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
+import org.koin.androidx.compose.koinViewModel
 
-@Destination
 @Composable
 fun ChooseLanguageScreen(
+    navController: NavController,
+    viewModel: ChooseLanguageViewModel = koinViewModel(),
+) {
+    val languages by viewModel.languagesFlow.collectAsStateWithLifecycle()
+    ChooseLanguageContent(
+        languages = languages,
+        onNavigateBack = navController::popBackStack,
+    )
+}
+
+@Suppress("UnusedParameter")
+@Composable
+private fun ChooseLanguageContent(
+    languages: PersistentList<LanguageUiModel>,
     modifier: Modifier = Modifier,
     onChoose: () -> Unit = { },
+    onNavigateBack: () -> Unit = { },
 ) {
     Column(
         modifier = modifier
@@ -48,11 +66,12 @@ fun ChooseLanguageScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp, start = 24.dp)
-                .clickable(onClick = onChoose),
+                .padding(top = 24.dp, start = 24.dp),
         ) {
             Image(
-                modifier = Modifier.padding(),
+                modifier = Modifier
+                    .padding()
+                    .debounceClick(onClick = onNavigateBack),
                 painter = painterResource(R.drawable.ic_arrow_back),
                 contentDescription = "back arrow",
             )
@@ -179,6 +198,8 @@ private fun ChooseLanguageItem(
 @Composable
 private fun ChooseLanguageScreenPreview() {
     AppTheme {
-        ChooseLanguageScreen()
+        ChooseLanguageContent(
+            languages = emptyList<LanguageUiModel>().toPersistentList()
+        )
     }
 }
