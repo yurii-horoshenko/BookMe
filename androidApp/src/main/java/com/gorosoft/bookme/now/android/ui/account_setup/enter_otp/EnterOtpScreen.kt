@@ -22,20 +22,17 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
+import com.gorosoft.bookme.now.android.NavGraphDestination
 import com.gorosoft.bookme.now.android.R
-import com.gorosoft.bookme.now.android.ui.NavGraphs
-import com.gorosoft.bookme.now.android.ui.destinations.MainScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 
-@Destination
 @Composable
 fun EnterOtpScreen(
     phoneNumber: String,
-    navigator: DestinationsNavigator,
+    navController: NavController,
     viewModel: EnterOtpViewModel = koinViewModel()
 ) {
     val otpCode by viewModel.otpStateFlow.collectAsStateWithLifecycle()
@@ -45,9 +42,9 @@ fun EnterOtpScreen(
         viewModel.effect.collect {
             when (it) {
                 EnterOtpEffects.ShowSuccessDialog -> {
-                    navigator.navigate(MainScreenDestination) {
+                    navController.navigate(NavGraphDestination.Main.route) {
                         this.launchSingleTop = true
-                        popUpTo(NavGraphs.root) { inclusive = true }
+                        popUpTo(NavGraphDestination.Splash.route) { inclusive = true }
                     }
                 }
             }
@@ -60,7 +57,7 @@ fun EnterOtpScreen(
         otpCode = otpCode,
         resendOtpTime = resendOtpTime,
         onOtpChanged = viewModel::updateOtp,
-        navigateBack = { navigator.popBackStack() },
+        navigateBack = { navController.popBackStack() },
     )
 }
 
