@@ -26,7 +26,7 @@ class EnterOtpViewModel : ViewModel() {
     val otpStateFlow get() = _otpStateFlow.asStateFlow()
 
     private val _effect = MutableStateFlow<EnterOtpEffects?>(null)
-    val effect get() = _effect.filterNotNull()
+    val effect get() = _effect.asStateFlow().filterNotNull()
 
     private val tickerFlow = flow {
         for (i in 59 downTo 0) {

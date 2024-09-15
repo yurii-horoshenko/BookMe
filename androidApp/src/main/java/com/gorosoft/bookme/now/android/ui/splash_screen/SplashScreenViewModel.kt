@@ -2,6 +2,7 @@ package com.gorosoft.bookme.now.android.ui.splash_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gorosoft.bookme.now.android.ui.splash_screen.SplashScreenEffect.ShowError
 import com.gorosoft.bookme.now.domain.usecase.HadTutorialUseCase
 import com.gorosoft.bookme.now.domain.usecase.IsLoggedInUseCase
 import com.gorosoft.bookme.now.domain.usecase.LoginUseCase
@@ -44,12 +45,10 @@ class SplashScreenViewModel(
                     _effects.update { SplashScreenEffect.NavigateToHome }
                 }
                 ?.onError { error ->
-                    _effects.update { SplashScreenEffect.ShowError(error.message) }
+                    _effects.update { ShowError(error.message) }
                 }
                 ?.onFailure { failure ->
-                    _effects.update {
-                        SplashScreenEffect.ShowError(failure.exception.message.orEmpty())
-                    }
+                    _effects.update { ShowError(failure.exception.message.orEmpty()) }
                 }
         }
     }

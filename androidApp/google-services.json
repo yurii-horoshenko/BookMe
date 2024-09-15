@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "916469002486",
+    "project_id": "bookmenow-d69aa",
+    "storage_bucket": "bookmenow-d69aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916469002486:android:9f6f65ad8ceb473655fcd7",
+        "android_client_info": {
+          "package_name": "com.gorosoft.bookme.now.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916469002486-obt2c6p93u0su476m33d71o212mu11pf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gorosoft.bookme.now.android",
+            "certificate_hash": "b8df90197d889be50242307b855d3f95fa926082"
+          }
+        },
+        {
+          "client_id": "916469002486-i3sgnv0j6ppagjfcnd8hrcgsqiinkt9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2LZICrlkvVMxt1Y_mi8E65rH2j5JRRu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916469002486-i3sgnv0j6ppagjfcnd8hrcgsqiinkt9p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "916469002486-krj1h4gvfee48ph4bicd9o6b635n5k50.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gorosoft.bookme.now"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
