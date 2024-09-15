@@ -18,23 +18,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.gorosoft.bookme.now.android.NavGraphDestination
 import com.gorosoft.bookme.now.android.R
-import com.gorosoft.bookme.now.android.ui.destinations.HomeScreenDestination
-import com.gorosoft.bookme.now.android.ui.destinations.LoginScreenDestination
-import com.gorosoft.bookme.now.android.ui.destinations.WelcomeScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootNavGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 
 // TODO move to new SplashScreen API
 @Suppress("MagicNumber")
-@RootNavGraph(start = true)
-@Destination
 @Composable
 fun SplashScreen(
-    navigator: DestinationsNavigator,
+    navController: NavController,
     viewModel: SplashScreenViewModel = koinViewModel()
 ) {
     val context = LocalContext.current
@@ -42,18 +36,18 @@ fun SplashScreen(
         viewModel.effects.collect {
             when (it) {
                 is SplashScreenEffect.NavigateToLogin -> {
-                    navigator.popBackStack()
-                    navigator.navigate(LoginScreenDestination)
+                    navController.popBackStack()
+                    navController.navigate(NavGraphDestination.Login.route)
                 }
 
                 is SplashScreenEffect.NavigateToWelcome -> {
-                    navigator.popBackStack()
-                    navigator.navigate(WelcomeScreenDestination)
+                    navController.popBackStack()
+                    navController.navigate(NavGraphDestination.Welcome.route)
                 }
 
                 is SplashScreenEffect.NavigateToHome -> {
-                    navigator.popBackStack()
-                    navigator.navigate(HomeScreenDestination)
+                    navController.popBackStack()
+                    navController.navigate(NavGraphDestination.Main.route)
                 }
 
                 is SplashScreenEffect.ShowError -> {

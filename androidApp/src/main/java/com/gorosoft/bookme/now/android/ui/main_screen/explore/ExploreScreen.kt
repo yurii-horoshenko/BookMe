@@ -30,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -42,7 +43,6 @@ import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.gorosoft.bookme.now.android.R
-import com.gorosoft.bookme.now.android.annotations.BottomBarNavGraph
 import com.gorosoft.bookme.now.android.managers.LocationTracker.LocationResult
 import com.gorosoft.bookme.now.android.managers.LocationTracker.LocationResult.GpsNotAvailable
 import com.gorosoft.bookme.now.android.managers.LocationTracker.LocationResult.PermissionsNotGranted
@@ -54,18 +54,14 @@ import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 import com.gorosoft.bookme.now.android.ui.utils.isAllPermissionGranted
 import com.gorosoft.bookme.now.android.ui.utils.latLng
 import com.gorosoft.bookme.now.android.ui.utils.openAppSystemSettings
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 
 const val ZoomLevel = 15f
 
-@BottomBarNavGraph
-@Destination
 @Composable
 @Suppress("UnusedParameter")
 fun ExploreScreen(
-    navigator: DestinationsNavigator,
+    navController: NavController,
     viewModel: ExploreViewModel = koinViewModel(),
 ) {
     val isShowNavigateToSettingsState =

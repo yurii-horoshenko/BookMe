@@ -27,7 +27,7 @@ import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 
-@Suppress("LongMethod")
+@Suppress("LongMethod", "MagicNumber")
 @Composable
 fun ProfileScreenSettings(
     modifier: Modifier = Modifier,
