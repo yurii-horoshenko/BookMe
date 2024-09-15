@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     id("kotlin-parcelize")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -86,9 +87,6 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.lifecycle.compose)
 
-    implementation(libs.compose.destinations.core)
-    ksp(libs.compose.destinations.ksp)
-
     implementation(libs.androidx.material3)
     implementation(libs.coil.compose)
     implementation(libs.accompanist.permissions)
@@ -96,6 +94,8 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     implementation(libs.maps.compose)
     implementation(libs.play.services.location)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 }
 
 secrets {

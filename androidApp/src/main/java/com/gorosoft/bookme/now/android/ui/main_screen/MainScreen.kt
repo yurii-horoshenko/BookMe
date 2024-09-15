@@ -11,6 +11,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
@@ -18,40 +19,46 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.gorosoft.bookme.now.android.ui.NavGraphs
-import com.gorosoft.bookme.now.android.ui.appCurrentDestinationAsState
-import com.gorosoft.bookme.now.android.ui.startAppDestination
+import com.gorosoft.bookme.now.android.ui.main_screen.explore.ExploreScreen
+import com.gorosoft.bookme.now.android.ui.main_screen.home.HomeScreen
+import com.gorosoft.bookme.now.android.ui.main_screen.profile.ProfileScreen
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.BottomNavigationShape
-import com.ramcosta.composedestinations.DestinationsNavHost
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.ramcosta.composedestinations.utils.rememberDestinationsNavigator
 
-@Destination
 @Composable
-fun MainScreen() {
-    MainScreenContent()
+fun MainScreen(navController: NavController) {
+    MainScreenContent(navController = navController)
 }
 
 @Composable
-private fun MainScreenContent() {
-    val navController = rememberNavController()
-    val destinationNavigator = navController.rememberDestinationsNavigator()
+private fun MainScreenContent(navController: NavController = rememberNavController()) {
+    val bottomBarNavController = rememberNavController()
     Scaffold(
         bottomBar = {
             BottomBar(
-                navController = navController,
-                destinationsNavigator = destinationNavigator,
+                navController = bottomBarNavController,
             )
         }
     ) { paddingValues ->
-        DestinationsNavHost(
+        NavHost(
             modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding()),
-            navGraph = NavGraphs.bottomBar,
-            navController = navController,
-        )
+            navController = bottomBarNavController,
+            startDestination = BottomBarDestinations.Home.route,
+        ) {
+            composable(route = BottomBarDestinations.Home.route) {
+                HomeScreen()
+            }
+            composable(route = BottomBarDestinations.Explore.route) {
+                ExploreScreen(navController = navController)
+            }
+            composable(route = BottomBarDestinations.Profile.route) {
+                ProfileScreen()
+            }
+        }
     }
 }
 
@@ -67,10 +74,9 @@ private fun MainScreenContentPreview() {
 fun BottomBar(
     modifier: Modifier = Modifier,
     navController: NavController,
-    destinationsNavigator: DestinationsNavigator,
 ) {
-    val currentDestination = navController.appCurrentDestinationAsState().value
-        ?: NavGraphs.bottomBar.startAppDestination
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
     BottomNavigation(
         modifier = modifier
             .background(AppTheme.colors.backgroundThemed.backgroundMain)
@@ -84,12 +90,12 @@ fun BottomBar(
         backgroundColor = AppTheme.colors.backgroundThemed.backgroundMain,
     ) {
         BottomBarDestinations.entries.forEach {
-            val isSelected = it.direction == currentDestination
+            val isSelected = it.route == currentDestination?.route
             BottomNavigationItem(
                 selected = isSelected,
                 onClick = {
-                    destinationsNavigator.navigate(it.direction) {
-                        popUpTo(NavGraphs.bottomBar.startRoute) {
+                    navController.navigate(it.route) {
+                        popUpTo(BottomBarDestinations.Home.route) {
                             saveState = true
                         }
                         launchSingleTop = true
@@ -124,10 +130,8 @@ fun BottomBar(
 private fun BottomBarPreview() {
     AppTheme {
         val navController = rememberNavController()
-        val destinationNavigator = navController.rememberDestinationsNavigator()
         BottomBar(
             navController = navController,
-            destinationsNavigator = destinationNavigator,
         )
     }
 }
