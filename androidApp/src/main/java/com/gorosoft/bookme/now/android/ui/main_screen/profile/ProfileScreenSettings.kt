@@ -32,6 +32,13 @@ import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 fun ProfileScreenSettings(
     modifier: Modifier = Modifier,
     onLanguageClick: () -> Unit = {},
+    onEditProfileClick: () -> Unit = {},
+    onNotificationClick: () -> Unit = {},
+    onWalletClick: () -> Unit = {},
+    onSecurityClick: () -> Unit = {},
+    onDarkModeClick: () -> Unit = {},
+    onPrivacyPolicyClick: () -> Unit = {},
+    onLogoutClick: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
@@ -43,111 +50,56 @@ fun ProfileScreenSettings(
         ProfileListItem(
             iconID = R.drawable.ic_profile,
             titleId = R.string.edit_profile,
+            modifier = Modifier.debounceClick(onClick = onEditProfileClick),
         )
         Spacer(modifier = Modifier.height(24.dp))
         ProfileListItem(
             iconID = R.drawable.ic_notification,
             titleId = R.string.notification,
+            modifier = Modifier.debounceClick(onClick = onNotificationClick),
         )
         Spacer(modifier = Modifier.height(24.dp))
         ProfileListItem(
             iconID = R.drawable.ic_wallet,
             titleId = R.string.wallet,
+            modifier = Modifier.debounceClick(onClick = onWalletClick),
         )
         Spacer(modifier = Modifier.height(24.dp))
         ProfileListItem(
             iconID = R.drawable.ic_security,
             titleId = R.string.security,
+            modifier = Modifier.debounceClick(onClick = onSecurityClick),
         )
         Spacer(modifier = Modifier.height(24.dp))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .debounceClick(onClick = onLanguageClick),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Image(
-                painter = painterResource(R.drawable.ic_language),
-                contentDescription = "Language",
-                modifier = Modifier.padding(end = 20.dp),
-                colorFilter = ColorFilter.tint(AppTheme.colors.grayscale.gs900),
-            )
-            Text(
-                modifier = Modifier
-                    .padding(end = 40.dp)
-                    .weight(1f),
-                text = (stringResource(R.string.language)),
-                style = AppTheme.typography.bodyXLarge.semibold,
-                color = AppTheme.colors.grayscale.gs900,
-            )
-            Text(
-                modifier = Modifier.padding(
-                    start = 20.dp,
-                    end = 20.dp,
-
-                    ),
-                text = (stringResource(R.string.english_us)),
-                style = AppTheme.typography.bodyXLarge.semibold,
-                color = AppTheme.colors.grayscale.gs900,
-            )
-            Image(
-                painter = painterResource(R.drawable.ic_arrow_right),
-                contentDescription = "Arrow",
-            )
-        }
+        LanguageItem(
+            iconID = R.drawable.ic_language,
+            titleId = R.string.language,
+            languageId = R.string.english_us,
+            modifier = Modifier.debounceClick(onClick = onLanguageClick),
+        )
         Spacer(modifier = Modifier.height(24.dp))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .debounceClick { onLanguageClick },
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Image(
-                painter = painterResource(R.drawable.ic_dark_mode),
-                contentDescription = "Dark Mode",
-                modifier = Modifier.padding(end = 20.dp),
-                colorFilter = ColorFilter.tint(AppTheme.colors.grayscale.gs900),
-            )
-            Text(
-                modifier = Modifier
-                    .padding(end = 40.dp)
-                    .weight(1f),
-                text = (stringResource(R.string.dark_mode)),
-                style = AppTheme.typography.bodyXLarge.semibold,
-                color = AppTheme.colors.grayscale.gs900,
-            )
-            Switch(
-                modifier = Modifier
-                    .size(width = 40.dp, height = 24.dp)
-                    .scale(0.7f),
-                checked = false,
-                thumbContent = {},
-                onCheckedChange = {},
-                colors = SwitchDefaults.colors(
-                    checkedThumbColor = AppTheme.colors.grayscale.gs200,
-                    checkedTrackColor = AppTheme.colors.mainColors.primary500,
-                    uncheckedThumbColor = Color.White,
-                    uncheckedTrackColor = AppTheme.colors.grayscale.gs200,
-                    uncheckedBorderColor = Color.Transparent,
-                    checkedBorderColor = Color.Transparent,
-                ),
-            )
-        }
+        DarkModeItem(
+            iconID = R.drawable.ic_dark_mode,
+            titleId = R.string.dark_mode,
+            modifier = Modifier.debounceClick(onClick = onDarkModeClick),
+        )
         Spacer(modifier = Modifier.height(24.dp))
         ProfileListItem(
             iconID = R.drawable.ic_privacy,
             titleId = R.string.privacy_policy,
+            modifier = Modifier.debounceClick(onClick = onPrivacyPolicyClick),
         )
         Spacer(modifier = Modifier.height(24.dp))
         ProfileListItem(
             iconID = R.drawable.ic_invite_friends,
             titleId = R.string.invite_friends,
+            modifier = Modifier.debounceClick(onClick = onNotificationClick),
         )
         Spacer(modifier = Modifier.height(24.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .debounceClick { onLanguageClick },
+                .debounceClick(onClick = onLogoutClick),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
@@ -169,14 +121,13 @@ fun ProfileScreenSettings(
 
 @Composable
 private fun ProfileListItem(
+    modifier: Modifier = Modifier,
     iconID: Int,
     titleId: Int,
-    onClick: () -> Unit = {},
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .debounceClick { onClick },
+        modifier = modifier
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
@@ -200,6 +151,91 @@ private fun ProfileListItem(
     }
 }
 
+@Composable
+fun LanguageItem(
+    modifier: Modifier = Modifier,
+    iconID: Int,
+    titleId: Int,
+    languageId: Int,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Image(
+            painter = painterResource(iconID),
+            contentDescription = "Language",
+            modifier = Modifier.padding(end = 20.dp),
+            colorFilter = ColorFilter.tint(AppTheme.colors.grayscale.gs900),
+        )
+        Text(
+            modifier = Modifier
+                .padding(end = 40.dp)
+                .weight(1f),
+            text = (stringResource(titleId)),
+            style = AppTheme.typography.bodyXLarge.semibold,
+            color = AppTheme.colors.grayscale.gs900,
+        )
+        Text(
+            modifier = Modifier.padding(
+                start = 20.dp,
+                end = 20.dp,
+            ),
+            text = (stringResource(languageId)),
+            style = AppTheme.typography.bodyXLarge.semibold,
+            color = AppTheme.colors.grayscale.gs900,
+        )
+        Image(
+            painter = painterResource(R.drawable.ic_arrow_right),
+            contentDescription = "Arrow",
+        )
+    }
+}
+
+@Composable
+fun DarkModeItem(
+    modifier: Modifier = Modifier,
+    iconID: Int,
+    titleId: Int,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Image(
+            painter = painterResource(iconID),
+            contentDescription = "Dark Mode",
+            modifier = Modifier.padding(end = 20.dp),
+            colorFilter = ColorFilter.tint(AppTheme.colors.grayscale.gs900),
+        )
+        Text(
+            modifier = Modifier
+                .padding(end = 40.dp)
+                .weight(1f),
+            text = (stringResource(titleId)),
+            style = AppTheme.typography.bodyXLarge.semibold,
+            color = AppTheme.colors.grayscale.gs900,
+        )
+        Switch(
+            modifier = Modifier
+                .size(width = 40.dp, height = 24.dp)
+                .scale(0.7f),
+            checked = false,
+            thumbContent = {},
+            onCheckedChange = {},
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = AppTheme.colors.grayscale.gs200,
+                checkedTrackColor = AppTheme.colors.mainColors.primary500,
+                uncheckedThumbColor = Color.White,
+                uncheckedTrackColor = AppTheme.colors.grayscale.gs200,
+                uncheckedBorderColor = Color.Transparent,
+                checkedBorderColor = Color.Transparent,
+            ),
+        )
+    }
+}
 @Preview
 @Composable
 fun ProfileScreenSettingsPreview() {
