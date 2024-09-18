@@ -47,7 +47,6 @@ fun LogoutBottomSheet(
             color = AppTheme.colors.grayscale.gs200,
             thickness = 1.dp,
         )
-
         Text(
             modifier = Modifier
                 .padding(top = 24.dp),
@@ -81,7 +80,7 @@ fun LogoutBottomSheet(
     }
 }
 
-@Preview
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun LogoutBottomSheetPreview() {
     AppTheme {

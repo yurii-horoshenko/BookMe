@@ -56,7 +56,7 @@ private fun MainScreenContent(navController: NavController = rememberNavControll
                 ExploreScreen(navController = navController)
             }
             composable(route = BottomBarDestinations.Profile.route) {
-                ProfileScreen()
+                ProfileScreen(navController = navController)
             }
         }
     }

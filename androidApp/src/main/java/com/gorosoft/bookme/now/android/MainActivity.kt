@@ -12,6 +12,7 @@ import com.gorosoft.bookme.now.android.ui.account_setup.LoginScreen
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.CreateYourProfileScreen
 import com.gorosoft.bookme.now.android.ui.account_setup.enter_otp.EnterOtpScreen
 import com.gorosoft.bookme.now.android.ui.main_screen.MainScreen
+import com.gorosoft.bookme.now.android.ui.main_screen.profile.choose_language.ChooseLanguageScreen
 import com.gorosoft.bookme.now.android.ui.onboarding.TutorialCarouselScreen
 import com.gorosoft.bookme.now.android.ui.onboarding.WelcomeScreen
 import com.gorosoft.bookme.now.android.ui.splash_screen.SplashScreen
@@ -61,6 +62,9 @@ class MainActivity : ComponentActivity() {
                     }
                     composable(NavGraphDestination.Main.route) {
                         MainScreen(navController = navController)
+                    }
+                    composable(NavGraphDestination.ChooseLanguage.route) {
+                        ChooseLanguageScreen(navController = navController)
                     }
                 }
             }
