@@ -18,24 +18,11 @@ class ChooseLanguageViewModel(
     init {
         _languagesFlow.update { getLanguagesUiUseCase.execute().toPersistentList() }
     }
-}
 
-fun selectedLanguageChange(
-    newSelectedLanguage: LanguageUiModel,
-    languages: List<LanguageUiModel>
-) {
-    val selectedLanguage = languages.find { language ->
-        language.isSelected == true
-    }
-    selectedLanguage?.let {
-        selectedLanguage.isSelected = false
-    }
-    val chooseLanguage = languages.find { language ->
-        language.language == newSelectedLanguage.language
-    }
-    chooseLanguage?.let {
-        chooseLanguage.isSelected = true
+    fun selectedLanguageChange(newSelectedLanguage: LanguageUiModel) {
+        val selectedLanguage = _languagesFlow.value.find { it.isSelected }
+        selectedLanguage?.let { selectedLanguage.isSelected = false }
+
+        newSelectedLanguage.isSelected = true
     }
 }
-
-
