@@ -49,4 +49,5 @@
     <string name="changeLanguage">Language</string>
     <string name="english_uk">English (UK)</string>
     <string name="english_us">English (US)</string>
+    <string name="sorry_something_went_wrong">Sorry, something went wrong</string>
 </resources>
