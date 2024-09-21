@@ -4,6 +4,7 @@ import com.gorosoft.bookme.now.android.ui.account_setup.LoginViewModel
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.CreateYourProfileViewModel
 import com.gorosoft.bookme.now.android.ui.account_setup.enter_otp.EnterOtpViewModel
 import com.gorosoft.bookme.now.android.ui.main_screen.explore.ExploreViewModel
+import com.gorosoft.bookme.now.android.ui.main_screen.profile.choose_language.ChooseLanguageViewModel
 import com.gorosoft.bookme.now.android.ui.onboarding.TutorialCarouselViewModel
 import com.gorosoft.bookme.now.android.ui.splash_screen.SplashScreenViewModel
 import org.koin.core.module.dsl.viewModel
@@ -38,6 +39,10 @@ fun viewModelModule() = module {
             locationTracker = get(),
         )
     }
+    viewModel {
+        ChooseLanguageViewModel(getLanguagesUiUseCase = get())
+    }
+
     viewModel {
         LoginViewModel(
             loginWithGoogleUiUseCase = get(),

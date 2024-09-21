@@ -42,10 +42,12 @@
     <string name="wallet">Wallet</string>
     <string name="security">Security</string>
     <string name="language">Language</string>
-    <string name="english_us">English (US)</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="invite_friends">Invite Friends</string>
     <string name="logout">Logout</string>
+    <string name="changeLanguage">Language</string>
+    <string name="english_uk">English (UK)</string>
+    <string name="english_us">English (US)</string>
     <string name="sorry_something_went_wrong">Sorry, something went wrong</string>
 </resources>

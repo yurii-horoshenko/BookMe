@@ -27,21 +27,26 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.gorosoft.bookme.now.android.NavGraphDestination
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(
+    navController: NavController,
+) {
     ProfileScreenContent(
-        onLanguageClick = {
+        navigateToLanguageScreen = {
+            navController.navigate(NavGraphDestination.ChooseLanguage.route)
         }
     )
 }
 
 @Composable
 fun ProfileScreenContent(
-    onLanguageClick: () -> Unit = {},
+    navigateToLanguageScreen: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -61,7 +66,7 @@ fun ProfileScreenContent(
         )
         Spacer(modifier = Modifier.height(24.dp))
         ProfileScreenSettings(
-            onLanguageClick = onLanguageClick,
+            onLanguageClick = navigateToLanguageScreen,
         )
     }
 }

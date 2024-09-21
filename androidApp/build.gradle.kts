@@ -91,7 +91,7 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.activity.compose)
     implementation(libs.lifecycle.compose)
-
+    implementation(libs.kotlinx.immutable)
     implementation(libs.androidx.material3)
     implementation(libs.coil.compose)
     implementation(libs.accompanist.permissions)
