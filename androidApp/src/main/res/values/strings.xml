@@ -49,4 +49,9 @@
     <string name="changeLanguage">Language</string>
     <string name="english_uk">English (UK)</string>
     <string name="english_us">English (US)</string>
+    <string name="first_name">First name</string>
+    <string name="second_name">Second name</string>
+    <string name="email">Email</string>
+    <string name="choose_country">Сountry</string>
+    <string name="address">Address</string>
 </resources>
