@@ -193,6 +193,7 @@ fun LanguageItem(
     }
 }
 
+@Suppress("MagicNumber")
 @Composable
 fun DarkModeItem(
     modifier: Modifier = Modifier,
@@ -236,6 +237,7 @@ fun DarkModeItem(
         )
     }
 }
+
 @Preview
 @Composable
 fun ProfileScreenSettingsPreview() {
