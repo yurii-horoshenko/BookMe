@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now.android.ui.main_screen.profile
+package com.gorosoft.bookme.now.android.ui.main_screen.profile.edit_profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetValue
@@ -72,7 +74,6 @@ fun EditProfileScreenContent(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true,
     )
-    val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
     ModalBottomSheetLayout(
         sheetContentColor = AppTheme.colors.backgroundThemed.backgroundMain,
@@ -90,13 +91,16 @@ fun EditProfileScreenContent(
             )
         },
         content = {
+            val scrollState = rememberScrollState()
+
             Column(
                 modifier = modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
                     .background(AppTheme.colors.backgroundThemed.backgroundMain)
                     .statusBarsPadding()
-                    .padding(vertical = 24.dp, horizontal = 24.dp),
+                    .padding(vertical = 24.dp, horizontal = 24.dp)
+                    .verticalScroll(scrollState),
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {

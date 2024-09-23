@@ -45,7 +45,7 @@ fun ProfileScreenSettings(
             iconID = R.drawable.ic_profile,
             titleId = R.string.edit_profile,
             onClick = onEditProfileClick,
-            )
+        )
         Spacer(modifier = Modifier.height(24.dp))
         ProfileListItem(
             iconID = R.drawable.ic_notification,
@@ -174,11 +174,13 @@ private fun ProfileListItem(
     iconID: Int,
     titleId: Int,
     onClick: () -> Unit = {},
+    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .debounceClick { onClick },
+            .debounceClick { onClick() },
+
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(

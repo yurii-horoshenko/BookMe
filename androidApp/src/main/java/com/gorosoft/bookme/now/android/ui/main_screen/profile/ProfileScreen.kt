@@ -40,6 +40,8 @@ fun ProfileScreen(
     ProfileScreenContent(
         navigateToLanguageScreen = {
             navController.navigate(NavGraphDestination.ChooseLanguage.route)
+        },
+        navigateToEditProfileScreen = {
             navController.navigate(NavGraphDestination.EditProfile.route)
         }
     )
