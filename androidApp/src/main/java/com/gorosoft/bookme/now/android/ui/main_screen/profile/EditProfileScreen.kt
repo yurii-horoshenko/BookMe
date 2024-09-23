@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
@@ -17,7 +18,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.rememberModalBottomSheetState
-import androidx.compose.material3.DatePickerDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,26 +27,41 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.BirthDatePickerDialog
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.GenderBottomSheetContent
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
+import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 import com.gorosoft.bookme.now.android.ui_models.title
 import com.gorosoft.bookme.now.domain.models.UserGenderType
 import kotlinx.coroutines.launch
 
+@Composable
+fun EditProfileScreen(
+    navController: NavController,
+) {
+    EditProfileScreenContent(
+        onNavigateBack = navController::popBackStack,
+    )
+}
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun EditProfileScreen(
+fun EditProfileScreenContent(
     modifier: Modifier = Modifier,
     onNavigateBack: () -> Unit = { },
     onGenderSelected: (UserGenderType) -> Unit = {},
@@ -57,6 +72,7 @@ private fun EditProfileScreen(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true,
     )
+    val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
     ModalBottomSheetLayout(
         sheetContentColor = AppTheme.colors.backgroundThemed.backgroundMain,
@@ -89,28 +105,32 @@ private fun EditProfileScreen(
                     navigateBack = onNavigateBack,
                 )
 
+                val focusManager = LocalFocusManager.current
 
                 var text by remember { mutableStateOf("") }
                 NameInput(
                     name = text,
                     onNewNameInputted = onNewNameInputted,
+                    focusManager = focusManager,
                 )
 
-
                 SecondNameInput(
-                    secondName = text
+                    secondName = text,
+                    focusManager = focusManager,
                 )
 
                 var dateOfBirth by remember { mutableStateOf("") }
                 var showDateDialog by remember { mutableStateOf(false) }
                 DateOfBirthInput(
                     dateOfBirth = dateOfBirth,
-                    onDateClick = { showDateDialog = true }
+                    onDateClick = { showDateDialog = true },
+                    focusManager = focusManager,
                 )
 
                 var email by remember { mutableStateOf("") }
                 EmailInput(
-                    email = email
+                    email = email,
+                    focusManager = focusManager,
                 )
 
                 CountryInput(
@@ -118,22 +138,35 @@ private fun EditProfileScreen(
                     onGenderFieldClick = {
                         keyboardController?.hide()
                         coroutineScope.launch { genderBottomSheetState.show() }
-                    }
+                    },
+                    focusManager = focusManager,
                 )
 
-                PhoneInput()
+                PhoneInput(
+                    focusManager = focusManager,
+                )
 
                 GenderInput(
                     gender = null,
                     onGenderFieldClick = {
                         keyboardController?.hide()
                         coroutineScope.launch { genderBottomSheetState.show() }
-                    }
+                    },
+                    focusManager = focusManager
                 )
 
                 var address by remember { mutableStateOf("") }
                 AddressInput(
-                    address = address
+                    address = address,
+                    focusManager = focusManager
+                )
+
+                PrimaryButton(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 25.dp),
+                    text = stringResource(R.string.update),
+                    onClick = {},
                 )
 
                 if (showDateDialog) {
@@ -154,6 +187,7 @@ private fun NameInput(
     modifier: Modifier = Modifier,
     name: String = "",
     onNewNameInputted: (String) -> Unit = {},
+    focusManager: FocusManager,
 ) {
     TextField(
         singleLine = true,
@@ -171,6 +205,14 @@ private fun NameInput(
         },
         colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next
+        ),
+        keyboardActions = KeyboardActions(
+            onNext = {
+                focusManager.moveFocus(FocusDirection.Down)
+            }
+        )
     )
 
 }
@@ -180,6 +222,7 @@ private fun SecondNameInput(
     modifier: Modifier = Modifier,
     secondName: String = "",
     onSecondNameInputted: (String) -> Unit = {},
+    focusManager: FocusManager,
 ) {
     TextField(
         singleLine = true,
@@ -197,6 +240,14 @@ private fun SecondNameInput(
         },
         colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next
+        ),
+        keyboardActions = KeyboardActions(
+            onNext = {
+                focusManager.moveFocus(FocusDirection.Down)
+            }
+        )
     )
 }
 
@@ -205,6 +256,7 @@ private fun DateOfBirthInput(
     modifier: Modifier = Modifier,
     dateOfBirth: String,
     onDateClick: () -> Unit = {},
+    focusManager: FocusManager,
 ) {
     TextField(
         enabled = false,
@@ -222,6 +274,14 @@ private fun DateOfBirthInput(
                 color = AppTheme.colors.grayscale.gs500,
             )
         },
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next
+        ),
+        keyboardActions = KeyboardActions(
+            onNext = {
+                focusManager.moveFocus(FocusDirection.Down)
+            }
+        ),
         colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
         trailingIcon = {
@@ -238,6 +298,7 @@ private fun EmailInput(
     modifier: Modifier = Modifier,
     email: String = "",
     onEmailInputted: (String) -> Unit = {},
+    focusManager: FocusManager,
 ) {
     TextField(
         singleLine = true,
@@ -254,7 +315,13 @@ private fun EmailInput(
             )
         },
         keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Email
+            keyboardType = KeyboardType.Email,
+            imeAction = ImeAction.Next
+        ),
+        keyboardActions = KeyboardActions(
+            onNext = {
+                focusManager.moveFocus(FocusDirection.Down)
+            }
         ),
         colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
@@ -272,6 +339,7 @@ private fun CountryInput(
     modifier: Modifier = Modifier,
     country: UserGenderType? = null,
     onGenderFieldClick: () -> Unit = {},
+    focusManager: FocusManager,
 ) {
     val countryText = country?.title() ?: ""
     TextField(
@@ -290,6 +358,14 @@ private fun CountryInput(
                 color = AppTheme.colors.grayscale.gs500,
             )
         },
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next
+        ),
+        keyboardActions = KeyboardActions(
+            onNext = {
+                focusManager.moveFocus(FocusDirection.Down)
+            }
+        ),
         colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
         trailingIcon = {
@@ -306,6 +382,7 @@ private fun PhoneInput(
     modifier: Modifier = Modifier,
     text: String = "",
     onPhoneInputted: (String) -> Unit = {},
+    focusManager: FocusManager,
 ) {
     TextField(
         singleLine = true,
@@ -323,6 +400,14 @@ private fun PhoneInput(
         },
         colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next
+        ),
+        keyboardActions = KeyboardActions(
+            onNext = {
+                focusManager.moveFocus(FocusDirection.Down)
+            }
+        ),
     )
 }
 
@@ -331,6 +416,7 @@ private fun GenderInput(
     modifier: Modifier = Modifier,
     gender: UserGenderType? = null,
     onGenderFieldClick: () -> Unit = {},
+    focusManager: FocusManager,
 ) {
     val genderText = gender?.title() ?: ""
     TextField(
@@ -349,6 +435,14 @@ private fun GenderInput(
                 color = AppTheme.colors.grayscale.gs500,
             )
         },
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next
+        ),
+        keyboardActions = KeyboardActions(
+            onNext = {
+                focusManager.moveFocus(FocusDirection.Down)
+            }
+        ),
         colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
         trailingIcon = {
@@ -365,6 +459,7 @@ private fun AddressInput(
     modifier: Modifier = Modifier,
     address: String = "",
     onAddressInputted: (String) -> Unit = {},
+    focusManager: FocusManager,
 ) {
     TextField(
         singleLine = true,
@@ -382,6 +477,14 @@ private fun AddressInput(
         },
         colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Done
+        ),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                focusManager.clearFocus()
+            }
+        ),
     )
 }
 
@@ -389,6 +492,6 @@ private fun AddressInput(
 @Composable
 private fun EditProfileScreenPreview() {
     AppTheme {
-        EditProfileScreen()
+        EditProfileScreenContent()
     }
 }

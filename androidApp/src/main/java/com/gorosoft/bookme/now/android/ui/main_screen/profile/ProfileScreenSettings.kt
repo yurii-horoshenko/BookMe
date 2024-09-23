@@ -32,6 +32,7 @@ import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 fun ProfileScreenSettings(
     modifier: Modifier = Modifier,
     onLanguageClick: () -> Unit = {},
+    onEditProfileClick: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
@@ -43,7 +44,8 @@ fun ProfileScreenSettings(
         ProfileListItem(
             iconID = R.drawable.ic_profile,
             titleId = R.string.edit_profile,
-        )
+            onClick = onEditProfileClick,
+            )
         Spacer(modifier = Modifier.height(24.dp))
         ProfileListItem(
             iconID = R.drawable.ic_notification,

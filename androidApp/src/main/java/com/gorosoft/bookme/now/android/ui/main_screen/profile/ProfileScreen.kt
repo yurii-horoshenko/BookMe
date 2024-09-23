@@ -40,6 +40,7 @@ fun ProfileScreen(
     ProfileScreenContent(
         navigateToLanguageScreen = {
             navController.navigate(NavGraphDestination.ChooseLanguage.route)
+            navController.navigate(NavGraphDestination.EditProfile.route)
         }
     )
 }
@@ -47,6 +48,7 @@ fun ProfileScreen(
 @Composable
 fun ProfileScreenContent(
     navigateToLanguageScreen: () -> Unit = {},
+    navigateToEditProfileScreen: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -67,6 +69,7 @@ fun ProfileScreenContent(
         Spacer(modifier = Modifier.height(24.dp))
         ProfileScreenSettings(
             onLanguageClick = navigateToLanguageScreen,
+            onEditProfileClick = navigateToEditProfileScreen,
         )
     }
 }
