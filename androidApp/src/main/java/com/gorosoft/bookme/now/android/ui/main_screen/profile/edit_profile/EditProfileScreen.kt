@@ -132,8 +132,15 @@ fun EditProfileScreenContent(
                 )
 
                 var email by remember { mutableStateOf("") }
+                var isEmailValid by remember { mutableStateOf(true) }
                 EmailInput(
                     email = email,
+                    onEmailInputted = { input ->
+                        email = input
+                        isEmailValid =
+                            android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
+                    },
+                    isEmailValid = isEmailValid,
                     focusManager = focusManager,
                 )
 
@@ -303,6 +310,7 @@ private fun EmailInput(
     email: String = "",
     onEmailInputted: (String) -> Unit = {},
     focusManager: FocusManager,
+    isEmailValid: Boolean = true,
 ) {
     TextField(
         singleLine = true,
@@ -331,11 +339,20 @@ private fun EmailInput(
         textStyle = AppTheme.typography.bodyMedium.semibold,
         trailingIcon = {
             Image(
-                painter = painterResource(R.drawable.ic_calendar),
+                painter = painterResource(R.drawable.ic_email),
                 contentDescription = "selector arrow",
             )
-        }
+        },
+        isError = !isEmailValid
     )
+    if (!isEmailValid) {
+        Text(
+            modifier = Modifier.padding(start = 10.dp),
+            text = "Invalid email",
+            color = AppTheme.colors.alertStatus.error,
+            style = AppTheme.typography.bodyMedium.semibold,
+        )
+    }
 }
 
 @Composable
