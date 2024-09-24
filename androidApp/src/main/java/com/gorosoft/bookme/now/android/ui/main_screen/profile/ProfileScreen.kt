@@ -55,22 +55,29 @@ fun ProfileScreenContent(
             .fillMaxSize()
             .background(AppTheme.colors.backgroundThemed.backgroundMain)
             .statusBarsPadding()
-            .padding(start = 24.dp, end = 24.dp, top = 32.dp)
-            .verticalScroll(rememberScrollState()),
+            .padding(start = 24.dp, end = 24.dp, top = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Toolbar()
-        Spacer(modifier = Modifier.height(24.dp))
-        TopSection()
-        Spacer(modifier = Modifier.height(24.dp))
-        HorizontalDivider(
-            color = AppTheme.colors.grayscale.gs200,
-            thickness = 1.dp,
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
         )
-        Spacer(modifier = Modifier.height(24.dp))
-        ProfileScreenSettings(
-            onLanguageClick = navigateToLanguageScreen,
-        )
+
+        {
+            Spacer(modifier = Modifier.height(24.dp))
+            TopSection()
+            Spacer(modifier = Modifier.height(24.dp))
+            HorizontalDivider(
+                color = AppTheme.colors.grayscale.gs200,
+                thickness = 1.dp,
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+            ProfileItems(
+                onLanguageClick = navigateToLanguageScreen,
+            )
+        }
     }
 }
 

@@ -29,7 +29,7 @@ import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 
 @Suppress("LongMethod", "MagicNumber")
 @Composable
-fun ProfileScreenSettings(
+fun ProfileItems(
     modifier: Modifier = Modifier,
     onLanguageClick: () -> Unit = {},
     onEditProfileClick: () -> Unit = {},
@@ -116,6 +116,7 @@ fun ProfileScreenSettings(
                 color = AppTheme.colors.alertStatus.error,
             )
         }
+        Spacer(modifier = Modifier.height(24.dp))
     }
 }
 
@@ -236,8 +237,9 @@ fun DarkModeItem(
         )
     }
 }
+
 @Preview
 @Composable
-fun ProfileScreenSettingsPreview() {
-    ProfileScreenSettings()
+fun ProfileItemsPreview() {
+    ProfileItems()
 }
