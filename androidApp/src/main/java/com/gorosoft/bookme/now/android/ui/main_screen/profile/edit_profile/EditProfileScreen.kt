@@ -1,13 +1,18 @@
 package com.gorosoft.bookme.now.android.ui.main_screen.profile.edit_profile
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -31,6 +36,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -39,10 +47,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.gorosoft.bookme.now.android.R
-import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.CreateYourProfileViewModel
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.BirthDatePickerDialog
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.GenderBottomSheetContent
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
@@ -50,12 +56,9 @@ import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
-import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
-import com.gorosoft.bookme.now.android.ui_models.EditProfileUiModel
 import com.gorosoft.bookme.now.android.ui_models.title
 import com.gorosoft.bookme.now.domain.models.UserGenderType
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDate
 
 @Composable
@@ -63,7 +66,7 @@ fun EditProfileScreen(
     navController: NavController,
     //viewModel: EditProfileViewModel = koinViewModel(),
 ) {
-   // val profileState by viewModel.profileState.collectAsStateWithLifecycle()
+    // val profileState by viewModel.profileState.collectAsStateWithLifecycle()
 
     EditProfileScreenContent(
         onNavigateBack = navController::popBackStack
@@ -109,107 +112,149 @@ fun EditProfileScreenContent(
         content = {
             val scrollState = rememberScrollState()
 
+            Box(modifier = modifier.fillMaxSize()) {
 
-            Column(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .background(AppTheme.colors.backgroundThemed.backgroundMain)
-                    .statusBarsPadding()
-                    .padding(vertical = 24.dp, horizontal = 24.dp)
-                    .verticalScroll(scrollState),
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.spacedBy(24.dp)
-            ) {
-                BackButtonToolbar(
-                    title = R.string.edit_profile,
-                    navigateBack = onNavigateBack,
-                )
-
-                val focusManager = LocalFocusManager.current
-
-                var text by remember { mutableStateOf("") }
-                NameInput(
-                    name = text,
-                    onNewNameInputted = onNewNameInputted,
-                    focusManager = focusManager,
-                )
-
-                SecondNameInput(
-                    secondName = text,
-                    onSecondNameInputted = onSecondNameInputted,
-                    focusManager = focusManager,
-                )
-
-                var dateOfBirth by remember { mutableStateOf("") }
-                var showDateDialog by remember { mutableStateOf(false) }
-                DateOfBirthInput(
-                    dateOfBirth = dateOfBirth,
-                    onDateClick = { showDateDialog = true },
-                    focusManager = focusManager,
-                )
-
-                var email by remember { mutableStateOf("") }
-                var isEmailValid by remember { mutableStateOf(true) }
-                EmailInput(
-                    email = email,
-                    onEmailInputted = { input ->
-                        email = input
-                        isEmailValid =
-                            android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
-                    },
-                    isEmailValid = isEmailValid,
-                    focusManager = focusManager,
-                )
-
-                CountryInput(
-                    country = null,
-                    onGenderFieldClick = {
-                        keyboardController?.hide()
-                        coroutineScope.launch { genderBottomSheetState.show() }
-                    },
-                    focusManager = focusManager,
-                )
-
-                PhoneInput(
-                    focusManager = focusManager,
-                )
-
-                GenderInput(
-                    gender = null,
-                    onGenderFieldClick = {
-                        keyboardController?.hide()
-                        coroutineScope.launch { genderBottomSheetState.show() }
-                    },
-                    focusManager = focusManager
-                )
-
-                var address by remember { mutableStateOf("") }
-                AddressInput(
-                    address = address,
-                    focusManager = focusManager
-                )
-
-                PrimaryButton(
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(top = 25.dp),
-                    text = stringResource(R.string.update),
-                    onClick = {},
-                )
-
-                if (showDateDialog) {
-                    BirthDatePickerDialog(
-                        onBirthDateSelected = {
-                            onBirthDateSelected.invoke(it)
-                            showDateDialog = false
-                        },
-                        hideDialog = { showDateDialog = false }
+                Column(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .background(AppTheme.colors.backgroundThemed.backgroundMain)
+                        .statusBarsPadding()
+                        .padding(vertical = 24.dp, horizontal = 24.dp)
+                        .verticalScroll(scrollState),
+                    horizontalAlignment = Alignment.Start,
+                    verticalArrangement = Arrangement.spacedBy(24.dp)
+                ) {
+                    BackButtonToolbar(
+                        title = R.string.edit_profile,
+                        navigateBack = onNavigateBack,
                     )
+
+                    val focusManager = LocalFocusManager.current
+
+                    var text by remember { mutableStateOf("") }
+                    NameInput(
+                        name = text,
+                        onNewNameInputted = onNewNameInputted,
+                        focusManager = focusManager,
+                    )
+
+                    SecondNameInput(
+                        secondName = text,
+                        onSecondNameInputted = onSecondNameInputted,
+                        focusManager = focusManager,
+                    )
+
+                    var dateOfBirth by remember { mutableStateOf("") }
+                    var showDateDialog by remember { mutableStateOf(false) }
+                    DateOfBirthInput(
+                        dateOfBirth = dateOfBirth,
+                        onDateClick = { showDateDialog = true },
+                        focusManager = focusManager,
+                    )
+
+                    var email by remember { mutableStateOf("") }
+                    var isEmailValid by remember { mutableStateOf(true) }
+                    EmailInput(
+                        email = email,
+                        onEmailInputted = { input ->
+                            email = input
+                            isEmailValid =
+                                android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
+                        },
+                        isEmailValid = isEmailValid,
+                        focusManager = focusManager,
+                    )
+
+                    CountryInput(
+                        country = null,
+                        onGenderFieldClick = {
+                            keyboardController?.hide()
+                            coroutineScope.launch { genderBottomSheetState.show() }
+                        },
+                        focusManager = focusManager,
+                    )
+
+                    PhoneInput(
+                        focusManager = focusManager,
+                    )
+
+                    GenderInput(
+                        gender = null,
+                        onGenderFieldClick = {
+                            keyboardController?.hide()
+                            coroutineScope.launch { genderBottomSheetState.show() }
+                        },
+                        focusManager = focusManager
+                    )
+
+                    var address by remember { mutableStateOf("") }
+                    AddressInput(
+                        address = address,
+                        focusManager = focusManager
+                    )
+
+                    PrimaryButton(
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                            .padding(top = 25.dp),
+                        text = stringResource(R.string.update),
+                        onClick = {},
+                    )
+
+                    if (showDateDialog) {
+                        BirthDatePickerDialog(
+                            onBirthDateSelected = {
+                                onBirthDateSelected.invoke(it)
+                                showDateDialog = false
+                            },
+                            hideDialog = { showDateDialog = false }
+                        )
+                    }
+                }
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .width(8.dp)
+                        .padding(end = 4.dp)
+                        .align(Alignment.CenterEnd)
+                ) {
+                    CustomScrollbar(scrollState)
                 }
             }
         })
 }
+
+@Composable
+fun CustomScrollbar(scrollState: ScrollState) {
+    val scrollProgress = scrollState.value.toFloat() / scrollState.maxValue.toFloat()
+
+    val scrollbarHeight = 80.dp
+
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val trackColor = Color.Gray.copy(alpha = 0.5f)
+            val thumbColor = Color.Black.copy(alpha = 0.8f)
+
+            drawRoundRect(
+                color = trackColor,
+                size = this.size.copy(width = 8.dp.toPx()),
+                cornerRadius = CornerRadius(4.dp.toPx())
+            )
+
+            val scrollbarOffset = Offset(
+                x = 0f,
+                y = (size.height - scrollbarHeight.toPx()) * scrollProgress
+            )
+
+            drawRoundRect(
+                color = thumbColor,
+                topLeft = scrollbarOffset,
+                size = this.size.copy(height = scrollbarHeight.toPx(), width = 8.dp.toPx()),
+                cornerRadius = CornerRadius(4.dp.toPx())
+            )
+        }
+    }
+
 
 @Composable
 private fun NameInput(
@@ -532,9 +577,9 @@ private fun AddressInput(
 private fun EditProfileScreenPreview() {
     AppTheme {
         EditProfileScreenContent(
-           // profileState = EditProfileUiModel(
+            // profileState = EditProfileUiModel(
 
-            )
+        )
 
     }
 }
