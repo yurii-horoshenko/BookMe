@@ -8,4 +8,5 @@ enum class NavGraphDestination(val route: String) {
     CreateProfile("create_profile"),
     Login("login"),
     Main("main"),
+    ChooseLanguage("choose_language"),
 }
