@@ -194,6 +194,7 @@ fun LanguageItem(
     }
 }
 
+@Suppress("MagicNumber")
 @Composable
 fun DarkModeItem(
     modifier: Modifier = Modifier,
