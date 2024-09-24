@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ModalBottomSheet
@@ -57,17 +59,25 @@ fun ProfileScreenContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Toolbar()
-        Spacer(modifier = Modifier.height(24.dp))
-        TopSection()
-        Spacer(modifier = Modifier.height(24.dp))
-        HorizontalDivider(
-            color = AppTheme.colors.grayscale.gs200,
-            thickness = 1.dp,
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
         )
-        Spacer(modifier = Modifier.height(24.dp))
-        ProfileScreenSettings(
-            onLanguageClick = navigateToLanguageScreen,
-        )
+
+        {
+            Spacer(modifier = Modifier.height(24.dp))
+            TopSection()
+            Spacer(modifier = Modifier.height(24.dp))
+            HorizontalDivider(
+                color = AppTheme.colors.grayscale.gs200,
+                thickness = 1.dp,
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+            ProfileItems(
+                onLanguageClick = navigateToLanguageScreen,
+            )
+        }
     }
 }
 
