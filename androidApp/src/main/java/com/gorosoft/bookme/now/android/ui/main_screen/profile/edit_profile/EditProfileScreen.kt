@@ -39,8 +39,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.gorosoft.bookme.now.android.R
+import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.CreateYourProfileViewModel
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.BirthDatePickerDialog
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.GenderBottomSheetContent
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
@@ -48,16 +50,27 @@ import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
+import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
+import com.gorosoft.bookme.now.android.ui_models.EditProfileUiModel
 import com.gorosoft.bookme.now.android.ui_models.title
 import com.gorosoft.bookme.now.domain.models.UserGenderType
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
+import java.time.LocalDate
 
 @Composable
 fun EditProfileScreen(
     navController: NavController,
+    //viewModel: EditProfileViewModel = koinViewModel(),
 ) {
+   // val profileState by viewModel.profileState.collectAsStateWithLifecycle()
+
     EditProfileScreenContent(
-        onNavigateBack = navController::popBackStack,
+        onNavigateBack = navController::popBackStack
+//        profileState = profileState,
+//        onNewNameInputted = viewModel::updateName,
+//        onGenderSelected = viewModel::updateGender,
+//        onBirthDateSelected = viewModel::updateDateOfBirth,
     )
 }
 
@@ -65,9 +78,12 @@ fun EditProfileScreen(
 @Composable
 fun EditProfileScreenContent(
     modifier: Modifier = Modifier,
+    //profileState: EditProfileUiModel,
     onNavigateBack: () -> Unit = { },
     onGenderSelected: (UserGenderType) -> Unit = {},
     onNewNameInputted: (String) -> Unit = {},
+    onSecondNameInputted: (String) -> Unit = {},
+    onBirthDateSelected: (selectedDate: LocalDate) -> Unit = {},
 ) {
     val coroutineScope = rememberCoroutineScope()
     val genderBottomSheetState = rememberModalBottomSheetState(
@@ -92,6 +108,7 @@ fun EditProfileScreenContent(
         },
         content = {
             val scrollState = rememberScrollState()
+
 
             Column(
                 modifier = modifier
@@ -120,6 +137,7 @@ fun EditProfileScreenContent(
 
                 SecondNameInput(
                     secondName = text,
+                    onSecondNameInputted = onSecondNameInputted,
                     focusManager = focusManager,
                 )
 
@@ -182,8 +200,8 @@ fun EditProfileScreenContent(
 
                 if (showDateDialog) {
                     BirthDatePickerDialog(
-                        onBirthDateSelected = { selectedDate ->
-                            dateOfBirth = selectedDate.toString()
+                        onBirthDateSelected = {
+                            onBirthDateSelected.invoke(it)
                             showDateDialog = false
                         },
                         hideDialog = { showDateDialog = false }
@@ -513,6 +531,10 @@ private fun AddressInput(
 @Composable
 private fun EditProfileScreenPreview() {
     AppTheme {
-        EditProfileScreenContent()
+        EditProfileScreenContent(
+           // profileState = EditProfileUiModel(
+
+            )
+
     }
 }
