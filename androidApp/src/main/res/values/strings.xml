@@ -50,4 +50,6 @@
     <string name="english_uk">English (UK)</string>
     <string name="english_us">English (US)</string>
     <string name="sorry_something_went_wrong">Sorry, something went wrong</string>
+    <string name="cancel_booking">Cancel Booking</string>
+    <string name="yes_cancel_booking">Yes, Cancel Booking</string>
 </resources>
