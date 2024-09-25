@@ -10,23 +10,30 @@ private const val ProfileKey = "EditYourProfile"
 
 class EditProfileViewModel(
     private val savedStateHandle: SavedStateHandle,
-   // private val profileIsValidUseCase: ProfileUiIsValidUseCase,
 ) : ViewModel() {
 
     private val state get() = profileState.value
 
     val profileState = savedStateHandle.getStateFlow(ProfileKey, EditProfileUiModel())
 
-//    val buttonEnablingState: StateFlow<Boolean> = profileState.map { uiModel ->
-//        profileIsValidUseCase.execute(uiModel)
-//    }.stateIn(
-//        scope = viewModelScope,
-//        started = SharingStarted.WhileSubscribed(5000),
-//        initialValue = false
-//    )
+    fun updateName(newFirstName: String) {
+        updateState { copy(firstName = newFirstName) }
+    }
 
-    fun updateName(newFullName: String) {
-        updateState { copy(fullName = newFullName) }
+    fun updateSecondName(newSecondName: String) {
+        updateState { copy(secondName = newSecondName) }
+    }
+
+    fun updatePhone(phone: String) {
+        updateState { copy(phone = phone) }
+    }
+
+    fun updateEmail(email: String) {
+        updateState { copy(email = email) }
+    }
+
+    fun updateAddress(address: String) {
+        updateState { copy(address = address) }
     }
 
     fun updateGender(gender: UserGenderType) {

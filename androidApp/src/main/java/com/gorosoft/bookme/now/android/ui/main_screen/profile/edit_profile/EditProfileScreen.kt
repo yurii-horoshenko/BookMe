@@ -47,6 +47,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.account_setup.create_your_profile.composables.BirthDatePickerDialog
@@ -56,24 +57,30 @@ import com.gorosoft.bookme.now.android.ui.utils.BackButtonToolbar
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
+import com.gorosoft.bookme.now.android.ui_models.EditProfileUiModel
 import com.gorosoft.bookme.now.android.ui_models.title
 import com.gorosoft.bookme.now.domain.models.UserGenderType
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDate
 
 @Composable
 fun EditProfileScreen(
     navController: NavController,
-    //viewModel: EditProfileViewModel = koinViewModel(),
+    viewModel: EditProfileViewModel = koinViewModel(),
 ) {
-    // val profileState by viewModel.profileState.collectAsStateWithLifecycle()
+     val profileState by viewModel.profileState.collectAsStateWithLifecycle()
 
     EditProfileScreenContent(
-        onNavigateBack = navController::popBackStack
-//        profileState = profileState,
-//        onNewNameInputted = viewModel::updateName,
-//        onGenderSelected = viewModel::updateGender,
-//        onBirthDateSelected = viewModel::updateDateOfBirth,
+        onNavigateBack = navController::popBackStack,
+        profileState = profileState,
+        onNewNameInputted = viewModel::updateName,
+        onGenderSelected = viewModel::updateGender,
+        onBirthDateSelected = viewModel::updateDateOfBirth,
+        onSecondNameInputted = viewModel::updateSecondName,
+        onPhoneInputted = viewModel::updatePhone,
+        onEmailInputted = viewModel::updateEmail,
+        onAddressInputted = viewModel::updateAddress,
     )
 }
 
@@ -81,12 +88,15 @@ fun EditProfileScreen(
 @Composable
 fun EditProfileScreenContent(
     modifier: Modifier = Modifier,
-    //profileState: EditProfileUiModel,
+    profileState: EditProfileUiModel,
     onNavigateBack: () -> Unit = { },
     onGenderSelected: (UserGenderType) -> Unit = {},
     onNewNameInputted: (String) -> Unit = {},
     onSecondNameInputted: (String) -> Unit = {},
     onBirthDateSelected: (selectedDate: LocalDate) -> Unit = {},
+    onPhoneInputted: (String) -> Unit = {},
+    onEmailInputted: (String) -> Unit = {},
+    onAddressInputted: (String) -> Unit = {},
 ) {
     val coroutineScope = rememberCoroutineScope()
     val genderBottomSheetState = rememberModalBottomSheetState(
@@ -132,43 +142,41 @@ fun EditProfileScreenContent(
 
                     val focusManager = LocalFocusManager.current
 
-                    var text by remember { mutableStateOf("") }
                     NameInput(
-                        name = text,
+                        name = profileState.firstName,
                         onNewNameInputted = onNewNameInputted,
                         focusManager = focusManager,
                     )
 
                     SecondNameInput(
-                        secondName = text,
+                        secondName = profileState.secondName,
                         onSecondNameInputted = onSecondNameInputted,
                         focusManager = focusManager,
                     )
 
-                    var dateOfBirth by remember { mutableStateOf("") }
                     var showDateDialog by remember { mutableStateOf(false) }
                     DateOfBirthInput(
-                        dateOfBirth = dateOfBirth,
+                        dateOfBirth = profileState.dateOfBirthText,
                         onDateClick = { showDateDialog = true },
                         focusManager = focusManager,
                     )
 
-                    var email by remember { mutableStateOf("") }
+                    var email = profileState.email
                     var isEmailValid by remember { mutableStateOf(true) }
                     EmailInput(
-                        email = email,
+                        email = profileState.email,
                         onEmailInputted = { input ->
                             email = input
-                            isEmailValid =
-                                android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
+                            isEmailValid = android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
+                            onEmailInputted(input)
                         },
                         isEmailValid = isEmailValid,
                         focusManager = focusManager,
                     )
 
                     CountryInput(
-                        country = null,
-                        onGenderFieldClick = {
+                        country = profileState.country,
+                        onCountryFieldClick = {
                             keyboardController?.hide()
                             coroutineScope.launch { genderBottomSheetState.show() }
                         },
@@ -176,11 +184,13 @@ fun EditProfileScreenContent(
                     )
 
                     PhoneInput(
+                        phone = profileState.phone,
+                        onPhoneInputted = onPhoneInputted,
                         focusManager = focusManager,
                     )
 
                     GenderInput(
-                        gender = null,
+                        gender = profileState.gender,
                         onGenderFieldClick = {
                             keyboardController?.hide()
                             coroutineScope.launch { genderBottomSheetState.show() }
@@ -188,9 +198,9 @@ fun EditProfileScreenContent(
                         focusManager = focusManager
                     )
 
-                    var address by remember { mutableStateOf("") }
                     AddressInput(
-                        address = address,
+                        address = profileState.address,
+                        onAddressInputted = onAddressInputted,
                         focusManager = focusManager
                     )
 
@@ -422,7 +432,7 @@ private fun EmailInput(
 private fun CountryInput(
     modifier: Modifier = Modifier,
     country: UserGenderType? = null,
-    onGenderFieldClick: () -> Unit = {},
+    onCountryFieldClick: () -> Unit = {},
     focusManager: FocusManager,
 ) {
     val countryText = country?.title() ?: ""
@@ -432,7 +442,7 @@ private fun CountryInput(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .debounceClick { onGenderFieldClick.invoke() },
+            .debounceClick { onCountryFieldClick.invoke() },
         value = countryText,
         onValueChange = {},
         placeholder = {
@@ -464,7 +474,7 @@ private fun CountryInput(
 @Composable
 private fun PhoneInput(
     modifier: Modifier = Modifier,
-    text: String = "",
+    phone: String = "",
     onPhoneInputted: (String) -> Unit = {},
     focusManager: FocusManager,
 ) {
@@ -473,7 +483,7 @@ private fun PhoneInput(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp)),
-        value = text,
+        value = phone,
         onValueChange = onPhoneInputted,
         placeholder = {
             Text(
@@ -577,9 +587,9 @@ private fun AddressInput(
 private fun EditProfileScreenPreview() {
     AppTheme {
         EditProfileScreenContent(
-            // profileState = EditProfileUiModel(
+             profileState = EditProfileUiModel(
 
         )
-
+        )
     }
 }

@@ -8,10 +8,15 @@ import java.time.LocalDate
 
 @Parcelize
 data class EditProfileUiModel(
-    val fullName: String = "",
+    val firstName: String = "",
+    val secondName: String = "",
+    val email: String = "",
+    val country: UserGenderType? = null,
     val gender: UserGenderType? = null,
+    val phone: String = "",
     val dateOfBirthDate: LocalDate? = null,
-) : Parcelable {
+    val address: String = "",
+    ) : Parcelable {
 
     val dateOfBirthText get() = DateUtils.dateToString(dateOfBirthDate)
 }
