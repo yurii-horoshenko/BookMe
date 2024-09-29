@@ -28,6 +28,13 @@ class ProfileRepository : ProfileRepositoryProtocol, KoinComponent {
             .map { it.toDomain() }
     }
 
+    override suspend fun loginWithToken(token: String): Response<ProfileModel> {
+        tokenHolder.accessToken = token
+        return remote.login()
+            .map { cache.saveProfile(it.toEntity()) }
+            .map { it.toDomain() }
+    }
+
     override suspend fun validation(
         facebookToken: String?,
         googleToken: String?,

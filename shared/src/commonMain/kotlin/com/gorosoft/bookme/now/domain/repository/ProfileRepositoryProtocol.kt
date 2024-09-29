@@ -9,6 +9,8 @@ interface ProfileRepositoryProtocol {
 
     suspend fun login(): Response<ProfileModel>
 
+    suspend fun loginWithToken(token: String): Response<ProfileModel>
+
     suspend fun validation(
         facebookToken: String? = null,
         googleToken: String? = null,
