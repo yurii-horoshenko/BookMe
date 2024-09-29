@@ -69,7 +69,7 @@ fun EditProfileScreen(
     navController: NavController,
     viewModel: EditProfileViewModel = koinViewModel(),
 ) {
-     val profileState by viewModel.profileState.collectAsStateWithLifecycle()
+    val profileState by viewModel.profileState.collectAsStateWithLifecycle()
 
     EditProfileScreenContent(
         onNavigateBack = navController::popBackStack,
@@ -123,7 +123,6 @@ fun EditProfileScreenContent(
             val scrollState = rememberScrollState()
 
             Box(modifier = modifier.fillMaxSize()) {
-
                 Column(
                     modifier = modifier
                         .fillMaxWidth()
@@ -167,7 +166,8 @@ fun EditProfileScreenContent(
                         email = profileState.email,
                         onEmailInputted = { input ->
                             email = input
-                            isEmailValid = android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
+                            isEmailValid =
+                                android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
                             onEmailInputted(input)
                         },
                         isEmailValid = isEmailValid,
@@ -232,7 +232,8 @@ fun EditProfileScreenContent(
                     CustomScrollbar(scrollState)
                 }
             }
-        })
+        }
+    )
 }
 
 @Composable
@@ -241,30 +242,29 @@ fun CustomScrollbar(scrollState: ScrollState) {
 
     val scrollbarHeight = 80.dp
 
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val trackColor = Color.Gray.copy(alpha = 0.5f)
-            val thumbColor = Color.Black.copy(alpha = 0.8f)
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val trackColor = Color.Gray.copy(alpha = 0.5f)
+        val thumbColor = Color.Black.copy(alpha = 0.8f)
 
-            drawRoundRect(
-                color = trackColor,
-                size = this.size.copy(width = 8.dp.toPx()),
-                cornerRadius = CornerRadius(4.dp.toPx())
-            )
+        drawRoundRect(
+            color = trackColor,
+            size = this.size.copy(width = 8.dp.toPx()),
+            cornerRadius = CornerRadius(4.dp.toPx())
+        )
 
-            val scrollbarOffset = Offset(
-                x = 0f,
-                y = (size.height - scrollbarHeight.toPx()) * scrollProgress
-            )
+        val scrollbarOffset = Offset(
+            x = 0f,
+            y = (size.height - scrollbarHeight.toPx()) * scrollProgress
+        )
 
-            drawRoundRect(
-                color = thumbColor,
-                topLeft = scrollbarOffset,
-                size = this.size.copy(height = scrollbarHeight.toPx(), width = 8.dp.toPx()),
-                cornerRadius = CornerRadius(4.dp.toPx())
-            )
-        }
+        drawRoundRect(
+            color = thumbColor,
+            topLeft = scrollbarOffset,
+            size = this.size.copy(height = scrollbarHeight.toPx(), width = 8.dp.toPx()),
+            cornerRadius = CornerRadius(4.dp.toPx())
+        )
     }
-
+}
 
 @Composable
 private fun NameInput(
@@ -298,7 +298,6 @@ private fun NameInput(
             }
         )
     )
-
 }
 
 @Composable
@@ -587,9 +586,7 @@ private fun AddressInput(
 private fun EditProfileScreenPreview() {
     AppTheme {
         EditProfileScreenContent(
-             profileState = EditProfileUiModel(
-
-        )
+            profileState = EditProfileUiModel()
         )
     }
 }

@@ -16,7 +16,7 @@ data class EditProfileUiModel(
     val phone: String = "",
     val dateOfBirthDate: LocalDate? = null,
     val address: String = "",
-    ) : Parcelable {
+) : Parcelable {
 
     val dateOfBirthText get() = DateUtils.dateToString(dateOfBirthDate)
 }

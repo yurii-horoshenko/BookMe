@@ -50,7 +50,6 @@ fun ProfileItems(
         ProfileListItem(
             iconID = R.drawable.ic_profile,
             titleId = R.string.edit_profile,
-            onClick = onEditProfileClick,
             modifier = Modifier.debounceClick(onClick = onEditProfileClick),
         )
         Spacer(modifier = Modifier.height(24.dp))
@@ -240,38 +239,38 @@ fun DarkModeItem(
     }
 }
 
-@Composable
-private fun ProfileListItem(
-    iconID: Int,
-    titleId: Int,
-    onClick: () -> Unit = {},
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .debounceClick { onClick },
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Image(
-            painter = painterResource(iconID),
-            contentDescription = null,
-            modifier = Modifier.padding(end = 20.dp),
-            colorFilter = ColorFilter.tint(AppTheme.colors.grayscale.gs900),
-        )
-        Text(
-            modifier = Modifier
-                .padding(end = 40.dp)
-                .weight(1f),
-            text = stringResource(titleId),
-            style = AppTheme.typography.bodyXLarge.semibold,
-            color = AppTheme.colors.grayscale.gs900,
-        )
-        Image(
-            painter = painterResource(R.drawable.ic_arrow_right),
-            contentDescription = "Arrow",
-        )
-    }
-}
+//@Composable
+//private fun ProfileListItem(
+//    iconID: Int,
+//    titleId: Int,
+//    onClick: () -> Unit = {},
+//) {
+//    Row(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .debounceClick { onClick },
+//        verticalAlignment = Alignment.CenterVertically,
+//    ) {
+//        Image(
+//            painter = painterResource(iconID),
+//            contentDescription = null,
+//            modifier = Modifier.padding(end = 20.dp),
+//            colorFilter = ColorFilter.tint(AppTheme.colors.grayscale.gs900),
+//        )
+//        Text(
+//            modifier = Modifier
+//                .padding(end = 40.dp)
+//                .weight(1f),
+//            text = stringResource(titleId),
+//            style = AppTheme.typography.bodyXLarge.semibold,
+//            color = AppTheme.colors.grayscale.gs900,
+//        )
+//        Image(
+//            painter = painterResource(R.drawable.ic_arrow_right),
+//            contentDescription = "Arrow",
+//        )
+//    }
+//}
 
 @Preview
 @Composable
