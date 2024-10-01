@@ -1,7 +1,7 @@
 package com.gorosoft.bookme.now.domain.repositories
 
-import com.gorosoft.bookme.now.data.sources.network.CodeRequest
 import com.gorosoft.bookme.now.data.sources.network.ktor.Response
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileCodeApi
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
 
@@ -23,5 +23,5 @@ interface ProfileRepositoryProtocol {
 
     suspend fun code(phone: String, resend: Boolean = false): Response<Boolean>
 
-    suspend fun code(code: CodeRequest): Response<ProfileTokenModel>
+    suspend fun code(code: ProfileCodeApi): Response<ProfileTokenModel>
 }

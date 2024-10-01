@@ -43,7 +43,7 @@ struct ProfileView<ViewModel>: View where ViewModel: ProfileViewModelProtocol {
             
             ProfilePreviewView(
                 displayName: viewModel.profile.fullName,
-                email: viewModel.profile.email
+                email: ""
             )
             
             ProfileOptionsView

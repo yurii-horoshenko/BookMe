@@ -115,8 +115,7 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
         profile: shared.ProfileModel(
             fullName: "",
             birthday: 0,
-            gender: UserGenderType.other,
-            email: "",
+            gender: ProfileGenderType.other,
             phone: "",
             facebookToken: nil,
             googleToken: nil,

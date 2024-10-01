@@ -48,7 +48,6 @@ final class CreateProfileViewModel: CreateProfileViewModelProtocol {
         self.currentProfile = profile
         self.isCreate = isCreate
         fullname.value = currentProfile.fullName
-        email.value = currentProfile.email
     }
     
     // MARK: - Public

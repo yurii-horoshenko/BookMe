@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gorosoft.bookme.now.android.ui.usecase.ProfileUiIsValidUseCase
 import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
-import com.gorosoft.bookme.now.domain.models.UserGenderType
+import com.gorosoft.bookme.now.domain.models.ProfileGenderType
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -35,7 +35,7 @@ class CreateYourProfileViewModel(
         updateState { copy(fullName = newFullName) }
     }
 
-    fun updateGender(gender: UserGenderType) {
+    fun updateGender(gender: ProfileGenderType) {
         updateState { copy(gender = gender) }
     }
 

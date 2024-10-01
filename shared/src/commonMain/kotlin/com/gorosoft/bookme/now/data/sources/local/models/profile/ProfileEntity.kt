@@ -1,9 +1,9 @@
-package com.gorosoft.bookme.now.data.database.model
+package com.gorosoft.bookme.now.data.sources.local.models.profile
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileGenderType
 import com.gorosoft.bookme.now.domain.models.ProfileModel
-import com.gorosoft.bookme.now.domain.models.UserGenderType
 
 @Entity
 data class ProfileEntity(
@@ -12,7 +12,6 @@ data class ProfileEntity(
     val fullName: String,
     val birthday: Long,
     val gender: String,
-    val email: String,
     val phone: String,
     val isExist: Boolean,
 )
@@ -21,8 +20,7 @@ fun ProfileEntity.toDomain(): ProfileModel {
     return ProfileModel(
         fullName = fullName,
         birthday = birthday,
-        gender = UserGenderType.entries.find { it.name == this.gender } ?: UserGenderType.OTHER,
-        email = email,
+        gender = ProfileGenderType.entries.find { it.name == this.gender } ?: ProfileGenderType.OTHER,
         phone = phone,
         facebookToken = null,
         googleToken = null,

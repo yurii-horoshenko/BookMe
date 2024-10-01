@@ -2,8 +2,8 @@ package com.gorosoft.bookme.now.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.gorosoft.bookme.now.data.database.model.ProfileEntity
-import com.gorosoft.bookme.now.data.sources.local.roomdb.queries.profile.ProfileDao
+import com.gorosoft.bookme.now.data.sources.local.models.profile.ProfileDao
+import com.gorosoft.bookme.now.data.sources.local.models.profile.ProfileEntity
 
 internal const val appDbFileName = "bookme_now.db"
 

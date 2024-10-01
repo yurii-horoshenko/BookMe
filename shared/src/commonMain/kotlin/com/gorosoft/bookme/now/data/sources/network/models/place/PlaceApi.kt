@@ -1,10 +1,10 @@
-package com.gorosoft.bookme.now.data.sources.network
+package com.gorosoft.bookme.now.data.sources.network.models.place
 
 import com.gorosoft.bookme.now.domain.models.PlaceModel
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PlaceResponse(
+data class PlaceApi(
     val placeId: String? = null,
     val name: String? = null,
     val description: String? = null,
@@ -13,7 +13,7 @@ data class PlaceResponse(
     val website: String? = null,
 )
 
-fun PlaceResponse.toDomain(): PlaceModel {
+fun PlaceApi.toDomain(): PlaceModel {
     return PlaceModel(
         placeId = placeId ?: "",
         name = name ?: "",

@@ -25,7 +25,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     var toLogoutConfirm = false
     var toSignIn = false
     var detectHeight: CGFloat = 0
-    var profile: shared.ProfileModel = ProfileModel(fullName: "", birthday: 0, gender: .other, email: "", phone: "", facebookToken: nil, googleToken: nil, isExist: false)
+    var profile: shared.ProfileModel = ProfileModel(fullName: "", birthday: 0, gender: .other, phone: "", facebookToken: nil, googleToken: nil, isExist: false)
     var view: ProfileViewProtocol?
     
     // MARK: - Lifecycle

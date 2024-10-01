@@ -1,10 +1,9 @@
-package com.gorosoft.bookme.now.data.sources.local.roomdb.queries.profile
+package com.gorosoft.bookme.now.data.sources.local.models.profile
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.gorosoft.bookme.now.data.database.model.ProfileEntity
 
 @Dao
 interface ProfileDao {

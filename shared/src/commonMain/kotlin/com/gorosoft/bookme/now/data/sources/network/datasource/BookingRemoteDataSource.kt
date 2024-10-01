@@ -1,8 +1,8 @@
 package com.gorosoft.bookme.now.data.sources.network.datasource
 
-import com.gorosoft.bookme.now.data.sources.network.BookingResponse
 import com.gorosoft.bookme.now.data.sources.network.ktor.Response
 import com.gorosoft.bookme.now.data.sources.network.ktor.safeDataResponseCall
+import com.gorosoft.bookme.now.data.sources.network.models.booking.BookingApi
 import com.gorosoft.bookme.now.domain.models.PlaceModel
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -16,7 +16,7 @@ class BookingRemoteDataSource(
     // GET: base_url/api/booking/list
     suspend fun getBooking(
         count: Int,
-    ): Response<BookingResponse> {
+    ): Response<BookingApi> {
         return safeDataResponseCall {
             val result: HttpResponse = client.get("booking/list") {
                 parameter("count", count)

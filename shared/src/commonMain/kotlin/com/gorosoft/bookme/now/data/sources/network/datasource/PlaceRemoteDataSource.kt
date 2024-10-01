@@ -1,10 +1,10 @@
 package com.gorosoft.bookme.now.data.sources.network.datasource
 
-import com.gorosoft.bookme.now.data.sources.network.PlaceResponse
 import com.gorosoft.bookme.now.data.sources.network.ktor.Response
 import com.gorosoft.bookme.now.data.sources.network.ktor.safeDataResponseCall
-import com.gorosoft.bookme.now.domain.models.LocationModel
-import com.gorosoft.bookme.now.domain.models.PlaceType
+import com.gorosoft.bookme.now.data.sources.network.models.place.PlaceApi
+import com.gorosoft.bookme.now.data.sources.network.models.place.LocationApi
+import com.gorosoft.bookme.now.data.sources.network.models.place.PlaceTypeApi
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -17,10 +17,10 @@ class PlaceRemoteDataSource(
     // GET: base_url/api/place/list
     suspend fun getPlaces(
         query: String? = null,
-        type: PlaceType,
-        location: LocationModel,
+        type: PlaceTypeApi,
+        location: LocationApi,
         radius: Int,
-    ): Response<PlaceResponse> {
+    ): Response<PlaceApi> {
         return safeDataResponseCall {
             val result: HttpResponse = client.get("place/list") {
                 // bearerAuth(token)

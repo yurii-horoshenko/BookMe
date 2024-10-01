@@ -1,10 +1,10 @@
-package com.gorosoft.bookme.now.data.sources.network
+package com.gorosoft.bookme.now.data.sources.network.models.booking
 
 import com.gorosoft.bookme.now.domain.models.BookingModel
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BookingResponse(
+data class BookingApi(
     val bookingId: String? = null,
     val placeId: String? = null,
     val dataTime: Long? = 0,
@@ -15,7 +15,7 @@ data class BookingResponse(
     val website: String? = null,
 )
 
-fun BookingResponse.toDomain(): BookingModel {
+fun BookingApi.toDomain(): BookingModel {
     return BookingModel(
         bookingId = bookingId ?: "",
         placeId = placeId ?: "",

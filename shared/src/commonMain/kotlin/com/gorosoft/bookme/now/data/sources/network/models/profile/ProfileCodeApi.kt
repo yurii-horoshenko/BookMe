@@ -1,9 +1,9 @@
-package com.gorosoft.bookme.now.data.sources.network
+package com.gorosoft.bookme.now.data.sources.network.models.profile
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CodeRequest(
+data class ProfileCodeApi(
     val phone: String,
     val code: String,
 )

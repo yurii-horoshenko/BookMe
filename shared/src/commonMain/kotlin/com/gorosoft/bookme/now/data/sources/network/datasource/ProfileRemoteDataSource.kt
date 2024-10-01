@@ -1,13 +1,12 @@
 package com.gorosoft.bookme.now.data.sources.network.datasource
 
-import com.gorosoft.bookme.now.data.sources.network.CodeRequest
-import com.gorosoft.bookme.now.data.sources.network.ProfileRequest
-import com.gorosoft.bookme.now.data.sources.network.ProfileResponse
-import com.gorosoft.bookme.now.data.sources.network.ProfileTokenResponse
 import com.gorosoft.bookme.now.data.sources.network.SuccessResponse
 import com.gorosoft.bookme.now.data.sources.network.ktor.Response
 import com.gorosoft.bookme.now.data.sources.network.ktor.safeDataResponseCall
 import com.gorosoft.bookme.now.data.sources.network.ktor.safeResponseCall
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileCodeApi
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileApi
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileTokenApi
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -20,7 +19,7 @@ class ProfileRemoteDataSource(
     private val client: HttpClient,
 ) {
     // GET:  base_url/user/login
-    suspend fun login(): Response<ProfileResponse> {
+    suspend fun login(): Response<ProfileApi> {
         return safeDataResponseCall {
             val result: HttpResponse = client.get("user/login")
             result.body()
@@ -32,7 +31,7 @@ class ProfileRemoteDataSource(
         facebookToken: String?,
         googleToken: String?,
         phone: String?,
-    ): Response<ProfileResponse> {
+    ): Response<ProfileApi> {
         return safeDataResponseCall {
             val result: HttpResponse = client.get("user/validation") {
                 parameter("facebook_token", facebookToken)
@@ -46,8 +45,8 @@ class ProfileRemoteDataSource(
 
     // POST:  base_url/user/create_profile
     suspend fun createProfile(
-        profile: ProfileRequest,
-    ): Response<ProfileResponse> {
+        profile: ProfileApi,
+    ): Response<ProfileApi> {
         return safeDataResponseCall {
             val result: HttpResponse = client.post("user/create_profile") {
                 setBody(profile)
@@ -74,8 +73,8 @@ class ProfileRemoteDataSource(
 
     // POST:  base_url/user/code
     suspend fun code(
-        code: CodeRequest,
-    ): Response<ProfileTokenResponse> {
+        code: ProfileCodeApi,
+    ): Response<ProfileTokenApi> {
         return safeDataResponseCall {
             val result: HttpResponse = client.post("user/code") {
                 setBody(code)
