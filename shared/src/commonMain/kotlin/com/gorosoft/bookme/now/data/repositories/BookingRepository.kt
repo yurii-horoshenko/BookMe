@@ -1,12 +1,12 @@
 package com.gorosoft.bookme.now.data.repositories
 
-import com.gorosoft.bookme.now.Response
-import com.gorosoft.bookme.now.data.network.datasource.BookingRemoteDataSource
-import com.gorosoft.bookme.now.data.network.model.response.toDomain
+import com.gorosoft.bookme.now.data.sources.network.ktor.Response
+import com.gorosoft.bookme.now.data.sources.network.datasource.BookingRemoteDataSource
+import com.gorosoft.bookme.now.data.sources.network.toDomain
 import com.gorosoft.bookme.now.domain.models.BookingModel
 import com.gorosoft.bookme.now.domain.models.PlaceModel
-import com.gorosoft.bookme.now.domain.repository.BookingRepositoryProtocol
-import com.gorosoft.bookme.now.map
+import com.gorosoft.bookme.now.domain.repositories.BookingRepositoryProtocol
+import com.gorosoft.bookme.now.data.sources.network.ktor.map
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

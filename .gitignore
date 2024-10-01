@@ -19,3 +19,4 @@ build-cache
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 secrets.properties
+/.kotlin

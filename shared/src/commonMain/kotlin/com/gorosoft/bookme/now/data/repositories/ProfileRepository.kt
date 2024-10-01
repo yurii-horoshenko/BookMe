@@ -1,18 +1,18 @@
 package com.gorosoft.bookme.now.data.repositories
 
-import com.gorosoft.bookme.now.Response
-import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSourceProtocol
+import com.gorosoft.bookme.now.data.sources.network.ktor.Response
+import com.gorosoft.bookme.now.data.sources.local.RoomDatabase.Queries.Profile.ProfileCacheDataSourceProtocol
 import com.gorosoft.bookme.now.data.database.model.toDomain
-import com.gorosoft.bookme.now.data.network.datasource.ProfileRemoteDataSource
-import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
-import com.gorosoft.bookme.now.data.network.model.request.toRequest
-import com.gorosoft.bookme.now.data.network.model.response.toDomain
-import com.gorosoft.bookme.now.data.network.model.response.toEntity
-import com.gorosoft.bookme.now.data.network.token_holder.TokenHolderProtocol
+import com.gorosoft.bookme.now.data.sources.network.datasource.ProfileRemoteDataSource
+import com.gorosoft.bookme.now.data.sources.network.CodeRequest
+import com.gorosoft.bookme.now.data.sources.network.toRequest
+import com.gorosoft.bookme.now.data.sources.network.toDomain
+import com.gorosoft.bookme.now.data.sources.network.toEntity
+import com.gorosoft.bookme.now.data.sources.network.ktor.TokenHolderProtocol
+import com.gorosoft.bookme.now.data.sources.network.ktor.map
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
-import com.gorosoft.bookme.now.domain.repository.ProfileRepositoryProtocol
-import com.gorosoft.bookme.now.map
+import com.gorosoft.bookme.now.domain.repositories.ProfileRepositoryProtocol
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
