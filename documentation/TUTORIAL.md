@@ -16,13 +16,15 @@ The API documentation is available through Swagger at the following link:
 
 For automated code formatting and enforcing a consistent style, we use Spotless. Use the following commands to manage code style:
 
-    1. Run formatting:
-      To automatically format your code, run:
-        `./gradlew spotlessApply`
+1. Run formatting:
+   To automatically format your code, run:
 
-    2.    Run style check:
-        •    To check the code style without formatting, run:
-        `./gradlew spotlessCheck`
+   `./gradlew spotlessApply`
+
+2. Run style check:
+   To check the code style without formatting, run:
+
+    `./gradlew spotlessCheck`
 
 
 ## iOS Setup
@@ -45,7 +47,9 @@ Before starting work on the iOS project, ensure you have the following tools ins
 Ensure you install the following Fastlane plugins:
 
   [Changelog Plugin](https://github.com/pajapro/fastlane-plugin-changelog)
+
   [Firebase App Distribution Plugin](https://github.com/firebase/fastlane-plugin-firebase_app_distribution)
+
 
 ## Run iOS Commands
 
