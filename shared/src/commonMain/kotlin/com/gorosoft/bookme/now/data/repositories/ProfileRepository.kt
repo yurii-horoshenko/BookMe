@@ -1,15 +1,15 @@
 package com.gorosoft.bookme.now.data.repositories
 
-import com.gorosoft.bookme.now.data.sources.network.ktor.Response
-import com.gorosoft.bookme.now.data.sources.local.RoomDatabase.Queries.Profile.ProfileCacheDataSourceProtocol
 import com.gorosoft.bookme.now.data.database.model.toDomain
-import com.gorosoft.bookme.now.data.sources.network.datasource.ProfileRemoteDataSource
+import com.gorosoft.bookme.now.data.sources.local.roomdb.queries.profile.ProfileCacheDataSourceProtocol
 import com.gorosoft.bookme.now.data.sources.network.CodeRequest
-import com.gorosoft.bookme.now.data.sources.network.toRequest
-import com.gorosoft.bookme.now.data.sources.network.toDomain
-import com.gorosoft.bookme.now.data.sources.network.toEntity
+import com.gorosoft.bookme.now.data.sources.network.datasource.ProfileRemoteDataSource
+import com.gorosoft.bookme.now.data.sources.network.ktor.Response
 import com.gorosoft.bookme.now.data.sources.network.ktor.TokenHolderProtocol
 import com.gorosoft.bookme.now.data.sources.network.ktor.map
+import com.gorosoft.bookme.now.data.sources.network.toDomain
+import com.gorosoft.bookme.now.data.sources.network.toEntity
+import com.gorosoft.bookme.now.data.sources.network.toRequest
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
 import com.gorosoft.bookme.now.domain.repositories.ProfileRepositoryProtocol
@@ -38,7 +38,7 @@ class ProfileRepository : ProfileRepositoryProtocol, KoinComponent {
     override suspend fun validation(
         facebookToken: String?,
         googleToken: String?,
-        phone: String?
+        phone: String?,
     ): Response<ProfileModel> {
         return remote.validation(
             facebookToken = facebookToken,

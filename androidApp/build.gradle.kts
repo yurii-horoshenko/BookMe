@@ -52,11 +52,11 @@ android {
     }
 }
 
-//tasks.getByPath("preBuild").dependsOn("ktlintCheck")
-//tasks.getByPath("preBuild").dependsOn("detekt")
-//tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+// tasks.getByPath("preBuild").dependsOn("ktlintCheck")
+// tasks.getByPath("preBuild").dependsOn("detekt")
+// tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
 //    exclude(".*/build/.*,.*/resources/.*")
-//}
+// }
 
 ktlint {
     android = true
@@ -77,7 +77,7 @@ ktlint {
 
 detekt {
     toolVersion = libs.versions.detekt.get()
-    config.setFrom(file("${rootDir}/config/detekt/detekt.yml"))
+    config.setFrom(file("$rootDir/config/detekt/detekt.yml"))
     buildUponDefaultConfig = true
 }
 
@@ -113,6 +113,5 @@ secrets {
 
     // Configure which keys should be ignored by the plugin by providing regular expressions.
     // "sdk.dir" is ignored by default.
-    ignoreList.add("sdk.*")       // Ignore all keys matching the regexp "sdk.*"
+    ignoreList.add("sdk.*") // Ignore all keys matching the regexp "sdk.*"
 }
-

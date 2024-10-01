@@ -12,7 +12,7 @@ data class BookingResponse(
     val description: String? = null,
     val phone: String? = null,
     val address: String? = null,
-    val website: String? = null
+    val website: String? = null,
 )
 
 fun BookingResponse.toDomain(): BookingModel {
@@ -24,6 +24,6 @@ fun BookingResponse.toDomain(): BookingModel {
         description = description ?: "",
         phone = phone ?: "",
         address = address ?: "",
-        website = website ?: ""
+        website = website ?: "",
     )
 }

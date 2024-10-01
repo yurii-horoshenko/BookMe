@@ -13,7 +13,7 @@ fun createRoomDatabase(): AppDatabase {
     val dbFile = NSHomeDirectory() + "/$appDbFileName"
     return Room.databaseBuilder<AppDatabase>(
         name = dbFile,
-        factory = { AppDatabase::class.instantiateImpl() }
+        factory = { AppDatabase::class.instantiateImpl() },
     ).setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
         .build()

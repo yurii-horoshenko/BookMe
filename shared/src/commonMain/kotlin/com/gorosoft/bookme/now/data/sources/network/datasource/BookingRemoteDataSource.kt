@@ -1,7 +1,7 @@
 package com.gorosoft.bookme.now.data.sources.network.datasource
 
-import com.gorosoft.bookme.now.data.sources.network.ktor.Response
 import com.gorosoft.bookme.now.data.sources.network.BookingResponse
+import com.gorosoft.bookme.now.data.sources.network.ktor.Response
 import com.gorosoft.bookme.now.data.sources.network.ktor.safeDataResponseCall
 import com.gorosoft.bookme.now.domain.models.PlaceModel
 import io.ktor.client.HttpClient
@@ -15,7 +15,7 @@ class BookingRemoteDataSource(
 ) {
     // GET: base_url/api/booking/list
     suspend fun getBooking(
-        count: Int
+        count: Int,
     ): Response<BookingResponse> {
         return safeDataResponseCall {
             val result: HttpResponse = client.get("booking/list") {
@@ -28,7 +28,7 @@ class BookingRemoteDataSource(
     // POST: base_url/api/booking/create
     suspend fun createBooking(
         place: PlaceModel,
-        dataTime: Long
+        dataTime: Long,
     ): Response<Boolean> {
         return safeDataResponseCall {
             val result: HttpResponse = client.get("booking/create") {
@@ -39,10 +39,9 @@ class BookingRemoteDataSource(
         }
     }
 
-
     // POST: base_url/api/booking/cancel
     suspend fun cancelBooking(
-        bookingId: String
+        bookingId: String,
     ): Response<Boolean> {
         return safeDataResponseCall {
             val result: HttpResponse = client.get("booking/cancel") {
@@ -51,5 +50,4 @@ class BookingRemoteDataSource(
             result.body()
         }
     }
-
 }

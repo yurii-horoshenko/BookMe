@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now.data.sources.local.RoomDatabase.Queries.Profile
+package com.gorosoft.bookme.now.data.sources.local.roomdb.queries.profile
 
 import com.gorosoft.bookme.now.data.database.model.ProfileEntity
 

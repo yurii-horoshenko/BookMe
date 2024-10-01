@@ -1,11 +1,11 @@
 package com.gorosoft.bookme.now.data.sources.network.datasource
 
-import com.gorosoft.bookme.now.data.sources.network.ktor.Response
 import com.gorosoft.bookme.now.data.sources.network.CodeRequest
 import com.gorosoft.bookme.now.data.sources.network.ProfileRequest
 import com.gorosoft.bookme.now.data.sources.network.ProfileResponse
 import com.gorosoft.bookme.now.data.sources.network.ProfileTokenResponse
 import com.gorosoft.bookme.now.data.sources.network.SuccessResponse
+import com.gorosoft.bookme.now.data.sources.network.ktor.Response
 import com.gorosoft.bookme.now.data.sources.network.ktor.safeDataResponseCall
 import com.gorosoft.bookme.now.data.sources.network.ktor.safeResponseCall
 import io.ktor.client.HttpClient
@@ -31,7 +31,7 @@ class ProfileRemoteDataSource(
     suspend fun validation(
         facebookToken: String?,
         googleToken: String?,
-        phone: String?
+        phone: String?,
     ): Response<ProfileResponse> {
         return safeDataResponseCall {
             val result: HttpResponse = client.get("user/validation") {
@@ -46,7 +46,7 @@ class ProfileRemoteDataSource(
 
     // POST:  base_url/user/create_profile
     suspend fun createProfile(
-        profile: ProfileRequest
+        profile: ProfileRequest,
     ): Response<ProfileResponse> {
         return safeDataResponseCall {
             val result: HttpResponse = client.post("user/create_profile") {
@@ -60,7 +60,7 @@ class ProfileRemoteDataSource(
     // GET:  base_url/user/code
     suspend fun code(
         phone: String,
-        resend: Boolean
+        resend: Boolean,
     ): Response<Boolean> {
         return safeResponseCall {
             val result: HttpResponse = client.get("user/code") {
@@ -74,7 +74,7 @@ class ProfileRemoteDataSource(
 
     // POST:  base_url/user/code
     suspend fun code(
-        code: CodeRequest
+        code: CodeRequest,
     ): Response<ProfileTokenResponse> {
         return safeDataResponseCall {
             val result: HttpResponse = client.post("user/code") {

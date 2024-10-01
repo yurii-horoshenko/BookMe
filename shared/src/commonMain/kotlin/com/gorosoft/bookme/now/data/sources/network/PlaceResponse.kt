@@ -10,7 +10,7 @@ data class PlaceResponse(
     val description: String? = null,
     val phone: String? = null,
     val address: String? = null,
-    val website: String? = null
+    val website: String? = null,
 )
 
 fun PlaceResponse.toDomain(): PlaceModel {
@@ -20,6 +20,6 @@ fun PlaceResponse.toDomain(): PlaceModel {
         description = description ?: "",
         phone = phone ?: "",
         address = address ?: "",
-        website = website ?: ""
+        website = website ?: "",
     )
 }

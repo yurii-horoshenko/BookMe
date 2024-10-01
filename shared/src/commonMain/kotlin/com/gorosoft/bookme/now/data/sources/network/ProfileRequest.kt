@@ -17,7 +17,7 @@ data class ProfileRequest(
     @SerialName("google_token")
     val googleToken: String? = null,
     @SerialName("isExist")
-    val isExist: Boolean? = null
+    val isExist: Boolean? = null,
 )
 
 fun ProfileModel.toRequest(): ProfileRequest {

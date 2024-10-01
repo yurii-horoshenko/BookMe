@@ -17,5 +17,12 @@ tasks.register("clean", Delete::class) {
 buildscript {
     dependencies {
         classpath(libs.secrets.gradle.plugin)
+        classpath(libs.spotless.plugin.gradle)
+    }
+}
+
+subprojects {
+    afterEvaluate {
+        project.apply("../spotless.gradle")
     }
 }

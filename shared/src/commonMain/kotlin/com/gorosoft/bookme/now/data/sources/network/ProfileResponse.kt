@@ -15,7 +15,7 @@ data class ProfileResponse(
     val email: String? = null,
     val phone: String? = null,
     @SerialName("isExist")
-    val isExist: Boolean? = null
+    val isExist: Boolean? = null,
 )
 
 fun ProfileResponse.toDomain(): ProfileModel {

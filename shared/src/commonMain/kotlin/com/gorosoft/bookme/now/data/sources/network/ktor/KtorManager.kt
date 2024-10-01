@@ -37,7 +37,7 @@ class KtorManager(
                 Json {
                     ignoreUnknownKeys = true
                     prettyPrint = true
-                }
+                },
             )
         }
         install(Logging) {

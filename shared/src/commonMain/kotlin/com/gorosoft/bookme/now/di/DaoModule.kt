@@ -1,7 +1,7 @@
 package com.gorosoft.bookme.now.di
 
 import com.gorosoft.bookme.now.data.database.AppDatabase
-import com.gorosoft.bookme.now.data.sources.local.RoomDatabase.Queries.Profile.ProfileDao
+import com.gorosoft.bookme.now.data.sources.local.roomdb.queries.profile.ProfileDao
 import org.koin.dsl.module
 
 fun daoModule() = module {

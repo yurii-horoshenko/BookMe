@@ -2,7 +2,7 @@ package com.gorosoft.bookme.now.data.sources.network.ktor
 
 import io.ktor.http.HeadersBuilder
 
-class RuntimeHeadersHolder : HeadersHolderProtocol {
+class HeadersHolder : HeadersHolderProtocol {
 
     override var headers: Map<String, String> = mutableMapOf()
 

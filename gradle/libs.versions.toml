@@ -23,6 +23,7 @@ ksp-version = "2.0.0-1.0.24"
 lifecycle-compose-version = "2.8.6"
 material3-version = "1.3.0"
 androidx-room = "2.7.0-alpha01"
+spotlessPluginGradleVersion = "6.19.0"
 sqlite = "2.5.0-SNAPSHOT"
 koin = "4.0.0-RC1"
 koinCompose = "4.0.0-RC1"
@@ -55,6 +56,7 @@ maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = 
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuthVersion" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocationVersion" }
 secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePluginVersion" }
+spotless-plugin-gradle = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotlessPluginGradleVersion" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle-compose-version" }

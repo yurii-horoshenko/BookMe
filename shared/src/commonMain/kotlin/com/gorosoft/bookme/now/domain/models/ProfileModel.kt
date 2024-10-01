@@ -1,7 +1,7 @@
 package com.gorosoft.bookme.now.domain.models
 
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Serializable
 enum class UserGenderType {
@@ -12,7 +12,7 @@ enum class UserGenderType {
     FEMALE,
 
     @SerialName("other")
-    OTHER;
+    OTHER,
 }
 
 data class ProfileModel(
@@ -23,5 +23,5 @@ data class ProfileModel(
     val phone: String,
     val facebookToken: String?,
     val googleToken: String?,
-    val isExist: Boolean
+    val isExist: Boolean,
 )

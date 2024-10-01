@@ -1,13 +1,13 @@
 package com.gorosoft.bookme.now.data.repositories
 
-import com.gorosoft.bookme.now.data.sources.network.ktor.Response
 import com.gorosoft.bookme.now.data.sources.network.datasource.PlaceRemoteDataSource
+import com.gorosoft.bookme.now.data.sources.network.ktor.Response
+import com.gorosoft.bookme.now.data.sources.network.ktor.map
 import com.gorosoft.bookme.now.data.sources.network.toDomain
 import com.gorosoft.bookme.now.domain.models.LocationModel
 import com.gorosoft.bookme.now.domain.models.PlaceModel
 import com.gorosoft.bookme.now.domain.models.PlaceType
 import com.gorosoft.bookme.now.domain.repositories.PlaceRepositoryProtocol
-import com.gorosoft.bookme.now.data.sources.network.ktor.map
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -25,7 +25,7 @@ class PlaceRepository : PlaceRepositoryProtocol, KoinComponent {
             query = query,
             type = type,
             location = location,
-            radius = radius
+            radius = radius,
         ).map { it.toDomain() }
     }
 }

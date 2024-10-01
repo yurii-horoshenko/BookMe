@@ -14,5 +14,5 @@ data class DataResponse<T>(
 @Serializable
 data class SuccessResponse(
     val success: Boolean,
-    val error: String? = null
+    val error: String? = null,
 )

@@ -31,7 +31,7 @@ actual fun KMMContext.getBool(key: String, default: Boolean): Boolean {
 @SuppressLint("ApplySharedPref")
 private inline fun SharedPreferences.edit(
     commit: Boolean = false,
-    action: SharedPreferences.Editor.() -> Unit
+    action: SharedPreferences.Editor.() -> Unit,
 ) {
     val editor = edit()
     action(editor)
