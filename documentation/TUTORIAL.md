@@ -33,14 +33,14 @@ Pre-install gem tools
 
 Before starting work on the iOS project, ensure you have the following tools installed:
 
-    • Fastlane: Automates the building and deployment process.
-      [Fastlane setup for iOS](https://docs.fastlane.tools/getting-started/ios/setup)
+• Fastlane: Automates the building and deployment process.
+  [Fastlane setup for iOS](https://docs.fastlane.tools/getting-started/ios/setup)
 
-    • SwiftLint: A static code analyzer for maintaining Swift code style.
-      [SwiftLint GitHub](https://github.com/realm/SwiftLint)
+• SwiftLint: A static code analyzer for maintaining Swift code style.
+  [SwiftLint GitHub](https://github.com/realm/SwiftLint)
 
-    • XcodeGen: Automatically generates .xcodeproj files from a project specification.
-      [XcodeGen GitHub](https://github.com/yonaskolb/XcodeGen)
+• XcodeGen: Automatically generates .xcodeproj files from a project specification.
+  [XcodeGen GitHub](https://github.com/yonaskolb/XcodeGen)
 
 ## Fastlane Plugins
 
@@ -53,18 +53,22 @@ Ensure you install the following Fastlane plugins:
 
 ## Run iOS Commands
 
-    1.    Update all plugins:
-        •    Before proceeding, update all Fastlane plugins:
-        `fastlane update_plugins`
+1. Update all plugins:
+   Before proceeding, update all Fastlane plugins:
 
-    2.    Generate project files:
-        •    To correctly create .xcodeproj and .xcworkspace files, run:
-        `fastlane xcodegen`
+    `fastlane update_plugins`
 
-    3.    Check code and autocorrect style issues:
-        •    To check the code and automatically fix minor style issues, run:
-        `fastlane lint`
+2. Generate project files:
+   To correctly create .xcodeproj and .xcworkspace files, run:
 
-    4.    Generating .ipa file:
-        •    To build the .ipa file, you can use a simple Fastlane command:
-        `fastlane build_ipa`
+    `fastlane xcodegen`
+
+3. Check code and autocorrect style issues:
+   To check the code and automatically fix minor style issues, run:
+
+    `fastlane lint`
+
+4. Generating .ipa file:
+   To build the .ipa file, you can use a simple Fastlane command:
+
+    `fastlane build_ipa`
