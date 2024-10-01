@@ -3,6 +3,7 @@
 ## Design
 
 To view and work with the design mockups, use the following Figma link:
+
 [Design on Figma](https://www.figma.com/file/tQct25XxTRIIkbyPTU2lnW/BookMe-v1?type=design&node-id=727%3A25421&mode=design&t=eBtOgRJ4RPWPOBlG-1)
 
 ## API Documentation
@@ -43,8 +44,8 @@ Before starting work on the iOS project, ensure you have the following tools ins
 
 Ensure you install the following Fastlane plugins:
 
-    • [Changelog Plugin](https://github.com/pajapro/fastlane-plugin-changelog)
-    • [Firebase App Distribution Plugin](https://github.com/firebase/fastlane-plugin-firebase_app_distribution)
+  [Changelog Plugin](https://github.com/pajapro/fastlane-plugin-changelog)
+  [Firebase App Distribution Plugin](https://github.com/firebase/fastlane-plugin-firebase_app_distribution)
 
 ## Run iOS Commands
 
