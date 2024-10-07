@@ -19,18 +19,15 @@ struct ProfileView<ViewModel>: View where ViewModel: ProfileViewModelProtocol {
     var body: some View {
         NavigationView {
             NavigationStack {
-                BaseView(
-                    leadingView: AnyView(LeadingView),
-                    content: { ContentView }
-                )
-                .onAppear {
-                    viewModel.loadData()
-                }
-                .navigationDestination(isPresented: $viewModel.toSignIn) {
-//                    Steps.updateProfile(viewModel.profile)
-                    
-//                    ProfilePageBuilder.constructCreateProfileView(profile: viewModel.profile)
-                }
+                ContentView
+                    .showNavigationBar(leadingView: AnyView(LeadingView))
+                    .navigationDestination(isPresented: $viewModel.toSignIn) {
+                        //  Steps.updateProfile(viewModel.profile)
+                        //  ProfilePageBuilder.constructCreateProfileView(profile: viewModel.profile)
+                    }
+                    .onAppear {
+                        viewModel.loadData()
+                    }
             }
         }
         .navigationBarBackButtonHidden(true)

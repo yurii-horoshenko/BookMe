@@ -26,14 +26,12 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(
-                navigationTitle: title,
-                content: { ContentView }
-            )
-            .navigationDestination(isPresented: $viewModel.toCode) {
-                let phone = viewModel.phone.value
-                AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: viewModel.isCreate)
-            }
+            ContentView
+                .showNavigationBar(title: title)
+                .navigationDestination(isPresented: $viewModel.toCode) {
+                    let phone = viewModel.phone.value
+                    AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: viewModel.isCreate)
+                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)

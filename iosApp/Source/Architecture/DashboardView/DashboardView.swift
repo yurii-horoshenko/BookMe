@@ -15,14 +15,14 @@ struct DashboardView<ViewModel>: View where ViewModel: DashboardViewModelProtoco
     var body: some View {
         NavigationView {
             NavigationStack {
-                BaseView(
-                    leadingView: AnyView(LeadingView),
-                    trailingView: AnyView(TrailingView),
-                    content: { ContentView }
-                )
-                .navigationDestination(isPresented: $viewModel.toServiceDetail) {
-                    DashboardPageBuilder.constructServiceView()
-                }
+                ContentView
+                    .showNavigationBar(
+                        leadingView: AnyView(LeadingView),
+                        trailingView: AnyView(TrailingView)
+                    )
+                    .navigationDestination(isPresented: $viewModel.toServiceDetail) {
+                        DashboardPageBuilder.constructServiceView()
+                    }
             }
         }
         .navigationBarBackButtonHidden(true)
