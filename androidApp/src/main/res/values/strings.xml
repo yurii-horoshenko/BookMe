@@ -56,4 +56,6 @@
     <string name="choose_country">Сountry</string>
     <string name="address">Address</string>
     <string name="update">Update</string>
+    <string name="you_have_done_using_barber_salon_service">You have done using barber/salon service</string>
+    <string name="please_leave_your_review_so_others_people_can_know_your_opinion">Please leave your review so others people can know your opinion</string>
 </resources>
