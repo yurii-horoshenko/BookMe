@@ -2,14 +2,13 @@ package com.gorosoft.bookme.now.android.ui.main_screen.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material3.Text
@@ -17,11 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,11 +27,10 @@ import androidx.compose.ui.window.DialogProperties
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
-import com.gorosoft.bookme.now.android.ui.utils.SecondaryButton
 import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 
 @Composable
-fun EnableLocationDialog(
+fun EnableFeedbackDialog(
     modifier: Modifier = Modifier,
     onEnableLocation: () -> Unit = { },
     onDismiss: () -> Unit = { },
@@ -51,7 +47,7 @@ fun EnableLocationDialog(
                 .background(AppTheme.colors.backgroundThemed.backgroundMain),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            EnableLocationContent(onEnableLocation)
+            EnableFeedbackDialog(onEnableLocation)
             PrimaryButton(
                 modifier = Modifier
                     .padding(start = 32.dp, end = 32.dp, bottom = 32.dp)
@@ -64,14 +60,14 @@ fun EnableLocationDialog(
 }
 
 @Composable
-fun ColumnScope.EnableLocationContent(onEnableLocation: () -> Unit) {
+fun ColumnScope.EnableFeedbackDialog(onEnableLocation: () -> Unit) {
     Image(
         modifier = Modifier.padding(top = 40.dp),
         painter = painterResource(R.drawable.image_location_permission),
         contentDescription = "location permission image"
     )
     Text(
-        modifier = Modifier.padding(top = 16.dp),
+        modifier = Modifier.padding(top = 16.dp, start = 32.dp, end = 32.dp),
         text = stringResource(R.string.you_have_done_using_barber_salon_service),
         style = AppTheme.typography.heading.h4,
         color = AppTheme.colors.mainColors.primary500,
@@ -100,6 +96,7 @@ private fun FeedbackInput(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 32.dp, vertical = 32.dp)
+            .border(1.dp, AppTheme.colors.mainColors.primary500, RoundedCornerShape(20.dp))
             .clip(RoundedCornerShape(20.dp)),
         value = name,
         onValueChange = onNewNameInputted,
@@ -110,8 +107,10 @@ private fun FeedbackInput(
                 color = AppTheme.colors.grayscale.gs500,
             )
         },
-        colors = TextFieldDefaults.appThemeTextFieldColors(),
         textStyle = AppTheme.typography.bodyMedium.semibold,
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = AppTheme.colors.mainColors.primary500.copy(alpha = 0.08f),
+        ),
     )
 }
 
@@ -119,6 +118,6 @@ private fun FeedbackInput(
 @Composable
 private fun EnableLocationDialogPreview() {
     AppTheme {
-        EnableLocationDialog {}
+        EnableFeedbackDialog {}
     }
 }
