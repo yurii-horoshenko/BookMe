@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -142,7 +143,14 @@ fun RatingBar(
                 painter = painterResource(id = if (index <= rating) filledStarRes else emptyStarRes),
                 contentDescription = null,
                 modifier = modifier
-                    .clickable { onRatingChanged(index.toInt()) }
+                    .clickable(indication = null,
+                        interactionSource = remember { MutableInteractionSource() }) {
+                        if (index == rating) {
+                            onRatingChanged(0)
+                        } else {
+                            onRatingChanged(index)
+                        }
+                    }
                     .padding(end = 12.dp)
             )
         }
