@@ -3,16 +3,26 @@ package com.gorosoft.bookme.now.android.ui.main_screen.profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,7 +42,7 @@ import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 @Composable
 fun EnableFeedbackDialog(
     modifier: Modifier = Modifier,
-    onEnableLocation: () -> Unit = { },
+    onEnableFeedback: () -> Unit = { },
     onDismiss: () -> Unit = { },
 ) {
     Dialog(
@@ -47,7 +57,7 @@ fun EnableFeedbackDialog(
                 .background(AppTheme.colors.backgroundThemed.backgroundMain),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            EnableFeedbackDialog(onEnableLocation)
+            EnableFeedbackDialog(onEnableFeedback)
             PrimaryButton(
                 modifier = Modifier
                     .padding(start = 32.dp, end = 32.dp, bottom = 32.dp)
@@ -81,6 +91,14 @@ fun ColumnScope.EnableFeedbackDialog(onEnableLocation: () -> Unit) {
         color = AppTheme.colors.grayscale.gs900,
         textAlign = TextAlign.Center,
     )
+    var rating by remember{mutableDoubleStateOf(3.5)}
+    RatingBar(modifier = Modifier
+        .size(50.dp),
+        rating = rating,
+        onRatingChanged = {
+            rating = it
+        },
+        starsColor = Color.Yellow)
     FeedbackInput(
     )
 }
@@ -114,9 +132,43 @@ private fun FeedbackInput(
     )
 }
 
+@Composable
+fun RatingBar(
+    modifier: Modifier = Modifier,
+    rating: Double = 0.0,
+    stars: Int = 5,
+    onRatingChanged: (Double) -> Unit,
+    starsColor: Color = Color.Yellow
+) {
+
+    var isHalfStar = (rating % 1) != 0.0
+
+    Row {
+        for (index in 1..stars) {
+            Icon(
+                imageVector =
+                if (index <= rating) {
+                    Icons.Rounded.Star
+                } else {
+                    if (isHalfStar) {
+                        isHalfStar = false
+                        Icons.Rounded.Star
+                    } else {
+                        Icons.Rounded.Star
+                    }
+                },
+                contentDescription = null,
+                tint = starsColor,
+                modifier = modifier
+                    .clickable { onRatingChanged(index.toDouble()) }
+            )
+        }
+    }
+}
+
 @Preview
 @Composable
-private fun EnableLocationDialogPreview() {
+private fun EnableFeedbackDialogPreview() {
     AppTheme {
         EnableFeedbackDialog {}
     }
