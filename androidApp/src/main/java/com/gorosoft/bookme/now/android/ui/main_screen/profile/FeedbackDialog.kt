@@ -9,24 +9,19 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -37,7 +32,6 @@ import androidx.compose.ui.window.DialogProperties
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
-import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 
 @Composable
 fun EnableFeedbackDialog(
@@ -91,16 +85,17 @@ fun ColumnScope.EnableFeedbackDialog(onEnableLocation: () -> Unit) {
         color = AppTheme.colors.grayscale.gs900,
         textAlign = TextAlign.Center,
     )
-    var rating by remember{mutableDoubleStateOf(3.5)}
-    RatingBar(modifier = Modifier
-        .size(50.dp),
+
+    var rating by remember { mutableIntStateOf(3) }
+    RatingBar(
+        modifier = Modifier
+            .padding(top = 32.dp),
         rating = rating,
         onRatingChanged = {
             rating = it
         },
-        starsColor = Color.Yellow)
-    FeedbackInput(
     )
+    FeedbackInput()
 }
 
 @Composable
@@ -113,7 +108,7 @@ private fun FeedbackInput(
         singleLine = true,
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 32.dp, vertical = 32.dp)
+            .padding(top = 32.dp, end = 32.dp, start = 32.dp, bottom = 32.dp)
             .border(1.dp, AppTheme.colors.mainColors.primary500, RoundedCornerShape(20.dp))
             .clip(RoundedCornerShape(20.dp)),
         value = name,
@@ -135,32 +130,20 @@ private fun FeedbackInput(
 @Composable
 fun RatingBar(
     modifier: Modifier = Modifier,
-    rating: Double = 0.0,
+    rating: Int = 0,
     stars: Int = 5,
-    onRatingChanged: (Double) -> Unit,
-    starsColor: Color = Color.Yellow
+    onRatingChanged: (Int) -> Unit,
+    filledStarRes: Int = R.drawable.ic_star,
+    emptyStarRes: Int = R.drawable.ic_star_border
 ) {
-
-    var isHalfStar = (rating % 1) != 0.0
-
-    Row {
+    Row() {
         for (index in 1..stars) {
-            Icon(
-                imageVector =
-                if (index <= rating) {
-                    Icons.Rounded.Star
-                } else {
-                    if (isHalfStar) {
-                        isHalfStar = false
-                        Icons.Rounded.Star
-                    } else {
-                        Icons.Rounded.Star
-                    }
-                },
+            Image(
+                painter = painterResource(id = if (index <= rating) filledStarRes else emptyStarRes),
                 contentDescription = null,
-                tint = starsColor,
                 modifier = modifier
-                    .clickable { onRatingChanged(index.toDouble()) }
+                    .clickable { onRatingChanged(index.toInt()) }
+                    .padding(end = 12.dp)
             )
         }
     }
