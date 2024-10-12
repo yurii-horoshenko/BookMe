@@ -46,7 +46,7 @@ import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
 import com.gorosoft.bookme.now.android.ui_models.title
-import com.gorosoft.bookme.now.domain.models.ProfileGenderType
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileGenderType
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDate

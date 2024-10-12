@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.utils.DateUtils
-import com.gorosoft.bookme.now.domain.models.ProfileGenderType
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileGenderType
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDate
 

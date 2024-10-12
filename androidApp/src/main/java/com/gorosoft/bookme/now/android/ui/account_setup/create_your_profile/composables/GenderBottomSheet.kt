@@ -15,7 +15,7 @@ import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.CancelButton
 import com.gorosoft.bookme.now.android.ui.utils.SecondaryButton
 import com.gorosoft.bookme.now.android.ui_models.title
-import com.gorosoft.bookme.now.domain.models.ProfileGenderType
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileGenderType
 
 @Composable
 fun GenderBottomSheetContent(

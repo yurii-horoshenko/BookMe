@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gorosoft.bookme.now.android.ui.usecase.ProfileUiIsValidUseCase
 import com.gorosoft.bookme.now.android.ui_models.CreateProfileUiModel
-import com.gorosoft.bookme.now.domain.models.ProfileGenderType
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileGenderType
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
