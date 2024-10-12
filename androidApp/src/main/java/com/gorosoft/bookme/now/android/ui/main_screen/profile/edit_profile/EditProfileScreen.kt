@@ -40,6 +40,7 @@ import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -413,6 +414,7 @@ private fun EmailInput(
             Image(
                 painter = painterResource(R.drawable.ic_email),
                 contentDescription = "selector arrow",
+                colorFilter = ColorFilter.tint(Color.Gray)
             )
         },
         isError = !isEmailValid
