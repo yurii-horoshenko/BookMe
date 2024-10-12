@@ -19,12 +19,9 @@ struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtoco
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(
-                navigationTitle: String(localized: "ENTERCODE-TITLE"),
-                content: { ContentView }
-            )
+            ContentView
+                .showNavigationBar(title: String(localized: "ENTERCODE-TITLE"))
         }
-        .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
         .onAppear {
             viewModel.sendCode(resend: false)

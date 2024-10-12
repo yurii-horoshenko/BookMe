@@ -59,8 +59,7 @@ final class WelcomeViewModel: WelcomeViewModelProtocol {
             self?.profile = ProfileModel(
                 fullName: googleObject.name ?? "",
                 birthday: 0,
-                gender: UserGenderType.other,
-                email: googleObject.email ?? "",
+                gender: ProfileGenderType.other,
                 phone: "",
                 facebookToken: nil,
                 googleToken: googleObject.token,

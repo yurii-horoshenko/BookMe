@@ -1,0 +1,27 @@
+apply plugin:  "com.diffplug.spotless"
+spotless {
+    java {
+        target '**/*.java'
+        googleJavaFormat().aosp()
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+    kotlin {
+        target "**/*.kt"
+        trimTrailingWhitespace()
+        ktlint().userData([
+                'indent_size': '4', // Размер отступов
+                'continuation_indent_size': '4', // Отступы для продолжений строк
+                'disabled_rules': 'no-wildcard-imports,import-ordering' // Отключаем некоторые правила
+        ])
+        indentWithSpaces()
+        endWithNewline()
+    }
+    // Форматирование для Kotlin файлов тестов
+    kotlinGradle {
+        target '**/*.gradle.kts'
+        ktlint()
+    }
+}

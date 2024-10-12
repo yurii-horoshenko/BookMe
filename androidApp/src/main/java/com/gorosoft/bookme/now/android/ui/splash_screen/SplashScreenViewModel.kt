@@ -6,9 +6,9 @@ import com.gorosoft.bookme.now.android.ui.splash_screen.SplashScreenEffect.ShowE
 import com.gorosoft.bookme.now.domain.usecase.HadTutorialUseCase
 import com.gorosoft.bookme.now.domain.usecase.IsLoggedInUseCase
 import com.gorosoft.bookme.now.domain.usecase.LoginUseCase
-import com.gorosoft.bookme.now.onError
-import com.gorosoft.bookme.now.onFailure
-import com.gorosoft.bookme.now.onSuccess
+import com.gorosoft.bookme.now.data.sources.network.ktor.onError
+import com.gorosoft.bookme.now.data.sources.network.ktor.onFailure
+import com.gorosoft.bookme.now.data.sources.network.ktor.onSuccess
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.update
