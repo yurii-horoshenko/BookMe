@@ -1,6 +1,6 @@
 package com.gorosoft.bookme.now.data.repositories
 
-import com.gorosoft.bookme.now.data.sources.local.models.profile.ProfileCacheDataSourceProtocol
+import com.gorosoft.bookme.now.data.sources.local.datasource.ProfileCacheDataSourceProtocol
 import com.gorosoft.bookme.now.data.sources.local.models.profile.toDomain
 import com.gorosoft.bookme.now.data.sources.network.datasource.ProfileRemoteDataSource
 import com.gorosoft.bookme.now.data.sources.network.ktor.Response

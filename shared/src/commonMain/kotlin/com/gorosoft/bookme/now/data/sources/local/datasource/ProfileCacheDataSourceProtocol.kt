@@ -1,4 +1,6 @@
-package com.gorosoft.bookme.now.data.sources.local.models.profile
+package com.gorosoft.bookme.now.data.sources.local.datasource
+
+import com.gorosoft.bookme.now.data.sources.local.models.profile.ProfileEntity
 
 interface ProfileCacheDataSourceProtocol {
 

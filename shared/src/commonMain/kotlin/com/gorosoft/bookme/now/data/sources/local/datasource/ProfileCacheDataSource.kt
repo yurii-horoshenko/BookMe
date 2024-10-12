@@ -1,4 +1,7 @@
-package com.gorosoft.bookme.now.data.sources.local.models.profile
+package com.gorosoft.bookme.now.data.sources.local.datasource
+
+import com.gorosoft.bookme.now.data.sources.local.models.profile.ProfileDao
+import com.gorosoft.bookme.now.data.sources.local.models.profile.ProfileEntity
 
 class ProfileCacheDataSource(
     private val profileDao: ProfileDao,

@@ -1,4 +1,4 @@
-package com.gorosoft.bookme.now.data.database
+package com.gorosoft.bookme.now.data.sources.local.roomdb
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

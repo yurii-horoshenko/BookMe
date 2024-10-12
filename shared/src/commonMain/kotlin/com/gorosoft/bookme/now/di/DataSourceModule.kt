@@ -1,7 +1,7 @@
 package com.gorosoft.bookme.now.di
 
-import com.gorosoft.bookme.now.data.sources.local.models.profile.ProfileCacheDataSource
-import com.gorosoft.bookme.now.data.sources.local.models.profile.ProfileCacheDataSourceProtocol
+import com.gorosoft.bookme.now.data.sources.local.datasource.ProfileCacheDataSource
+import com.gorosoft.bookme.now.data.sources.local.datasource.ProfileCacheDataSourceProtocol
 import com.gorosoft.bookme.now.data.sources.network.datasource.BookingRemoteDataSource
 import com.gorosoft.bookme.now.data.sources.network.datasource.PlaceRemoteDataSource
 import com.gorosoft.bookme.now.data.sources.network.datasource.ProfileRemoteDataSource
