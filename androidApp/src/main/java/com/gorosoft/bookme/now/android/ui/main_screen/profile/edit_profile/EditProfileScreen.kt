@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
@@ -78,7 +79,7 @@ fun EditProfileScreen(
         onGenderSelected = viewModel::updateGender,
         onBirthDateSelected = viewModel::updateDateOfBirth,
         onSecondNameInputted = viewModel::updateSecondName,
-        onPhoneInputted = viewModel::updatePhone,
+        // onPhoneInputted = viewModel::updatePhone,
         onEmailInputted = viewModel::updateEmail,
         onAddressInputted = viewModel::updateAddress,
     )
@@ -121,12 +122,12 @@ fun EditProfileScreenContent(
         },
         content = {
             val scrollState = rememberScrollState()
-
-            Box(modifier = modifier.fillMaxSize()) {
+            Box(modifier = modifier
+                .fillMaxSize()
+                .imePadding()) {
                 Column(
                     modifier = modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
+                        .fillMaxSize()
                         .background(AppTheme.colors.backgroundThemed.backgroundMain)
                         .statusBarsPadding()
                         .padding(vertical = 24.dp, horizontal = 24.dp)
@@ -163,7 +164,6 @@ fun EditProfileScreenContent(
                     var email = profileState.email
                     var isEmailValid by remember { mutableStateOf(true) }
                     EmailInput(
-                        email = profileState.email,
                         onEmailInputted = { input ->
                             email = input
                             isEmailValid =
@@ -174,20 +174,20 @@ fun EditProfileScreenContent(
                         focusManager = focusManager,
                     )
 
-                    CountryInput(
-                        country = profileState.country,
-                        onCountryFieldClick = {
-                            keyboardController?.hide()
-                            coroutineScope.launch { genderBottomSheetState.show() }
-                        },
-                        focusManager = focusManager,
-                    )
+//                    CountryInput(
+//                        country = profileState.country,
+//                        onCountryFieldClick = {
+//                            keyboardController?.hide()
+//                            coroutineScope.launch { genderBottomSheetState.show() }
+//                        },
+//                        focusManager = focusManager,
+//                    )
 
-                    PhoneInput(
-                        phone = profileState.phone,
-                        onPhoneInputted = onPhoneInputted,
-                        focusManager = focusManager,
-                    )
+//                    PhoneInput(
+//                        phone = profileState.phone,
+//                        onPhoneInputted = onPhoneInputted,
+//                        focusManager = focusManager,
+//                    )
 
                     GenderInput(
                         gender = profileState.gender,

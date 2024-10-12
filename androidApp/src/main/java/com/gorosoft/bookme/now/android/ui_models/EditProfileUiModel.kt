@@ -11,9 +11,9 @@ data class EditProfileUiModel(
     val firstName: String = "",
     val secondName: String = "",
     val email: String = "",
-    val country: UserGenderType? = null,
+    //val country: UserGenderType? = null,
     val gender: UserGenderType? = null,
-    val phone: String = "",
+    //val phone: String = "",
     val dateOfBirthDate: LocalDate? = null,
     val address: String = "",
 ) : Parcelable {
