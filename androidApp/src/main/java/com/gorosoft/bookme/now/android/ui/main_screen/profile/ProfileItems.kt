@@ -180,8 +180,7 @@ fun LanguageItem(
         )
         Text(
             modifier = Modifier.padding(
-                start = 20.dp,
-                end = 20.dp,
+                horizontal = 20.dp
             ),
             text = (stringResource(languageId)),
             style = AppTheme.typography.bodyXLarge.semibold,

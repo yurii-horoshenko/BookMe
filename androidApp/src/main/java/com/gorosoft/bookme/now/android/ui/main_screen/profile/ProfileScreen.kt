@@ -66,8 +66,7 @@ fun ProfileScreenContent(
             modifier = Modifier
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
-        )
-        {
+        ) {
             Spacer(modifier = Modifier.height(24.dp))
             TopSection()
             Spacer(modifier = Modifier.height(24.dp))

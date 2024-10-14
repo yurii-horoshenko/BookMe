@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,7 +25,7 @@ import com.gorosoft.bookme.now.android.ui.utils.SecondaryButton
 @Composable
 fun CancelBookingDialog(
     modifier: Modifier = Modifier,
-    onCancelBooking: () -> Unit = { },
+    closeDialog: () -> Unit = { },
     onCancel: () -> Unit = { },
 ) {
     Column(
@@ -51,8 +51,7 @@ fun CancelBookingDialog(
             modifier = Modifier
                 .padding(top = 24.dp),
             text = (
-                    "Are you sure want to cancel your\n" +
-                    "barber/salon booking?"
+                    stringResource(R.string.you_sure_want_cancel)
                     ),
             style = AppTheme.typography.heading.h5,
             color = AppTheme.colors.grayscale.gs800,
@@ -61,9 +60,8 @@ fun CancelBookingDialog(
         Text(
             modifier = Modifier
                 .padding(top = 16.dp),
-            text = ("Only 80% of the money you can refund from\n" +
-                    "your payment according to our policy"),
-            style = AppTheme.typography.bodyMedium.medium,//змінити стиль
+            text = (stringResource(R.string.payment_according_policy)),
+            style = AppTheme.typography.bodyMedium.medium,
             color = AppTheme.colors.grayscale.gs800,
             textAlign = TextAlign.Center
         )
@@ -86,13 +84,14 @@ fun CancelBookingDialog(
                     .fillMaxWidth()
                     .weight(1f),
                 text = (stringResource(R.string.yes_cancel_booking)),
-                onClick = onCancelBooking,
+                onClick = closeDialog,
             )
         }
     }
 }
+
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
-fun CancelBookingDialogPreview(){
+fun CancelBookingDialogPreview() {
 CancelBookingDialog()
 }
