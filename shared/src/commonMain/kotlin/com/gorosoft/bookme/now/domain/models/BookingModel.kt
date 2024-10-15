@@ -8,5 +8,5 @@ data class BookingModel(
     val description: String,
     val phone: String,
     val address: String,
-    val website: String
+    val website: String,
 )

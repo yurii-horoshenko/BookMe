@@ -88,7 +88,7 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
         guard resultCode.count == 4 else { return }
        
         let formattedPhone = phone.filter { !$0.isWhitespace }
-        let request = CodeRequest(phone: formattedPhone, code: resultCode)
+        let request = ProfileCodeApi(phone: formattedPhone, code: resultCode)
         
         repository.code(code: request, completionHandler: { result, _ in
             DispatchQueue.main.async { [weak self] in

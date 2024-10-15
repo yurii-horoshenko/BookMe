@@ -6,13 +6,13 @@
 //
 //
 //
-//struct FacebookUser {
+// struct FacebookUser {
 //    let token: String?
 //    let name: String?
 //    let email: String?
-//}
+// }
 //
-//enum FacebookManager {
+// enum FacebookManager {
 //    static func loginWithFacebook(completionHandler: @escaping (FacebookUser) -> Void) {
 //        guard let controller = UIApplication.shared.rootController else { return }
 //        
@@ -39,4 +39,4 @@
 //    static func handle(_ url: URL) -> Bool {
 //        true
 //    }
-//}
+// }

@@ -15,12 +15,12 @@ import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.CancelButton
 import com.gorosoft.bookme.now.android.ui.utils.SecondaryButton
 import com.gorosoft.bookme.now.android.ui_models.title
-import com.gorosoft.bookme.now.domain.models.UserGenderType
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileGenderType
 
 @Composable
 fun GenderBottomSheetContent(
     onCancelGenderSelection: () -> Unit = {},
-    onGenderSelected: (UserGenderType) -> Unit = {},
+    onGenderSelected: (ProfileGenderType) -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -30,7 +30,7 @@ fun GenderBottomSheetContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        UserGenderType.entries.forEach {
+        ProfileGenderType.entries.forEach {
             SecondaryButton(
                 modifier = Modifier
                     .padding(horizontal = 12.dp)

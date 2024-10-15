@@ -1,18 +1,18 @@
 package com.gorosoft.bookme.now.data.repositories
 
-import com.gorosoft.bookme.now.Response
-import com.gorosoft.bookme.now.data.database.datasource.ProfileCacheDataSourceProtocol
-import com.gorosoft.bookme.now.data.database.model.toDomain
-import com.gorosoft.bookme.now.data.network.datasource.ProfileRemoteDataSource
-import com.gorosoft.bookme.now.data.network.model.request.CodeRequest
-import com.gorosoft.bookme.now.data.network.model.request.toRequest
-import com.gorosoft.bookme.now.data.network.model.response.toDomain
-import com.gorosoft.bookme.now.data.network.model.response.toEntity
-import com.gorosoft.bookme.now.data.network.token_holder.TokenHolderProtocol
+import com.gorosoft.bookme.now.data.sources.local.datasource.ProfileCacheDataSourceProtocol
+import com.gorosoft.bookme.now.data.sources.local.models.profile.toDomain
+import com.gorosoft.bookme.now.data.sources.network.datasource.ProfileRemoteDataSource
+import com.gorosoft.bookme.now.data.sources.network.ktor.Response
+import com.gorosoft.bookme.now.data.sources.network.ktor.TokenHolderProtocol
+import com.gorosoft.bookme.now.data.sources.network.ktor.map
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileCodeApi
+import com.gorosoft.bookme.now.data.sources.network.models.profile.toDomain
+import com.gorosoft.bookme.now.data.sources.network.models.profile.toEntity
 import com.gorosoft.bookme.now.domain.models.ProfileModel
 import com.gorosoft.bookme.now.domain.models.ProfileTokenModel
-import com.gorosoft.bookme.now.domain.repository.ProfileRepositoryProtocol
-import com.gorosoft.bookme.now.map
+import com.gorosoft.bookme.now.domain.models.toRequest
+import com.gorosoft.bookme.now.domain.repositories.ProfileRepositoryProtocol
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -38,7 +38,7 @@ class ProfileRepository : ProfileRepositoryProtocol, KoinComponent {
     override suspend fun validation(
         facebookToken: String?,
         googleToken: String?,
-        phone: String?
+        phone: String?,
     ): Response<ProfileModel> {
         return remote.validation(
             facebookToken = facebookToken,
@@ -64,7 +64,7 @@ class ProfileRepository : ProfileRepositoryProtocol, KoinComponent {
             .map { it }
     }
 
-    override suspend fun code(code: CodeRequest): Response<ProfileTokenModel> {
+    override suspend fun code(code: ProfileCodeApi): Response<ProfileTokenModel> {
         return remote.code(code = code)
             .map { it.toDomain() }
             .map {
