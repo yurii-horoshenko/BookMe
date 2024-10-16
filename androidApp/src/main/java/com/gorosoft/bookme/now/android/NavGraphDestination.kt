@@ -9,4 +9,5 @@ enum class NavGraphDestination(val route: String) {
     Login("login"),
     Main("main"),
     ChooseLanguage("choose_language"),
+    EditProfile("edit_profile"),
 }
