@@ -28,7 +28,6 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -139,9 +138,7 @@ fun EditProfileScreenContent(
                         .fillMaxSize()
                         .background(AppTheme.colors.backgroundThemed.backgroundMain)
                         .statusBarsPadding()
-                        .padding(
-                            top = 24.dp, start = 24.dp, end = 24.dp
-                        )
+                        .padding(top = 24.dp, start = 24.dp, end = 24.dp)
                         .verticalScroll(scrollState),
                     horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.spacedBy(24.dp)
