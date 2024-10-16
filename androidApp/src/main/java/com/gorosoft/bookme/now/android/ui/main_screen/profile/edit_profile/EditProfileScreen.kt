@@ -28,6 +28,7 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -37,6 +38,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -101,6 +104,8 @@ fun EditProfileScreenContent(
     onAddressInputted: (String) -> Unit = {},
 ) {
     val coroutineScope = rememberCoroutineScope()
+    val addressFocusRequester = remember { FocusRequester() }
+    val emailFocusRequester = remember { FocusRequester() }
     val genderBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true,
@@ -118,20 +123,25 @@ fun EditProfileScreenContent(
                 onGenderSelected = {
                     onGenderSelected.invoke(it)
                     coroutineScope.launch { genderBottomSheetState.hide() }
+                    addressFocusRequester.requestFocus()
                 },
             )
         },
         content = {
             val scrollState = rememberScrollState()
-            Box(modifier = modifier
-                .fillMaxSize()
-                .imePadding()) {
+            Box(
+                modifier = modifier
+                    .fillMaxSize()
+                    .imePadding()
+            ) {
                 Column(
                     modifier = modifier
                         .fillMaxSize()
                         .background(AppTheme.colors.backgroundThemed.backgroundMain)
                         .statusBarsPadding()
-                        .padding(vertical = 24.dp, horizontal = 24.dp)
+                        .padding(
+                            top = 24.dp, start = 24.dp, end = 24.dp
+                        )
                         .verticalScroll(scrollState),
                     horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.spacedBy(24.dp)
@@ -149,30 +159,36 @@ fun EditProfileScreenContent(
                         focusManager = focusManager,
                     )
 
+                    var showDateDialog by remember { mutableStateOf(false) }
+
                     SecondNameInput(
                         secondName = profileState.secondName,
                         onSecondNameInputted = onSecondNameInputted,
                         focusManager = focusManager,
+                        onNextClick = { showDateDialog = true }
                     )
 
-                    var showDateDialog by remember { mutableStateOf(false) }
                     DateOfBirthInput(
                         dateOfBirth = profileState.dateOfBirthText,
                         onDateClick = { showDateDialog = true },
                         focusManager = focusManager,
                     )
 
-                    var email = profileState.email
                     var isEmailValid by remember { mutableStateOf(true) }
                     EmailInput(
+                        email = profileState.email,
                         onEmailInputted = { input ->
-                            email = input
                             isEmailValid =
                                 android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
                             onEmailInputted(input)
                         },
                         isEmailValid = isEmailValid,
                         focusManager = focusManager,
+                        modifier = Modifier.focusRequester(emailFocusRequester),
+                        onNextClick = {
+                            keyboardController?.hide()
+                            coroutineScope.launch { genderBottomSheetState.show() }
+                        }
                     )
 
 //                    CountryInput(
@@ -202,7 +218,8 @@ fun EditProfileScreenContent(
                     AddressInput(
                         address = profileState.address,
                         onAddressInputted = onAddressInputted,
-                        focusManager = focusManager
+                        focusManager = focusManager,
+                        modifier = Modifier.focusRequester(addressFocusRequester)
                     )
 
                     PrimaryButton(
@@ -218,15 +235,16 @@ fun EditProfileScreenContent(
                             onBirthDateSelected = {
                                 onBirthDateSelected.invoke(it)
                                 showDateDialog = false
+                                emailFocusRequester.requestFocus()
                             },
-                            hideDialog = { showDateDialog = false }
+                            hideDialog = { showDateDialog = false },
                         )
                     }
                 }
                 Box(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .width(8.dp)
+                        .width(5.dp)
                         .padding(end = 4.dp)
                         .align(Alignment.CenterEnd)
                 ) {
@@ -241,7 +259,7 @@ fun EditProfileScreenContent(
 fun CustomScrollbar(scrollState: ScrollState) {
     val scrollProgress = scrollState.value.toFloat() / scrollState.maxValue.toFloat()
 
-    val scrollbarHeight = 80.dp
+    val scrollbarHeight = 50.dp
 
     Canvas(modifier = Modifier.fillMaxSize()) {
         val trackColor = Color.Gray.copy(alpha = 0.5f)
@@ -261,7 +279,7 @@ fun CustomScrollbar(scrollState: ScrollState) {
         drawRoundRect(
             color = thumbColor,
             topLeft = scrollbarOffset,
-            size = this.size.copy(height = scrollbarHeight.toPx(), width = 8.dp.toPx()),
+            size = this.size.copy(height = scrollbarHeight.toPx(), width = 5.dp.toPx()),
             cornerRadius = CornerRadius(4.dp.toPx())
         )
     }
@@ -307,6 +325,7 @@ private fun SecondNameInput(
     secondName: String = "",
     onSecondNameInputted: (String) -> Unit = {},
     focusManager: FocusManager,
+    onNextClick: () -> Unit = {}
 ) {
     TextField(
         singleLine = true,
@@ -329,7 +348,8 @@ private fun SecondNameInput(
         ),
         keyboardActions = KeyboardActions(
             onNext = {
-                focusManager.moveFocus(FocusDirection.Down)
+                focusManager.clearFocus()
+                onNextClick()
             }
         )
     )
@@ -384,6 +404,7 @@ private fun EmailInput(
     onEmailInputted: (String) -> Unit = {},
     focusManager: FocusManager,
     isEmailValid: Boolean = true,
+    onNextClick: () -> Unit = {}
 ) {
     TextField(
         singleLine = true,
@@ -405,7 +426,8 @@ private fun EmailInput(
         ),
         keyboardActions = KeyboardActions(
             onNext = {
-                focusManager.moveFocus(FocusDirection.Down)
+                focusManager.clearFocus()
+                onNextClick()
             }
         ),
         colors = TextFieldDefaults.appThemeTextFieldColors(),
