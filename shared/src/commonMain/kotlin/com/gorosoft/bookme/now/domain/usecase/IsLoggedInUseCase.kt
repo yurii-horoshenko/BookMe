@@ -1,6 +1,6 @@
 package com.gorosoft.bookme.now.domain.usecase
 
-import com.gorosoft.bookme.now.data.network.token_holder.TokenHolderProtocol
+import com.gorosoft.bookme.now.data.sources.network.ktor.TokenHolderProtocol
 
 class IsLoggedInUseCase(
     private val holder: TokenHolderProtocol,

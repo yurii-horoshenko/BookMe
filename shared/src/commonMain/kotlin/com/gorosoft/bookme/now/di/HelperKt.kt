@@ -1,6 +1,6 @@
 package com.gorosoft.bookme.now.di
 
-import com.gorosoft.bookme.now.data.network.headers_holder.HeadersHolderProtocol
+import com.gorosoft.bookme.now.data.sources.network.ktor.HeadersHolderProtocol
 import org.koin.core.context.startKoin
 
 fun initKoin(

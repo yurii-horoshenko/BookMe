@@ -16,12 +16,8 @@ struct ServiceDetailView<ViewModel>: View where ViewModel: ServiceDetailViewMode
         ScrollView {
             VStack(alignment: .leading) {
                 Image("img-detail-mask")
-                
-                BaseView(
-                    navigationTitle: "",
-                    iconColor: Color.primary500,
-                    content: { ContentView }
-                )
+                ContentView
+                    .showNavigationBar()
             }
         }
         .edgesIgnoringSafeArea(.top)

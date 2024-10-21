@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
@@ -36,9 +37,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -78,7 +82,7 @@ fun EditProfileScreen(
         onGenderSelected = viewModel::updateGender,
         onBirthDateSelected = viewModel::updateDateOfBirth,
         onSecondNameInputted = viewModel::updateSecondName,
-        onPhoneInputted = viewModel::updatePhone,
+        // onPhoneInputted = viewModel::updatePhone,
         onEmailInputted = viewModel::updateEmail,
         onAddressInputted = viewModel::updateAddress,
     )
@@ -99,6 +103,8 @@ fun EditProfileScreenContent(
     onAddressInputted: (String) -> Unit = {},
 ) {
     val coroutineScope = rememberCoroutineScope()
+    val addressFocusRequester = remember { FocusRequester() }
+    val emailFocusRequester = remember { FocusRequester() }
     val genderBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true,
@@ -116,20 +122,23 @@ fun EditProfileScreenContent(
                 onGenderSelected = {
                     onGenderSelected.invoke(it)
                     coroutineScope.launch { genderBottomSheetState.hide() }
+                    addressFocusRequester.requestFocus()
                 },
             )
         },
         content = {
             val scrollState = rememberScrollState()
-
-            Box(modifier = modifier.fillMaxSize()) {
+            Box(
+                modifier = modifier
+                    .fillMaxSize()
+                    .imePadding()
+            ) {
                 Column(
                     modifier = modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
+                        .fillMaxSize()
                         .background(AppTheme.colors.backgroundThemed.backgroundMain)
                         .statusBarsPadding()
-                        .padding(vertical = 24.dp, horizontal = 24.dp)
+                        .padding(top = 24.dp, start = 24.dp, end = 24.dp)
                         .verticalScroll(scrollState),
                     horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.spacedBy(24.dp)
@@ -147,47 +156,52 @@ fun EditProfileScreenContent(
                         focusManager = focusManager,
                     )
 
+                    var showDateDialog by remember { mutableStateOf(false) }
+
                     SecondNameInput(
                         secondName = profileState.secondName,
                         onSecondNameInputted = onSecondNameInputted,
                         focusManager = focusManager,
+                        onNextClick = { showDateDialog = true }
                     )
 
-                    var showDateDialog by remember { mutableStateOf(false) }
                     DateOfBirthInput(
                         dateOfBirth = profileState.dateOfBirthText,
                         onDateClick = { showDateDialog = true },
                         focusManager = focusManager,
                     )
 
-                    var email = profileState.email
                     var isEmailValid by remember { mutableStateOf(true) }
                     EmailInput(
                         email = profileState.email,
                         onEmailInputted = { input ->
-                            email = input
                             isEmailValid =
                                 android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
                             onEmailInputted(input)
                         },
                         isEmailValid = isEmailValid,
                         focusManager = focusManager,
-                    )
-
-                    CountryInput(
-                        country = profileState.country,
-                        onCountryFieldClick = {
+                        modifier = Modifier.focusRequester(emailFocusRequester),
+                        onNextClick = {
                             keyboardController?.hide()
                             coroutineScope.launch { genderBottomSheetState.show() }
-                        },
-                        focusManager = focusManager,
+                        }
                     )
 
-                    PhoneInput(
-                        phone = profileState.phone,
-                        onPhoneInputted = onPhoneInputted,
-                        focusManager = focusManager,
-                    )
+//                    CountryInput(
+//                        country = profileState.country,
+//                        onCountryFieldClick = {
+//                            keyboardController?.hide()
+//                            coroutineScope.launch { genderBottomSheetState.show() }
+//                        },
+//                        focusManager = focusManager,
+//                    )
+
+//                    PhoneInput(
+//                        phone = profileState.phone,
+//                        onPhoneInputted = onPhoneInputted,
+//                        focusManager = focusManager,
+//                    )
 
                     GenderInput(
                         gender = profileState.gender,
@@ -201,7 +215,8 @@ fun EditProfileScreenContent(
                     AddressInput(
                         address = profileState.address,
                         onAddressInputted = onAddressInputted,
-                        focusManager = focusManager
+                        focusManager = focusManager,
+                        modifier = Modifier.focusRequester(addressFocusRequester)
                     )
 
                     PrimaryButton(
@@ -217,15 +232,16 @@ fun EditProfileScreenContent(
                             onBirthDateSelected = {
                                 onBirthDateSelected.invoke(it)
                                 showDateDialog = false
+                                emailFocusRequester.requestFocus()
                             },
-                            hideDialog = { showDateDialog = false }
+                            hideDialog = { showDateDialog = false },
                         )
                     }
                 }
                 Box(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .width(8.dp)
+                        .width(5.dp)
                         .padding(end = 4.dp)
                         .align(Alignment.CenterEnd)
                 ) {
@@ -240,7 +256,7 @@ fun EditProfileScreenContent(
 fun CustomScrollbar(scrollState: ScrollState) {
     val scrollProgress = scrollState.value.toFloat() / scrollState.maxValue.toFloat()
 
-    val scrollbarHeight = 80.dp
+    val scrollbarHeight = 50.dp
 
     Canvas(modifier = Modifier.fillMaxSize()) {
         val trackColor = Color.Gray.copy(alpha = 0.5f)
@@ -260,7 +276,7 @@ fun CustomScrollbar(scrollState: ScrollState) {
         drawRoundRect(
             color = thumbColor,
             topLeft = scrollbarOffset,
-            size = this.size.copy(height = scrollbarHeight.toPx(), width = 8.dp.toPx()),
+            size = this.size.copy(height = scrollbarHeight.toPx(), width = 5.dp.toPx()),
             cornerRadius = CornerRadius(4.dp.toPx())
         )
     }
@@ -306,6 +322,7 @@ private fun SecondNameInput(
     secondName: String = "",
     onSecondNameInputted: (String) -> Unit = {},
     focusManager: FocusManager,
+    onNextClick: () -> Unit = {}
 ) {
     TextField(
         singleLine = true,
@@ -328,7 +345,8 @@ private fun SecondNameInput(
         ),
         keyboardActions = KeyboardActions(
             onNext = {
-                focusManager.moveFocus(FocusDirection.Down)
+                focusManager.clearFocus()
+                onNextClick()
             }
         )
     )
@@ -383,6 +401,7 @@ private fun EmailInput(
     onEmailInputted: (String) -> Unit = {},
     focusManager: FocusManager,
     isEmailValid: Boolean = true,
+    onNextClick: () -> Unit = {}
 ) {
     TextField(
         singleLine = true,
@@ -404,7 +423,8 @@ private fun EmailInput(
         ),
         keyboardActions = KeyboardActions(
             onNext = {
-                focusManager.moveFocus(FocusDirection.Down)
+                focusManager.clearFocus()
+                onNextClick()
             }
         ),
         colors = TextFieldDefaults.appThemeTextFieldColors(),
@@ -413,6 +433,7 @@ private fun EmailInput(
             Image(
                 painter = painterResource(R.drawable.ic_email),
                 contentDescription = "selector arrow",
+                colorFilter = ColorFilter.tint(Color.Gray)
             )
         },
         isError = !isEmailValid

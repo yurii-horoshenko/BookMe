@@ -6,7 +6,7 @@ import com.gorosoft.bookme.now.android.ui_models.EditProfileUiModel
 import com.gorosoft.bookme.now.domain.models.UserGenderType
 import java.time.LocalDate
 
-private const val ProfileKey = "EditYourProfile"
+private const val EditProfileKey = "EditYourProfile"
 
 class EditProfileViewModel(
     private val savedStateHandle: SavedStateHandle,
@@ -14,7 +14,7 @@ class EditProfileViewModel(
 
     private val state get() = profileState.value
 
-    val profileState = savedStateHandle.getStateFlow(ProfileKey, EditProfileUiModel())
+    val profileState = savedStateHandle.getStateFlow(EditProfileKey, EditProfileUiModel())
 
     fun updateName(newFirstName: String) {
         updateState { copy(firstName = newFirstName) }
@@ -24,9 +24,9 @@ class EditProfileViewModel(
         updateState { copy(secondName = newSecondName) }
     }
 
-    fun updatePhone(phone: String) {
-        updateState { copy(phone = phone) }
-    }
+//    fun updatePhone(phone: String) {
+//        updateState { copy(phone = phone) }
+//    }
 
     fun updateEmail(email: String) {
         updateState { copy(email = email) }
@@ -45,6 +45,6 @@ class EditProfileViewModel(
     }
 
     private fun updateState(action: EditProfileUiModel.() -> EditProfileUiModel) {
-        savedStateHandle[ProfileKey] = action.invoke(state)
+        savedStateHandle[EditProfileKey] = action.invoke(state)
     }
 }

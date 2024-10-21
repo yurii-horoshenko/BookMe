@@ -18,14 +18,12 @@ struct LoginView<ViewModel>: View where ViewModel: LoginViewModelProtocol {
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(
-                navigationTitle: String(localized: "LOGIN-TITLE"),
-                content: { ContentView }
-            )
-            .navigationDestination(isPresented: $viewModel.toCode) {
-                let phone = viewModel.phone.value
-                AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: false)
-            }
+            ContentView
+                .showNavigationBar(title: String(localized: "LOGIN-TITLE"))
+                .navigationDestination(isPresented: $viewModel.toCode) {
+                    let phone = viewModel.phone.value
+                    AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: false)
+                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)

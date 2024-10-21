@@ -8,9 +8,9 @@ import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.account_setup.Effect.ShowError
 import com.gorosoft.bookme.now.android.ui.usecase.LoginWithGoogleUiUseCase
 import com.gorosoft.bookme.now.android.ui.utils.TextHolder
-import com.gorosoft.bookme.now.onError
-import com.gorosoft.bookme.now.onFailure
-import com.gorosoft.bookme.now.onSuccess
+import com.gorosoft.bookme.now.data.sources.network.ktor.onError
+import com.gorosoft.bookme.now.data.sources.network.ktor.onFailure
+import com.gorosoft.bookme.now.data.sources.network.ktor.onSuccess
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.filterNotNull

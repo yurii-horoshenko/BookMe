@@ -1,6 +1,6 @@
 package com.gorosoft.bookme.now.di
 
-import com.gorosoft.bookme.now.data.network.KtorManager
+import com.gorosoft.bookme.now.data.sources.network.ktor.KtorManager
 import io.ktor.client.HttpClient
 import org.koin.dsl.module
 
