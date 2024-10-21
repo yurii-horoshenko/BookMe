@@ -63,7 +63,7 @@ import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 import com.gorosoft.bookme.now.android.ui_models.EditProfileUiModel
 import com.gorosoft.bookme.now.android.ui_models.title
-import com.gorosoft.bookme.now.domain.models.UserGenderType
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileGenderType
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDate
@@ -94,7 +94,7 @@ fun EditProfileScreenContent(
     modifier: Modifier = Modifier,
     profileState: EditProfileUiModel,
     onNavigateBack: () -> Unit = { },
-    onGenderSelected: (UserGenderType) -> Unit = {},
+    onGenderSelected: (ProfileGenderType) -> Unit = {},
     onNewNameInputted: (String) -> Unit = {},
     onSecondNameInputted: (String) -> Unit = {},
     onBirthDateSelected: (selectedDate: LocalDate) -> Unit = {},
@@ -423,8 +423,6 @@ private fun EmailInput(
         ),
         keyboardActions = KeyboardActions(
             onNext = {
-                focusManager.clearFocus()
-                onNextClick()
             }
         ),
         colors = TextFieldDefaults.appThemeTextFieldColors(),
@@ -433,7 +431,6 @@ private fun EmailInput(
             Image(
                 painter = painterResource(R.drawable.ic_email),
                 contentDescription = "selector arrow",
-                colorFilter = ColorFilter.tint(Color.Gray)
             )
         },
         isError = !isEmailValid
@@ -451,7 +448,7 @@ private fun EmailInput(
 @Composable
 private fun CountryInput(
     modifier: Modifier = Modifier,
-    country: UserGenderType? = null,
+    country: ProfileGenderType? = null,
     onCountryFieldClick: () -> Unit = {},
     focusManager: FocusManager,
 ) {
@@ -528,7 +525,7 @@ private fun PhoneInput(
 @Composable
 private fun GenderInput(
     modifier: Modifier = Modifier,
-    gender: UserGenderType? = null,
+    gender: ProfileGenderType? = null,
     onGenderFieldClick: () -> Unit = {},
     focusManager: FocusManager,
 ) {

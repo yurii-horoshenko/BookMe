@@ -3,7 +3,7 @@ package com.gorosoft.bookme.now.android.ui.main_screen.profile.edit_profile
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.gorosoft.bookme.now.android.ui_models.EditProfileUiModel
-import com.gorosoft.bookme.now.domain.models.UserGenderType
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileGenderType
 import java.time.LocalDate
 
 private const val EditProfileKey = "EditYourProfile"
@@ -36,7 +36,7 @@ class EditProfileViewModel(
         updateState { copy(address = address) }
     }
 
-    fun updateGender(gender: UserGenderType) {
+    fun updateGender(gender: ProfileGenderType) {
         updateState { copy(gender = gender) }
     }
 
