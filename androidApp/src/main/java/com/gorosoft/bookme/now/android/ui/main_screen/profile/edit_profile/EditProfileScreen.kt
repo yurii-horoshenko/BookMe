@@ -423,6 +423,8 @@ private fun EmailInput(
         ),
         keyboardActions = KeyboardActions(
             onNext = {
+                focusManager.clearFocus()
+                onNextClick()
             }
         ),
         colors = TextFieldDefaults.appThemeTextFieldColors(),
@@ -431,6 +433,7 @@ private fun EmailInput(
             Image(
                 painter = painterResource(R.drawable.ic_email),
                 contentDescription = "selector arrow",
+                colorFilter = ColorFilter.tint(Color.Gray)
             )
         },
         isError = !isEmailValid
