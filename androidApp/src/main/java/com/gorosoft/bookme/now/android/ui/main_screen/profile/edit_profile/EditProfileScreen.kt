@@ -63,7 +63,7 @@ import com.gorosoft.bookme.now.android.ui.utils.appThemeTextFieldColors
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
 import com.gorosoft.bookme.now.android.ui_models.EditProfileUiModel
 import com.gorosoft.bookme.now.android.ui_models.title
-import com.gorosoft.bookme.now.domain.models.UserGenderType
+import com.gorosoft.bookme.now.data.sources.network.models.profile.ProfileGenderType
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDate
@@ -451,7 +451,7 @@ private fun EmailInput(
 @Composable
 private fun CountryInput(
     modifier: Modifier = Modifier,
-    country: UserGenderType? = null,
+    country: ProfileGenderType? = null,
     onCountryFieldClick: () -> Unit = {},
     focusManager: FocusManager,
 ) {
