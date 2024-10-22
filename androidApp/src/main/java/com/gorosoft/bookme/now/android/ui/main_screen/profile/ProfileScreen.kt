@@ -49,11 +49,14 @@ fun ProfileScreen(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreenContent(
     navigateToLanguageScreen: () -> Unit = {},
     navigateToEditProfileScreen: () -> Unit = {},
 ) {
+    val sheetState = rememberModalBottomSheetState()
+    val showCancelBookingDialog = remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -79,6 +82,20 @@ fun ProfileScreenContent(
             ProfileItems(
                 onLanguageClick = navigateToLanguageScreen,
                 onEditProfileClick = navigateToEditProfileScreen,
+                onNotificationClick = { showCancelBookingDialog.value = true }
+            )
+        }
+    }
+    if (showCancelBookingDialog.value) {
+        ModalBottomSheet(
+            containerColor = AppTheme.colors.backgroundThemed.backgroundMain,
+            onDismissRequest = {
+                showCancelBookingDialog.value = false
+            },
+            sheetState = sheetState,
+        ) {
+            CancelBookingDialog(
+                onCancel = { showCancelBookingDialog.value = false }
             )
         }
     }
