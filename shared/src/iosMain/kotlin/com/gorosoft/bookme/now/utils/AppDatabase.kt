@@ -4,7 +4,7 @@ import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.gorosoft.bookme.now.data.sources.local.roomdb.AppDatabase
 import com.gorosoft.bookme.now.data.sources.local.roomdb.appDbFileName
-import com.gorosoft.bookme.now.data.database.instantiateImpl
+import com.gorosoft.bookme.now.data.sources.local.roomdb.instantiateImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import platform.Foundation.NSHomeDirectory
