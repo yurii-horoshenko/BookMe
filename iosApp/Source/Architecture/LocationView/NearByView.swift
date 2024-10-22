@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NearByView<ViewModel>: View where ViewModel: NearByViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {

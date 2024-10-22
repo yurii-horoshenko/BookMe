@@ -13,21 +13,21 @@ protocol ProfileViewProtocol {
 
 struct ProfileView<ViewModel>: View where ViewModel: ProfileViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             NavigationStack {
-                BaseView(
-                    leadingView: AnyView(LeadingView),
-                    content: { ContentView }
-                )
-                .navigationDestination(isPresented: $viewModel.toSignIn) {
-//                    ProfilePageBuilder.constructCreateProfileView(
-//                        profile: viewModel.profile
-//                    )
-                }
+                ContentView
+                    .showNavigationBar(leadingView: AnyView(LeadingView))
+                    .navigationDestination(isPresented: $viewModel.toSignIn) {
+                        //  Steps.updateProfile(viewModel.profile)
+                        //  ProfilePageBuilder.constructCreateProfileView(profile: viewModel.profile)
+                    }
+                    .onAppear {
+                        viewModel.loadData()
+                    }
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -39,8 +39,8 @@ struct ProfileView<ViewModel>: View where ViewModel: ProfileViewModelProtocol {
             Spacer()
             
             ProfilePreviewView(
-                displayName: "Daniel Austin",
-                email: "daniel_austin@yourdomain.com"
+                displayName: viewModel.profile.fullName,
+                email: ""
             )
             
             ProfileOptionsView

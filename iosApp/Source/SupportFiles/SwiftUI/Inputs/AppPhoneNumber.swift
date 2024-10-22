@@ -14,7 +14,7 @@ struct AppPhoneNumber: View {
     private let font = UIFont(name: BrandFontType.semibold.rawValue, size: 14.0)
     @Binding var fieldData: FieldData
     @State var isEditing = false
-    @State var prefix = "+1"
+    @State var prefix = "+380"
     @State var phone = ""
     
     // MARK: - Lifecycle

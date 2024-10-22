@@ -8,42 +8,40 @@
 import SwiftUI
 
 protocol EnterCodeViewProtocol {
-    func moveToDashboardPage()
+    func moveToDashboard(view: some View)
 }
 
 struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     private let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(
-                navigationTitle: String(localized: "ENTERCODE-TITLE"),
-                content: { ContentView }
-            )
+            ContentView
+                .showNavigationBar(title: String(localized: "ENTERCODE-TITLE"))
         }
-        .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
         .onAppear {
-            viewModel.startTimer()
+            viewModel.sendCode(resend: false)
         }
     }
     
     // Title, input fields code, timer label
     var ContentView: some View {
         VStack(spacing: 60.0) {
-            Text(String(localized: "ENTERCODE-DESCRIPTION") + viewModel.phone)
+            Text(String(localized: "ENTERCODE-DESCRIPTION") + viewModel.phone.phoneMask)
                 .font(Font.BodyXLargeMedium)
                 .foregroundColor(Color.greyscale900)
             
-            VerificationCodeView(array: $viewModel.code, currentState: viewModel.code.first ?? FieldData())
-                .onChange(of: viewModel.code) {
-                    let code = viewModel.code.compactMap({ $0.value }).joined()
-                    guard code.count == 4 else { return }
-                    viewModel.checkCode()
-                }
+            VerificationCodeView(
+                array: $viewModel.code,
+                currentState: viewModel.code.first ?? FieldData()
+            )
+            .onChange(of: viewModel.code) {
+                viewModel.checkCode()
+            }
             
             TimerLabel
                 .isHidden(!viewModel.isTimerRunning)
@@ -74,14 +72,13 @@ struct EnterCodeView<ViewModel>: View where ViewModel: EnterCodeViewModelProtoco
 
 // MARK: - EnterCodeViewProtocol
 extension EnterCodeView: EnterCodeViewProtocol {
-    func moveToDashboardPage() {
-        let view = DashboardContainerView()
+    func moveToDashboard(view: some View) {
         setRootView(view)
     }
 }
 
 #Preview {
     AuthPageBuilder.constructEnterCodeView(
-        phoneMask: "+380 99 111 22 33".phoneMask
+        phone: "+380991112233", newProfile: true
     )
 }

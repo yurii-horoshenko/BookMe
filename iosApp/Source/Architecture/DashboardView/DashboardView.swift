@@ -9,20 +9,20 @@ import SwiftUI
 
 struct DashboardView<ViewModel>: View where ViewModel: DashboardViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
             NavigationStack {
-                BaseView(
-                    leadingView: AnyView(LeadingView),
-                    trailingView: AnyView(TrailingView),
-                    content: { ContentView }
-                )
-                .navigationDestination(isPresented: $viewModel.toServiceDetail) {
-                    DashboardPageBuilder.constructServiceView()
-                }
+                ContentView
+                    .showNavigationBar(
+                        leadingView: AnyView(LeadingView),
+                        trailingView: AnyView(TrailingView)
+                    )
+                    .navigationDestination(isPresented: $viewModel.toServiceDetail) {
+                        DashboardPageBuilder.constructServiceView()
+                    }
             }
         }
         .navigationBarBackButtonHidden(true)

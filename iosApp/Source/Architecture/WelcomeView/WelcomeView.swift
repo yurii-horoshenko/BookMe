@@ -8,9 +8,13 @@
 import GoogleSignIn
 import SwiftUI
 
+protocol WelcomeViewProtocol {
+    func moveToDashboard(view: some View)
+}
+
 struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
@@ -20,8 +24,13 @@ struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
                     ProfilePageBuilder.constructLoginView()
                 }
                 .navigationDestination(isPresented: $viewModel.toSignIn) {
-                    ProfilePageBuilder.constructCreateProfileView()
+                    if let profile = viewModel.profile {
+                        ProfilePageBuilder.constructCreateProfileView(profile: profile)
+                    }
                 }
+        }
+        .onAppear {
+            PermissionManager.shared.registerForRemoteNotifications()
         }
     }
     
@@ -91,6 +100,13 @@ struct WelcomeView<ViewModel>: View where ViewModel: WelcomeViewModelProtocol {
     }
 }
 
+// MARK: - WelcomeViewProtocol
+extension WelcomeView: WelcomeViewProtocol {
+    func moveToDashboard(view: some View) {
+        setRootView(view)
+    }
+}
+
 #Preview {
-    Steps.welcome.PageView
+    AuthPageBuilder.constructWelcomeView()
 }

@@ -11,14 +11,13 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 sealed class EnterOtpEffects {
 
     data object ShowSuccessDialog : EnterOtpEffects()
 }
 
-class EnterOtpViewModel @Inject constructor() : ViewModel() {
+class EnterOtpViewModel : ViewModel() {
 
     private val _resendCodeFlow = MutableStateFlow(59)
     val resendCodeFlow get() = _resendCodeFlow.asStateFlow()
@@ -27,7 +26,7 @@ class EnterOtpViewModel @Inject constructor() : ViewModel() {
     val otpStateFlow get() = _otpStateFlow.asStateFlow()
 
     private val _effect = MutableStateFlow<EnterOtpEffects?>(null)
-    val effect get() = _effect.filterNotNull()
+    val effect get() = _effect.asStateFlow().filterNotNull()
 
     private val tickerFlow = flow {
         for (i in 59 downTo 0) {

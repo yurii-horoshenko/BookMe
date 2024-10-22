@@ -9,19 +9,15 @@ import SwiftUI
 
 struct ServiceDetailView<ViewModel>: View where ViewModel: ServiceDetailViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 Image("img-detail-mask")
-                
-                BaseView(
-                    navigationTitle: "",
-                    iconColor: Color.primary500,
-                    content: { ContentView }
-                )
+                ContentView
+                    .showNavigationBar()
             }
         }
         .edgesIgnoringSafeArea(.top)

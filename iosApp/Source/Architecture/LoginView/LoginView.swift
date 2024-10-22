@@ -7,21 +7,23 @@
 
 import SwiftUI
 
+protocol LoginViewProtocol {
+    func moveToDashboard(view: some View)
+}
+
 struct LoginView<ViewModel>: View where ViewModel: LoginViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(
-                navigationTitle: String(localized: "LOGIN-TITLE"),
-                content: { ContentView }
-            )
-            .navigationDestination(isPresented: $viewModel.toCode) {
-                let phone = viewModel.phone.value.phoneMask
-                AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
-            }
+            ContentView
+                .showNavigationBar(title: String(localized: "LOGIN-TITLE"))
+                .navigationDestination(isPresented: $viewModel.toCode) {
+                    let phone = viewModel.phone.value
+                    AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: false)
+                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -49,8 +51,15 @@ struct LoginView<ViewModel>: View where ViewModel: LoginViewModelProtocol {
             title: String(localized: "BUTTON-LOGIN"),
             titleColor: Color.white,
             backgroundColor: Color.primary500,
-            action: { viewModel.codeVerification() }
+            action: { viewModel.login() }
         )
+    }
+}
+
+// MARK: - WelcomeViewProtocol
+extension LoginView: LoginViewProtocol {
+    func moveToDashboard(view: some View) {
+        setRootView(view)
     }
 }
 

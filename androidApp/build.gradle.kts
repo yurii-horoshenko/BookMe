@@ -6,8 +6,11 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
+    alias(libs.plugins.compose.compiler)
     id("kotlin-parcelize")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.gms.google-services")
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -34,6 +37,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -45,11 +52,11 @@ android {
     }
 }
 
-//tasks.getByPath("preBuild").dependsOn("ktlintCheck")
-//tasks.getByPath("preBuild").dependsOn("detekt")
-//tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+// tasks.getByPath("preBuild").dependsOn("ktlintCheck")
+// tasks.getByPath("preBuild").dependsOn("detekt")
+// tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
 //    exclude(".*/build/.*,.*/resources/.*")
-//}
+// }
 
 ktlint {
     android = true
@@ -70,7 +77,7 @@ ktlint {
 
 detekt {
     toolVersion = libs.versions.detekt.get()
-    config.setFrom(file("${rootDir}/config/detekt/detekt.yml"))
+    config.setFrom(file("$rootDir/config/detekt/detekt.yml"))
     buildUponDefaultConfig = true
 }
 
@@ -83,19 +90,28 @@ dependencies {
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.material)
     implementation(libs.activity.compose)
-    implementation(libs.navigation)
     implementation(libs.lifecycle.compose)
-
-    implementation(libs.compose.destinations.core)
-    ksp(libs.compose.destinations.ksp)
-
-    implementation(libs.hilt.compose.navigation)
-    implementation(libs.hilt.library)
-    ksp(libs.hilt.kapt)
-
+    implementation(libs.kotlinx.immutable)
     implementation(libs.androidx.material3)
+    implementation(libs.coil.compose)
+    implementation(libs.accompanist.permissions)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.location)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.bundles.credentials)
+    implementation(libs.google.firebase.auth)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.play.services.auth)
 }
 
-hilt {
-    enableAggregatingTask = false
+secrets {
+    propertiesFileName = "secrets.properties"
+    defaultPropertiesFileName = "local.defaults.properties"
+
+    // Configure which keys should be ignored by the plugin by providing regular expressions.
+    // "sdk.dir" is ignored by default.
+    ignoreList.add("sdk.*") // Ignore all keys matching the regexp "sdk.*"
 }

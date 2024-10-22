@@ -10,7 +10,6 @@ import SwiftUI
 
 protocol TutorialDescriptionModuleViewProtocol {
     func onButtonClick()
-    func moveToWelcomePage()
 }
 
 struct TutorialDescriptionModuleView: View {
@@ -110,12 +109,8 @@ extension TutorialDescriptionModuleView: TutorialDescriptionModuleViewProtocol {
         }
         
         LocalManager.shared.kmmDefaults.wasTutorial = true
-        moveToWelcomePage()
-    }
-    
-    func moveToWelcomePage() {
-        setRootView(Steps.welcome.PageView)
-    }
+        setRootView(AuthPageBuilder.constructWelcomeView())
+    }    
 }
 
 #Preview {

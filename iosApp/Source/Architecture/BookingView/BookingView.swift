@@ -9,14 +9,14 @@ import SwiftUI
 
 struct BookingView<ViewModel>: View where ViewModel: BookingViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     
     // MARK: - Lifecycle
     var body: some View {
         ScrollView {
-            BaseView(navigationTitle: "Book Appointment") { ContentView }
+            ContentView
+                .showNavigationBar(title: String(localized: "Book Appointment"))
         }
-        .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
         .onAppear {
             viewModel.loadData()

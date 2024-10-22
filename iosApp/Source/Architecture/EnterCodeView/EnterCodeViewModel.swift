@@ -16,19 +16,21 @@ protocol EnterCodeViewModelProtocol: ObservableObject {
     var phone: String { get set }
     var view: EnterCodeViewProtocol? { get set }
     
-    func startTimer()
+    func sendCode(resend: Bool)
     func onReceveTimer()
     func checkCode()
 }
 
+@Observable
 final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.UserRepository()
-    @Published var isTimerRunning = false
-    @Published var startTime = Date()
-    @Published var timerString = "0.00"
-    @Published var code = [FieldData(), FieldData(), FieldData(), FieldData()]
+    private let repository: ProfileRepositoryProtocol = ProfileRepository()
+    var isTimerRunning = false
+    var startTime = Date()
+    var timerString = "0.00"
+    var code = [FieldData(), FieldData(), FieldData(), FieldData()]
     var phone: String
+    var newProfile: Bool
     var view: EnterCodeViewProtocol?
     
     // MARK: - Lifecycle
@@ -36,11 +38,33 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
         printLog("deinit -> ", self)
     }
     
-    init(phone: String) {
+    init(phone: String, newProfile: Bool) {
         self.phone = phone
+        self.newProfile = newProfile
     }
     
     // MARK: - Public
+    func sendCode(resend: Bool = false) {
+        let formattedPhone = phone.filter { !$0.isWhitespace }
+        repository.code(phone: formattedPhone, resend: resend) { result, _ in
+            DispatchQueue.main.async { [weak self] in
+                result?
+                    .onSuccess(result: { object in
+                        guard let success = object as? Bool else { return }
+                        
+                        if success {
+                            self?.startTimer()
+                        } else {
+                            // Error
+                        }
+                    })?
+                    .onError(result: { _ in
+                        // Error
+                    })
+            }
+        }
+    }
+    
     func startTimer() {
         startTime = Date().addingTimeInterval(60)
         isTimerRunning.toggle()
@@ -60,7 +84,25 @@ final class EnterCodeViewModel: EnterCodeViewModelProtocol {
     }
     
     func checkCode() {
-        LocalManager.shared.kmmDefaults.isLoggined = true
-        view?.moveToDashboardPage()
+        let resultCode = code.compactMap({ $0.value }).joined()
+        guard resultCode.count == 4 else { return }
+       
+        let formattedPhone = phone.filter { !$0.isWhitespace }
+        let request = ProfileCodeApi(phone: formattedPhone, code: resultCode)
+        
+        repository.code(code: request, completionHandler: { result, _ in
+            DispatchQueue.main.async { [weak self] in
+                result?
+                    .onSuccess(result: { object in
+                        guard let result = object as? ProfileTokenModel else { return }
+//                        LocalManager.shared.kmmDefaults.isLoggedIn = true
+                        let nextView = AuthPageBuilder.constructDashboardView()
+                        self?.view?.moveToDashboard(view: nextView)
+                    })?
+                    .onError(result: { _ in
+                        // Error
+                    })
+            }
+        })
     }
 }

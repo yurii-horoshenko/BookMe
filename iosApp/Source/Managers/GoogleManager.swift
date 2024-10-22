@@ -24,17 +24,17 @@ enum GoogleManager {
     }
     
     static func signIn(completionHandler: @escaping (GoogleManagerUser) -> Void) {
-        guard let controller = UIApplication.shared.firstKeyWindow?.rootViewController else {
-            return
-        }
+        guard let controller = UIApplication.shared.rootController else { return }
         
         GIDSignIn.sharedInstance.signIn(withPresenting: controller) { signInResult, error in
             guard error == nil, let value = signInResult?.user else { return }
+            
             let user = GoogleManagerUser(
                 token: value.idToken?.tokenString,
                 name: value.profile?.name,
                 email: value.profile?.email
             )
+           
             completionHandler(user)
         }
     }

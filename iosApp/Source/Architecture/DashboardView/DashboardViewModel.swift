@@ -8,6 +8,12 @@
 import shared
 import SwiftUI
 
+// TEMP
+struct Restaurant: Identifiable {
+    let id = UUID()
+    let name: String
+}
+
 protocol DashboardViewModelProtocol: ObservableObject {
     var searchData: FieldData { get set }
     var toServiceDetail: Bool { get set }
@@ -21,14 +27,15 @@ protocol DashboardViewModelProtocol: ObservableObject {
     func loadData()
 }
 
+@Observable
 final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Properties
-    private let repository = shared.BookingRepository()
-    @Published var searchData = FieldData(placeholder: String(localized: "SEARCH"))
-    @Published var toServiceDetail = false
-    @Published var toSearchFilter = false
-    @Published var toCancelVisit = false
-    @Published var detectHeight: CGFloat = 0
+//    private let repository = shared.BookingRepository()
+    var searchData = FieldData(placeholder: String(localized: "SEARCH"))
+    var toServiceDetail = false
+    var toSearchFilter = false
+    var toCancelVisit = false
+    var detectHeight: CGFloat = 0
     var restaurants = [
         Restaurant(name: "Joe's Original"),
         Restaurant(name: "The Real Joe's Original"),
@@ -57,8 +64,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     func loadData() {
-        repository.getBooking(count: 10) { _, _ in
-            print("")
-        }
+//        repository.getBooking(count: 10) { _, _ in
+//            print("")
+//        }
     }
 }

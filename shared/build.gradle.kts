@@ -1,14 +1,13 @@
 plugins {
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.serialization)
+    alias(libs.plugins.room)
+    alias(libs.plugins.ksp)
     kotlin("native.cocoapods")
-    id("com.android.library")
-    kotlin("plugin.serialization") version "1.9.20"
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
-
     androidTarget {
         compilations.all {
             kotlinOptions {
@@ -16,6 +15,7 @@ kotlin {
             }
         }
     }
+
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -24,39 +24,58 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
-        ios.deploymentTarget = "16.0"
+        ios.deploymentTarget = "17.0"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            isStatic = false
         }
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                //put your multiplatform dependencies here
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.logging)
-                implementation(libs.ktor.client.content.negotiation)
-                implementation(libs.ktor.serialization.kotlinx.json)
-                implementation(libs.kotlinx.datetime)
-
-                implementation(libs.kotlinx.coroutines.core)
-            }
+        commonMain.dependencies {
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.auth)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.sqlite.bundled)
+            api(libs.androidx.room.runtime)
+            api(libs.koin.core)
         }
 
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
-                //implementation("io.ktor:ktor-client-ios:2.3.6")
-            }
+        // room ios fix
+        iosMain {
+            kotlin.srcDir("build/generated/ksp/metadata")
         }
 
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.android)
-            }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
+
+        androidMain.dependencies {
+            api(libs.ktor.client.android)
+        }
+    }
+    // don't remove. This is the work around for normal build process
+    task("testClasses")
+}
+
+dependencies {
+    add("kspAndroid", libs.androidx.room.compiler)
+//    add("kspIosX64", libs.androidx.room.compiler)
+//    add("kspIosArm64", libs.androidx.room.compiler)
+//    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+    // room ios fix
+    add("kspCommonMainMetadata", libs.androidx.room.compiler)
+}
+
+// room ios fix
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
     }
 }
 
@@ -66,4 +85,8 @@ android {
     defaultConfig {
         minSdk = 28
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }

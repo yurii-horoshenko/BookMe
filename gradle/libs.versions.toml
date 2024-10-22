@@ -1,59 +1,89 @@
 [versions]
-android-gradle-plugin-version = "8.2.2"
-activity-compose-version = "1.8.2"
-compose-bom-version = "2024.02.02"
-compose-compiler-version = "1.5.10"
-coroutines-version = "1.7.3"
-kotlin-version = "1.9.22"
+accompanist-permissions-version = "0.35.0-alpha"
+android-gradle-plugin-version = "8.5.2"
+activity-compose-version = "1.9.2"
+coil-version = "2.7.0"
+compose-bom-version = "2024.09.03"
+compose-compiler-version = "1.5.11"
+coroutines-version = "1.8.1"
+firebaseAuthVersion = "23.0.0"
+firebaseBomVersion = "33.4.0"
+kotlin-version = "2.0.20"
 kotlinx-datetime = "0.6.0-RC.2"
-ktor-version = "2.3.6"
-serialization-version = "1.6.1"
-nav-version = "2.7.7"
+ktor-version = "2.3.9"
+mapsComposeVersion = "6.1.1"
+navigationComposeVersion = "2.8.2"
+playServicesAuthVersion = "21.2.0"
+playServicesLocationVersion = "21.3.0"
+secretsGradlePluginVersion = "2.0.1"
+serialization-version = "1.7.1"
 ktlint-version = "12.1.0"
 detekt = "1.23.5"
-ksp-version = "1.9.22-1.0.17"
-compose-destinations-version = "1.9.63"
-hilt-verstion = "2.51"
-hilt-compose-navigation-version = "1.2.0"
-lifecycle-compose-version = "2.7.0"
-material3-version = "1.2.1"
-
-
+ksp-version = "2.0.20-1.0.25"
+lifecycle-compose-version = "2.8.6"
+material3-version = "1.3.0"
+androidx-room = "2.7.0-alpha01"
+spotlessPluginGradleVersion = "6.19.0"
+sqlite = "2.5.0-SNAPSHOT"
+koin = "4.0.0-RC1"
+koinCompose = "4.0.0-RC1"
+kotlinxImmutable = "0.3.7"
+credentials = "1.3.0"
+googleId = "1.1.1"
 
 [libraries]
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist-permissions-version" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose-version" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-version" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom-version" }
 androidx-material = { group = "androidx.compose.material", name = "material" }
 androidx-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
+google-firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuthVersion" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-version" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-version" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor-version" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-version" }
+ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor-version" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-version" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-version" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor-version" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsComposeVersion" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuthVersion" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocationVersion" }
+secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePluginVersion" }
+spotless-plugin-gradle = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotlessPluginGradleVersion" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav-version" }
-compose-destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "compose-destinations-version" }
-compose-destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "compose-destinations-version" }
-hilt-library = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-verstion" }
-hilt-kapt = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-verstion" }
-hilt-compose-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-compose-navigation-version" }
 lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle-compose-version" }
 androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3-version" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+kotlinx-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxImmutable" }
+credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
+credentials-play-services = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
+google-identity = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleId" }
 
 [bundles]
+credentials = ["credentials", "credentials-play-services", "google-identity"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin-version" }
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin-version" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-version" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-version" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-verstion" }
+room = { id = "androidx.room", version.ref = "androidx-room" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin-version" }
+google-services = { id = "com.google.gms.google-services", version = "4.4.2" }

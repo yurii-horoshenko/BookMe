@@ -1,5 +1,6 @@
 package com.gorosoft.bookme.now.android.ui.account_setup
 
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -21,42 +22,93 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.credentials.Credential
+import androidx.credentials.CredentialManager
+import androidx.credentials.GetCredentialRequest
+import androidx.credentials.exceptions.GetCredentialException
+import androidx.navigation.NavController
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.gorosoft.bookme.now.android.NavGraphDestination
 import com.gorosoft.bookme.now.android.R
-import com.gorosoft.bookme.now.android.ui.destinations.CreateYourProfileScreenDestination
+import com.gorosoft.bookme.now.android.ui.account_setup.Effect.NavigateToHome
+import com.gorosoft.bookme.now.android.ui.account_setup.Effect.ShowError
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.ButtonDefaultBottomPadding
+import com.gorosoft.bookme.now.android.ui.utils.Loader
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
 import com.gorosoft.bookme.now.android.ui.utils.debounceClick
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
-@Destination
 @Composable
 fun LoginScreen(
-    navigator: DestinationsNavigator,
+    navController: NavController,
+    viewModel: LoginViewModel = koinViewModel(),
 ) {
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.effect.collect { effect ->
+            when (effect) {
+                is ShowError -> {
+                    Toast.makeText(context, effect.message.getText(context), Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                is NavigateToHome -> {
+                    navController.navigate(NavGraphDestination.Main.route) {
+                        popUpTo(NavGraphDestination.Login.route) {
+                            inclusive = true
+                        }
+                    }
+                }
+            }
+            viewModel.consumeEffect()
+        }
+    }
+
     LoginContent(
-//        continueWithFacebook = continueWithFacebook,
-//        continueWithGoogle = continueWithGoogle,
-        singInWithPhone = { navigator.navigate(CreateYourProfileScreenDestination) },
+        showLoading = viewModel.showLoading.value,
+        continueWithFacebook = {
+            navController.navigate(NavGraphDestination.Main.route) {
+                popUpTo(NavGraphDestination.Login.route) {
+                    inclusive = true
+                }
+            }
+        },
+        continueWithGoogle = {
+            viewModel.loginWithGoogle(it)
+        },
+        singInWithPhone = {
+            navController.navigate(NavGraphDestination.CreateProfile.route)
+        },
+        showErrorMessage = {
+            viewModel.showErrorMessage(it)
+        }
     )
 }
 
 @Suppress("MagicNumber")
 @Composable
 fun LoginContent(
+    showLoading: Boolean = false,
     continueWithFacebook: () -> Unit = {},
-    continueWithGoogle: () -> Unit = {},
+    continueWithGoogle: (Credential) -> Unit = {},
     singInWithPhone: () -> Unit = {},
+    showErrorMessage: (String) -> Unit = {},
 ) {
     Box(
         modifier = Modifier
@@ -94,10 +146,9 @@ fun LoginContent(
                 onClick = continueWithFacebook
             )
             Spacer(modifier = Modifier.height(16.dp))
-            ContinueWithButton(
-                stringRes = R.string.continue_with_google,
-                iconRes = R.drawable.ic_small_google,
-                onClick = continueWithGoogle,
+            SingInWithGoogle(
+                continueWithGoogle = continueWithGoogle,
+                showErrorMessage = showErrorMessage,
             )
             Spacer(modifier = Modifier.height(24.dp))
             CustomDivider()
@@ -108,19 +159,29 @@ fun LoginContent(
                 onClick = singInWithPhone,
             )
         }
+        if (showLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.5f))
+            ) {
+                Loader(modifier = Modifier.align(Alignment.Center))
+            }
+        }
     }
 }
 
 @Suppress("MagicNumber")
 @Composable
 private fun ContinueWithButton(
+    modifier: Modifier = Modifier,
     @StringRes stringRes: Int,
     @DrawableRes iconRes: Int,
     onClick: () -> Unit = {},
 ) {
     val shape = remember { RoundedCornerShape(16.dp) }
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(60.dp)
             .border(
@@ -178,6 +239,46 @@ private fun CustomDivider() {
     }
 }
 
+@Suppress("SwallowedException")
+@Composable
+private fun SingInWithGoogle(
+    modifier: Modifier = Modifier,
+    continueWithGoogle: (Credential) -> Unit = {},
+    showErrorMessage: (String) -> Unit = {},
+) {
+    val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+    val credentialManager = remember { CredentialManager.create(context) }
+    ContinueWithButton(
+        modifier = modifier,
+        stringRes = R.string.continue_with_google,
+        iconRes = R.drawable.ic_small_google,
+        onClick = {
+            val googleIdOption: GetGoogleIdOption = GetGoogleIdOption
+                .Builder()
+                .setFilterByAuthorizedAccounts(false)
+                .setServerClientId(context.getString(R.string.default_web_client_id))
+                .build()
+
+            val request = GetCredentialRequest.Builder()
+                .addCredentialOption(googleIdOption)
+                .build()
+
+            coroutineScope.launch {
+                try {
+                    val result = credentialManager.getCredential(
+                        request = request,
+                        context = context,
+                    )
+                    continueWithGoogle(result.credential)
+                } catch (e: GetCredentialException) {
+                    showErrorMessage.invoke(context.getString(R.string.sorry_something_went_wrong))
+                }
+            }
+        },
+    )
+}
+
 @Preview(showBackground = false, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun ContinueWithButtonPreview() {
@@ -193,6 +294,6 @@ private fun ContinueWithButtonPreview() {
 @Composable
 private fun LoginScreenPreview() {
     AppTheme {
-        LoginContent()
+        LoginContent(true)
     }
 }

@@ -5,30 +5,33 @@
 //  Created by Yurii Goroshenko on 03.08.2023.
 //
 
+import shared
 import SwiftUI
 
 struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewModelProtocol {
     // MARK: - Properties
-    @StateObject var viewModel: ViewModel
+    @State var viewModel: ViewModel
     var title: String {
-        (viewModel.profile != nil) ? String(localized: "UPDATE-PROFILE-TITLE") : String(localized: "CREATE-PROFILE-TITLE")
+        viewModel.currentProfile.isExist
+        ? String(localized: "UPDATE-PROFILE-TITLE")
+        : String(localized: "CREATE-PROFILE-TITLE")
     }
     
-    var nextButtonTitile: String {
-        (viewModel.profile != nil) ? String(localized: "BUTTON-UPDATE") : String(localized: "BUTTON-CONTINUE")
+    var nextButtonTitle: String {
+        viewModel.currentProfile.isExist
+        ? String(localized: "BUTTON-UPDATE")
+        : String(localized: "BUTTON-CONTINUE")
     }
     
     // MARK: - Lifecycle
     var body: some View {
         NavigationView {
-            BaseView(
-                navigationTitle: title,
-                content: { ContentView }
-            )
-            .navigationDestination(isPresented: $viewModel.toCode) {
-                let phone = viewModel.phone.value.phoneMask
-                AuthPageBuilder.constructEnterCodeView(phoneMask: phone)
-            }
+            ContentView
+                .showNavigationBar(title: title)
+                .navigationDestination(isPresented: $viewModel.toCode) {
+                    let phone = viewModel.phone.value
+                    AuthPageBuilder.constructEnterCodeView(phone: phone, newProfile: viewModel.isCreate)
+                }
         }
         .navigationBarBackButtonHidden(true)
         .environment(\.colorScheme, .light)
@@ -42,19 +45,19 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
             )
             .padding(.top, 24.0)
             
-            AppInputField(
-                fieldData: $viewModel.nickname
-            )
-            
             BirthDayInputView(
                 dateBirthday: $viewModel.dateBirthday
+            )
+            
+            GenderInput
+            
+            AppInputField(
+                fieldData: $viewModel.email
             )
             
             AppPhoneNumber(
                 fieldData: $viewModel.phone
             )
-            
-            GenderInput
             
             Spacer()
             
@@ -97,7 +100,7 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
     var BottomButton: some View {
         AppFilledButton(
             state: .constant(.active),
-            title: (viewModel.profile != nil) ? String(localized: "BUTTON-UPDATE") : String(localized: "BUTTON-CONTINUE"),
+            title: nextButtonTitle,
             titleColor: Color.white,
             backgroundColor: Color.primary500,
             action: { viewModel.codeVerification() }
@@ -106,5 +109,15 @@ struct CreateProfileView<ViewModel>: View where ViewModel: CreateProfileViewMode
 }
 
 #Preview {
-    ProfilePageBuilder.constructCreateProfileView()
+    ProfilePageBuilder.constructCreateProfileView(
+        profile: shared.ProfileModel(
+            fullName: "",
+            birthday: 0,
+            gender: ProfileGenderType.other,
+            phone: "",
+            facebookToken: nil,
+            googleToken: nil,
+            isExist: false
+        )
+    )
 }

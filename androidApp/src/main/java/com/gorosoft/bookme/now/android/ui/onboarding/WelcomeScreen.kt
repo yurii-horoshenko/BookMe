@@ -20,23 +20,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.gorosoft.bookme.now.android.NavGraphDestination
 import com.gorosoft.bookme.now.android.R
-import com.gorosoft.bookme.now.android.ui.destinations.TutorialCarouselScreenDestination
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.delay
 
 @Suppress("MagicNumber")
-@Destination
 @Composable
 fun WelcomeScreen(
-    navigator: DestinationsNavigator,
+    navController: NavController,
 ) {
     LaunchedEffect(key1 = Unit) {
         delay(3000)
-        navigator.popBackStack()
-        navigator.navigate(TutorialCarouselScreenDestination)
+        navController.popBackStack()
+        navController.navigate(NavGraphDestination.Tutorial.route)
     }
     WelcomeContent()
 }
