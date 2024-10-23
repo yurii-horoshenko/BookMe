@@ -29,19 +29,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.navigation.NavController
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
-
 
 @Composable
 fun EnableFeedbackDialog(
     modifier: Modifier = Modifier,
     onEnableFeedback: () -> Unit = { },
     onDismiss: () -> Unit = { },
-    navController: NavController,
-    ) {
+) {
     var rating by remember { mutableIntStateOf(0) }
     EnableFeedbackDialogInternal(
         rating = rating,
@@ -63,7 +60,7 @@ fun EnableFeedbackDialogInternal(
 ) {
     Dialog(
         onDismissRequest = onDismiss,
-        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = true)
     ) {
         Column(
             modifier = modifier
@@ -159,13 +156,17 @@ fun RatingBar(
     filledStarRes: Int = R.drawable.ic_star,
     emptyStarRes: Int = R.drawable.ic_star_border
 ) {
-    Row() {
+    Row {
         for (index in 1..stars) {
             Image(
-                painter = painterResource(id = if (index <= rating) filledStarRes else emptyStarRes),
+                painter = painterResource(
+                    id = if (index <= rating) filledStarRes else emptyStarRes
+                ),
+
                 contentDescription = null,
                 modifier = modifier
-                    .clickable(indication = null,
+                    .clickable(
+                        indication = null,
                         interactionSource = remember { MutableInteractionSource() }) {
                         if (index == rating) {
                             onRatingChanged(0)
@@ -186,8 +187,8 @@ private fun EnableFeedbackDialogPreview() {
         var rating by remember { mutableIntStateOf(1) }
         EnableFeedbackDialogInternal(
             rating = rating,
-            onRatingChanged = {rating = it},
-            onEnableFeedback = {rating = 0},
+            onRatingChanged = { rating = it },
+            onEnableFeedback = { rating = 0 },
             onDismiss = {}
         )
     }
