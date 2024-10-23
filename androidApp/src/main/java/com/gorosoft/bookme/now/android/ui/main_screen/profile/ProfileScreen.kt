@@ -45,7 +45,7 @@ fun ProfileScreen(
         },
         navigateToEditProfileScreen = {
             navController.navigate(NavGraphDestination.EditProfile.route)
-        }
+        },
     )
 }
 
@@ -105,14 +105,17 @@ fun Toolbar(modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TopSection(modifier: Modifier = Modifier) {
+private fun TopSection(
+    modifier: Modifier = Modifier,
+) {
     val sheetState = rememberModalBottomSheetState()
     val showLogoutBottomSheet = remember { mutableStateOf(false) }
+    val showFeedbackDialog = remember { mutableStateOf(false) }
 
     Box(
         modifier = modifier
             .padding(top = 34.dp)
-            .debounceClick(onClick = { showLogoutBottomSheet.value = true })
+            .debounceClick(onClick = { showFeedbackDialog.value = true })
     ) {
         Image(
             modifier = Modifier
@@ -139,6 +142,18 @@ private fun TopSection(modifier: Modifier = Modifier) {
         style = AppTheme.typography.bodyMedium.semibold,
         color = AppTheme.colors.grayscale.gs900,
     )
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        if (showFeedbackDialog.value) {
+            Column(
+                modifier = Modifier.align(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                EnableFeedbackDialog(onDismiss = { showFeedbackDialog.value = false })
+            }
+        }
+    }
     if (showLogoutBottomSheet.value) {
         ModalBottomSheet(
             containerColor = AppTheme.colors.backgroundThemed.backgroundMain,

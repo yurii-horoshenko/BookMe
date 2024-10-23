@@ -94,7 +94,7 @@ fun EditProfileScreenContent(
     modifier: Modifier = Modifier,
     profileState: EditProfileUiModel,
     onNavigateBack: () -> Unit = { },
-    onGenderSelected: (UserGenderType) -> Unit = {},
+    onGenderSelected: (ProfileGenderType) -> Unit = {},
     onNewNameInputted: (String) -> Unit = {},
     onSecondNameInputted: (String) -> Unit = {},
     onBirthDateSelected: (selectedDate: LocalDate) -> Unit = {},
@@ -528,7 +528,7 @@ private fun PhoneInput(
 @Composable
 private fun GenderInput(
     modifier: Modifier = Modifier,
-    gender: UserGenderType? = null,
+    gender: ProfileGenderType? = null,
     onGenderFieldClick: () -> Unit = {},
     focusManager: FocusManager,
 ) {
