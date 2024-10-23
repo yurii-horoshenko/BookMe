@@ -6,7 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,15 +29,37 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavController
 import com.gorosoft.bookme.now.android.R
 import com.gorosoft.bookme.now.android.ui.theme.AppTheme
 import com.gorosoft.bookme.now.android.ui.utils.PrimaryButton
+
 
 @Composable
 fun EnableFeedbackDialog(
     modifier: Modifier = Modifier,
     onEnableFeedback: () -> Unit = { },
     onDismiss: () -> Unit = { },
+    navController: NavController,
+    ) {
+    var rating by remember { mutableIntStateOf(0) }
+    EnableFeedbackDialogInternal(
+        rating = rating,
+        onEnableFeedback = onEnableFeedback,
+        onDismiss = onDismiss,
+        onRatingChanged = { it ->
+            rating = it
+        }
+    )
+}
+
+@Composable
+fun EnableFeedbackDialogInternal(
+    modifier: Modifier = Modifier,
+    onEnableFeedback: () -> Unit = { },
+    onDismiss: () -> Unit = { },
+    rating: Int,
+    onRatingChanged: (Int) -> Unit = { }
 ) {
     Dialog(
         onDismissRequest = onDismiss,
@@ -52,7 +73,7 @@ fun EnableFeedbackDialog(
                 .background(AppTheme.colors.backgroundThemed.backgroundMain),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            EnableFeedbackDialog(onEnableFeedback)
+            FeedbackDialog(onEnableFeedback, rating, onRatingChanged)
             PrimaryButton(
                 modifier = Modifier
                     .padding(start = 32.dp, end = 32.dp, bottom = 32.dp)
@@ -65,7 +86,11 @@ fun EnableFeedbackDialog(
 }
 
 @Composable
-fun ColumnScope.EnableFeedbackDialog(onEnableLocation: () -> Unit) {
+fun FeedbackDialog(
+    onEnableFeedback: () -> Unit,
+    rating: Int,
+    onRatingChanged: (Int) -> Unit
+) {
     Image(
         modifier = Modifier.padding(top = 40.dp),
         painter = painterResource(R.drawable.image_location_permission),
@@ -87,14 +112,11 @@ fun ColumnScope.EnableFeedbackDialog(onEnableLocation: () -> Unit) {
         textAlign = TextAlign.Center,
     )
 
-    var rating by remember { mutableIntStateOf(3) }
     RatingBar(
         modifier = Modifier
             .padding(top = 32.dp),
         rating = rating,
-        onRatingChanged = {
-            rating = it
-        },
+        onRatingChanged = onRatingChanged,
     )
     FeedbackInput()
 }
@@ -161,6 +183,12 @@ fun RatingBar(
 @Composable
 private fun EnableFeedbackDialogPreview() {
     AppTheme {
-        EnableFeedbackDialog {}
+        var rating by remember { mutableIntStateOf(1) }
+        EnableFeedbackDialogInternal(
+            rating = rating,
+            onRatingChanged = {rating = it},
+            onEnableFeedback = {rating = 0},
+            onDismiss = {}
+        )
     }
 }

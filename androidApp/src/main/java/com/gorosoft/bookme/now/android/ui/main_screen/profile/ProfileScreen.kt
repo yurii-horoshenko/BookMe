@@ -45,6 +45,9 @@ fun ProfileScreen(
         },
         navigateToEditProfileScreen = {
             navController.navigate(NavGraphDestination.EditProfile.route)
+        },
+        navigateToWalletScreen = {
+            navController.navigate(NavGraphDestination.Wallet.route)
         }
     )
 }
@@ -53,6 +56,7 @@ fun ProfileScreen(
 fun ProfileScreenContent(
     navigateToLanguageScreen: () -> Unit = {},
     navigateToEditProfileScreen: () -> Unit = {},
+    navigateToWalletScreen: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -79,6 +83,7 @@ fun ProfileScreenContent(
             ProfileItems(
                 onLanguageClick = navigateToLanguageScreen,
                 onEditProfileClick = navigateToEditProfileScreen,
+                onWalletClick = navigateToWalletScreen,
             )
         }
     }

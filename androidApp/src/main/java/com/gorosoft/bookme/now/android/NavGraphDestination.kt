@@ -10,4 +10,5 @@ enum class NavGraphDestination(val route: String) {
     Main("main"),
     ChooseLanguage("choose_language"),
     EditProfile("edit_profile"),
+    Wallet("wallet")
 }
